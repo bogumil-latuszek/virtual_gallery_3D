@@ -2,6 +2,7 @@ package pl.wsei.mobilne.myapplication;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -9,6 +10,10 @@ import javax.microedition.khronos.opengles.GL10;
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private Triangle triangle;
+    // vPMatrix is an abbreviation for "Model View Projection Matrix"
+    private final float[] vPMatrix = new float[16];
+    private final float[] projectionMatrix = new float[16];
+    private final float[] viewMatrix = new float[16];
 
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -21,13 +26,25 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 unused, int width, int height) {
         GLES20.glViewport(0,0,width,height);
+
+        float ratio = (float) width / height;
+        // this projection matrix is applied to object coordinates
+        // in the onDrawFrame() method
+        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
     }
 
     @Override
     public void onDrawFrame(GL10 unused) {
         //Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        triangle.draw();
+        // Set the camera position (View matrix)
+        Matrix.setLookAtM(viewMatrix, 0, 0, 0, 3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+
+        // Calculate the projection and view transformation
+        Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
+
+        // Draw shape
+        triangle.draw(vPMatrix);
     }
 
     public static int loadShader(int type, String shaderCode){

@@ -8,12 +8,19 @@ import java.nio.FloatBuffer;
 
 public class Triangle {
 
+    // Use to access and set the view transformation
+    private int vPMatrixHandle;
     private final String vertexShaderCode =
-            "attribute vec4 vPosition;" +
+            // This matrix member variable provides a hook to manipulate
+            // the coordinates of the objects that use this vertex shader
+            "uniform mat4 uMVPMatrix;" +
+                    "attribute vec4 vPosition;" +
                     "void main() {" +
-                    "  gl_Position = vPosition;" +
+                    // the matrix must be included as a modifier of gl_Position
+                    // Note that the uMVPMatrix factor *must be first* in order
+                    // for the matrix multiplication product to be correct.
+                    "  gl_Position = uMVPMatrix * vPosition;" +
                     "}";
-
     private final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 vColor;" +
@@ -77,7 +84,7 @@ public class Triangle {
         vertexBuffer.position(0);
     }
 
-    public void draw() {
+    public void draw(float[] mvpMatrix) { // pass in the calculated transformation matrix
         // Add program to OpenGL ES environment
         GLES20.glUseProgram(mProgram);
 
@@ -98,11 +105,20 @@ public class Triangle {
         // Set color for drawing the triangle
         GLES20.glUniform4fv(colorHandle, 1, color, 0);
 
+
+        // get handle to shape's transformation matrix
+        vPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
+
+        // Pass the projection and view transformation to the shader
+        GLES20.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
+
+
         // Draw the triangle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
 
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(positionHandle);
+
     }
 
 }
