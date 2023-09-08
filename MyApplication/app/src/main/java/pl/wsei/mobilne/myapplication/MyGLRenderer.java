@@ -18,7 +18,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // initialize a triangle
-        triangle = new Triangle();
+        triangle = new Triangle(this);
         //Set the background frame colof
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
@@ -47,7 +47,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         triangle.draw(vPMatrix);
     }
 
-    public static int loadShader(int type, String shaderCode){
+    public int loadShader(int type, String shaderCode){
 
         // create a vertex shader type (GLES20.GL_VERTEX_SHADER)
         // or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)

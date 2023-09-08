@@ -48,17 +48,18 @@ public class Triangle {
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
-    public Triangle() {
+    public Triangle(MyGLRenderer myGLRenderer) {
 
-
-        int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+        // both of these are just ints - memory pointers to real things??
+        int vertexShader = myGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
                 vertexShaderCode);
-        int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+        int fragmentShader = myGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
                 fragmentShaderCode);
 
         // create empty OpenGL ES Program
         mProgram = GLES20.glCreateProgram();
 
+        // in both cases below we "attach" ints (pointers?) to int (program pointer?)
         // add the vertex shader to program
         GLES20.glAttachShader(mProgram, vertexShader);
 
