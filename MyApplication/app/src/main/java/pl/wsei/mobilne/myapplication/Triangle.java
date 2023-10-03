@@ -32,7 +32,7 @@ public class Triangle {
 
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {   // in counterclockwise order:
+    static float[] triangleCoords = {   // in counterclockwise order:
             0.0f,  0.622008459f, 0.0f, // top
             -0.5f, -0.311004243f, 0.0f, // bottom left
             0.5f, -0.311004243f, 0.0f  // bottom right
@@ -51,7 +51,9 @@ public class Triangle {
     public Triangle(MyGLRenderer myGLRenderer) {
 
         // both of these are just ints - memory pointers to real things??
-        int vertexShader = myGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+        //int vertexShader = myGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
+        //poniższy kod to to samo co zakomentowana linijka wyżej
+        int vertexShader = myGLRenderer.loadShader(35633,
                 vertexShaderCode);
         int fragmentShader = myGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
                 fragmentShaderCode);
@@ -93,7 +95,7 @@ public class Triangle {
         positionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
 
         // Enable a handle to the triangle vertices
-        GLES20.glEnableVertexAttribArray(positionHandle);
+        GLES20.glEnableVertexAttribArray(positionHandle); //positionHandle = 0
 
         // Prepare the triangle coordinate data
         GLES20.glVertexAttribPointer(positionHandle, COORDS_PER_VERTEX,
@@ -112,7 +114,6 @@ public class Triangle {
 
         // Pass the projection and view transformation to the shader
         GLES20.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
-
 
         // Draw the triangle
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);

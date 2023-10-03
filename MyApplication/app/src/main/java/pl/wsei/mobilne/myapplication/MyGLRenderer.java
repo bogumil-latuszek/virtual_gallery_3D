@@ -19,7 +19,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // initialize a triangle
         triangle = new Triangle(this);
-        //Set the background frame colof
+        //Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
