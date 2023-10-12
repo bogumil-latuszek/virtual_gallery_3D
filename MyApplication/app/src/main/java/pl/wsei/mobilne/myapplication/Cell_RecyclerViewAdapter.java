@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AA_RecyclerViewAdapter extends RecyclerView.Adapter<AA_RecyclerViewAdapter.MyViewHolder> {
+public class Cell_RecyclerViewAdapter extends RecyclerView.Adapter<Cell_RecyclerViewAdapter.MyViewHolder> {
     Context context;
-    ArrayList<AminoAcidModel> aminoAcidModels;
+    ArrayList<CellModel> cellModels;
 
     private final RecyclerViewInterface recyclerViewInterface;
 
@@ -23,41 +23,41 @@ public class AA_RecyclerViewAdapter extends RecyclerView.Adapter<AA_RecyclerView
         AminoAcidModel aminoAcidModel = aminoAcidModels.get(modelID);
         aminoAcidModel.setImage(imageID);
     }*/
-    public AA_RecyclerViewAdapter(Context context, ArrayList<AminoAcidModel> aminoAcidModels, RecyclerViewInterface recyclerViewInterface) {
+    public Cell_RecyclerViewAdapter(Context context, ArrayList<CellModel> cellModels, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
-        this.aminoAcidModels = aminoAcidModels;
+        this.cellModels = cellModels;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
-    public AA_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Cell_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view  = inflater.inflate(R.layout.recycler_view_row, parent, false);
 
-        return new AA_RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
+        return new Cell_RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AA_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.tvName.setText(aminoAcidModels.get(position).getAminoAcidName());
-        holder.imageView.setImageResource(aminoAcidModels.get(position).getImage());
+    public void onBindViewHolder(@NonNull Cell_RecyclerViewAdapter.MyViewHolder holder, int position) {
+        //holder.tvName.setText(cellModels.get(position).getCellName());
+        holder.imageView.setImageResource(cellModels.get(position).getImage());
     }
 
     @Override
     public int getItemCount() {
-        return aminoAcidModels.size();
+        return cellModels.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-        TextView tvName;
+       // TextView tvName;
 
         public MyViewHolder(@NonNull View itemView,RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            tvName = itemView.findViewById(R.id.textView);
+            //tvName = itemView.findViewById(R.id.textView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

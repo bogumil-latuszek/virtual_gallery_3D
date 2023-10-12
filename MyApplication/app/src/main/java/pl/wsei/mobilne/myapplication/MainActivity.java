@@ -2,17 +2,11 @@ package pl.wsei.mobilne.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,11 +14,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
-    ArrayList<AminoAcidModel> aminoAcidModels = new ArrayList<>();
+    ArrayList<CellModel> cellModels = new ArrayList<>();
 
     int[] images = {R.drawable.ic_alanine};
 
-    AA_RecyclerViewAdapter adapter;
+    Cell_RecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +32,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
 
-        SetUpAminoAcidModels();
+        int columnCount = 10;
+        SetUpCellModels(10,columnCount);
 
-        adapter = new AA_RecyclerViewAdapter(this, aminoAcidModels, this);
+        adapter = new Cell_RecyclerViewAdapter(this, cellModels, this);
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
     }
 
     public void ChangeModeTo3D(View v){
@@ -51,29 +46,24 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         startActivity(i);
     }
 
-    private void SetUpAminoAcidModels(){
-        String[] aminoAcidNames = getResources().getStringArray(R.array.amino_acids_one_letter_txt);
-
-        for(int i = 0; i < aminoAcidNames.length; i++){
-            aminoAcidModels.add(new AminoAcidModel(
-                    aminoAcidNames[i],
-                    images[0]
-
-            ));
+    private void SetUpCellModels(int rowCount, int columnCount){
+        for(int i = 0; i < rowCount; i++){
+            for (int j = 0; j< columnCount; j++){
+                cellModels.add(new CellModel(i, j, images[0]));
+            }
         }
-
     }
 
     @Override
     public void onItemClick(int position) {
-        AminoAcidModel aminoAcidModel = aminoAcidModels.get(position);
-        int foundImage = aminoAcidModel.getImage();
+        CellModel cellModel = cellModels.get(position);
+        int foundImage = cellModel.getImage();
         int awesomeImage = R.drawable.ic_awesome;
         if(foundImage == awesomeImage ){
-            aminoAcidModel.setImage(R.drawable.ic_alanine);
+            cellModel.setImage(R.drawable.ic_alanine);
         }
         else{
-            aminoAcidModel.setImage(R.drawable.ic_awesome);
+            cellModel.setImage(R.drawable.ic_awesome);
         }
         Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
         adapter.notifyItemChanged(position);
