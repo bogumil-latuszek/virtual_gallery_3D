@@ -67,7 +67,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     public void onItemClick(int position) {
         AminoAcidModel aminoAcidModel = aminoAcidModels.get(position);
-        aminoAcidModel.setImage(R.drawable.ic_awesome);
+        int foundImage = aminoAcidModel.getImage();
+        int awesomeImage = R.drawable.ic_awesome;
+        if(foundImage == awesomeImage ){
+            aminoAcidModel.setImage(R.drawable.ic_alanine);
+        }
+        else{
+            aminoAcidModel.setImage(R.drawable.ic_awesome);
+        }
         Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
         adapter.notifyItemChanged(position);
     }
