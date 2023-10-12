@@ -17,4 +17,12 @@ public class AminoAcidModel {
     public int getImage() {
         return image;
     }
+
+    public void setAminoAcidName(String aminoAcidName) {
+        this.aminoAcidName = aminoAcidName;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
 }

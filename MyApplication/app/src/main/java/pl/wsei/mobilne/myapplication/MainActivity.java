@@ -7,17 +7,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
     ArrayList<AminoAcidModel> aminoAcidModels = new ArrayList<>();
 
     int[] images = {R.drawable.ic_alanine};
+
+    AA_RecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         SetUpAminoAcidModels();
 
-        AA_RecyclerViewAdapter adapter = new AA_RecyclerViewAdapter(this, aminoAcidModels);
+        adapter = new AA_RecyclerViewAdapter(this, aminoAcidModels, this);
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
@@ -56,5 +63,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onItemClick(int position) {
+        AminoAcidModel aminoAcidModel = aminoAcidModels.get(position);
+        aminoAcidModel.setImage(R.drawable.ic_awesome);
+        Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
+        adapter.notifyItemChanged(position);
+    }
+
+    /*public void ChangeImage(View w){
+        int modelID = w.getId();
+        Log.d("myTag", "modelID: "+modelID);
+        int imageID = R.drawable.ic_awesome;
+        Log.d("myTag", "imageID: "+imageID);
+        adapter.ChangeImg(modelID, imageID);
+    }*/
 
 }
