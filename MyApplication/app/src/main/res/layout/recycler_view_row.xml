@@ -17,8 +17,8 @@
         app:cardBackgroundColor="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="70dp"
-            android:layout_height="70dp">
+            android:layout_width="80dp"
+            android:layout_height="80dp">
 
             <ImageView
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_alanine" />
+                app:srcCompat="@drawable/empty_image" />
 
             <TextView
                 android:id="@+id/textView"

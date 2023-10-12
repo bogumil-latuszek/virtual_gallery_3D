@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     ArrayList<CellModel> cellModels = new ArrayList<>();
 
-    int[] images = {R.drawable.ic_alanine};
+    //int[] images = {R.drawable.ic_alanine};
 
     Cell_RecyclerViewAdapter adapter;
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private void SetUpCellModels(int rowCount, int columnCount){
         for(int i = 0; i < rowCount; i++){
             for (int j = 0; j< columnCount; j++){
-                cellModels.add(new CellModel(i, j, images[0]));
+                cellModels.add(new CellModel(i, j, R.drawable.empty_image));
             }
         }
     }
@@ -58,12 +58,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     public void onItemClick(int position) {
         CellModel cellModel = cellModels.get(position);
         int foundImage = cellModel.getImage();
-        int awesomeImage = R.drawable.ic_awesome;
-        if(foundImage == awesomeImage ){
-            cellModel.setImage(R.drawable.ic_alanine);
+        int wall = R.drawable.wall;
+        int empty_image = R.drawable.empty_image;
+        if(foundImage == empty_image ){
+            cellModel.setImage(R.drawable.wall);
         }
         else{
-            cellModel.setImage(R.drawable.ic_awesome);
+            cellModel.setImage(R.drawable.empty_image);
         }
         Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
         adapter.notifyItemChanged(position);

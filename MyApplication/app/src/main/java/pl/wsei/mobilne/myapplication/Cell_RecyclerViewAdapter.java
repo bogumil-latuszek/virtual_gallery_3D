@@ -40,7 +40,8 @@ public class Cell_RecyclerViewAdapter extends RecyclerView.Adapter<Cell_Recycler
 
     @Override
     public void onBindViewHolder(@NonNull Cell_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        //holder.tvName.setText(cellModels.get(position).getCellName());
+        holder.positionTxtv.setText(cellModels.get(position).getColumnPosition()+","+
+                cellModels.get(position).getRowPosition());
         holder.imageView.setImageResource(cellModels.get(position).getImage());
     }
 
@@ -52,12 +53,12 @@ public class Cell_RecyclerViewAdapter extends RecyclerView.Adapter<Cell_Recycler
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
-       // TextView tvName;
+        TextView positionTxtv;
 
         public MyViewHolder(@NonNull View itemView,RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
-            //tvName = itemView.findViewById(R.id.textView);
+            positionTxtv = itemView.findViewById(R.id.textView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
