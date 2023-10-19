@@ -1,19 +1,26 @@
 package pl.wsei.mobilne.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
+>>>>>>> adding_recycler_view
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
+    ArrayList<CellModel> cellModels = new ArrayList<>();
+
+    //int[] images = {R.drawable.ic_alanine};
+
+    Cell_RecyclerViewAdapter adapter;
+>>>>>>> adding_recycler_view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,37 +33,53 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        String[] flowerName = {"Rose","Lotus","Lily","Jasmine",
-                "Tulip"};
-        int[] flowerImages = {R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background,
-                R.drawable.ic_launcher_background};
+        RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
 
-        GridAdapter gridAdapter = new GridAdapter(MainActivity.this,flowerName,flowerImages);
-        GridView gridView = findViewById(R.id.gridview);
-        gridView.setAdapter(gridAdapter);
+        int columnCount = 10;
+        SetUpCellModels(10,columnCount);
 
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Toast.makeText(MainActivity.this, "You Clicked on " + flowerName[position], Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-
-
+        adapter = new Cell_RecyclerViewAdapter(this, cellModels, this);
+        recyclerView.setAdapter(adapter);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
+>>>>>>> adding_recycler_view
     }
 
     public void ChangeModeTo3D(View v){
         Intent i = new Intent(MainActivity.this, Mode3DActivity.class);
         startActivity(i);
     }
+
+    private void SetUpCellModels(int rowCount, int columnCount){
+        for(int i = 0; i < rowCount; i++){
+            for (int j = 0; j< columnCount; j++){
+                cellModels.add(new CellModel(i, j, R.drawable.empty_image));
+            }
+        }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        CellModel cellModel = cellModels.get(position);
+        int foundImage = cellModel.getImage();
+        int wall = R.drawable.wall;
+        int empty_image = R.drawable.empty_image;
+        if(foundImage == empty_image ){
+            cellModel.setImage(R.drawable.wall);
+        }
+        else{
+            cellModel.setImage(R.drawable.empty_image);
+        }
+        Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
+        adapter.notifyItemChanged(position);
+    }
+
+    /*public void ChangeImage(View w){
+        int modelID = w.getId();
+        Log.d("myTag", "modelID: "+modelID);
+        int imageID = R.drawable.ic_awesome;
+        Log.d("myTag", "imageID: "+imageID);
+        adapter.ChangeImg(modelID, imageID);
+    }*/
 
 }
