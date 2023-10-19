@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
->>>>>>> adding_recycler_view
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     //int[] images = {R.drawable.ic_alanine};
 
     Cell_RecyclerViewAdapter adapter;
->>>>>>> adding_recycler_view
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
->>>>>>> adding_recycler_view
     }
 
     public void ChangeModeTo3D(View v){
