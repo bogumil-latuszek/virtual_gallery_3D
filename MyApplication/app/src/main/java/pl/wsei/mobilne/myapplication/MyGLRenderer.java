@@ -9,7 +9,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
-    private Triangle triangle;
+    private Cuboid triangle;
+   // private Triangle triangle;
     // vPMatrix is an abbreviation for "Model View Projection Matrix"
     private final float[] vPMatrix = new float[16];
     private final float[] projectionMatrix = new float[16];
@@ -18,7 +19,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
         // initialize a triangle
-        triangle = new Triangle(this);
+
+        triangle = new Cuboid(this);
+        //triangle = new Triangle(this);
+
         //Set the background frame color
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
@@ -38,7 +42,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         //Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
         // Set the camera position (View matrix)
-        Matrix.setLookAtM(viewMatrix, 0, 0, 0, 3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+        Matrix.setLookAtM(viewMatrix, 0, 0, 0, 5, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
         // Calculate the projection and view transformation
         Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
