@@ -17,6 +17,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
         setRenderer(renderer);
 
         //Render the view only when there is a change in the drawing data
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
+        //I commented it out becouse rotation animation didn't work
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 }
