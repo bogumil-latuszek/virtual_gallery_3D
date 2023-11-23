@@ -31,53 +31,46 @@ public class Cuboid {
     private final int mProgram;
     private FloatBuffer vertexBuffer;
     private ShortBuffer drawInstructionBuffer;
-    
-    //*************************************************************
-    //EXPERIMENT
-    private ShortBuffer drawInstruction1Buffer;
-    private ShortBuffer drawInstruction2Buffer;
-    //*************************************************************
 
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
-    static float[] cuboidCoords = {   // in counterclockwise order:
+
+    /*static float[] cuboidCoords = {   // in counterclockwise order:
             0.0f,  0.622008459f, 0.0f, // top
             -0.5f, -0.311004243f, 0.0f, // bottom left
             0.5f, -0.311004243f, 0.0f,  // bottom right
             0.5f, 0.622008459f, 0.0f, // top right
             -0.5f, 0.622008459f, 0.0f // top left
-    };
-
-    static short[] instruction = {
-            0, 1, 2, 0, 2, 3, 4, 1, 0
-    };
-
-    //*************************************************************
-    //EXPERIMENT
-    static short[] instruction1 = {//tego nie widzi?
-            4,1,3
-    };
-    static short[] instruction2 = {
-            1,2,3
-    };
-    //*************************************************************
-
-    /*
-    static float[] CuboidCoordsINSTRUCTED = {   // in counterclockwise order:
-            0.0f,  0.622008459f, -0.01f, // top
-            -0.5f, -0.311004243f, -0.01f, // bottom left
-            0.5f, -0.311004243f, -0.01f,  // bottom right
-            0.0f,  0.622008459f, -0.01f, // top
-            0.5f, -0.311004243f, -0.01f,  // bottom right
-            0.5f, 0.622008459f, -0.01f // top right
     };*/
+
+    static float[] cuboidCoords = {   // in counterclockwise order:
+            -0,5f,  0.5f, -0.5f, // left top front
+            -0,5f,  -0.5f, -0.5f, // left bottom front
+            0,5f,  -0.5f, -0.5f, // right bottom front
+            0,5f,  0.5f, -0.5f, // right top front
+            -0,7f,  0.3f, 0.5f, // left top back
+            -0,7f,  -0.7f, 0.5f, // left bottom back
+            0,3f,  -0.7f, 0.5f, // right bottom back
+            0,3f,  0.3f, 0.5f, // right top back
+    };
+
+    /*static short[] instruction = {
+            0, 1, 2, 0, 2, 3, //front side
+            4, 5, 1, 4, 1, 0, // left side
+            1, 5, 6, 1, 6, 2, // bottom side
+            3, 2, 6, 3, 6, 7, // right side
+            0, 3, 7, 0, 7, 4, // top side
+            7, 6, 5, 7, 5, 4 // back side
+
+    };*/
+    static short[] instruction = {
+            0, 1, 2, 0, 2, 3 //front side
+
+    };
 
     // Set color with red, green, blue and alpha (opacity) values
     float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
-    //*************************************************************
-    //EXPERIMENT
     float color2[] = { 0.9f, 0.1f, 0.1f, 1.0f };
-    //*************************************************************
 
     private int positionHandle;
     private int colorHandle;
@@ -85,7 +78,26 @@ public class Cuboid {
     private final int vertexCount = cuboidCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
 
+    // I made this function to test drawing of cuboid on the screen depending on params
+    // It could be repurposed later for creation of different cuboids from base cube
+    float[] transformCuboidCoords(float[] cuboidCoords, float xScalar, float yScalar, float zScalar,
+                                  float xMove, float yMove, float zMove){
+        float[] newCoords = new float[cuboidCoords.length];
+        for (int i = 0; i < cuboidCoords.length-3; i+=3) {
+            float xValue = cuboidCoords[i]*xScalar + xMove;
+            float yValue = cuboidCoords[i+1]*yScalar +yMove;
+            float zValue = cuboidCoords[i+2]*zScalar + zMove;
+
+            newCoords[i] = xValue;
+            newCoords[i+1] = yValue;
+            newCoords[i+2] = zValue;
+        }
+        return  newCoords;
+    }
+
     public Cuboid(MyGLRenderer myGLRenderer) {
+
+        cuboidCoords = transformCuboidCoords(cuboidCoords, 0.1f, 0.1f, 0.1f, 0,-0.7f,0);
 
         // both of these are just ints - memory pointers to real things??
         //int vertexShader = myGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
@@ -108,7 +120,7 @@ public class Cuboid {
         // creates OpenGL ES program executables
         GLES20.glLinkProgram(mProgram);
 
-        //initialize byte buffer for instruction
+        //initialize byte buffer for drawing order instruction
         ByteBuffer instructionBuffer = ByteBuffer.allocateDirect(
                 instruction.length * 2);
         instructionBuffer.order(ByteOrder.nativeOrder());
@@ -118,25 +130,6 @@ public class Cuboid {
         drawInstructionBuffer.put(instruction);
         drawInstructionBuffer.position(0);
 
-
-        //*************************************************************
-        //EXPERIMENT
-        //initialize byte buffer for instruction1
-        ByteBuffer instruction1Buffer = ByteBuffer.allocateDirect(
-                instruction1.length * 2);
-        instruction1Buffer.order(ByteOrder.nativeOrder());
-        drawInstruction1Buffer = instruction1Buffer.asShortBuffer();
-        drawInstruction1Buffer.put(instruction1);
-        drawInstruction1Buffer.position(0);
-
-        //initialize byte buffer for instruction2
-        ByteBuffer instruction2Buffer = ByteBuffer.allocateDirect(
-                instruction2.length * 2);
-        instruction2Buffer.order(ByteOrder.nativeOrder());
-        drawInstruction2Buffer = instruction2Buffer.asShortBuffer();
-        drawInstruction2Buffer.put(instruction2);
-        drawInstruction2Buffer.position(0);
-        //*************************************************************
 
         // initialize vertex byte buffer for shape coordinates
         ByteBuffer bb = ByteBuffer.allocateDirect(
@@ -180,24 +173,11 @@ public class Cuboid {
         // Pass the projection and view transformation to the shader
         GLES20.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
 
-        // Draw the cuboid
-        //GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount); //mode, first, count
-        
-        /*GLES20.glDrawElements(
+        // Draw cuboid
+        GLES20.glDrawElements(
                 GLES20.GL_TRIANGLES, instruction.length,
-                GLES20.GL_UNSIGNED_SHORT, drawInstructionBuffer);*/
-        //*****************************************************
-        //EXPERIMENT
-        GLES20.glDrawElements(
-                GLES20.GL_TRIANGLES, instruction1.length,
-                GLES20.GL_UNSIGNED_SHORT, drawInstruction1Buffer);
+                GLES20.GL_UNSIGNED_SHORT, drawInstructionBuffer);
 
-        GLES20.glUniform4fv(colorHandle, 1, color2, 0);
-
-        GLES20.glDrawElements(
-                GLES20.GL_TRIANGLES, instruction2.length,
-                GLES20.GL_UNSIGNED_SHORT, drawInstruction2Buffer);
-        //*****************************************************
 
         // Disable vertex array
         GLES20.glDisableVertexAttribArray(positionHandle);
