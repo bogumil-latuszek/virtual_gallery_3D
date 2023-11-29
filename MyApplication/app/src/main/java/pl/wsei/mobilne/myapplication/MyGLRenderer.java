@@ -48,7 +48,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // Create a rotation transformation for the triangle
         long time = SystemClock.uptimeMillis() % 4000L;
         float angle = 0.090f * ((int) time);
-        Matrix.setRotateM(rotationMatrix, 0, angle, 0, 0, -1.0f);
+        Matrix.setRotateM(rotationMatrix, 0, angle, 0, -0.3f, -1.0f);
 
         //Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);

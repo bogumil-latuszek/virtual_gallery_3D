@@ -32,6 +32,9 @@ public class Cuboid {
     private FloatBuffer vertexBuffer;
     private ShortBuffer drawInstructionBuffer;
 
+    //****************************************
+    private FloatBuffer colorFloatBuffer;
+    //****************************************
     // number of coordinates per vertex in this array
     static final int COORDS_PER_VERTEX = 3;
 
@@ -43,7 +46,7 @@ public class Cuboid {
             -0.5f, 0.622008459f, 0.0f // top left
     };*/
 
-    static float[] cuboidCoords = {   // in counterclockwise order:
+    /*static float[] cuboidCoords = {   // in counterclockwise order:
             -0,5f,  0.5f, -0.5f, // left top front
             -0,5f,  -0.5f, -0.5f, // left bottom front
             0,5f,  -0.5f, -0.5f, // right bottom front
@@ -52,6 +55,32 @@ public class Cuboid {
             -0,7f,  -0.7f, 0.5f, // left bottom back
             0,3f,  -0.7f, 0.5f, // right bottom back
             0,3f,  0.3f, 0.5f, // right top back
+    };*/
+    static float[] cuboidCoords = {
+            -1.0f,  1.0f, -1.0f, /* Back. */
+            1.0f,  1.0f, -1.0f,
+            -1.0f, -1.0f, -1.0f,
+            1.0f, -1.0f, -1.0f,
+            -1.0f,  1.0f,  1.0f, /* Front. */
+            1.0f,  1.0f,  1.0f,
+            -1.0f, -1.0f,  1.0f,
+            1.0f, -1.0f,  1.0f,
+            -1.0f,  1.0f, -1.0f, /* Left. */
+            -1.0f, -1.0f, -1.0f,
+            -1.0f, -1.0f,  1.0f,
+            -1.0f,  1.0f,  1.0f,
+            1.0f,  1.0f, -1.0f, /* Right. */
+            1.0f, -1.0f, -1.0f,
+            1.0f, -1.0f,  1.0f,
+            1.0f,  1.0f,  1.0f,
+            -1.0f, -1.0f, -1.0f, /* Top. */
+            -1.0f, -1.0f,  1.0f,
+            1.0f, -1.0f,  1.0f,
+            1.0f, -1.0f, -1.0f,
+            -1.0f,  1.0f, -1.0f, /* Bottom. */
+            -1.0f,  1.0f,  1.0f,
+            1.0f,  1.0f,  1.0f,
+            1.0f,  1.0f, -1.0f
     };
 
     /*static short[] instruction = {
@@ -64,13 +93,43 @@ public class Cuboid {
 
     };*/
     static short[] instruction = {
-            0, 1, 2, 0, 2, 3 //front side
+            0, 2, 3, 0, 1, 3,
+            4, 6, 7, 4, 5, 7,
+            8, 9, 10, 11, 8, 10,
+            12, 13, 14, 15, 12, 14,
+            16, 17, 18, 16, 19, 18,
+            20, 21, 22, 20, 23, 22
 
     };
 
     // Set color with red, green, blue and alpha (opacity) values
     float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
     float color2[] = { 0.9f, 0.1f, 0.1f, 1.0f };
+    float color3[] = {1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            1.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f,
+            1.0f, 1.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            1.0f, 1.0f, 0.0f,
+            0.0f, 1.0f, 1.0f,
+            0.0f, 1.0f, 1.0f,
+            0.0f, 1.0f, 1.0f,
+            0.0f, 1.0f, 1.0f,
+            1.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 1.0f
+    };
 
     private int positionHandle;
     private int colorHandle;
@@ -97,7 +156,7 @@ public class Cuboid {
 
     public Cuboid(MyGLRenderer myGLRenderer) {
 
-        cuboidCoords = transformCuboidCoords(cuboidCoords, 0.1f, 0.1f, 0.1f, 0,-0.7f,0);
+        cuboidCoords = transformCuboidCoords(cuboidCoords, 0.5f, 0.5f, 0.5f, 0,0f,0);
 
         // both of these are just ints - memory pointers to real things??
         //int vertexShader = myGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
@@ -144,6 +203,22 @@ public class Cuboid {
         vertexBuffer.put(cuboidCoords);
         // set the buffer to read the first coordinate
         vertexBuffer.position(0);
+
+        //***************************************************
+        // initialize color byte buffer
+        ByteBuffer colorBuffer = ByteBuffer.allocateDirect(
+                // (number of coordinate values * 4 bytes per float)
+                cuboidCoords.length * 4);
+        // use the device hardware's native byte order
+        colorBuffer.order(ByteOrder.nativeOrder());
+
+        // create a floating point buffer from the ByteBuffer
+        colorFloatBuffer = colorBuffer.asFloatBuffer();
+        // add the coordinates to the FloatBuffer
+        colorFloatBuffer.put(color3);
+        // set the buffer to read the first coordinate
+        colorFloatBuffer.position(0);
+        //**************************************************
     }
 
     public void draw(float[] mvpMatrix) { // pass in the calculated transformation matrix
@@ -166,6 +241,9 @@ public class Cuboid {
 
         // Set color for drawing the cuboid
         GLES20.glUniform4fv(colorHandle, 1, color, 0);
+        //GLES20.glVertexAttribPointer(colorHandle, 3, GLES20.GL_FLOAT, GLES20.GL_FALSE, 0, color3);
+
+        //GLES20.glUniform4fv(colorHandle, 3, color3, 0);
 
         // get handle to shape's transformation matrix
         vPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
@@ -173,7 +251,18 @@ public class Cuboid {
         // Pass the projection and view transformation to the shader
         GLES20.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
 
+        //******************************************
+        //int vertexColourLocation = GLES20.glGetAttribLocation(mProgram, "vColor");// but we already have this? colorHandle few lines up?
+        GLES20.glVertexAttribPointer(colorHandle, 3, GLES20.GL_FLOAT, false, 0, colorFloatBuffer);
+        GLES20.glEnableVertexAttribArray(colorHandle);
+
+        //******************************************
+
         // Draw cuboid
+        // 1 mode- specifies what kind of primitive to draw
+        // 2 count - number of elements to be rendered
+        // 3 type - the type of the values in indices. Must be GL_UNSIGNED_BYTE or GL_UNSIGNED_SHORT
+        // 4 indices - a pointer to the location where the indices are stored
         GLES20.glDrawElements(
                 GLES20.GL_TRIANGLES, instruction.length,
                 GLES20.GL_UNSIGNED_SHORT, drawInstructionBuffer);
