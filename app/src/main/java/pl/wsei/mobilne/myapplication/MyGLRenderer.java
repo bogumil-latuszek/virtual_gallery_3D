@@ -13,6 +13,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private Cuboid triangle;
    // private Triangle triangle;
     // vPMatrix is an abbreviation for "Model View Projection Matrix"
+    //it translates model coordinates to a place they are meant to be in a 3d scene?
     private final float[] vPMatrix = new float[16];
     private final float[] projectionMatrix = new float[16];
     private final float[] viewMatrix = new float[16];
