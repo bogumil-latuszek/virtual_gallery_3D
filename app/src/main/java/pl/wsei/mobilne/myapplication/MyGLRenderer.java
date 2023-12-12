@@ -84,5 +84,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         return shader;
     }
+    public void handleTouchDrag(float normalizedX, float normalizedY) {
+    }
+
+
+    public void handleTouchPress(float normalizedX, float normalizedY) {
+    }
 
 }
