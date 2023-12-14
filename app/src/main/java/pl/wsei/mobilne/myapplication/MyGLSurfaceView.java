@@ -4,8 +4,8 @@ import android.opengl.GLSurfaceView;
 
 public class MyGLSurfaceView extends GLSurfaceView {
 
-    private final MyGLRenderer myRenderer;
-    public MyGLSurfaceView(Context context, MyGLRenderer renderer) {
+    private final GLSurfaceView.Renderer myRenderer;
+    public MyGLSurfaceView(Context context, GLSurfaceView.Renderer renderer) {
         super(context);
 
         //We are creating an OpenGL ES 2.0 context

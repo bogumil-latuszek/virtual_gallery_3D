@@ -12,13 +12,17 @@ import android.widget.Toast;
 
 public class Mode3DActivity extends AppCompatActivity {
     private GLSurfaceView gLView;
-    private MyGLRenderer glRenderer;
+    //private MyGLRenderer glRenderer;
+    private MultiTriangleRenderer glRenderer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        glRenderer = new MyGLRenderer();
+        //glRenderer = new MyGLRenderer();
+        glRenderer = new MultiTriangleRenderer();
+        //gLView = new MyGLSurfaceView(this, glRenderer);
         gLView = new MyGLSurfaceView(this, glRenderer);
+
         //according to the book, we can add touch events here
         gLView.setOnTouchListener(new View.OnTouchListener() {
             @Override
