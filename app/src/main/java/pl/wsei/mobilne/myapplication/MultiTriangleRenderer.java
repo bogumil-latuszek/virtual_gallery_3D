@@ -246,22 +246,12 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
                     upx, upy, 0f);
         }
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
-//        Matrix.multiplyMM(modelViewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
-
-
-        // calculate aspect adjustment matrix for display
-        // (bind this matrix to matrix variable "location inside shader")
-//        GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, viewProjectionMatrix, 0);
 
         // draw our shapes
         mWorld.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
-
-        mTriangle.prepareDataSource_forVertexShaderAttributes(aPositionLocation, aColorLocation);
-        mTriangle.combineWithModelMatrix(projectionMatrix, modelViewProjectionMatrix);
-        GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
-        mTriangle.draw(bUseGlobalColorLocation);
-
+        //        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, projectionMatrix);
 
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);

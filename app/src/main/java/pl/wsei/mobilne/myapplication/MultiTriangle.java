@@ -109,14 +109,22 @@ public class MultiTriangle {
     public void combineWithModelMatrix(float[] projectionMatrix, float[] modelViewProjectionMatrix) {
         Matrix.multiplyMM(modelViewProjectionMatrix, 0, projectionMatrix, 0, modelMatrix, 0);
     }
-    public void draw(int useGlobalColorLocation) {
+    public void draw(int aPositionLocation, int aColorLocation, int useGlobalColorLocation,
+                     int uMatrixLocation, float[] viewProjectionMatrix) {
         // force shader to use uniform color
         int trueInGPU = 0;
         GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
 
+        prepareDataSource_forVertexShaderAttributes(aPositionLocation, aColorLocation);
+
         // no need to fill uColorLocation with "current color"
         // via glUniform4fv() or glUniform4f()
         // since aColorLocation is already defined to pull color values from vertices buffer
+
+        // recalculate vertices per matrices
+        float[] modelViewProjectionMatrix = new float[16];
+        combineWithModelMatrix(viewProjectionMatrix, modelViewProjectionMatrix);
+        GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
 
         // Draw the triangle fan 4
         int offsetToStart_inVertexData = 15;
