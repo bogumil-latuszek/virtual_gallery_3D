@@ -193,8 +193,31 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
 
         // Redraw background color
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT );
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
+        animateCameraView();
+
+        Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
+
+        // draw our shapes
+        mWorld.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+
+        // if we pass viewProjectionMatrix instead of projectionMatrix then mTriangle moves with other shapes
+        // otherwise mTriangle stays motionless while other shapes move
+        // (in that case the only transformation the shape is subjected to is perspective correction)
+        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, projectionMatrix);
+
+        blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        redCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        orangeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid2.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid3.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+    }
+
+    private void animateCameraView() {
         long uptimeMs = SystemClock.uptimeMillis();
         long angle = uptimeMs % 3600L;
         long timeSpace = uptimeMs % 70000L;
@@ -245,22 +268,6 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
                     cx, cy, -10f,
                     upx, upy, 0f);
         }
-        Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
-
-        // draw our shapes
-        mWorld.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-
-        //        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, projectionMatrix);
-
-        blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        redCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        orangeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid2.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid3.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
 
     }
