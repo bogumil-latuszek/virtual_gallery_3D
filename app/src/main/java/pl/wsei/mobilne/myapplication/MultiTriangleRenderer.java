@@ -195,7 +195,7 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
-        animateCameraView();
+        //animateCameraView();
 
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
@@ -296,6 +296,23 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         return programObjectId;
     }
     public void handleTouchDrag(float normalizedX, float normalizedY) {
+        //there's a few problems with this function
+        //1) if you start dragging from a different point than you last touched the screen
+        //the view "jumps" around
+        //2) the span of rotation is limited
+        //3) we need a function that rotates camera on its own axis, not this
+        float delta = 2 * normalizedX;
+        float dx = -delta * 2;
+        float dy = 1.5f;
+        float dz = 0f;
+        float cx = 0f;
+        float cy = 0f;
+        float upx = 0f;
+        float upy = 1f;
+        Matrix.setLookAtM(viewMatrix, 0,
+                dx, dy, dz,
+                cx, cy, -10f,
+                upx, upy, 0f);
     }
 
 
