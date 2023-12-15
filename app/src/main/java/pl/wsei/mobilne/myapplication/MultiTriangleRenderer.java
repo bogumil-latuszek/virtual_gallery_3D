@@ -205,7 +205,7 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         // if we pass viewProjectionMatrix instead of projectionMatrix then mTriangle moves with other shapes
         // otherwise mTriangle stays motionless while other shapes move
         // (in that case the only transformation the shape is subjected to is perspective correction)
-        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, projectionMatrix);
+        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
@@ -301,9 +301,8 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         //the view "jumps" around
         //2) the span of rotation is limited
         //3) we need a function that rotates camera on its own axis, not this
-        float delta = 2 * normalizedX;
-        float dx = -delta * 2;
-        float dy = 1.5f;
+        float dx = normalizedX * 4;
+        float dy = normalizedY * 4;
         float dz = 0f;
         float cx = 0f;
         float cy = 0f;
@@ -317,6 +316,17 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
 
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
+        float dx = 0;
+        float dy = 1.5f;
+        float dz = 0f;
+        float cx = normalizedX;
+        float cy = normalizedY;
+        float upx = 0f;
+        float upy = 1f;
+        Matrix.setLookAtM(viewMatrix, 0,
+                dx, dy, dz,
+                cx, cy, -10f,
+                upx, upy, 0f);
     }
 
 }
