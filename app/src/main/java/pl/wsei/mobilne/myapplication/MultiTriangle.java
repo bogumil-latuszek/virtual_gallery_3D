@@ -63,7 +63,7 @@ public class MultiTriangle {
 
     private final int vertexCount = shapeCoords.length / COORDS_PER_VERTEX;
 
-    public MultiTriangle() {
+    public MultiTriangle() { //constructor takes no parameters
         // prepare buffer for vertices
         vertexData = ByteBuffer
                 .allocateDirect(shapeCoords.length * BYTES_PER_FLOAT)

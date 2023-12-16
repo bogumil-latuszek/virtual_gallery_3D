@@ -68,7 +68,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(scratch, 0, vPMatrix, 0, rotationMatrix, 0);
 
         // Draw triangle
-        triangle.draw(scratch);
+        triangle.draw(scratch); //scratch to mvp matrix, tutaj renderer liczy wszystko dla tej jednej bryły(trójkąta)
 
     }
 
@@ -84,11 +84,4 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         return shader;
     }
-    public void handleTouchDrag(float normalizedX, float normalizedY) {
-    }
-
-
-    public void handleTouchPress(float normalizedX, float normalizedY) {
-    }
-
 }
