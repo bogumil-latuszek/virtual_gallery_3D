@@ -11,9 +11,10 @@ import javax.microedition.khronos.opengles.GL10;
 public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
 
     // access to "drawing color variable" inside OpenGL
+    // naming convention: A_ - shader attributes, U_ - shader uniforms
     private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
-    private static final String B_USE_GLOBAL_COLOR = "b_useGlobalColor";
+    private static final String U_USE_GLOBAL_COLOR = "u_useGlobalColor";
     private int aColorLocation;
     private int uColorLocation;
     private int bUseGlobalColorLocation;
@@ -29,10 +30,10 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
             "precision mediump float;" +
                     "uniform vec4 u_Color;" +
                     "varying vec4 v_Color;" +
-                    "uniform bool b_useGlobalColor;" +
+                    "uniform bool u_useGlobalColor;" +
                     "void main() {" +
                     "  gl_FragColor = v_Color;" +
-                    "  if (b_useGlobalColor) {" +
+                    "  if (u_useGlobalColor) {" +
                     "    gl_FragColor = u_Color;" +
                     "  }" +
                     "}";
@@ -51,11 +52,8 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
     private int vertexShaderId;
     private int fragmentShaderId;
 
-    private final float[] viewMatrix = new float[16]; //is this meant to represent world coordinates?
+    private final float[] viewMatrix = new float[16];
     private final float[] viewProjectionMatrix = new float[16];
-    private final float[] modelViewProjectionMatrix = new float[16]; //isn't this unused? since it should be
-                                                                    // calculated inside of the model then this must be legacy code
-
 
     // shapes to render
     private MultiTriangle mTriangle;
@@ -87,16 +85,13 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
         aColorLocation = GLES20.glGetAttribLocation(programObjectId, A_COLOR);
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
-        bUseGlobalColorLocation = GLES20.glGetUniformLocation(programObjectId, B_USE_GLOBAL_COLOR);
+        bUseGlobalColorLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_GLOBAL_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
 
         uMatrixLocation = GLES20.glGetUniformLocation(programObjectId, U_MATRIX);
 
-        //Set the background color
-        //in another words: define color to be used as we call glClear()
-        GLES20.glClearColor(0.8f, 0.8f, 0.8f, 0.0f); // ale dlaczego jest to wywołane tylko raz a nie co każdy
-                                                                    // draw? czy może to jest wybranie defaultowego koloru background?
-
+        // define color to be used as we call glClear()
+        GLES20.glClearColor(0.8f, 0.8f, 0.8f, 0.0f);
         // Prepare our shape
         //                    R         G         B
         float[] orange_f = {252f/255f, 186f/255f, 3f/255f};
@@ -109,7 +104,7 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
         float[] purple_e = {190f/255f, 12f/255f, 235f/255f};
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
-        mWorld = new WorldCoords(); //to są te linie które tworzą grid
+        mWorld = new WorldCoords(); // TODO: clarify naming
         mTriangle = new MultiTriangle();
 
         blueCuboid = new Cuboid2(1f, 1f, 1f);
@@ -154,16 +149,13 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         int offsetToStart_in_projectionMatrix = 0;
         Matrix.frustumM(projectionMatrix, offsetToStart_in_projectionMatrix,
                 -ratio, ratio, -1, 1, 3, 10);
-        //być może przez to wywołanie setlookatm w onSurfacechanged rotacja kamery nam się resetuje,
-        // sprawdzić kiedy wywołuje się onsurfacechanged?
+
         Matrix.setLookAtM(viewMatrix, 0,
                 0f, 1.5f, 0f,
                 0f, 0f, -10f,
                 0f, 1f, 0f);
 
-        //to tutaj rozmieszczamy bryły, na przyszłość będziemy to robić w loopie na podstawie
-        // zapisanych danych
-        //
+        // TODO: loop to create walls in different placess
         mTriangle.startTransforming();
         mTriangle.move(2f, 0f, -7.0f);
 
@@ -200,20 +192,19 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
 
         // Redraw background color
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT); //co to robi? bierze dane z glClearColor?
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
         //animateCameraView();
 
-        Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0); //why should we calculate this here if projection matrix shouldn't change every frame?
+        // TODO: move to code point where we change viewMatrix (f.ex into handleTouchPress(), handleTouchDrag()) ???
+        Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
         // draw our shapes
         //draw checkerboard floor
         mWorld.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
-        // if we pass viewProjectionMatrix instead of projectionMatrix then mTriangle moves with other shapes
-        // otherwise mTriangle stays motionless while other shapes move
+        // if we pass projectionMatrix instead of viewProjectionMatrix then shape doesn't move with other shapes
         // (in that case the only transformation the shape is subjected to is perspective correction)
-        // tbf this applies to all shapes we draw below
         mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
@@ -308,6 +299,7 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
 
 
     //te dwie funkcje handleTouchDrag i handleTouchPress powinny być zdefiniowane w interfejsie, możemy zrobić do nich dekorator?
+    // TODO: change type of renderer parameter inside constructor of Surface View
     public void handleTouchDrag(float normalizedX, float normalizedY) {
         //there's a few problems with this function
         //1) if you start dragging from a different point than you last touched the screen
