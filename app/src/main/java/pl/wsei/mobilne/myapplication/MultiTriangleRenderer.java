@@ -56,7 +56,6 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
     private final float[] viewProjectionMatrix = new float[16];
 
     // shapes to render
-    private MultiTriangle mTriangle;
     private WorldCoords mWorld;
     private Cuboid2 blueCuboid;
     private Cuboid2 greenCuboid;
@@ -105,7 +104,6 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         float[] purple_e = {190f/255f, 12f/255f, 235f/255f};
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         mWorld = new WorldCoords(); // TODO: clarify naming
-        mTriangle = new MultiTriangle();
 
         blueCuboid = new Cuboid2(1f, 1f, 1f);
 
@@ -156,8 +154,6 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
                 0f, 1f, 0f);
 
         // TODO: loop to create walls in different placess
-        mTriangle.startTransforming();
-        mTriangle.move(2f, 0f, -7.0f);
 
         greenCuboid.startTransforming();
         greenCuboid.scale(0.1f, 1f, 1f);
@@ -205,7 +201,6 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
 
         // if we pass projectionMatrix instead of viewProjectionMatrix then shape doesn't move with other shapes
         // (in that case the only transformation the shape is subjected to is perspective correction)
-        mTriangle.draw(aPositionLocation, aColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
