@@ -4,8 +4,8 @@ import android.opengl.GLSurfaceView;
 
 public class MyGLSurfaceView extends GLSurfaceView {
 
-    private final GLSurfaceView.Renderer myRenderer;
-    public MyGLSurfaceView(Context context, GLSurfaceView.Renderer renderer) {
+    private final MyGLRenderer myRenderer;
+    public MyGLSurfaceView(Context context, MyGLRenderer renderer) {
         super(context);
 
         //We are creating an OpenGL ES 2.0 context
@@ -19,6 +19,6 @@ public class MyGLSurfaceView extends GLSurfaceView {
         //Render the view only when there is a change in the drawing data
 
         //I commented it out becouse rotation animation didn't work
-        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY); //TODO: CHECK IF SHOULD BE USED
     }
 }

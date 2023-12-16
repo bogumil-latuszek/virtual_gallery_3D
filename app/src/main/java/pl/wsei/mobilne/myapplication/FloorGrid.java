@@ -1,13 +1,12 @@
 package pl.wsei.mobilne.myapplication;
 
 import android.opengl.GLES20;
-import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-public class WorldCoords {
+public class FloorGrid {
     // number of coordinates per vertex in this array
     private static final int COORDS_PER_VERTEX = 3;
     private static final int COORD_LINES_NB = 21;
@@ -16,7 +15,7 @@ public class WorldCoords {
     private static final int BYTES_PER_FLOAT = 4;
     private final FloatBuffer vertexData;  // <-- Vertices
 
-    public WorldCoords() {
+    public FloorGrid() {
         // calculate coordinates for vertices
         initPoints();
         // prepare buffer for vertices

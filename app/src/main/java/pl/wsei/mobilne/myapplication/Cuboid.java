@@ -5,7 +5,7 @@ import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 
-public class Cuboid2 {
+public class Cuboid {
     // number of coordinates per vertex in this array
     private static final int COORDS_PER_VERTEX = 3;
     //not sure what this code below was meant for
@@ -24,7 +24,7 @@ public class Cuboid2 {
     private final ByteBuffer vertexSequenceForDrawingEdges;
 
 
-    public Cuboid2(float dx, float dy, float dz) {
+    public Cuboid(float dx, float dy, float dz) {
         // prepare buffer for vertices
         vertexArray = new VertexArray(new float[]{
                 -dx, dy, dz,             // (0) Top-left near

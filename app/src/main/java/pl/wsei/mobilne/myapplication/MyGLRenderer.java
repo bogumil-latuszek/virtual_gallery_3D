@@ -8,7 +8,7 @@ import android.os.SystemClock;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
+public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
@@ -56,15 +56,15 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
     private final float[] viewProjectionMatrix = new float[16];
 
     // shapes to render
-    private WorldCoords mWorld;
-    private Cuboid2 blueCuboid;
-    private Cuboid2 greenCuboid;
-    private Cuboid2 limeCuboid;
-    private Cuboid2 redCuboid;
-    private Cuboid2 orangeCuboid;
-    private Cuboid2 purpleCuboid;
-    private Cuboid2 purpleCuboid2;
-    private Cuboid2 purpleCuboid3;
+    private FloorGrid floorGrid;
+    private Cuboid blueCuboid;
+    private Cuboid greenCuboid;
+    private Cuboid limeCuboid;
+    private Cuboid redCuboid;
+    private Cuboid orangeCuboid;
+    private Cuboid purpleCuboid;
+    private Cuboid purpleCuboid2;
+    private Cuboid purpleCuboid3;
 
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -103,35 +103,35 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
         float[] purple_e = {190f/255f, 12f/255f, 235f/255f};
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
-        mWorld = new WorldCoords(); // TODO: clarify naming
+        floorGrid = new FloorGrid();
 
-        blueCuboid = new Cuboid2(1f, 1f, 1f);
+        blueCuboid = new Cuboid(1f, 1f, 1f);
 
-        limeCuboid = new Cuboid2(0.1f, 2f, 1f);
+        limeCuboid = new Cuboid(0.1f, 2f, 1f);
         limeCuboid.setEdgeColor(lime_e);
         limeCuboid.setFaceColor(lime_f);
 
-        greenCuboid = new Cuboid2(1f, 1f, 1f);
+        greenCuboid = new Cuboid(1f, 1f, 1f);
         greenCuboid.setEdgeColor(green_e);
         greenCuboid.setFaceColor(green_f);
 
-        redCuboid = new Cuboid2(1f, 1f, 1f);
+        redCuboid = new Cuboid(1f, 1f, 1f);
         redCuboid.setEdgeColor(red_e);
         redCuboid.setFaceColor(red_f);
 
-        orangeCuboid = new Cuboid2(1f, 1f, 1f);
+        orangeCuboid = new Cuboid(1f, 1f, 1f);
         orangeCuboid.setEdgeColor(orange_e);
         orangeCuboid.setFaceColor(orange_f);
         orangeCuboid.setFaceOpacity(0.8f);
 
-        purpleCuboid = new Cuboid2(1f, 0.2f, 3f);
+        purpleCuboid = new Cuboid(1f, 0.2f, 3f);
         purpleCuboid.setEdgeColor(purple_e);
         purpleCuboid.setFaceColor(purple_f);
-        purpleCuboid2 = new Cuboid2(0.1f, 1f, 0.1f);
+        purpleCuboid2 = new Cuboid(0.1f, 1f, 0.1f);
         purpleCuboid2.setEdgeColor(purple_e);
         purpleCuboid2.setFaceColor(purple_f);
         purpleCuboid2.setFaceOpacity(0.2f);
-        purpleCuboid3 = new Cuboid2(0.1f, 1f, 0.1f);
+        purpleCuboid3 = new Cuboid(0.1f, 1f, 0.1f);
         purpleCuboid3.setEdgeColor(purple_e);
         purpleCuboid3.setFaceColor(purple_f);
         purpleCuboid3.setFaceOpacity(0.8f);
@@ -196,8 +196,7 @@ public class MultiTriangleRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
         // draw our shapes
-        //draw checkerboard floor
-        mWorld.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        floorGrid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
         // if we pass projectionMatrix instead of viewProjectionMatrix then shape doesn't move with other shapes
         // (in that case the only transformation the shape is subjected to is perspective correction)
