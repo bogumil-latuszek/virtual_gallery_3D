@@ -5,6 +5,8 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.os.SystemClock;
 
+import java.util.ArrayList;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -66,6 +68,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private Cuboid purpleCuboid2;
     private Cuboid purpleCuboid3;
 
+    private ArrayList<WallCoordinates>  wallCoordinatesList;
+    private  ArrayList<Wall> walls;
+    private  ArrayList<Cuboid> cuboids;
+
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
@@ -105,6 +111,36 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         floorGrid = new FloorGrid();
 
+        wallCoordinatesList = new ArrayList<WallCoordinates>();
+        wallCoordinatesList.add( new WallCoordinates(0f,0f));
+        wallCoordinatesList.add( new WallCoordinates(0f,1f));
+        wallCoordinatesList.add( new WallCoordinates(0f,2f));
+        wallCoordinatesList.add( new WallCoordinates(2f,1f));
+        wallCoordinatesList.add( new WallCoordinates(3f,1f));
+
+        walls = new ArrayList<Wall>();
+        for (int i = 0; i < wallCoordinatesList.size(); i++) {
+            WallCoordinates currentWallCoord = wallCoordinatesList.get(i);
+            Wall newWall = new Wall();
+            newWall.X_position = currentWallCoord.getX();
+            newWall.Z_position = currentWallCoord.getZ();
+            newWall.setEdgeColor(red_e);
+            newWall.setFaceColor(red_f);
+            newWall.setFaceOpacity(0.8f);
+            walls.add(newWall);
+        }
+
+        cuboids = new ArrayList<Cuboid>();
+        for (int i = 0; i < wallCoordinatesList.size(); i++) {
+            WallCoordinates currentWallCoord = wallCoordinatesList.get(i);
+            Cuboid newCuboid = new Cuboid(0.5f, 1f, 0.5f);
+            newCuboid.setEdgeColor(red_e);
+            newCuboid.setFaceColor(red_f);
+            newCuboid.setFaceOpacity(0.8f);
+            cuboids.add(newCuboid);
+        }
+
+        /*
         blueCuboid = new Cuboid(1f, 1f, 1f);
 
         limeCuboid = new Cuboid(0.1f, 2f, 1f);
@@ -135,6 +171,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         purpleCuboid3.setEdgeColor(purple_e);
         purpleCuboid3.setFaceColor(purple_f);
         purpleCuboid3.setFaceOpacity(0.8f);
+        */
     }
 
     @Override
@@ -155,6 +192,23 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         // TODO: loop to create walls in different placess
 
+
+        for (Wall wall : walls) {
+            wall.startTransforming();
+            wall.move(wall.X_position, 0, wall.Z_position);
+        }
+
+        for(int i = 0; i < cuboids.size(); i++) {
+            Cuboid cuboid = cuboids.get(i);
+            WallCoordinates wallCoordinates = wallCoordinatesList.get(i);
+            float x = wallCoordinates.getX();
+            float z = wallCoordinates.getZ();
+            cuboid.startTransforming();
+            cuboid.scale(1f, 1f, 1f);
+            cuboid.move(x+0.5f, 0, -8.5f+z);
+        }
+
+        /*
         greenCuboid.startTransforming();
         greenCuboid.scale(0.1f, 1f, 1f);
         greenCuboid.move(2f, 0f, -6f);
@@ -182,6 +236,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         purpleCuboid3.startTransforming();
         purpleCuboid3.move(-1.5f, 0f, 5f);
+         */
     }
 
     @Override
@@ -201,6 +256,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // if we pass projectionMatrix instead of viewProjectionMatrix then shape doesn't move with other shapes
         // (in that case the only transformation the shape is subjected to is perspective correction)
 
+        for(Wall wall : walls){
+            wall.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        }
+
+        for (Cuboid cuboid : cuboids) {
+            cuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        }
+        /*
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
@@ -209,6 +272,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         purpleCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         purpleCuboid2.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         purpleCuboid3.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+         */
     }
 
     private void animateCameraView() {
