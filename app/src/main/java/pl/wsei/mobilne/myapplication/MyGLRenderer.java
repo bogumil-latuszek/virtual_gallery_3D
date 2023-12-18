@@ -59,18 +59,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     // shapes to render
     private FloorGrid floorGrid;
-    private Cuboid blueCuboid;
-    private Cuboid greenCuboid;
-    private Cuboid limeCuboid;
-    private Cuboid redCuboid;
-    private Cuboid orangeCuboid;
-    private Cuboid purpleCuboid;
-    private Cuboid purpleCuboid2;
-    private Cuboid purpleCuboid3;
+//    private Cuboid blueCuboid;
+//    private Cuboid greenCuboid;
+//    private Cuboid limeCuboid;
+//    private Cuboid redCuboid;
+//    private Cuboid orangeCuboid;
+//    private Cuboid purpleCuboid;
+//    private Cuboid purpleCuboid2;
+//    private Cuboid purpleCuboid3;
 
     private ArrayList<WallCoordinates>  wallCoordinatesList;
     private  ArrayList<Wall> walls;
-    private  ArrayList<Cuboid> cuboids;
 
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -130,16 +129,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             walls.add(newWall);
         }
 
-        cuboids = new ArrayList<Cuboid>();
-        for (int i = 0; i < wallCoordinatesList.size(); i++) {
-            WallCoordinates currentWallCoord = wallCoordinatesList.get(i);
-            Cuboid newCuboid = new Cuboid(0.5f, 1f, 0.5f);
-            newCuboid.setEdgeColor(red_e);
-            newCuboid.setFaceColor(red_f);
-            newCuboid.setFaceOpacity(0.8f);
-            cuboids.add(newCuboid);
-        }
-
         /*
         blueCuboid = new Cuboid(1f, 1f, 1f);
 
@@ -195,19 +184,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         for (Wall wall : walls) {
             wall.startTransforming();
-            wall.move(wall.X_position, 0, wall.Z_position);
+            wall.move(wall.X_position + 0.5f, 0, wall.Z_position-8.5f);
         }
-
-        for(int i = 0; i < cuboids.size(); i++) {
-            Cuboid cuboid = cuboids.get(i);
-            WallCoordinates wallCoordinates = wallCoordinatesList.get(i);
-            float x = wallCoordinates.getX();
-            float z = wallCoordinates.getZ();
-            cuboid.startTransforming();
-            cuboid.scale(1f, 1f, 1f);
-            cuboid.move(x+0.5f, 0, -8.5f+z);
-        }
-
         /*
         greenCuboid.startTransforming();
         greenCuboid.scale(0.1f, 1f, 1f);
@@ -258,10 +236,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         for(Wall wall : walls){
             wall.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        }
-
-        for (Cuboid cuboid : cuboids) {
-            cuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         }
         /*
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);

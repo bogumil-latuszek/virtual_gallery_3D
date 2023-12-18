@@ -5,7 +5,7 @@ public class Wall extends Cuboid{
     float Z_position;
 
     public Wall() {
-        super(1, 1, 1);
+        super(0.5f, 1f, 0.5f);
     }
 
 }
