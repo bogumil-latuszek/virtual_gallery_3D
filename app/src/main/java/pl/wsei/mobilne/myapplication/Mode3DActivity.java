@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import pl.wsei.mobilne.myapplication.space3d.MyGLRenderer;
+
 public class Mode3DActivity extends AppCompatActivity {
     private GLSurfaceView gLView;
     private MyGLRenderer glRenderer;

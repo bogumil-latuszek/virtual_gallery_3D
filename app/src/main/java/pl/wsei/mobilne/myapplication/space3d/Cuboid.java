@@ -1,9 +1,11 @@
-package pl.wsei.mobilne.myapplication;
+package pl.wsei.mobilne.myapplication.space3d;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
+
+import pl.wsei.mobilne.myapplication.space3d.VertexArray;
 
 public class Cuboid {
     // number of coordinates per vertex in this array

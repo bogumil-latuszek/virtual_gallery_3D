@@ -1,4 +1,4 @@
-package pl.wsei.mobilne.myapplication;
+package pl.wsei.mobilne.myapplication.space3d;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

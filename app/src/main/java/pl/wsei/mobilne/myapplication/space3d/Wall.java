@@ -1,6 +1,6 @@
-package pl.wsei.mobilne.myapplication;
+package pl.wsei.mobilne.myapplication.space3d;
 
-public class Wall extends Cuboid{
+public class Wall extends Cuboid {
     float X_position;
     float Z_position;
 

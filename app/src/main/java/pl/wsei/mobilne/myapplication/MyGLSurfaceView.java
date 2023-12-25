@@ -2,6 +2,8 @@ package pl.wsei.mobilne.myapplication;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 
+import pl.wsei.mobilne.myapplication.space3d.MyGLRenderer;
+
 public class MyGLSurfaceView extends GLSurfaceView {
 
     private final MyGLRenderer myRenderer;
