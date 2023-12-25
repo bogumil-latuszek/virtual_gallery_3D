@@ -1,8 +1,14 @@
 package pl.wsei.mobilne.myapplication;
 
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Note {
+
+    public static ArrayList<Note> noteArrayList = new ArrayList<>();
 
     private int id;
     private String title;
