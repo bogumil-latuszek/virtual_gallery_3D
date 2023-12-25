@@ -18,7 +18,7 @@ public class Mode3DActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        glRenderer = new MyGLRenderer();
+        glRenderer = new MyGLRenderer(this);
         gLView = new MyGLSurfaceView(this, glRenderer);
 
         //according to the book, we can add touch events here

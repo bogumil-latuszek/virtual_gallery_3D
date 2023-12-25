@@ -38,11 +38,22 @@
 
             <ImageButton
                 android:id="@+id/ChangeTo3DButton"
-                android:onClick="ChangeModeTo3D"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:contentDescription="TODO"
+                android:onClick="ChangeModeTo3D"
+                android:scaleType="fitCenter"
                 app:srcCompat="@android:drawable/ic_media_play" />
+
+            <ImageButton
+                android:id="@+id/SaveWallsButton"
+                style="@android:style/Widget.Holo.ImageButton"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:contentDescription="TODO"
+                android:onClick="SaveWalls"
+                android:scaleType="fitCenter"
+                app:srcCompat="@android:drawable/stat_sys_download" />
         </LinearLayout>
 
     </LinearLayout>
