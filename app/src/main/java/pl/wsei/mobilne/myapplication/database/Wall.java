@@ -3,13 +3,13 @@ package pl.wsei.mobilne.myapplication.database;
 public class Wall {
 
     private float x;
-    private float y;
+    private float z;
 
     public float getX() {return x;}
-    public float getY() {return y;}
+    public float getZ() {return z;}
 
-    public Wall(float x, float y) {
+    public Wall(float x, float z) {
         this.x = x;
-        this.y = y;
+        this.z = z;
     }
 }

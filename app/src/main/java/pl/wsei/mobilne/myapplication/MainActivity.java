@@ -11,6 +11,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
+import pl.wsei.mobilne.myapplication.database.DatabaseManager;
+import pl.wsei.mobilne.myapplication.database.Wall;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -43,6 +48,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     public void ChangeModeTo3D(View v){
+
+//        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+//        DatabaseManager dbManager = new DatabaseManager(dbHelper);
+//
+//        Wall myWall = new Wall(0.7f, 0.9f);
+//        dbManager.AddWall(myWall);
+//        List<Wall> wallList = dbManager.GetAll();
+//        Toast.makeText(this, wallList.toString(), Toast.LENGTH_SHORT).show();
+//
+
         Intent i = new Intent(MainActivity.this, Mode3DActivity.class);
         startActivity(i);
     }
