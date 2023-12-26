@@ -73,10 +73,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     public void SaveWalls(View v) {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        DatabaseManager dbManager = new DatabaseManager(dbHelper);
-        for (CellModel wall: cellModels) {
-            if (! wall.isEmpty()) {
-                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
+        List<Wall> wallsLoaded1 = Wall.getAll(dbHelper);
+        Wall.emptyTable(dbHelper);
+        List<Wall> wallsLoaded = Wall.getAll(dbHelper);
+//        DatabaseManager dbManager = new DatabaseManager(dbHelper);
+//        dbManager.emptyTable();
+//        dbManager.createWallsTable();
+        for (CellModel wall2D: cellModels) {
+            if (! wall2D.isEmpty()) {
+                Wall wall = new Wall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
+                wall.add(dbHelper);
+//                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
             }
         }
     }

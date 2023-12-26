@@ -18,12 +18,14 @@ import pl.wsei.mobilne.myapplication.database.DatabaseManager;
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     public MyGLRenderer(Context context){
-        DatabaseHelper dbHelper = new DatabaseHelper(context);
-        dbManager = new DatabaseManager(dbHelper);
+        dbHelper = new DatabaseHelper(context);
+//        DatabaseHelper dbHelper = new DatabaseHelper(context);
+//        dbManager = new DatabaseManager(dbHelper);
     }
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
-    private DatabaseManager dbManager;
+//    private DatabaseManager dbManager;
+    private DatabaseHelper dbHelper;
     private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
     private static final String U_USE_GLOBAL_COLOR = "u_useGlobalColor";
@@ -139,7 +141,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //            walls.add(newWall);
 //        }
 
-        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
+//        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
+        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = pl.wsei.mobilne.myapplication.database.Wall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
             Wall newWall = new Wall();
             newWall.X_position = wallsLoaded.get(i).getX();
