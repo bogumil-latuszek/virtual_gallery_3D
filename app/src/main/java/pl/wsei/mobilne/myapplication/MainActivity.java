@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
-import pl.wsei.mobilne.myapplication.database.DatabaseManager;
-import pl.wsei.mobilne.myapplication.database.Wall;
+import pl.wsei.mobilne.myapplication.database.dbmWall;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -73,16 +72,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     public void SaveWalls(View v) {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        List<Wall> wallsLoaded1 = Wall.getAll(dbHelper);
-        Wall.emptyTable(dbHelper);
-        List<Wall> wallsLoaded = Wall.getAll(dbHelper);
+        List<dbmWall> wallsLoaded1 = dbmWall.getAll(dbHelper);
+        dbmWall.emptyTable(dbHelper);
+        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
 //        DatabaseManager dbManager = new DatabaseManager(dbHelper);
 //        dbManager.emptyTable();
 //        dbManager.createWallsTable();
         for (CellModel wall2D: cellModels) {
             if (! wall2D.isEmpty()) {
-                Wall wall = new Wall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
-                wall.add(dbHelper);
+                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
+                dbmWall.add(dbHelper);
 //                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
             }
         }

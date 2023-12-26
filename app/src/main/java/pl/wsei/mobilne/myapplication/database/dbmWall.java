@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wall {
+public class dbmWall {
     // ------------------- db
     public static final String TABLE_NAME = "WALLS";
 
@@ -32,7 +32,7 @@ public class Wall {
         return z;
     }
 
-    public Wall(float x, float z) {
+    public dbmWall(float x, float z) {
         this.x = x;
         this.z = z;
     }
@@ -63,8 +63,8 @@ public class Wall {
 
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
-    public static List<Wall> getAll(DatabaseHelper dbHelper) {
-        ArrayList<Wall> wallArrayList = new ArrayList<>();
+    public static List<dbmWall> getAll(DatabaseHelper dbHelper) {
+        ArrayList<dbmWall> dbmWallArrayList = new ArrayList<>();
         Cursor myCursor = fetch(dbHelper);
         if (myCursor.getCount() != 0){
             int xCoordIdx = myCursor.getColumnIndex(X_COORDINATE);
@@ -72,11 +72,11 @@ public class Wall {
             do {
                 float x = myCursor.getFloat(xCoordIdx);
                 float z = myCursor.getFloat(zCoordIdx);
-                Wall wall = new Wall(x ,z);
-                wallArrayList.add(wall);
+                dbmWall dbmWall = new dbmWall(x ,z);
+                dbmWallArrayList.add(dbmWall);
             } while (myCursor.moveToNext());
         }
-        return  wallArrayList;
+        return dbmWallArrayList;
     }
     private static Cursor fetch(DatabaseHelper dbHelper) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();

@@ -13,7 +13,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
-import pl.wsei.mobilne.myapplication.database.DatabaseManager;
+import pl.wsei.mobilne.myapplication.database.dbmWall;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
@@ -142,7 +142,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        }
 
 //        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
-        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = pl.wsei.mobilne.myapplication.database.Wall.getAll(dbHelper);
+        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
             Wall newWall = new Wall();
             newWall.X_position = wallsLoaded.get(i).getX();
