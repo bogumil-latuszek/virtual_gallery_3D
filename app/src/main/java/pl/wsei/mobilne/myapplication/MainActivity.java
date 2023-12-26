@@ -62,16 +62,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         startActivity(i);
     }
 
-    public void SaveWalls(View v){
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        DatabaseManager dbManager = new DatabaseManager(dbHelper);
-
-        dbManager.AddWall(new Wall(0.7f, 0.9f));
-        dbManager.AddWall(new Wall(3.7f, 3.9f));
-        dbManager.AddWall(new Wall(2.7f, 4.9f));
-        dbManager.AddWall(new Wall(1.7f, 5.9f));
-
-    }
 
     private void SetUpCellModels(int rowCount, int columnCount){
         for(int i = 0; i < rowCount; i++){
@@ -80,6 +70,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
             }
         }
     }
+
+    public void SaveWalls(View v) {
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        DatabaseManager dbManager = new DatabaseManager(dbHelper);
+        for (CellModel wall: cellModels) {
+            if (! wall.isEmpty()) {
+                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
+            }
+        }
+    }
+
 
     @Override
     public void onItemClick(int position) {

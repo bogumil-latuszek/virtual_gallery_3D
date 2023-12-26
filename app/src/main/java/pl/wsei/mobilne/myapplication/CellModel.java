@@ -38,4 +38,7 @@ public class CellModel {
     public void setImage(int image) {
         this.image = image;
     }
+    public boolean isEmpty() {
+        return this.image == R.drawable.empty_image;
+    }
 }
