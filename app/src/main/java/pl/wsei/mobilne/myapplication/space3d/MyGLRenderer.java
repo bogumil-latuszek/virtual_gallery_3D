@@ -1,11 +1,17 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
+import static android.opengl.Matrix.invertM;
+import static android.opengl.Matrix.multiplyMV;
+
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.os.SystemClock;
+import android.util.Log;
+import android.widget.Toast;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +21,12 @@ import javax.microedition.khronos.opengles.GL10;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.dbmWall;
 
+import pl.wsei.mobilne.myapplication.space3d.Geometry;
+
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     public MyGLRenderer(Context context){
+        this.appContext = context;
         dbHelper = new DatabaseHelper(context);
 //        DatabaseHelper dbHelper = new DatabaseHelper(context);
 //        dbManager = new DatabaseManager(dbHelper);
@@ -25,6 +34,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
 //    private DatabaseManager dbManager;
+    private Context appContext;
+    private final float[] invertedViewProjectionMatrix = new float[16];
     private DatabaseHelper dbHelper;
     private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
@@ -252,6 +263,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // TODO: move to code point where we change viewMatrix (f.ex into handleTouchPress(), handleTouchDrag()) ???
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
+        //this matrix will be useful for converting from normalised to world space
+        Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
+
         // draw our shapes
         floorGrid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
 
@@ -377,6 +391,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
+        //revert normalised coords to world coords
+        Geometry.Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+        for (int i = 0; i < walls.size(); i++) {
+            Wall wall = walls.get(i);
+            Boolean wallHitByRay = wall.CheckSimpleRayCollision(ray);
+            if (wallHitByRay){
+                //Toast.makeText(appContext, "WALL HIT", Toast.LENGTH_SHORT).show(); this gives error
+                Log.d("WallCollision","ray hit wall nr."+i);
+                break;
+            }
+        }
         float dx = 0;
         float dy = 1.5f;
         float dz = 0f;
@@ -388,6 +413,35 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 dx, dy, dz,
                 cx, cy, -10f,
                 upx, upy, 0f);
+    }
+
+    private Geometry.Ray convertNormalized2DPointToRay(float normalizedX, float normalizedY) {
+        // We'll convert these normalized device coordinates into world-space
+        // coordinates. We'll pick a point on the near and far planes, and draw a
+        // line between them. To do this transform, we need to first multiply by
+        // the inverse matrix, and then we need to undo the perspective divide.
+        final float[] nearPointNdc = {normalizedX, normalizedY, -1, 1};
+        final float[] farPointNdc = {normalizedX, normalizedY, 1, 1};
+        final float[] nearPointWorld = new float[4];
+        final float[] farPointWorld = new float[4];
+        multiplyMV(
+                nearPointWorld, 0, invertedViewProjectionMatrix, 0, nearPointNdc, 0);
+        multiplyMV(
+                farPointWorld, 0, invertedViewProjectionMatrix, 0, farPointNdc, 0);
+        divideByW(nearPointWorld);
+        divideByW(farPointWorld);
+        Geometry.Point nearPointRay =
+                new Geometry.Point(nearPointWorld[0], nearPointWorld[1], nearPointWorld[2]);
+        Geometry.Point farPointRay =
+                new Geometry.Point(farPointWorld[0], farPointWorld[1], farPointWorld[2]);
+        return new Geometry.Ray(nearPointRay,
+                Geometry.vectorBetween(nearPointRay, farPointRay));
+    }
+
+    private void divideByW(float[] vector) {
+        vector[0] /= vector[3];
+        vector[1] /= vector[3];
+        vector[2] /= vector[3];
     }
 
 }

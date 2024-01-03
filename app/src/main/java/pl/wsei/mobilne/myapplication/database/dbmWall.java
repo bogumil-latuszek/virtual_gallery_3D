@@ -17,6 +17,7 @@ public class dbmWall {
     public static final String Z_COORDINATE = "z_coordinate";
 
     // Creating table query
+    // real means float in db
     private static final String CREATE_TABLE_SQL = "create table " + TABLE_NAME + "(" + _ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + X_COORDINATE + " REAL NOT NULL, " + Z_COORDINATE + " REAL NOT NULL);";
 

@@ -25,8 +25,10 @@ public class Cuboid {
     private final ByteBuffer vertexSequenceForDrawingFaces;
     private final ByteBuffer vertexSequenceForDrawingEdges;
 
+    //private Geometry.Point centerPoint;
 
     public Cuboid(float dx, float dy, float dz) {
+        //centerPoint = new Geometry.Point(0f,0f,0f);
         // prepare buffer for vertices
         vertexArray = new VertexArray(new float[]{
                 -dx, dy, dz,             // (0) Top-left near
@@ -147,4 +149,19 @@ public class Cuboid {
 
         GLES20.glDisable(GLES20.GL_BLEND);
     }
+
+    public boolean CheckSimpleRayCollision(Geometry.Ray ray){
+        //Geometry.Point centerPoint = new Geometry.Point(0f,0f,0f);
+        float[] vector = new float[] {0f,0f,0f,1};
+        float[] resultVec = new float[4];
+        Matrix.multiplyMV(resultVec, 0, modelMatrix, 0, vector, 0);
+        Geometry.Point centerPoint = new Geometry.Point(resultVec[0], resultVec[1],resultVec[2]);
+        float distance = Geometry.distanceBetween(centerPoint, ray);
+        if (distance < 0.5){
+            return true;
+        }
+        return false;
+    }
+
+
 }
