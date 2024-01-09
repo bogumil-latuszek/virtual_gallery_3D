@@ -19,6 +19,8 @@ import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.dbmWall;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
@@ -152,7 +154,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
         List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
-            Wall newWall = new Wall();
+            Wall newWall = new Wall(0.5f, 1f, 0.5f, "Wall nr."+i);
             newWall.X_position = wallsLoaded.get(i).getX();
             newWall.Z_position = wallsLoaded.get(i).getZ();
             newWall.setEdgeColor(red_e);
@@ -390,16 +392,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public void handleTouchPress(float normalizedX, float normalizedY) {
         //revert normalised coords to world coords
 
-//        Geometry.Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
-//        for (int i = 0; i < walls.size(); i++) {
-//            Wall wall = walls.get(i);
+        Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+        for (int i = 0; i < walls.size(); i++) {
+            Wall wall = walls.get(i);
 //            Boolean wallHitByRay = wall.CheckSimpleRayCollision(ray);
 //            if (wallHitByRay){
 //                //Toast.makeText(appContext, "WALL HIT", Toast.LENGTH_SHORT).show(); this gives error
 //                Log.d("WallCollision","ray hit wall nr."+i);
 //                break;
 //            }
-//        }
+            String faceHitByRayID = wall.GetCollidedFaceID(ray);
+            if(faceHitByRayID != null){
+                Log.d("FaceCollision",faceHitByRayID);
+                break; //but does it break the loop? TODO:Log iterations and check if they stop after break
+            }
+        }
         float dx = 0;
         float dy = 1.5f;
         float dz = 0f;
@@ -413,28 +420,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 upx, upy, 0f);
     }
 
-//    private Geometry.Ray convertNormalized2DPointToRay(float normalizedX, float normalizedY) {
-//        // We'll convert these normalized device coordinates into world-space
-//        // coordinates. We'll pick a point on the near and far planes, and draw a
-//        // line between them. To do this transform, we need to first multiply by
-//        // the inverse matrix, and then we need to undo the perspective divide.
-//        final float[] nearPointNdc = {normalizedX, normalizedY, -1, 1};
-//        final float[] farPointNdc = {normalizedX, normalizedY, 1, 1};
-//        final float[] nearPointWorld = new float[4];
-//        final float[] farPointWorld = new float[4];
-//        multiplyMV(
-//                nearPointWorld, 0, invertedViewProjectionMatrix, 0, nearPointNdc, 0);
-//        multiplyMV(
-//                farPointWorld, 0, invertedViewProjectionMatrix, 0, farPointNdc, 0);
-//        divideByW(nearPointWorld);
-//        divideByW(farPointWorld);
-//        Geometry.Point nearPointRay =
-//                new Geometry.Point(nearPointWorld[0], nearPointWorld[1], nearPointWorld[2]);
-//        Geometry.Point farPointRay =
-//                new Geometry.Point(farPointWorld[0], farPointWorld[1], farPointWorld[2]);
-//        return new Ray(nearPointRay,
-//                Geometry.vectorBetween(nearPointRay, farPointRay));
-//    }
+    
+    
+    private Ray convertNormalized2DPointToRay(float normalizedX, float normalizedY) {
+        // We'll convert these normalized device coordinates into world-space
+        // coordinates. We'll pick a point on the near and far planes, and draw a
+        // line between them. To do this transform, we need to first multiply by
+        // the inverse matrix, and then we need to undo the perspective divide.
+        final float[] nearPointNdc = {normalizedX, normalizedY, -1, 1};
+        final float[] farPointNdc = {normalizedX, normalizedY, 1, 1};
+        final float[] nearPointWorld = new float[4];
+        final float[] farPointWorld = new float[4];
+        multiplyMV(
+                nearPointWorld, 0, invertedViewProjectionMatrix, 0, nearPointNdc, 0);
+        multiplyMV(
+                farPointWorld, 0, invertedViewProjectionMatrix, 0, farPointNdc, 0);
+        divideByW(nearPointWorld);
+        divideByW(farPointWorld);
+        Point nearPointRay =
+                new Point(nearPointWorld[0], nearPointWorld[1], nearPointWorld[2]);
+        Point farPointRay =
+                new Point(farPointWorld[0], farPointWorld[1], farPointWorld[2]);
+        return new Ray(nearPointRay,
+                Geometry.vectorBetweenTwoPoints(nearPointRay, farPointRay));
+    }
 
     private void divideByW(float[] vector) {
         vector[0] /= vector[3];

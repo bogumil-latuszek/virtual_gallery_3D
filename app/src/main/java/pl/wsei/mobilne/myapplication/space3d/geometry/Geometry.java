@@ -5,17 +5,17 @@ package pl.wsei.mobilne.myapplication.space3d.geometry;
 public class Geometry {
 
 
-    public static Point intersectionPoint(Ray ray, Plane plane) {
-        Vector rayToPlaneVector = vectorBetween(ray.point, plane.point);
+    public static Point rayToPlaneIntersectionPoint(Ray ray, Plane plane) {
+        Vector rayToPlaneVector = vectorBetweenTwoPoints(ray.point, plane.point);
         float scaleFactor = rayToPlaneVector.dotProduct(plane.normal)
                 / ray.vector.dotProduct(plane.normal);
         Point intersectionPoint = ray.point.translate(ray.vector.scale(scaleFactor));
         return intersectionPoint;
     }
 
-    public static float distanceBetween(Point point, Ray ray) {
-        Vector p1ToPoint = vectorBetween(ray.point, point);
-        Vector p2ToPoint = vectorBetween(ray.point.translate(ray.vector), point);
+    public static float distanceBetweenRayAndPoint(Point point, Ray ray) {
+        Vector p1ToPoint = vectorBetweenTwoPoints(ray.point, point);
+        Vector p2ToPoint = vectorBetweenTwoPoints(ray.point.translate(ray.vector), point);
 
         // The length of the cross product gives the area of an imaginary
         // parallelogram having the two vectors as sides. A parallelogram can be
@@ -34,7 +34,7 @@ public class Geometry {
 
 
 
-    public static Vector vectorBetween(Point from, Point to) {
+    public static Vector vectorBetweenTwoPoints(Point from, Point to) {
         return new Vector(
                 to.x - from.x,
                 to.y - from.y,
