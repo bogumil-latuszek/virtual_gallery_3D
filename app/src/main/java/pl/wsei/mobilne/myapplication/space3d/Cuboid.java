@@ -5,7 +5,7 @@ import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 
-import pl.wsei.mobilne.myapplication.space3d.VertexArray;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 
 public class Cuboid {
     // number of coordinates per vertex in this array
@@ -150,18 +150,18 @@ public class Cuboid {
         GLES20.glDisable(GLES20.GL_BLEND);
     }
 
-    public boolean CheckSimpleRayCollision(Geometry.Ray ray){
-        //Geometry.Point centerPoint = new Geometry.Point(0f,0f,0f);
-        float[] vector = new float[] {0f,0f,0f,1};
-        float[] resultVec = new float[4];
-        Matrix.multiplyMV(resultVec, 0, modelMatrix, 0, vector, 0);
-        Geometry.Point centerPoint = new Geometry.Point(resultVec[0], resultVec[1],resultVec[2]);
-        float distance = Geometry.distanceBetween(centerPoint, ray);
-        if (distance < 0.5){
-            return true;
-        }
-        return false;
-    }
+//    public boolean CheckSimpleRayCollision(Geometry.Ray ray){
+//        //Geometry.Point centerPoint = new Geometry.Point(0f,0f,0f);
+//        float[] vector = new float[] {0f,0f,0f,1};
+//        float[] resultVec = new float[4];
+//        Matrix.multiplyMV(resultVec, 0, modelMatrix, 0, vector, 0);
+//        Geometry.Point centerPoint = new Geometry.Point(resultVec[0], resultVec[1],resultVec[2]);
+//        float distance = Geometry.distanceBetween(centerPoint, ray);
+//        if (distance < 0.5){
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 }
