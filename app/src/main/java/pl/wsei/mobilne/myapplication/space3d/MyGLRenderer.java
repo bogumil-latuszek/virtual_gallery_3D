@@ -154,9 +154,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
         List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
-            Wall newWall = new Wall(0.5f, 1f, 0.5f, "Wall nr."+i);
-            newWall.X_position = wallsLoaded.get(i).getX();
-            newWall.Z_position = wallsLoaded.get(i).getZ();
+            float xPosition = wallsLoaded.get(i).getX();
+            float zPosition = wallsLoaded.get(i).getZ();
+            Wall newWall = new Wall(0.5f, 1.5f, 0.5f, xPosition, zPosition, "Wall nr."+i);
+            newWall.X_position = xPosition;
+            newWall.Z_position = zPosition;
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
             newWall.setFaceOpacity(0.8f);
@@ -375,17 +377,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         //the view "jumps" around
         //2) the span of rotation is limited
         //3) we need a function that rotates camera on its own axis, not this
-        float dx = normalizedX * 4;
-        float dy = normalizedY * 4;
-        float dz = 0f;
-        float cx = 0f;
-        float cy = 0f;
-        float upx = 0f;
-        float upy = 1f;
-        Matrix.setLookAtM(viewMatrix, 0,
-                dx, dy, dz,
-                cx, cy, -10f,
-                upx, upy, 0f);
+
+//        float dx = normalizedX * 4;
+//        float dy = normalizedY * 4;
+//        float dz = 0f;
+//        float cx = 0f;
+//        float cy = 0f;
+//        float upx = 0f;
+//        float upy = 1f;
+//        Matrix.setLookAtM(viewMatrix, 0,
+//                dx, dy, dz,
+//                cx, cy, -10f,
+//                upx, upy, 0f);
     }
 
 
@@ -407,17 +410,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 break; //but does it break the loop? TODO:Log iterations and check if they stop after break
             }
         }
-        float dx = 0;
-        float dy = 1.5f;
-        float dz = 0f;
-        float cx = normalizedX;
-        float cy = normalizedY;
-        float upx = 0f;
-        float upy = 1f;
-        Matrix.setLookAtM(viewMatrix, 0,
-                dx, dy, dz,
-                cx, cy, -10f,
-                upx, upy, 0f);
+//        float dx = 0;
+//        float dy = 1.5f;
+//        float dz = 0f;
+//        float cx = normalizedX;
+//        float cy = normalizedY;
+//        float upx = 0f;
+//        float upy = 1f;
+//        Matrix.setLookAtM(viewMatrix, 0,
+//                dx, dy, dz,
+//                cx, cy, -10f,
+//                upx, upy, 0f);
     }
 
     
@@ -437,6 +440,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 farPointWorld, 0, invertedViewProjectionMatrix, 0, farPointNdc, 0);
         divideByW(nearPointWorld);
         divideByW(farPointWorld);
+        //theres an error somewhere here, far point Y should be further away from 0(expanding)
+        //than near point Y, but instead its closer to 0 (shrinking)
+        //maybe there's a problem with invertedviewprojectionmatrix?
         Point nearPointRay =
                 new Point(nearPointWorld[0], nearPointWorld[1], nearPointWorld[2]);
         Point farPointRay =

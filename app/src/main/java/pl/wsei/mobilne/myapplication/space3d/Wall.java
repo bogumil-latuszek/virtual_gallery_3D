@@ -39,13 +39,13 @@ public class Wall extends Cuboid {
            float intersectionPointX = intersectionPoint.x;
            float intersectionPointY = intersectionPoint.y;
            float intersectionPointZ = intersectionPoint.z;
-           if (intersectionPointX<minX | intersectionPointX>maxX){
+           if (intersectionPointX<(minX-0.01) | intersectionPointX>(maxX+0.01)){
                return false;
            }
-           if (intersectionPointY<minY | intersectionPointY>maxY){
+           if (intersectionPointY<(minY-0.01) | intersectionPointY>(maxY+0.01)){
                return false;
            }
-           if (intersectionPointZ<minZ | intersectionPointZ>maxZ){
+           if (intersectionPointZ<(minZ-0.01) | intersectionPointZ>(maxZ+0.01)){
                return false;
            }
            return true;
@@ -73,23 +73,23 @@ public class Wall extends Cuboid {
     }
     float X_position;
     float Z_position;
-    public Wall(float dx, float dy, float dz, String WallID) {
+    public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {
         //super(0.5f, 1f, 0.5f);
         super(dx, dy, dz);
         //will this line of code execute? TODO:CHECK IT
-        minX = -dx;
-        maxX = dx;
+        minX = -dx + moveX;
+        maxX = dx + moveX;
         minY = -dy;
         maxY = dy;
-        minZ = -dz;
-        maxZ = dz;
+        minZ = -dz + moveZ;
+        maxZ = dz + moveZ;
 
         wallID = WallID;
 
-        frontFace = new Face(new Point(0, 0, -dz), new Vector(0,0,-1), "frontFace");
-        leftFace = new Face(new Point(-dx, 0, 0), new Vector(-1,0,0), "leftFace");
-        rightFace = new Face(new Point(dx, 0, 0), new Vector(1,0,0), "rightFace");
-        backFace = new Face(new Point(0, 0, dz), new Vector(0,0,1), "backFace");
+        frontFace = new Face(new Point(0, 0, maxZ), new Vector(0,0,1), "frontFace");
+        leftFace = new Face(new Point(minX, 0, 0), new Vector(-1,0,0), "leftFace");
+        rightFace = new Face(new Point(maxX, 0, 0), new Vector(1,0,0), "rightFace");
+        backFace = new Face(new Point(0, 0, minZ), new Vector(0,0,-1), "backFace");
     }
 
 }
