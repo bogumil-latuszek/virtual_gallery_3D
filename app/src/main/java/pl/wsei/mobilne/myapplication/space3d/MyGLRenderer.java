@@ -76,12 +76,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private int vertexShaderId;
     private int fragmentShaderId;
 
+    private final float[] aspectAdjustmentMatrix = new float[16];
     private final float[] viewMatrix = new float[16];
     private final float[] viewProjectionMatrix = new float[16];
 
     // shapes to render
     private FloorGrid floorGrid;
-//    private Cuboid blueCuboid;
+    private RayLine touchRay;
+
+    //    private Cuboid blueCuboid;
 //    private Cuboid greenCuboid;
 //    private Cuboid limeCuboid;
 //    private Cuboid redCuboid;
@@ -89,8 +92,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //    private Cuboid purpleCuboid;
 //    private Cuboid purpleCuboid2;
 //    private Cuboid purpleCuboid3;
+    private RotationCtrl rotationCtrl;
 
-//    private ArrayList<WallCoordinates>  wallCoordinatesList;
+    //    private ArrayList<WallCoordinates>  wallCoordinatesList;
     private  ArrayList<Wall> walls;
 
     @Override
@@ -197,6 +201,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         purpleCuboid3.setFaceColor(purple_f);
         purpleCuboid3.setFaceOpacity(0.8f);
         */
+
+        rotationCtrl = new RotationCtrl();
+        rotationCtrl.setEdgeColor(red_e);
+
+        Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
+        Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
+        Ray fixedRay = new Ray(nearPointRay,
+                Geometry.vectorBetweenTwoPoints(nearPointRay, farPointRay));
+        touchRay = new RayLine(fixedRay);
     }
 
     @Override
@@ -206,6 +219,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float ratio = (float) width / height;
         // this projection matrix is applied to object coordinates
         // in the onDrawFrame() method
+
+        // calculate aspect adjustment matrix
+        float aspectRatio = width > height ?
+                (float) width / (float) height :
+                (float) height / (float) width;
+        if (width > height) {
+            // Landscape
+            Matrix.orthoM(aspectAdjustmentMatrix, 0,
+                    -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f);
+        } else {
+            // Portrait or square
+            Matrix.orthoM(aspectAdjustmentMatrix, 0,
+                    -1f, 1f, -aspectRatio, aspectRatio, -1f, 1f);
+        }
+
         int offsetToStart_in_projectionMatrix = 0;
         Matrix.frustumM(projectionMatrix, offsetToStart_in_projectionMatrix,
                 -ratio, ratio, -1, 1, 3, 10);
@@ -251,6 +279,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         purpleCuboid3.startTransforming();
         purpleCuboid3.move(-1.5f, 0f, 5f);
          */
+        touchRay.startTransforming();
+
+        rotationCtrl.startTransforming();
+        rotationCtrl.move(aspectAdjustmentMatrix, -1.32f, -0.67f);
     }
 
     @Override
@@ -286,6 +318,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         purpleCuboid2.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         purpleCuboid3.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
          */
+        touchRay.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+
+        // to draw UI controls without depth test - just using draw order (drawn last is at front)
+        GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
+        rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
     }
 
     private void animateCameraView() {
@@ -372,59 +409,100 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     //te dwie funkcje handleTouchDrag i handleTouchPress powinny być zdefiniowane w interfejsie, możemy zrobić do nich dekorator?
     // TODO: change type of renderer parameter inside constructor of Surface View
     public void handleTouchDrag(float normalizedX, float normalizedY) {
+        String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
+        Log.d("drag:", String.format("x = %s, y = %s [inside = %s]",
+                normalizedX, normalizedY, whereInsideRotationCtrl));
         //there's a few problems with this function
         //1) if you start dragging from a different point than you last touched the screen
         //the view "jumps" around
         //2) the span of rotation is limited
         //3) we need a function that rotates camera on its own axis, not this
 
-//        float dx = normalizedX * 4;
-//        float dy = normalizedY * 4;
-//        float dz = 0f;
-//        float cx = 0f;
-//        float cy = 0f;
-//        float upx = 0f;
-//        float upy = 1f;
-//        Matrix.setLookAtM(viewMatrix, 0,
-//                dx, dy, dz,
-//                cx, cy, -10f,
-//                upx, upy, 0f);
+        float dx = normalizedX * 4;
+        float dy = normalizedY * 4;
+        float dz = 0f;
+        float cx = 0f;
+        float cy = 0f;
+        float upx = 0f;
+        float upy = 1f;
+        if (whereInsideRotationCtrl.equals("outside")) {
+            Matrix.setLookAtM(viewMatrix, 0,
+                    dx, dy, dz,
+                    cx, cy, -10f,
+                    upx, upy, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("ring")) {
+            float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+        }
     }
 
-
     public void handleTouchPress(float normalizedX, float normalizedY) {
-        //revert normalised coords to world coords
+        String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
+        Log.d("touch:", String.format("x = %s, y = %s", normalizedX, normalizedY));
+        float dx = 0;
+        float dy = 1.5f;
+        float dz = 0f;
+        float cx = normalizedX;
+        float cy = normalizedY;
+        float upx = 0f;
+        float upy = 1f;
 
-        Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
-        for (int i = 0; i < walls.size(); i++) {
-            Wall wall = walls.get(i);
+        if (whereInsideRotationCtrl.equals("center")) {
+            float lookAroundAngle = 0.0f;
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("ring")) {
+            float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("up")) {
+            this.rotationCtrl.up();
+            float lookUpAngle = this.rotationCtrl.getUpAngle();
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("down")) {
+            this.rotationCtrl.down();
+            float lookUpAngle = this.rotationCtrl.getUpAngle();
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("right")) {
+            float addAngle = 5f;
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
+            Matrix.rotateM(viewMatrix, 0, addAngle, 0f, 1f, 0f);
+        }
+        else if (whereInsideRotationCtrl.equals("left")) {
+            float addAngle = 5f;
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
+            Matrix.rotateM(viewMatrix, 0, addAngle, 0f, -1f, 0f);
+        }
+        else { // "outside" - calculate Ray and check which wall/face it hits
+            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+
+            touchRay = new RayLine(ray);
+
+            for (int i = 0; i < walls.size(); i++) {
+                Wall wall = walls.get(i);
 //            Boolean wallHitByRay = wall.CheckSimpleRayCollision(ray);
 //            if (wallHitByRay){
 //                //Toast.makeText(appContext, "WALL HIT", Toast.LENGTH_SHORT).show(); this gives error
 //                Log.d("WallCollision","ray hit wall nr."+i);
 //                break;
 //            }
-            String faceHitByRayID = wall.GetCollidedFaceID(ray);
-            if(faceHitByRayID != null){
-                Log.d("FaceCollision",faceHitByRayID);
-                break; //but does it break the loop? TODO:Log iterations and check if they stop after break
+                String faceHitByRayID = wall.GetCollidedFaceID(ray);
+                if(faceHitByRayID != null){
+                    Log.d("FaceCollision",faceHitByRayID);
+                    break; //but does it break the loop? TODO:Log iterations and check if they stop after break
+                }
             }
         }
-//        float dx = 0;
-//        float dy = 1.5f;
-//        float dz = 0f;
-//        float cx = normalizedX;
-//        float cy = normalizedY;
-//        float upx = 0f;
-//        float upy = 1f;
-//        Matrix.setLookAtM(viewMatrix, 0,
-//                dx, dy, dz,
-//                cx, cy, -10f,
-//                upx, upy, 0f);
     }
 
-    
-    
     private Ray convertNormalized2DPointToRay(float normalizedX, float normalizedY) {
         // We'll convert these normalized device coordinates into world-space
         // coordinates. We'll pick a point on the near and far planes, and draw a

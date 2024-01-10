@@ -33,11 +33,11 @@ public class SQLiteManager extends SQLiteOpenHelper {
     @SuppressLint("SimpleDateFormat")
     private  static  final DateFormat dateFormat = new SimpleDateFormat("DD-MM-YYYY HH-mm-ss");
 
-       //constructor(should be private?)
+    //constructor(should be private?)
     public SQLiteManager(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-        //singleton
+    //singleton
     public static SQLiteManager InstanceOfDatabase(@Nullable Context context){
         if (sqLiteManager == null){
             sqLiteManager = new SQLiteManager(context);
@@ -47,22 +47,22 @@ public class SQLiteManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            StringBuilder sql;
-            sql = new StringBuilder()
-                    .append("CREATE_TABLE ")
-                    .append(TABLE_NAME)
-                    .append("(")
-                    .append(COUNTER)
-                    .append(" INTEGER PRIMARY KEY AUTOINCREMENT, ")
-                    .append(ID_FIELD)
-                    .append(" INT, ")
-                    .append(TITLE_FIELD)
-                    .append(" TEXT, ")
-                    .append(DESC_FIELD)
-                    .append(" TEXT, ")
-                    .append(DELETED_FIELD)
-                    .append(" TEXT)");
-            sqLiteDatabase.execSQL(sql.toString());
+        StringBuilder sql;
+        sql = new StringBuilder()
+                .append("CREATE_TABLE ")
+                .append(TABLE_NAME)
+                .append("(")
+                .append(COUNTER)
+                .append(" INTEGER PRIMARY KEY AUTOINCREMENT, ")
+                .append(ID_FIELD)
+                .append(" INT, ")
+                .append(TITLE_FIELD)
+                .append(" TEXT, ")
+                .append(DESC_FIELD)
+                .append(" TEXT, ")
+                .append(DELETED_FIELD)
+                .append(" TEXT)");
+        sqLiteDatabase.execSQL(sql.toString());
 
     }
 
@@ -76,7 +76,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
 //                sqLiteDatabase.execSQL("ALTER TABLE "+TABLE_NAME+" ADD COLUMN"+NEW_COLUMN + "TEXT");
 //        }
     }
-            //adds data from one instance of note to database?
+    //adds data from one instance of note to database?
     public void addNoteToDatabase(Note note){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
@@ -113,7 +113,7 @@ public class SQLiteManager extends SQLiteOpenHelper {
         }
     }
 
-            //so essentially this function just overwrites a note row in db using data from a note given to it
+    //so essentially this function just overwrites a note row in db using data from a note given to it
     public void updateNoteInDB(Note note){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -121,8 +121,8 @@ public class SQLiteManager extends SQLiteOpenHelper {
         contentValues.put(TITLE_FIELD, note.getTitle());
         contentValues.put(DESC_FIELD, note.getDescription());
         contentValues.put(DELETED_FIELD, getStringFromDate(note.getDeleted()));
-                //tricky line of code but really simple, all it says is to update a row with
-                //new data packed inside contentValues class, and to find that row using id from function argument
+        //tricky line of code but really simple, all it says is to update a row with
+        //new data packed inside contentValues class, and to find that row using id from function argument
         sqLiteDatabase.update(TABLE_NAME, contentValues, ID_FIELD +" =? ", new String[]{String.valueOf(note.getId())});
     }
 

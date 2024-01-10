@@ -12,12 +12,20 @@ public class VertexArray {
         public static final int BYTES_PER_FLOAT = 4;
     }
     private final FloatBuffer floatBuffer;
+    private final float [] vertexData;
+    private final int _length;
     public VertexArray(float[] vertexData) {
+        this._length = vertexData.length;
+        this.vertexData = new float[this._length];
+        System.arraycopy(vertexData, 0, this.vertexData, 0, this._length);
         floatBuffer = ByteBuffer
                 .allocateDirect(vertexData.length * Constants.BYTES_PER_FLOAT)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer()
                 .put(vertexData);
+    }
+    public int length() {
+        return this._length;
     }
     public void setVertexAttribPointer(int dataOffset, int attributeLocation,
                                        int componentCount, int stride) {

@@ -22,7 +22,7 @@ public class Note {
     public String getDescription() {
         return description;
     }
-     public Date getDeleted() {
+    public Date getDeleted() {
         return deleted;
     }
 

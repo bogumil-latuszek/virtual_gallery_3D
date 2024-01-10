@@ -8,7 +8,7 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
 
 public class Wall extends Cuboid {
 
-//    private Point upperLeftFront;
+    //    private Point upperLeftFront;
 //    private Point lowerLeftFront;
 //    private Point lowerRightFront;
 //    private Point upperRightFront;
@@ -30,26 +30,26 @@ public class Wall extends Cuboid {
     private class Face{
         private Plane plane;
         public  String faceID;
-       public Face(Point pointOnFace, Vector normal, String FaceID){
-           plane = new Plane(pointOnFace, normal);
-           faceID = FaceID;
-       }
-       public boolean checkRayCollision(Ray ray){
-           Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
-           float intersectionPointX = intersectionPoint.x;
-           float intersectionPointY = intersectionPoint.y;
-           float intersectionPointZ = intersectionPoint.z;
-           if (intersectionPointX<(minX-0.01) | intersectionPointX>(maxX+0.01)){
-               return false;
-           }
-           if (intersectionPointY<(minY-0.01) | intersectionPointY>(maxY+0.01)){
-               return false;
-           }
-           if (intersectionPointZ<(minZ-0.01) | intersectionPointZ>(maxZ+0.01)){
-               return false;
-           }
-           return true;
-       }
+        public Face(Point pointOnFace, Vector normal, String FaceID){
+            plane = new Plane(pointOnFace, normal);
+            faceID = FaceID;
+        }
+        public boolean checkRayCollision(Ray ray){
+            Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
+            float intersectionPointX = intersectionPoint.x;
+            float intersectionPointY = intersectionPoint.y;
+            float intersectionPointZ = intersectionPoint.z;
+            if (intersectionPointX<(minX-0.01) || intersectionPointX>(maxX+0.01)){
+                return false;
+            }
+            if (intersectionPointY<(minY-0.01) || intersectionPointY>(maxY+0.01)){
+                return false;
+            }
+            if (intersectionPointZ<(minZ-0.01) || intersectionPointZ>(maxZ+0.01)){
+                return false;
+            }
+            return true;
+        }
     }
     public String GetCollidedFaceID(Ray ray){
         boolean collisionDetected = false;
