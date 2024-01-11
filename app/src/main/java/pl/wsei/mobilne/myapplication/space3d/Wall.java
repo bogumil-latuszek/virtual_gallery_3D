@@ -2,11 +2,13 @@ package pl.wsei.mobilne.myapplication.space3d;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Plane;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
+import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
 
@@ -26,25 +28,30 @@ public class Wall extends Cuboid {
     private Face rightFace;
     private Face backFace;
 
-    public List<Face> GetCollidedFaces(Ray ray) {
+    public List<PointOnFace> GetCollidedFaces(Ray ray) {
         // Ray may collide with multiple faces of given wall
-        ArrayList<Face> collidedFaces = new ArrayList<>();
-        boolean collisionDetected = false;
-        collisionDetected = frontFace.checkRayCollision(ray);
-        if (collisionDetected) {
-            collidedFaces.add(frontFace);
+        ArrayList<PointOnFace> collidedFaces = new ArrayList<>();
+
+        Optional<PointOnFace> collision;
+        collision = frontFace.checkRayCollision(ray);
+        if (collision.isPresent()) {
+            PointOnFace faceRayIntersection = collision.get();
+            collidedFaces.add(faceRayIntersection);
         }
-        collisionDetected = leftFace.checkRayCollision(ray);
-        if (collisionDetected) {
-            collidedFaces.add(leftFace);
+        collision = leftFace.checkRayCollision(ray);
+        if (collision.isPresent()) {
+            PointOnFace faceRayIntersection = collision.get();
+            collidedFaces.add(faceRayIntersection);
         }
-        collisionDetected = rightFace.checkRayCollision(ray);
-        if (collisionDetected) {
-            collidedFaces.add(rightFace);
+        collision = rightFace.checkRayCollision(ray);
+        if (collision.isPresent()) {
+            PointOnFace faceRayIntersection = collision.get();
+            collidedFaces.add(faceRayIntersection);
         }
-        collisionDetected = backFace.checkRayCollision(ray);
-        if (collisionDetected) {
-            collidedFaces.add(backFace);
+        collision = backFace.checkRayCollision(ray);
+        if (collision.isPresent()) {
+            PointOnFace faceRayIntersection = collision.get();
+            collidedFaces.add(faceRayIntersection);
         }
         return collidedFaces;
     }

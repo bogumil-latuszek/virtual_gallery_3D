@@ -2,6 +2,8 @@ package pl.wsei.mobilne.myapplication.space3d.geometry;
 
 //import android.graphics.Point;
 
+import java.util.Optional;
+
 public class Face {
     private float minX;
     private float maxX;
@@ -26,20 +28,22 @@ public class Face {
         this.maxZ = maxZ;
         faceID = FaceID;
     }
-    public boolean checkRayCollision(Ray ray){
+    public Optional<PointOnFace> checkRayCollision(Ray ray) {
+        Optional<PointOnFace> noCollision = Optional.empty();
         Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
         float intersectionPointX = intersectionPoint.x;
         float intersectionPointY = intersectionPoint.y;
         float intersectionPointZ = intersectionPoint.z;
         if ((intersectionPointX<(minX-0.01)) || (intersectionPointX>(maxX+0.01))) {
-            return false;
+            return noCollision;
         }
         if ((intersectionPointY<(minY-0.01)) || (intersectionPointY>(maxY+0.01))) {
-            return false;
+            return noCollision;
         }
         if ((intersectionPointZ<(minZ-0.01)) || (intersectionPointZ>(maxZ+0.01))) {
-            return false;
+            return noCollision;
         }
-        return true;
+        Optional<PointOnFace> collisionWithFace = Optional.of(new PointOnFace(this, intersectionPoint));
+        return collisionWithFace;
     }
 }

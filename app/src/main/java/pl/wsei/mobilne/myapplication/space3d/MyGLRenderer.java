@@ -21,6 +21,7 @@ import pl.wsei.mobilne.myapplication.database.dbmWall;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
+import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
@@ -469,14 +470,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             for (int i = 0; i < walls.size(); i++) {
                 Wall wall = walls.get(i);
 
-                List<Face> facesHitByRay = wall.GetCollidedFaces(ray);
-                for (Face face: facesHitByRay) {
-                    String msg = String.format("wall %s hit at %s", i, face.faceID);
+                List<PointOnFace> facesHitByRay = wall.GetCollidedFaces(ray);
+                for (PointOnFace facePoint: facesHitByRay) {
+                    String msg = String.format("wall %s hit at %s", i, facePoint.face.faceID);
                     Log.d("FaceCollision", msg);
                     // do not break since Ray may cross multiple faces of multiple walls
                     //break;
                     // To detect real hit we should calculate distance
-                    // between Ray start point and any ray-plane-intersection point
+                    // between Ray start point and any rayPlaneIntersection point
+                    Point rayPlaneIntersectionPoint = facePoint.point;
                     // and select the one which is nearest
                 }
             }
