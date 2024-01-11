@@ -85,7 +85,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private RayLine touchRay;
 
 //    private Cuboid blueCuboid;
-    private Cuboid greenCuboid;
+//    private Cuboid greenCuboid;
 //    private Cuboid limeCuboid;
 //    private Cuboid redCuboid;
 //    private Cuboid orangeCuboid;
@@ -168,10 +168,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         }
 
 
+        /*
         greenCuboid = new Cuboid(0.5f, 1f, 0.5f, 0f, 0f);
         greenCuboid.setEdgeColor(green_e);
         greenCuboid.setFaceColor(green_f);
-        /*
+
         blueCuboid = new Cuboid(1f, 1f, 1f);
 
         limeCuboid = new Cuboid(0.1f, 2f, 1f);
@@ -247,10 +248,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             wall.startTransforming();
         }
 
+        /*
         greenCuboid.startTransforming();
         greenCuboid.scale(1f, 1f, 1f);
         greenCuboid.move(0f, 0f, -5f);
-        /*
 
         limeCuboid.startTransforming();
         limeCuboid.move(2f, 0f, -6.5f);
@@ -306,8 +307,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             wall.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         }
 
-        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         /*
+        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         redCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
