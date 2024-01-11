@@ -84,8 +84,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private FloorGrid floorGrid;
     private RayLine touchRay;
 
-    //    private Cuboid blueCuboid;
-//    private Cuboid greenCuboid;
+//    private Cuboid blueCuboid;
+    private Cuboid greenCuboid;
 //    private Cuboid limeCuboid;
 //    private Cuboid redCuboid;
 //    private Cuboid orangeCuboid;
@@ -155,30 +155,28 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //            walls.add(newWall);
 //        }
 
-//        List<pl.wsei.mobilne.myapplication.database.Wall> wallsLoaded = dbManager.GetAll();
+
         List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
             float xPosition = wallsLoaded.get(i).getX();
             float zPosition = wallsLoaded.get(i).getZ();
-            Wall newWall = new Wall(0.5f, 1.5f, 0.5f, xPosition, zPosition, "Wall nr."+i);
-            newWall.X_position = xPosition;
-            newWall.Z_position = zPosition;
+            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
             newWall.setFaceOpacity(0.8f);
             walls.add(newWall);
         }
 
+
+        greenCuboid = new Cuboid(0.5f, 1f, 0.5f, 0f, 0f);
+        greenCuboid.setEdgeColor(green_e);
+        greenCuboid.setFaceColor(green_f);
         /*
         blueCuboid = new Cuboid(1f, 1f, 1f);
 
         limeCuboid = new Cuboid(0.1f, 2f, 1f);
         limeCuboid.setEdgeColor(lime_e);
         limeCuboid.setFaceColor(lime_f);
-
-        greenCuboid = new Cuboid(1f, 1f, 1f);
-        greenCuboid.setEdgeColor(green_e);
-        greenCuboid.setFaceColor(green_f);
 
         redCuboid = new Cuboid(1f, 1f, 1f);
         redCuboid.setEdgeColor(red_e);
@@ -243,17 +241,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 0f, 0f, -10f,
                 0f, 1f, 0f);
 
-        // TODO: loop to create walls in different placess
-
+        // TODO: loop to initialize wall internal modelMatrix
 
         for (Wall wall : walls) {
             wall.startTransforming();
-            wall.move(wall.X_position + 0.5f, 0, wall.Z_position-8.5f);
         }
-        /*
+
         greenCuboid.startTransforming();
-        greenCuboid.scale(0.1f, 1f, 1f);
-        greenCuboid.move(2f, 0f, -6f);
+        greenCuboid.scale(1f, 1f, 1f);
+        greenCuboid.move(0f, 0f, -5f);
+        /*
 
         limeCuboid.startTransforming();
         limeCuboid.move(2f, 0f, -6.5f);
@@ -308,9 +305,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         for(Wall wall : walls){
             wall.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         }
+
+        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         /*
         blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         redCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
         orangeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);

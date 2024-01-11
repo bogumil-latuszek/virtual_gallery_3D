@@ -21,24 +21,28 @@ public class Cuboid {
     private float[] edgeColor = {37f/256f, 58f/256f, 190f/256f}; // opengl requires color as float in range 0-1
     private float[] faceColor = {81f/256f, 97f/256f, 203f/256f}; // default is blue
     private float faceOpacity = 0.5f; // default is 50%
+    float X_position;
+    float Z_position;
     private final VertexArray vertexArray;  // <-- Vertices
     private final ByteBuffer vertexSequenceForDrawingFaces;
     private final ByteBuffer vertexSequenceForDrawingEdges;
 
     //private Geometry.Point centerPoint;
 
-    public Cuboid(float dx, float dy, float dz) {
+    public Cuboid(float dx, float dy, float dz, float locateAtX, float locateAtZ) {
         //centerPoint = new Geometry.Point(0f,0f,0f);
+        X_position = locateAtX;
+        Z_position = locateAtZ;
         // prepare buffer for vertices
         vertexArray = new VertexArray(new float[]{
-                -dx, dy, dz,             // (0) Top-left near
-                dx, dy, dz,              // (1) Top-right near
-                -dx, -dy, dz,            // (2) Bottom-left near
-                dx, -dy, dz,             // (3) Bottom-right near
-                -dx, dy, -dz,            // (4) Top-left far
-                dx, dy, -dz,             // (5) Top-right far
-                -dx, -dy, -dz,           // (6) Bottom-left far
-                dx, -dy, -dz             // (7) Bottom-right far
+                locateAtX-dx,  dy, locateAtZ+dz,            // (0) Top-left near
+                locateAtX+dx,  dy, locateAtZ+dz,            // (1) Top-right near
+                locateAtX-dx, -dy, locateAtZ+dz,            // (2) Bottom-left near
+                locateAtX+dx, -dy, locateAtZ+dz,            // (3) Bottom-right near
+                locateAtX-dx,  dy, locateAtZ-dz,            // (4) Top-left far
+                locateAtX+dx,  dy, locateAtZ-dz,            // (5) Top-right far
+                locateAtX-dx, -dy, locateAtZ-dz,            // (6) Bottom-left far
+                locateAtX+dx, -dy, locateAtZ-dz             // (7) Bottom-right far
         });
         vertexSequenceForDrawingFaces = ByteBuffer.allocateDirect(3 * 2 * 6)//num. of vertexes per triange * triangles per face * faces per cuboid
                 .put(new byte[]{

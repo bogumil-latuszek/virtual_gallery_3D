@@ -30,26 +30,26 @@ public class Wall extends Cuboid {
     private class Face{
         private Plane plane;
         public  String faceID;
-        public Face(Point pointOnFace, Vector normal, String FaceID){
-            plane = new Plane(pointOnFace, normal);
-            faceID = FaceID;
-        }
-        public boolean checkRayCollision(Ray ray){
-            Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
-            float intersectionPointX = intersectionPoint.x;
-            float intersectionPointY = intersectionPoint.y;
-            float intersectionPointZ = intersectionPoint.z;
-            if (intersectionPointX<(minX-0.01) || intersectionPointX>(maxX+0.01)){
-                return false;
-            }
-            if (intersectionPointY<(minY-0.01) || intersectionPointY>(maxY+0.01)){
-                return false;
-            }
-            if (intersectionPointZ<(minZ-0.01) || intersectionPointZ>(maxZ+0.01)){
-                return false;
-            }
-            return true;
-        }
+       public Face(Point pointOnFace, Vector normal, String FaceID){
+           plane = new Plane(pointOnFace, normal);
+           faceID = FaceID;
+       }
+       public boolean checkRayCollision(Ray ray){
+           Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
+           float intersectionPointX = intersectionPoint.x;
+           float intersectionPointY = intersectionPoint.y;
+           float intersectionPointZ = intersectionPoint.z;
+           if ((intersectionPointX<(minX-0.01)) || (intersectionPointX>(maxX+0.01))) {
+               return false;
+           }
+           if ((intersectionPointY<(minY-0.01)) || (intersectionPointY>(maxY+0.01))) {
+               return false;
+           }
+           if ((intersectionPointZ<(minZ-0.01)) || (intersectionPointZ>(maxZ+0.01))) {
+               return false;
+           }
+           return true;
+       }
     }
     public String GetCollidedFaceID(Ray ray){
         boolean collisionDetected = false;
@@ -71,11 +71,11 @@ public class Wall extends Cuboid {
         }
         return null;
     }
-    float X_position;
-    float Z_position;
+
     public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {
         //super(0.5f, 1f, 0.5f);
-        super(dx, dy, dz);
+        super(dx, dy, dz, moveX, moveZ);
+
         //will this line of code execute? TODO:CHECK IT
         minX = -dx + moveX;
         maxX = dx + moveX;
@@ -86,10 +86,10 @@ public class Wall extends Cuboid {
 
         wallID = WallID;
 
-        frontFace = new Face(new Point(0, 0, maxZ), new Vector(0,0,1), "frontFace");
-        leftFace = new Face(new Point(minX, 0, 0), new Vector(-1,0,0), "leftFace");
-        rightFace = new Face(new Point(maxX, 0, 0), new Vector(1,0,0), "rightFace");
-        backFace = new Face(new Point(0, 0, minZ), new Vector(0,0,-1), "backFace");
+        frontFace = new Face(new Point(X_position, 0, maxZ), new Vector(0,0,1), "frontFace");
+        leftFace = new Face(new Point(minX, 0, Z_position), new Vector(-1,0,0), "leftFace");
+        rightFace = new Face(new Point(maxX, 0, Z_position), new Vector(1,0,0), "rightFace");
+        backFace = new Face(new Point(X_position, 0, minZ), new Vector(0,0,-1), "backFace");
     }
 
 }
