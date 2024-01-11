@@ -1,5 +1,8 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Plane;
@@ -23,25 +26,27 @@ public class Wall extends Cuboid {
     private Face rightFace;
     private Face backFace;
 
-    public String GetCollidedFaceID(Ray ray){
+    public List<Face> GetCollidedFaces(Ray ray) {
+        // Ray may collide with multiple faces of given wall
+        ArrayList<Face> collidedFaces = new ArrayList<>();
         boolean collisionDetected = false;
         collisionDetected = frontFace.checkRayCollision(ray);
-        if(collisionDetected){
-            return frontFace.faceID;
+        if (collisionDetected) {
+            collidedFaces.add(frontFace);
         }
         collisionDetected = leftFace.checkRayCollision(ray);
-        if(collisionDetected){
-            return leftFace.faceID;
+        if (collisionDetected) {
+            collidedFaces.add(leftFace);
         }
         collisionDetected = rightFace.checkRayCollision(ray);
-        if(collisionDetected){
-            return rightFace.faceID;
+        if (collisionDetected) {
+            collidedFaces.add(rightFace);
         }
         collisionDetected = backFace.checkRayCollision(ray);
-        if(collisionDetected){
-            return backFace.faceID;
+        if (collisionDetected) {
+            collidedFaces.add(backFace);
         }
-        return null;
+        return collidedFaces;
     }
 
     public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {

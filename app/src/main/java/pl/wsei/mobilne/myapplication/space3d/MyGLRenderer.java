@@ -18,6 +18,7 @@ import javax.microedition.khronos.opengles.GL10;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.dbmWall;
 
+import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
@@ -467,15 +468,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             for (int i = 0; i < walls.size(); i++) {
                 Wall wall = walls.get(i);
-//            Boolean wallHitByRay = wall.CheckSimpleRayCollision(ray);
-//            if (wallHitByRay){
-//                //Toast.makeText(appContext, "WALL HIT", Toast.LENGTH_SHORT).show(); this gives error
-//                Log.d("WallCollision","ray hit wall nr."+i);
-//                break;
-//            }
-                String faceHitByRayID = wall.GetCollidedFaceID(ray);
-                if(faceHitByRayID != null) {
-                    String msg = String.format("wall %s hit at %s", i, faceHitByRayID);
+
+                List<Face> facesHitByRay = wall.GetCollidedFaces(ray);
+                for (Face face: facesHitByRay) {
+                    String msg = String.format("wall %s hit at %s", i, face.faceID);
                     Log.d("FaceCollision", msg);
                     // do not break since Ray may cross multiple faces of multiple walls
                     //break;
