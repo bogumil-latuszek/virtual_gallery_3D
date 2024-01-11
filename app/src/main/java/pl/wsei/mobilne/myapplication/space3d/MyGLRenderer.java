@@ -474,9 +474,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //                break;
 //            }
                 String faceHitByRayID = wall.GetCollidedFaceID(ray);
-                if(faceHitByRayID != null){
-                    Log.d("FaceCollision",faceHitByRayID);
-                    break; //but does it break the loop? TODO:Log iterations and check if they stop after break
+                if(faceHitByRayID != null) {
+                    String msg = String.format("wall %s hit at %s", i, faceHitByRayID);
+                    Log.d("FaceCollision", msg);
+                    // do not break since Ray may cross multiple faces of multiple walls
+                    //break;
+                    // To detect real hit we should calculate distance
+                    // between Ray start point and any ray-plane-intersection point
+                    // and select the one which is nearest
                 }
             }
         }
