@@ -94,7 +94,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //    private Cuboid purpleCuboid3;
     private RotationCtrl rotationCtrl;
 
-    //    private ArrayList<WallCoordinates>  wallCoordinatesList;
     private  ArrayList<Wall> walls;
 
     @Override
@@ -136,26 +135,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         floorGrid = new FloorGrid();
 
-//        wallCoordinatesList = new ArrayList<WallCoordinates>();
-//        wallCoordinatesList.add( new WallCoordinates(0f,0f));
-//        wallCoordinatesList.add( new WallCoordinates(0f,1f));
-//        wallCoordinatesList.add( new WallCoordinates(0f,2f));
-//        wallCoordinatesList.add( new WallCoordinates(2f,1f));
-//        wallCoordinatesList.add( new WallCoordinates(3f,1f));
-
         walls = new ArrayList<Wall>();
-//        for (int i = 0; i < wallCoordinatesList.size(); i++) {
-//            WallCoordinates currentWallCoord = wallCoordinatesList.get(i);
-//            Wall newWall = new Wall();
-//            newWall.X_position = currentWallCoord.getX();
-//            newWall.Z_position = currentWallCoord.getZ();
-//            newWall.setEdgeColor(red_e);
-//            newWall.setFaceColor(red_f);
-//            newWall.setFaceOpacity(0.8f);
-//            walls.add(newWall);
-//        }
-
-
         List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
         for (int i = 0; i < wallsLoaded.size(); i++) {
             float xPosition = wallsLoaded.get(i).getX();
