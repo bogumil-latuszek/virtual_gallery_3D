@@ -28,6 +28,12 @@ public class Face {
         this.maxZ = maxZ;
         faceID = FaceID;
     }
+    @Override
+    public String toString() {
+        return this.faceID + "[x:" + this.minX + ".." + this.maxX + ", y:"
+                                   + this.minY + ".." + this.maxY + ", z:"
+                                   + this.minZ + ".." + this.maxZ + "]";
+    }
     public Optional<PointOnFace> checkRayCollision(Ray ray) {
         Optional<PointOnFace> noCollision = Optional.empty();
         Point intersectionPoint = Geometry.rayToPlaneIntersectionPoint(ray, plane);
