@@ -11,6 +11,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -478,9 +479,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                     //break;
                     // To detect real hit we should calculate distance
                     // between Ray start point and any rayPlaneIntersection point
-                    Point rayPlaneIntersectionPoint = facePoint.point;
                     // and select the one which is nearest
                 }
+            }
+            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
+            if (collisionWithNearestFace.isPresent()) {
+                PointOnFace pointedFace = collisionWithNearestFace.get();
+                // TODO: hang picture on that Face
+                Log.d("FaceIntersectionPoint", pointedFace.point.toString());
+                Log.d("FacePointed", pointedFace.face.toString());
+                Log.d("Pointed", pointedFace.toString());
             }
         }
     }
