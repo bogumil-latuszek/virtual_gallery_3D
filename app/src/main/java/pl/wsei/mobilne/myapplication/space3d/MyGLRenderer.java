@@ -473,21 +473,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
                 List<PointOnFace> facesHitByRay = wall.GetCollidedFaces(ray);
                 for (PointOnFace facePoint: facesHitByRay) {
-                    String msg = String.format("wall %s hit at %s", i, facePoint.face.faceID);
+                    String msg = String.format("wall %s hit %s", i, facePoint);
                     Log.d("FaceCollision", msg);
-                    // do not break since Ray may cross multiple faces of multiple walls
-                    //break;
-                    // To detect real hit we should calculate distance
-                    // between Ray start point and any rayPlaneIntersection point
-                    // and select the one which is nearest
                 }
             }
             Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
             if (collisionWithNearestFace.isPresent()) {
                 PointOnFace pointedFace = collisionWithNearestFace.get();
                 // TODO: hang picture on that Face
-                Log.d("FaceIntersectionPoint", pointedFace.point.toString());
-                Log.d("FacePointed", pointedFace.face.toString());
                 Log.d("Pointed", pointedFace.toString());
             }
         }
