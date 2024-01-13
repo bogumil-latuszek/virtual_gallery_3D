@@ -99,6 +99,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private  ArrayList<Wall> walls;
 
+    private float zCameraPosition = 0f;
+
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
@@ -432,6 +434,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float upy = 1f;
 
         if (whereInsideRotationCtrl.equals("center")) {
+            this.zCameraPosition += 0.1f;
+
             float lookAroundAngle = 0.0f;
             Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
             Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
@@ -442,16 +446,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("up")) {
-            this.rotationCtrl.up();
-            float lookUpAngle = this.rotationCtrl.getUpAngle();
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            this.zCameraPosition -= 0.1f;
+
+            Matrix.setLookAtM(viewMatrix, 0,
+                    dx, dy, this.zCameraPosition,
+                    cx, cy, -10f,
+                    upx, upy, 0f);
+
+//            this.rotationCtrl.up();
+//            float lookUpAngle = this.rotationCtrl.getUpAngle();
+//            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+//            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("down")) {
-            this.rotationCtrl.down();
-            float lookUpAngle = this.rotationCtrl.getUpAngle();
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            this.zCameraPosition += 0.1f;
+
+            Matrix.setLookAtM(viewMatrix, 0,
+                    dx, dy, this.zCameraPosition,
+                    cx, cy, -10f,
+                    upx, upy, 0f);
+
+//            this.rotationCtrl.down();
+//            float lookUpAngle = this.rotationCtrl.getUpAngle();
+//            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+//            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("right")) {
             float addAngle = 5f;
