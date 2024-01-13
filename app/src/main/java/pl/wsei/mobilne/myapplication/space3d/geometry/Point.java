@@ -11,6 +11,11 @@ public class Point{
         this.z = z;
     }
 
+    @Override
+    public String toString() {
+        return "[" + this.x + ", " + this.y + ", " + this.z + "]";
+    }
+
     public Point translate(Vector vector) {
         return new Point(
                 x + vector.x,
