@@ -1,5 +1,7 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
+import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vectorBetweenTwoPoints;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +56,37 @@ public class Wall extends Cuboid {
             collidedFaces.add(faceRayIntersection);
         }
         return collidedFaces;
+    }
+
+    public static Optional<PointOnFace> getPointedFace(Ray ray, List<Wall> walls) {
+        ArrayList<PointOnFace> allFacesHitByRay = new ArrayList<>();
+        for (Wall wall : walls) {
+            List<PointOnFace> wallFacesHitByRay = wall.GetCollidedFaces(ray);
+            allFacesHitByRay.addAll(wallFacesHitByRay);
+        }
+        // To detect real hit we are searching Face that is nearest to Ray starting point.
+        // Precisely, having shortest distance between Ray starting point
+        // and Ray-Face intersection point.
+        Optional<PointOnFace> noCollision = Optional.empty();
+        if (allFacesHitByRay.isEmpty()) {
+            return noCollision;
+        }
+        PointOnFace nearestHitFace = allFacesHitByRay.get(0);
+        Point rayStartPoint = ray.point;
+        for (PointOnFace hitFace: allFacesHitByRay) {
+            Point rayFaceIntersection = hitFace.point;
+            Point rayNearestFaceIntersection = nearestHitFace.point;
+            Vector vectorToFace = vectorBetweenTwoPoints(rayStartPoint, rayFaceIntersection);
+            Vector vectorToNearestFace = vectorBetweenTwoPoints(rayStartPoint, rayNearestFaceIntersection);
+            float distanceToFace = vectorToFace.length();
+            float distanceToNearestFace = vectorToNearestFace.length();
+            if (distanceToFace < distanceToNearestFace) {
+                // remember which face is nearest to ray starting point
+                nearestHitFace = hitFace;
+            }
+        }
+        Optional<PointOnFace> collisionWithNearestFace = Optional.of(nearestHitFace);
+        return collisionWithNearestFace;
     }
 
     public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {
