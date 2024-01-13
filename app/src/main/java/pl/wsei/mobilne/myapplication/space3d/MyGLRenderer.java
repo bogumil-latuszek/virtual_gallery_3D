@@ -468,15 +468,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             touchRay = new RayLine(ray);
 
-            for (int i = 0; i < walls.size(); i++) {
-                Wall wall = walls.get(i);
-
-                List<PointOnFace> facesHitByRay = wall.GetCollidedFaces(ray);
-                for (PointOnFace facePoint: facesHitByRay) {
-                    String msg = String.format("wall %s hit %s", i, facePoint);
-                    Log.d("FaceCollision", msg);
-                }
-            }
             Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
             if (collisionWithNearestFace.isPresent()) {
                 PointOnFace pointedFace = collisionWithNearestFace.get();
