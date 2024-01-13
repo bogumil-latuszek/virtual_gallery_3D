@@ -8,4 +8,8 @@ public class PointOnFace {
         this.face = face;
         this.point = point;
     }
+    @Override
+    public String toString() {
+        return this.point.toString() + " at " + this.face.toString();
+    }
 }
