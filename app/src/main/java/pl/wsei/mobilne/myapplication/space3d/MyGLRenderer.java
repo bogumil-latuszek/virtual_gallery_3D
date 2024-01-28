@@ -19,11 +19,11 @@ import javax.microedition.khronos.opengles.GL10;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.dbmWall;
 
-import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
@@ -96,6 +96,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //    private Cuboid purpleCuboid2;
 //    private Cuboid purpleCuboid3;
     private RotationCtrl rotationCtrl;
+    private MovementCtrl movementCtrl;
 
     private  ArrayList<Wall> walls;
 
@@ -423,6 +424,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     }
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
+        Vector moveVector = this.movementCtrl.getMovementVector();
+
+
+
+
+
         String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
         Log.d("touch:", String.format("x = %s, y = %s", normalizedX, normalizedY));
         float dx = 0;

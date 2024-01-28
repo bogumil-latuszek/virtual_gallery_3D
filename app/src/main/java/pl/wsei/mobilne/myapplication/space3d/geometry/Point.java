@@ -1,5 +1,7 @@
 package pl.wsei.mobilne.myapplication.space3d.geometry;
 
+import static java.lang.Math.sqrt;
+
 public class Point{
     public final float x;
     public final float y;
@@ -21,5 +23,12 @@ public class Point{
                 x + vector.x,
                 y + vector.y,
                 z + vector.z);
+    }
+
+    public float findDistanceToPoint(Point b){
+        float dx = this.x - b.x;
+        float dy = this.y - b.y;
+        float distance = (float) sqrt(dx * dx + dy * dy); //TODO:check if sqrt takes float as param
+        return distance;
     }
 }
