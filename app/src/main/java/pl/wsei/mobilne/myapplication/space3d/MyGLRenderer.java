@@ -9,6 +9,8 @@ import android.opengl.Matrix;
 import android.os.SystemClock;
 import android.util.Log;
 
+import androidx.transition.Transition;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -190,6 +192,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl = new RotationCtrl();
         rotationCtrl.setEdgeColor(red_e);
 
+        movementCtrl = new MovementCtrl(new Point(0,0,0),0.1f);
+
         Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
         Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
         Ray fixedRay = new Ray(nearPointRay,
@@ -267,6 +271,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         rotationCtrl.startTransforming();
         rotationCtrl.move(aspectAdjustmentMatrix, -1.32f, -0.67f);
+
+        movementCtrl.startTransforming();
+        movementCtrl.move(aspectAdjustmentMatrix, 0, 0);
     }
 
     @Override
@@ -308,6 +315,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
+
+        movementCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
     }
 
     private void animateCameraView() {
@@ -424,7 +433,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     }
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
+        Point pointPressed = new Point(normalizedX, normalizedY, 0f);
+        this.movementCtrl.updatePointPressed(pointPressed);
         Vector moveVector = this.movementCtrl.getMovementVector();
+        //this.projectionMatrix.
+        Matrix.translateM(viewMatrix,0, moveVector.x, moveVector.y, moveVector.z);
 
 
 

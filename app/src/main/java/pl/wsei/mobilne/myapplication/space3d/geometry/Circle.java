@@ -8,6 +8,9 @@ public class Circle {
         this.center = center;
         this.radius = radius;
     }
+    public void translate(float dx, float dy){
+        this.center.translate(new Vector(dx, dy, 0));
+    }
 
     public Point getCenter() {
         return center;

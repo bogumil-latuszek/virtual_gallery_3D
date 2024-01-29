@@ -16,6 +16,7 @@ public class FloorGrid {
     private final FloatBuffer vertexData;  // <-- Vertices
 
     public FloorGrid() {
+
         // calculate coordinates for vertices
         initPoints();
         // prepare buffer for vertices
