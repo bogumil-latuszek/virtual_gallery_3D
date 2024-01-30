@@ -51,4 +51,7 @@ public class MovementCtrl {
                 red_e);
     }
 
+    public void bindData(TextureShaderProgram textureProgram) {
+        visualRepresentation.bindData(textureProgram);
+    }
 }

@@ -18,6 +18,7 @@ import java.util.Optional;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.dbmWall;
 
@@ -103,7 +104,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private  ArrayList<Wall> walls;
 
     private float zCameraPosition = 0f;
-
+////////////////////////////////////////////////////////
+    private TextureShaderProgram textureProgram;
+    private ColorShaderProgram colorProgram;
+    private int texture;
+//////////////////////////////////////////////////////////
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
@@ -199,6 +204,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Ray fixedRay = new Ray(nearPointRay,
                 Geometry.vectorBetweenTwoPoints(nearPointRay, farPointRay));
         touchRay = new RayLine(fixedRay);
+
+        textureProgram = new TextureShaderProgram(appContext);
+        colorProgram = new ColorShaderProgram(appContext);
+        texture = TextureHelper.loadTexture(appContext, R.drawable.wall);
     }
 
     @Override
@@ -315,6 +324,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
+
+        // Draw movement Ctrl
+        textureProgram.useProgram();
+        textureProgram.setUniforms(projectionMatrix, texture);
+        movementCtrl.bindData(textureProgram);
 
         movementCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
     }
