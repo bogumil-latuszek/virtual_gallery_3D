@@ -45,9 +45,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
     private static final String U_USE_GLOBAL_COLOR = "u_useGlobalColor";
+
+    private static final String U_USE_TEXTURE = "u_useGlobalTexture";
     private int aColorLocation;
     private int uColorLocation;
     private int bUseGlobalColorLocation;
+
+    private int bUseTextureLocation;
 
     // access to "vertex position" inside OpenGL
     private static final String A_POSITION = "a_Position";
@@ -61,20 +65,29 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                     "uniform vec4 u_Color;" +
                     "varying vec4 v_Color;" +
                     "uniform bool u_useGlobalColor;" +
+                    "uniform bool u_useGlobalTexture;"+
+                    "varying vec2 v_TextureCoordinates;"+
+                    "uniform sampler2D u_TextureUnit;"+
                     "void main() {" +
                     "  gl_FragColor = v_Color;" +
                     "  if (u_useGlobalColor) {" +
-                    "    gl_FragColor = u_Color;" +
-                    "  }" +
+                    "       gl_FragColor = u_Color;" +
+                    "   }" +
+                    "  if(u_useGlobalTexture){"+
+                    "       gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);"+
+                    "   }"+
                     "}";
     private final String vertexShaderCode =
             "uniform mat4 u_Matrix;" +
                     "attribute vec4 a_Position;" +
+                    "attribute vec2 a_TextureCoordinates;"+
+                    "varying vec2 v_TextureCoordinates;"+
                     "attribute vec4 a_Color;" +
                     "varying vec4 v_Color;" +
                     "void main() {" +
-                    "  v_Color = a_Color;" +
-                    "  gl_Position = u_Matrix * a_Position;" +
+                    "   v_TextureCoordinates = a_TextureCoordinates;"+
+                    "   v_Color = a_Color;" +
+                    "   gl_Position = u_Matrix * a_Position;" +
                     "}";
 
     // remember identifiers of entities created "inside" OpenGL
@@ -128,6 +141,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         aColorLocation = GLES20.glGetAttribLocation(programObjectId, A_COLOR);
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
         bUseGlobalColorLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_GLOBAL_COLOR);
+        bUseTextureLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_TEXTURE);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
 
         uMatrixLocation = GLES20.glGetUniformLocation(programObjectId, U_MATRIX);
@@ -288,6 +302,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 unused) {
 
+
+
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
@@ -326,9 +342,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
 
         // Draw movement Ctrl
-        textureProgram.useProgram();
-        textureProgram.setUniforms(projectionMatrix, texture);
-        movementCtrl.bindData(textureProgram);
+//        textureProgram.useProgram();
+//        textureProgram.setUniforms(projectionMatrix, texture);
+//        movementCtrl.bindData(textureProgram);
 
         movementCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
     }
