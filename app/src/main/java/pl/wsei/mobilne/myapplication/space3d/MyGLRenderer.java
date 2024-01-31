@@ -60,33 +60,43 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private static final String U_MATRIX = "u_Matrix";
     private final float[] projectionMatrix = new float[16];
     private int uMatrixLocation;
+
+    //TODO:wyciąć tworzenie programu z shadera do osobnych klas, wyciąć kod shaderów w string do tych klas albo do res
     private final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 u_Color;" +
                     "varying vec4 v_Color;" +
                     "uniform bool u_useGlobalColor;" +
-                    "uniform bool u_useGlobalTexture;"+
-                    "varying vec2 v_TextureCoordinates;"+
-                    "uniform sampler2D u_TextureUnit;"+
                     "void main() {" +
                     "  gl_FragColor = v_Color;" +
                     "  if (u_useGlobalColor) {" +
                     "       gl_FragColor = u_Color;" +
                     "   }" +
-                    "  if(u_useGlobalTexture){"+
-                    "       gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);"+
-                    "   }"+
                     "}";
     private final String vertexShaderCode =
             "uniform mat4 u_Matrix;" +
                     "attribute vec4 a_Position;" +
-                    "attribute vec2 a_TextureCoordinates;"+
-                    "varying vec2 v_TextureCoordinates;"+
                     "attribute vec4 a_Color;" +
                     "varying vec4 v_Color;" +
                     "void main() {" +
-                    "   v_TextureCoordinates = a_TextureCoordinates;"+
                     "   v_Color = a_Color;" +
+                    "   gl_Position = u_Matrix * a_Position;" +
+                    "}";
+
+    private final String textureFragmentShaderCode =
+            "precision mediump float;" +
+                    "varying vec2 v_TextureCoordinates;"+
+                    "uniform sampler2D u_TextureUnit;"+
+                    "void main() {" +
+                    "   gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);"+
+                    "}";
+    private final String textureVertexShaderCode =
+            "uniform mat4 u_Matrix;" +
+                    "attribute vec4 a_Position;" +
+                    "attribute vec2 a_TextureCoordinates;"+
+                    "varying vec2 v_TextureCoordinates;"+
+                    "void main() {" +
+                    "   v_TextureCoordinates = a_TextureCoordinates;"+
                     "   gl_Position = u_Matrix * a_Position;" +
                     "}";
 
