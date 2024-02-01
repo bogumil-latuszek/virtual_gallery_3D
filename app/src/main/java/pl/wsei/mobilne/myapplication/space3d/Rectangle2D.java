@@ -8,6 +8,7 @@ import android.opengl.Matrix;
 
 import java.nio.ByteBuffer;
 
+import pl.wsei.mobilne.myapplication.Constants;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 
 public class Rectangle2D {
@@ -15,7 +16,7 @@ public class Rectangle2D {
     private static final int POSITION_COMPONENT_COUNT = 2;
     private static final int TEXTURE_COORDINATES_COMPONENT_COUNT = 2;
     private static final int STRIDE = (POSITION_COMPONENT_COUNT
-            + TEXTURE_COORDINATES_COMPONENT_COUNT) * 4;
+            + TEXTURE_COORDINATES_COMPONENT_COUNT) * Constants.BYTES_PER_FLOAT;
 
     private static final float[] VERTEX_DATA = {
     // Order of coordinates: X, Y, S, T
@@ -30,8 +31,6 @@ public class Rectangle2D {
     ////////////////////////////////////////////////////
     private static final int COORDS_PER_VERTEX = 3;
     private final float[] modelMatrix = new float[16]; //a 4x4 matrix
-
-    private static final int BYTES_PER_FLOAT = 4;
    // private final VertexArray vertexArray;  // <-- Vertices
 
     //private final IndexArray vertexSequenceForDrawingOuterCircle;
@@ -129,7 +128,7 @@ public class Rectangle2D {
         Matrix.translateM(modelMatrix, 0, dx, dy, 0f);
     }
     ////////////////////////////////////////////////
-    public void bindData(TextureShaderProgram textureProgram) {
+    public void bindData(TextureShaderProgram textureProgram) { //to tutaj zdaje się określane są lokacje pozycji werteksów, i koordyn. tekstury. Być może moglibyśmy je rozdzielić?
         vertexArray.setVertexAttribPointer(
                 0,
                 textureProgram.getPositionAttributeLocation(),

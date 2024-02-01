@@ -6,13 +6,14 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import pl.wsei.mobilne.myapplication.Constants;
+
 public class FloorGrid {
     // number of coordinates per vertex in this array
     private static final int COORDS_PER_VERTEX = 3;
     private static final int COORD_LINES_NB = 21;
     private static final int VERTEX_COUNT = (COORD_LINES_NB*2)*2;
     static float[] gridCoords = new float[VERTEX_COUNT*COORDS_PER_VERTEX];
-    private static final int BYTES_PER_FLOAT = 4;
     private final FloatBuffer vertexData;  // <-- Vertices
 
     public FloorGrid() {
@@ -21,7 +22,7 @@ public class FloorGrid {
         initPoints();
         // prepare buffer for vertices
         vertexData = ByteBuffer
-                .allocateDirect(gridCoords.length * BYTES_PER_FLOAT)
+                .allocateDirect(gridCoords.length * Constants.BYTES_PER_FLOAT)
                 .order(ByteOrder.nativeOrder())
                 .asFloatBuffer();
         vertexData.put(gridCoords);

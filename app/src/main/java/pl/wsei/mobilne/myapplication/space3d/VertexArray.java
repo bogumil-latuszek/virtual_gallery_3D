@@ -6,11 +6,9 @@ import java.nio.FloatBuffer;
 
 import android.opengl.GLES20;
 
-public class VertexArray {
+import pl.wsei.mobilne.myapplication.Constants;
 
-    public class Constants {
-        public static final int BYTES_PER_FLOAT = 4;
-    }
+public class VertexArray {
     private final FloatBuffer floatBuffer;
     private final float [] vertexData;
     private final int _length;
