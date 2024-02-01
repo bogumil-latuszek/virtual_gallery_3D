@@ -231,7 +231,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         textureProgram = new TextureShaderProgram(appContext);
         colorProgram = new ColorShaderProgram(appContext);
-        texture = TextureHelper.loadTexture(appContext, R.drawable.wall);
+        texture = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
     }
 
     @Override
@@ -313,7 +313,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public void onDrawFrame(GL10 unused) {
 
 
-
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
@@ -352,9 +351,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
 
         // Draw movement Ctrl
-//        textureProgram.useProgram();
-//        textureProgram.setUniforms(projectionMatrix, texture);
-//        movementCtrl.bindData(textureProgram);
+        textureProgram.useProgram();
+        textureProgram.setUniforms(projectionMatrix, texture);
+        movementCtrl.bindData(textureProgram);
 
         movementCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
     }
