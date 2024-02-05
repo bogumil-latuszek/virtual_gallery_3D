@@ -49,18 +49,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private Context appContext;
     private final float[] invertedViewProjectionMatrix = new float[16];
     private DatabaseHelper dbHelper;
-    private static final String U_COLOR = "u_Color";
 
-    private static final String U_USE_TEXTURE = "u_useGlobalTexture";
+    //define strings
+    private static final String U_COLOR = "u_Color";
+    private static final String A_POSITION = "a_Position";
+    private static final String U_MATRIX = "u_Matrix";
+    private static final String A_TEXTURE_COORDINATES = "a_TextureCoordinates";
+    private static final String U_TEXTURE_UNIT = "u_TextureUnit";
+
     private int uColorLocation;
 
-    private int bUseTextureLocation;
-
-    // access to "vertex position" inside OpenGL
-    private static final String A_POSITION = "a_Position";
     private int aPositionLocation;
 
-    private static final String U_MATRIX = "u_Matrix";
     private final float[] projectionMatrix = new float[16];
     private int uMatrixLocation;
 
@@ -76,6 +76,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private int vertexShaderId;
     private int fragmentShaderId;
 
+    private int textureProgramObjectId; // vertex and fragment renderers combined
+    private int textureVertexShaderId;
+    private int textureFragmentShaderId;
+
+
     private final float[] aspectAdjustmentMatrix = new float[16];
     private final float[] viewMatrix = new float[16];
     private final float[] viewProjectionMatrix = new float[16];
@@ -84,7 +89,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private FloorGrid floorGrid;
     private RayLine touchRay;
 
-//    private Cuboid blueCuboid;
+    private Cuboid blueCuboid;
     private RotationCtrl rotationCtrl;
     private MovementCtrl movementCtrl;
 
@@ -95,6 +100,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private TextureShaderProgram textureProgram;
     private ColorShaderProgram colorProgram;
     private int texture;
+
+    private int uMatrixTextureLocation;
+
+    private int aPositionTextureLocation;
+
+    private int aTextureCoordinatesLocation;
+
+    private int uTextureUnitLocation;
+
 //////////////////////////////////////////////////////////
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -107,16 +121,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         fragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
         programObjectId = loadProgram(vertexShaderId, fragmentShaderId);
 
-        // instruct OpenGL to use the program defined here when
-        // drawing anything to the screen
-        GLES20.glUseProgram(programObjectId);
+        textureFragmentShaderId = loadShader(GLES20.GL_VERTEX_SHADER, textureVertexShaderCode);
+        textureFragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, textureFragmentShaderCode);
+        textureProgramObjectId = loadProgram(textureVertexShaderId, textureFragmentShaderId);
 
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
-        bUseTextureLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_TEXTURE);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
-
         uMatrixLocation = GLES20.glGetUniformLocation(programObjectId, U_MATRIX);
+
+        // retrieve attributes and uniforms from texture program
+        uMatrixTextureLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_MATRIX);
+        aPositionTextureLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_POSITION);
+        aTextureCoordinatesLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_TEXTURE_COORDINATES);
+        uTextureUnitLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_TEXTURE_UNIT);
+
 
         // define color to be used as we call glClear()
         GLES20.glClearColor(0.8f, 0.8f, 0.8f, 0.0f);
@@ -146,7 +165,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             walls.add(newWall);
         }
 
-      //  blueCuboid = new Cuboid(1f, 1f, 1f);
+        blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
 
         rotationCtrl = new RotationCtrl();
         rotationCtrl.setEdgeColor(red_e);
@@ -201,11 +220,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             wall.startTransforming();
         }
 
-        /*
+
         blueCuboid.startTransforming();
-        blueCuboid.move(2f, 0f, -6f);
         blueCuboid.scale(0.1f, 1f, 1f);
-         */
+
         touchRay.startTransforming();
 
         rotationCtrl.startTransforming();
@@ -224,6 +242,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         //animateCameraView();
 
+        // instruct OpenGL to use given program when drawing anything to the screen
+        GLES20.glUseProgram(programObjectId);
+
         // TODO: move to code point where we change viewMatrix (f.ex into handleTouchPress(), handleTouchDrag()) ???
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
@@ -240,19 +261,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             wall.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
         }
 
-        /*
         blueCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-         */
+
         touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
+        // instruct OpenGL to use another (texture) program when drawing anything to the screen
+        GLES20.glUseProgram(textureProgramObjectId);
+
         // Draw movement Ctrl
-        textureProgram.useProgram();
-        textureProgram.setUniforms(projectionMatrix, texture);
-        movementCtrl.bindData(textureProgram);
+//        textureProgram.useProgram();
+//        textureProgram.setUniforms(projectionMatrix, texture);
+//        movementCtrl.bindData(textureProgram);
 
         movementCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
     }
