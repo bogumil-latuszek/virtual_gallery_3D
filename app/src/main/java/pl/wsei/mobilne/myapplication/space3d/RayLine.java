@@ -29,11 +29,8 @@ public class RayLine {
         Matrix.setIdentityM(modelMatrix, 0);
     }
 
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation,
+    public void draw(int aPositionLocation, int uColorLocation,
                      int uMatrixLocation, float[] viewProjectionMatrix) {
-        // force shader to use uniform color
-        int trueInGPU = 1;
-        GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
 
         // tell OpenGL what are 4 values (uniform vec4 %u_Color;) to fill for global color
         // another words: set color for drawing

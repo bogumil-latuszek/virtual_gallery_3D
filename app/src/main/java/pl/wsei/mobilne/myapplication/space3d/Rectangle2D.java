@@ -85,13 +85,10 @@ public class Rectangle2D {
 
 
 
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation,
+    public void draw(int aPositionLocation, int uColorLocation,
                      int uMatrixLocation, float[] aspectAdjustmentMatrix,
                      float[] edgeColor) {
-//        // force shader to use uniform color
-//        int trueInGPU = 1;
-//        GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
-//
+
 //        // prepare vertices buffer (floats --> bytes)
 //        prepareDataSource_forPositionAttribute(aPositionLocation);
 //

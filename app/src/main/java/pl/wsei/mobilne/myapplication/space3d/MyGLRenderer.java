@@ -44,12 +44,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private DatabaseHelper dbHelper;
     private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
-    private static final String U_USE_GLOBAL_COLOR = "u_useGlobalColor";
 
     private static final String U_USE_TEXTURE = "u_useGlobalTexture";
     private int aColorLocation;
     private int uColorLocation;
-    private int bUseGlobalColorLocation;
 
     private int bUseTextureLocation;
 
@@ -65,21 +63,13 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private final String fragmentShaderCode =
             "precision mediump float;" +
                     "uniform vec4 u_Color;" +
-                    "varying vec4 v_Color;" +
-                    "uniform bool u_useGlobalColor;" +
                     "void main() {" +
-                    "  gl_FragColor = v_Color;" +
-                    "  if (u_useGlobalColor) {" +
                     "       gl_FragColor = u_Color;" +
-                    "   }" +
                     "}";
     private final String vertexShaderCode =
             "uniform mat4 u_Matrix;" +
                     "attribute vec4 a_Position;" +
-                    "attribute vec4 a_Color;" +
-                    "varying vec4 v_Color;" +
                     "void main() {" +
-                    "   v_Color = a_Color;" +
                     "   gl_Position = u_Matrix * a_Position;" +
                     "}";
 
@@ -150,7 +140,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
         aColorLocation = GLES20.glGetAttribLocation(programObjectId, A_COLOR);
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
-        bUseGlobalColorLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_GLOBAL_COLOR);
         bUseTextureLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_TEXTURE);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
 
@@ -325,37 +314,37 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
 
         // draw our shapes
-        floorGrid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        floorGrid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
         // if we pass projectionMatrix instead of viewProjectionMatrix then shape doesn't move with other shapes
         // (in that case the only transformation the shape is subjected to is perspective correction)
 
         for(Wall wall : walls){
-            wall.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+            wall.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
         }
 
         /*
-        greenCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        blueCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        limeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        redCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        orangeCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid2.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid3.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        greenCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        blueCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        limeCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        redCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        orangeCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid2.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+        purpleCuboid3.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
          */
-        touchRay.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, viewProjectionMatrix);
+        touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
-        rotationCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
+        rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
-        // Draw movement Ctrl
-        textureProgram.useProgram();
-        textureProgram.setUniforms(projectionMatrix, texture);
-        movementCtrl.bindData(textureProgram);
-
-        movementCtrl.draw(aPositionLocation, uColorLocation, bUseGlobalColorLocation, uMatrixLocation, aspectAdjustmentMatrix);
+//        // Draw movement Ctrl
+//        textureProgram.useProgram();
+//        textureProgram.setUniforms(projectionMatrix, texture);
+//        movementCtrl.bindData(textureProgram);
+//
+//        movementCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
     }
 
     private void animateCameraView() {

@@ -112,19 +112,14 @@ public class Cuboid {
         Matrix.scaleM(modelMatrix, 0, x, y, z);
     }
 
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation, //overloading draw  function
+    public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function
                      int uMatrixLocation, float[] viewProjectionMatrix) {
-        draw(aPositionLocation, uColorLocation, useGlobalColorLocation,
+        draw(aPositionLocation, uColorLocation,
                 uMatrixLocation, viewProjectionMatrix, this.edgeColor, this.faceColor);
     }
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation,
+    public void draw(int aPositionLocation, int uColorLocation,
                      int uMatrixLocation, float[] viewProjectionMatrix,
                      float[] edgeColor, float[] faceColor) {
-
-
-        // force shader to use uniform color // todo: clarify naming
-        int trueInGPU = 1;
-        GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);

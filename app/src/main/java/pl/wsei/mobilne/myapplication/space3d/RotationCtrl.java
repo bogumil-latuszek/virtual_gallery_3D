@@ -254,17 +254,14 @@ public class RotationCtrl {
         return angleFromNorth;
     }
 
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation, //overloading draw  function
+    public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function
                      int uMatrixLocation, float[] aspectAdjustmentMatrix) {
-        draw(aPositionLocation, uColorLocation, useGlobalColorLocation,
+        draw(aPositionLocation, uColorLocation,
                 uMatrixLocation, aspectAdjustmentMatrix, this.edgeColor);
     }
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation,
+    public void draw(int aPositionLocation, int uColorLocation,
                      int uMatrixLocation, float[] aspectAdjustmentMatrix,
                      float[] edgeColor) {
-        // force shader to use uniform color
-        int trueInGPU = 1;
-        GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);

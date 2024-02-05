@@ -64,7 +64,7 @@ public class FloorGrid {
 
         GLES20.glLineWidth(2.0f);
     }
-    public void draw(int aPositionLocation, int uColorLocation, int useGlobalColorLocation,
+    public void draw(int aPositionLocation, int uColorLocation,
                      int uMatrixLocation, float[] viewProjectionMatrix) {
 
         // tell OpenGL what are 4 values (uniform vec4 %u_Color;) to fill for global color
@@ -72,10 +72,6 @@ public class FloorGrid {
         //               R   G   B
         float[] black = {0f, 0f, 0f};
         GLES20.glUniform4f(uColorLocation, black[0], black[1], black[2], 1.0f);
-
-        // force shader to use uniform color
-        int trueInGPU = 1;
-        GLES20.glUniform1i(useGlobalColorLocation, trueInGPU);
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
