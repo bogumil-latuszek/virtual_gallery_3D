@@ -36,8 +36,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
        this.fragmentShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.color_fragment_shader);
-        this.vertexShaderCode = TextResourceReader.readTextFileFromResource(
+       this.vertexShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.color_vertex_shader);
+       this.textureFragmentShaderCode = TextResourceReader.readTextFileFromResource(
+                context, R.raw.texture_fragment_shader);
+       this.textureVertexShaderCode = TextResourceReader.readTextFileFromResource(
+                context, R.raw.texture_vertex_shader);
     }
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
@@ -64,22 +68,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private final String fragmentShaderCode;
     private final String vertexShaderCode;
 
-    private final String textureFragmentShaderCode =
-            "precision mediump float;" +
-                    "varying vec2 v_TextureCoordinates;"+
-                    "uniform sampler2D u_TextureUnit;"+
-                    "void main() {" +
-                    "   gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates);"+
-                    "}";
-    private final String textureVertexShaderCode =
-            "uniform mat4 u_Matrix;" +
-                    "attribute vec4 a_Position;" +
-                    "attribute vec2 a_TextureCoordinates;"+
-                    "varying vec2 v_TextureCoordinates;"+
-                    "void main() {" +
-                    "   v_TextureCoordinates = a_TextureCoordinates;"+
-                    "   gl_Position = u_Matrix * a_Position;" +
-                    "}";
+    private final String textureFragmentShaderCode;
+    private final String textureVertexShaderCode;
 
     // remember identifiers of entities created "inside" OpenGL
     private int programObjectId; // vertex and fragment renderers combined
@@ -260,11 +250,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
         // Draw movement Ctrl
-//        textureProgram.useProgram();
-//        textureProgram.setUniforms(projectionMatrix, texture);
-//        movementCtrl.bindData(textureProgram);
-//
-//        movementCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
+        textureProgram.useProgram();
+        textureProgram.setUniforms(projectionMatrix, texture);
+        movementCtrl.bindData(textureProgram);
+
+        movementCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
     }
 
 //    private void animateCameraView() {
