@@ -37,10 +37,15 @@ public class Rectangle2D {
 
    // private final ByteBuffer vertexSequenceForDrawingEdges;
     private  final  VertexArray vertexArray;
-    private final IndexArray indexArray;
+
+    //private final IndexArray indexArray;
     private Point centralPoint;
     private float width;
     private float height;
+
+    private final ByteBuffer vertexSequenceForDrawingFaces;
+
+    private  int numberOfIndexesPerFace = 3*2;//num. of vertexes per triange * triangles per face
 
 
     public Rectangle2D(Point centralPoint, float width, float height) {
@@ -55,14 +60,14 @@ public class Rectangle2D {
         float dx = width/2;
         float dy = height/2;
 
-//        vertexArray = new VertexArray(new float[]{
-//                locateAtX-dx,  locateAtY+dy, 0,            // (0) Top-left
-//                locateAtX+dx,  locateAtY+dy, 0,            // (1) Top-right
-//                locateAtX-dx,  locateAtY-dy, 0,               // (2) Bottom-left
-//                locateAtX+dx,  locateAtY-dy, 0,                // (3) Bottom-right
-//        });
+        vertexArray = new VertexArray(new float[]{
+                locateAtX-dx,  locateAtY+dy, 0,            // (0) Top-left
+                locateAtX+dx,  locateAtY+dy, 0,            // (1) Top-right
+                locateAtX-dx,  locateAtY-dy, 0,               // (2) Bottom-left
+                locateAtX+dx,  locateAtY-dy, 0,                // (3) Bottom-right
+        });
 
-        vertexArray = new VertexArray(VERTEX_DATA);
+        //vertexArray = new VertexArray(VERTEX_DATA);
 
 //        vertexSequenceForDrawingEdges = ByteBuffer.allocateDirect(3 * 2 * 6)//num. of vertexes per triangle * triangles per face * faces per cuboid
 //                .put(new byte[]{
@@ -73,13 +78,21 @@ public class Rectangle2D {
 //                });
 //
 //        vertexSequenceForDrawingEdges.position(0);
-        byte[] byteArray = new byte[]{
-                0, 1,
-                1, 3,
-                3, 2,
-                2, 0
-        };
-        indexArray = new IndexArray(byteArray);
+//        byte[] byteArray = new byte[]{
+//                0, 1,
+//                1, 3,
+//                3, 2,
+//                2, 0
+//        };
+//        indexArray = new IndexArray(byteArray);
+
+        vertexSequenceForDrawingFaces = ByteBuffer.allocateDirect(3 * 2)
+                .put(new byte[]{
+                        // Front - counter-clockwise (front-facing)
+                        1, 0, 3,
+                        0, 2, 3,
+                });
+        vertexSequenceForDrawingFaces.position(0); //set starting position
 
     }
 
@@ -103,7 +116,13 @@ public class Rectangle2D {
 //        int nbIndexes4lines = indexArray.length();
 //        GLES20.glDrawElements(GLES20.GL_LINES, nbIndexes4lines, GLES20.GL_UNSIGNED_BYTE,
 //                indexArray.indexesBuffer);
-        glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
+
+
+//        glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
+
+
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, numberOfIndexesPerFace, GLES20.GL_UNSIGNED_BYTE, vertexSequenceForDrawingFaces);
+
     }
 
     public void prepareDataSource_forPositionAttribute(int aPositionLocation) {

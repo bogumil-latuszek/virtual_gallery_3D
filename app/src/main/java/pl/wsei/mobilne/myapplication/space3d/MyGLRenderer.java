@@ -33,8 +33,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public MyGLRenderer(Context context){
         this.appContext = context;
         dbHelper = new DatabaseHelper(context);
-//        DatabaseHelper dbHelper = new DatabaseHelper(context);
-//        dbManager = new DatabaseManager(dbHelper);
+
+       this.fragmentShaderCode = TextResourceReader.readTextFileFromResource(
+                context, R.raw.color_fragment_shader);
+        this.vertexShaderCode = TextResourceReader.readTextFileFromResource(
+                context, R.raw.color_vertex_shader);
     }
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
@@ -58,18 +61,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private int uMatrixLocation;
 
     //TODO:wyciąć tworzenie programu z shadera do osobnych klas, wyciąć kod shaderów w string do tych klas albo do res
-    private final String fragmentShaderCode =
-            "precision mediump float;" +
-                    "uniform vec4 u_Color;" +
-                    "void main() {" +
-                    "       gl_FragColor = u_Color;" +
-                    "}";
-    private final String vertexShaderCode =
-            "uniform mat4 u_Matrix;" +
-                    "attribute vec4 a_Position;" +
-                    "void main() {" +
-                    "   gl_Position = u_Matrix * a_Position;" +
-                    "}";
+    private final String fragmentShaderCode;
+    private final String vertexShaderCode;
 
     private final String textureFragmentShaderCode =
             "precision mediump float;" +
@@ -102,13 +95,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private RayLine touchRay;
 
 //    private Cuboid blueCuboid;
-//    private Cuboid greenCuboid;
-//    private Cuboid limeCuboid;
-//    private Cuboid redCuboid;
-//    private Cuboid orangeCuboid;
-//    private Cuboid purpleCuboid;
-//    private Cuboid purpleCuboid2;
-//    private Cuboid purpleCuboid3;
     private RotationCtrl rotationCtrl;
     private MovementCtrl movementCtrl;
 
@@ -170,39 +156,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             walls.add(newWall);
         }
 
-
-        /*
-        greenCuboid = new Cuboid(0.5f, 1f, 0.5f, 0f, 0f);
-        greenCuboid.setEdgeColor(green_e);
-        greenCuboid.setFaceColor(green_f);
-
-        blueCuboid = new Cuboid(1f, 1f, 1f);
-
-        limeCuboid = new Cuboid(0.1f, 2f, 1f);
-        limeCuboid.setEdgeColor(lime_e);
-        limeCuboid.setFaceColor(lime_f);
-
-        redCuboid = new Cuboid(1f, 1f, 1f);
-        redCuboid.setEdgeColor(red_e);
-        redCuboid.setFaceColor(red_f);
-
-        orangeCuboid = new Cuboid(1f, 1f, 1f);
-        orangeCuboid.setEdgeColor(orange_e);
-        orangeCuboid.setFaceColor(orange_f);
-        orangeCuboid.setFaceOpacity(0.8f);
-
-        purpleCuboid = new Cuboid(1f, 0.2f, 3f);
-        purpleCuboid.setEdgeColor(purple_e);
-        purpleCuboid.setFaceColor(purple_f);
-        purpleCuboid2 = new Cuboid(0.1f, 1f, 0.1f);
-        purpleCuboid2.setEdgeColor(purple_e);
-        purpleCuboid2.setFaceColor(purple_f);
-        purpleCuboid2.setFaceOpacity(0.2f);
-        purpleCuboid3 = new Cuboid(0.1f, 1f, 0.1f);
-        purpleCuboid3.setEdgeColor(purple_e);
-        purpleCuboid3.setFaceColor(purple_f);
-        purpleCuboid3.setFaceOpacity(0.8f);
-        */
+      //  blueCuboid = new Cuboid(1f, 1f, 1f);
 
         rotationCtrl = new RotationCtrl();
         rotationCtrl.setEdgeColor(red_e);
@@ -258,33 +212,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         }
 
         /*
-        greenCuboid.startTransforming();
-        greenCuboid.scale(1f, 1f, 1f);
-        greenCuboid.move(0f, 0f, -5f);
-
-        limeCuboid.startTransforming();
-        limeCuboid.move(2f, 0f, -6.5f);
-
         blueCuboid.startTransforming();
         blueCuboid.move(2f, 0f, -6f);
         blueCuboid.scale(0.1f, 1f, 1f);
-
-        redCuboid.startTransforming();
-        redCuboid.move(-1.5f, -0f, -5f);
-        redCuboid.scale(0.5f, 1f, 1f);
-
-        orangeCuboid.startTransforming();
-        orangeCuboid.move(-2.0f, 0f, -7f);
-        orangeCuboid.scale(2f, 1f, 1f);
-
-        purpleCuboid.startTransforming();
-        purpleCuboid.move(5.0f, -0.9f, 4f);
-
-        purpleCuboid2.startTransforming();
-        purpleCuboid2.move(-2.0f, 0f, 4f);
-
-        purpleCuboid3.startTransforming();
-        purpleCuboid3.move(-1.5f, 0f, 5f);
          */
         touchRay.startTransforming();
 
@@ -321,14 +251,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         }
 
         /*
-        greenCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
         blueCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        limeCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        redCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        orangeCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid2.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-        purpleCuboid3.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
          */
         touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
@@ -336,7 +259,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
-//        // Draw movement Ctrl
+        // Draw movement Ctrl
 //        textureProgram.useProgram();
 //        textureProgram.setUniforms(projectionMatrix, texture);
 //        movementCtrl.bindData(textureProgram);
@@ -344,60 +267,60 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        movementCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
     }
 
-    private void animateCameraView() {
-        long uptimeMs = SystemClock.uptimeMillis();
-        long angle = uptimeMs % 3600L;
-        long timeSpace = uptimeMs % 70000L;
-        double radianAngle = Math.toRadians(angle / 10f);
-        double sinVal = Math.sin(radianAngle);
-        float delta = (float) (2 * sinVal);
-        float dx = 0f;
-        float dy = 0f;
-        float dz = 0f;
-        float cx = 0f;
-        float cy = 0f;
-        float upx = 0f;
-        float upy = 1f;
-        float lookAroundAngle = 0f;
-        float rotateAroundCameraLensAngle = 0f;
-        if (timeSpace < 10000L) {
-            dx = delta * 2;
-        }
-        else if ((timeSpace > 10000L) && (timeSpace < 20000L)) {
-            dy = delta;
-        }
-        else if ((timeSpace > 20000L) && (timeSpace < 30000L)) {
-            dz = delta;
-        }
-        else if ((timeSpace > 30000L) && (timeSpace < 40000L)) {
-            cx = delta * 3f;
-        }
-        else if ((timeSpace > 40000L) && (timeSpace < 50000L)) {
-            cy = delta * 3f;
-        }
-        else if ((timeSpace > 50000L) && (timeSpace < 60000L)) {
-            lookAroundAngle = angle / 15f;
-        }
-        else {
-            rotateAroundCameraLensAngle = angle / 20f;
-        }
-        if (lookAroundAngle > 0f) {
-            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
-        }
-        else {
-            if (rotateAroundCameraLensAngle > 0f) {
-                double rotateAroundCameraLensRadian = Math.toRadians(rotateAroundCameraLensAngle);
-                upx = (float) Math.cos(rotateAroundCameraLensRadian);
-                upy = (float) Math.sin(rotateAroundCameraLensRadian);
-            }
-            Matrix.setLookAtM(viewMatrix, 0,
-                    dx, dy, dz,
-                    cx, cy, -10f,
-                    upx, upy, 0f);
-        }
-
-
-    }
+//    private void animateCameraView() {
+//        long uptimeMs = SystemClock.uptimeMillis();
+//        long angle = uptimeMs % 3600L;
+//        long timeSpace = uptimeMs % 70000L;
+//        double radianAngle = Math.toRadians(angle / 10f);
+//        double sinVal = Math.sin(radianAngle);
+//        float delta = (float) (2 * sinVal);
+//        float dx = 0f;
+//        float dy = 0f;
+//        float dz = 0f;
+//        float cx = 0f;
+//        float cy = 0f;
+//        float upx = 0f;
+//        float upy = 1f;
+//        float lookAroundAngle = 0f;
+//        float rotateAroundCameraLensAngle = 0f;
+//        if (timeSpace < 10000L) {
+//            dx = delta * 2;
+//        }
+//        else if ((timeSpace > 10000L) && (timeSpace < 20000L)) {
+//            dy = delta;
+//        }
+//        else if ((timeSpace > 20000L) && (timeSpace < 30000L)) {
+//            dz = delta;
+//        }
+//        else if ((timeSpace > 30000L) && (timeSpace < 40000L)) {
+//            cx = delta * 3f;
+//        }
+//        else if ((timeSpace > 40000L) && (timeSpace < 50000L)) {
+//            cy = delta * 3f;
+//        }
+//        else if ((timeSpace > 50000L) && (timeSpace < 60000L)) {
+//            lookAroundAngle = angle / 15f;
+//        }
+//        else {
+//            rotateAroundCameraLensAngle = angle / 20f;
+//        }
+//        if (lookAroundAngle > 0f) {
+//            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+//        }
+//        else {
+//            if (rotateAroundCameraLensAngle > 0f) {
+//                double rotateAroundCameraLensRadian = Math.toRadians(rotateAroundCameraLensAngle);
+//                upx = (float) Math.cos(rotateAroundCameraLensRadian);
+//                upy = (float) Math.sin(rotateAroundCameraLensRadian);
+//            }
+//            Matrix.setLookAtM(viewMatrix, 0,
+//                    dx, dy, dz,
+//                    cx, cy, -10f,
+//                    upx, upy, 0f);
+//        }
+//
+//
+//    }
 
     public int loadShader(int type, String shaderCode){
 
