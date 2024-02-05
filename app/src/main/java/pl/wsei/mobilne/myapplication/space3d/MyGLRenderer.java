@@ -123,7 +123,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         fragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
         programObjectId = loadProgram(vertexShaderId, fragmentShaderId);
 
-        textureFragmentShaderId = loadShader(GLES20.GL_VERTEX_SHADER, textureVertexShaderCode);
+        textureVertexShaderId = loadShader(GLES20.GL_VERTEX_SHADER, textureVertexShaderCode);
         textureFragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, textureFragmentShaderCode);
         textureProgramObjectId = loadProgram(textureVertexShaderId, textureFragmentShaderId);
 
