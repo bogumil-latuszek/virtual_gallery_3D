@@ -98,7 +98,7 @@ public class Rectangle2D {
 
 
 
-    public void draw(int aPositionLocation, int uColorLocation,
+    public void draw(int aPositionLocation,
                      int uMatrixLocation, float[] aspectAdjustmentMatrix,
                      float[] edgeColor) {
 
@@ -108,10 +108,6 @@ public class Rectangle2D {
 //        // we do not recalculate vertices per View-Projection matrices
 //        // View Controls (UI elements) are drawn directly in OpenGL normalized coordinates
 //        GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelMatrix, 0);
-//
-//        // tell OpenGL what are 4 values (uniform vec4 %u_Color;) to fill for global color
-//        // set color for drawing edges
-//        GLES20.glUniform4f(uColorLocation, edgeColor[0], edgeColor[1], edgeColor[2], 1.0f);
 //
 //        int nbIndexes4lines = indexArray.length();
 //        GLES20.glDrawElements(GLES20.GL_LINES, nbIndexes4lines, GLES20.GL_UNSIGNED_BYTE,

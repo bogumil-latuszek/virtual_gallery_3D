@@ -43,10 +43,10 @@ public class MovementCtrl {
         this.visualRepresentation.move(aspectAdjustmentMatrix, dx, dy);
     }
 
-    public void draw(int aPositionLocation, int uColorLocation,
+    public void draw(int aPositionLocation,
                      int uMatrixLocation, float[] aspectAdjustmentMatrix){
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
-        this.visualRepresentation.draw(aPositionLocation, uColorLocation,
+        this.visualRepresentation.draw(aPositionLocation,
                 uMatrixLocation, aspectAdjustmentMatrix,
                 red_e);
     }
