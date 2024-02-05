@@ -277,7 +277,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        textureProgram.setUniforms(projectionMatrix, texture);
 //        movementCtrl.bindData(textureProgram);
 
-        movementCtrl.draw(aPositionTextureLocation, uMatrixTextureLocation, aspectAdjustmentMatrix);
+        movementCtrl.draw(aPositionTextureLocation, aTextureCoordinatesLocation, uTextureUnitLocation,
+                          uMatrixTextureLocation, aspectAdjustmentMatrix);
     }
 
 //    private void animateCameraView() {

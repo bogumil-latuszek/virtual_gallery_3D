@@ -93,12 +93,9 @@ public class Rectangle2D {
                         0, 2, 3,
                 });
         vertexSequenceForDrawingFaces.position(0); //set starting position
-
     }
 
-
-
-    public void draw(int aPositionLocation,
+    public void draw(int aPositionLocation, int uTextureUnitLocation, int uMatrixTextureLocation,
                      int uMatrixLocation, float[] aspectAdjustmentMatrix,
                      float[] edgeColor) {
 
