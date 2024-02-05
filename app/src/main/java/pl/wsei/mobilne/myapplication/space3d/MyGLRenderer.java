@@ -42,11 +42,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private Context appContext;
     private final float[] invertedViewProjectionMatrix = new float[16];
     private DatabaseHelper dbHelper;
-    private static final String A_COLOR = "a_Color";
     private static final String U_COLOR = "u_Color";
 
     private static final String U_USE_TEXTURE = "u_useGlobalTexture";
-    private int aColorLocation;
     private int uColorLocation;
 
     private int bUseTextureLocation;
@@ -138,7 +136,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glUseProgram(programObjectId);
 
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
-        aColorLocation = GLES20.glGetAttribLocation(programObjectId, A_COLOR);
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
         bUseTextureLocation = GLES20.glGetUniformLocation(programObjectId, U_USE_TEXTURE);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
