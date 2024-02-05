@@ -108,6 +108,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private int aTextureCoordinatesLocation;
 
     private int uTextureUnitLocation;
+    ///temporary
+    private int uTextureColorLocation;
 
 //////////////////////////////////////////////////////////
     @Override
@@ -135,6 +137,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         aPositionTextureLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_POSITION);
         aTextureCoordinatesLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_TEXTURE_COORDINATES);
         uTextureUnitLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_TEXTURE_UNIT);
+        // temporary
+        uTextureColorLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_COLOR);
 
 
         // define color to be used as we call glClear()
@@ -277,7 +281,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //        textureProgram.setUniforms(projectionMatrix, texture);
 //        movementCtrl.bindData(textureProgram);
 
-        movementCtrl.draw(aPositionTextureLocation, aTextureCoordinatesLocation, uTextureUnitLocation,
+        movementCtrl.draw(aPositionTextureLocation,
+                          uTextureColorLocation,  // <-- temporary
+                          aTextureCoordinatesLocation, uTextureUnitLocation,
                           uMatrixTextureLocation, aspectAdjustmentMatrix);
     }
 
