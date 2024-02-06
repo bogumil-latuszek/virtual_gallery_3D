@@ -231,8 +231,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.move(aspectAdjustmentMatrix, -1.32f, -0.67f);
 
         movementCtrl.startTransforming();
-        movementCtrl.move(aspectAdjustmentMatrix, 0, 0);
-        movementCtrl.startTransforming();
 // without aspect correction ctrl area is:
 // where you click is where you move
 // (besides very corner since they are outside
@@ -243,7 +241,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 // with aspect correction control looks square
 // but you can click right/left outside it
 // and have move effect
- movementCtrl.move(aspectAdjustmentMatrix, 0, 0);
+ movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
     }
 
     @Override
