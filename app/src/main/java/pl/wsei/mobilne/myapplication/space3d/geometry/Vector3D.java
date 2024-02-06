@@ -32,4 +32,8 @@ public class Vector3D {
                 y * f,
                 z * f);
     }
+
+    public static Vector3D translate(Point point){
+        return new Vector3D(point.x, point.y, point.z);
+    }
 }
