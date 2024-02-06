@@ -171,7 +171,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl = new RotationCtrl();
         rotationCtrl.setEdgeColor(red_e);
 
-        movementCtrl = new MovementCtrl(new Point(0,0,0),0.1f);
+        movementCtrl = new MovementCtrl(new Point(0,0,0),0.3f);
 
         Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
         Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
