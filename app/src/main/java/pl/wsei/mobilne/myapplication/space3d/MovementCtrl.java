@@ -56,7 +56,7 @@ public class MovementCtrl {
 
     public void move(float[] aspectAdjustmentMatrix, float dx, float dy) {
         this.aspectAdjustmentMatrix = aspectAdjustmentMatrix;
-        this.circleCollider.translate(dx, dy);
+        this.circleCollider.move(dx, dy);
         this.visualRepresentation.move(aspectAdjustmentMatrix, dx, dy);
     }
 

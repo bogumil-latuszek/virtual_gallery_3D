@@ -8,8 +8,8 @@ public class Circle {
         this.center = center;
         this.radius = radius;
     }
-    public void translate(float dx, float dy){
-        this.center.translate(new Vector3D(dx, dy, 0));
+    public void move(float dx, float dy){
+        this.center.move(dx, dy);
     }
 
     public Point getCenter() {
