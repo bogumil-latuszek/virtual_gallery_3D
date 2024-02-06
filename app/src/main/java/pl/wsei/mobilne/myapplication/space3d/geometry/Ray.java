@@ -4,9 +4,9 @@ package pl.wsei.mobilne.myapplication.space3d.geometry;
 
 public class Ray {
     public final Point point;
-    public final Vector vector;
-    public Ray(Point point, Vector vector) {
+    public final Vector3D vector3D;
+    public Ray(Point point, Vector3D vector3D) {
         this.point = point;
-        this.vector = vector;
+        this.vector3D = vector3D;
     }
 }

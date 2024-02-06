@@ -18,11 +18,11 @@ public class Point{
         return "[" + this.x + ", " + this.y + ", " + this.z + "]";
     }
 
-    public Point translate(Vector vector) {
+    public Point translate(Vector3D vector3D) {
         return new Point(
-                x + vector.x,
-                y + vector.y,
-                z + vector.z);
+                x + vector3D.x,
+                y + vector3D.y,
+                z + vector3D.z);
     }
 
     public float findDistanceToPoint(Point b){

@@ -14,7 +14,7 @@ public class RayLine {
     public RayLine(Ray ray) {
         float [] vertices = new float[] {
                 ray.point.x, ray.point.y, ray.point.z,
-                ray.point.x + ray.vector.x, ray.point.y + ray.vector.y, ray.point.z + ray.vector.z
+                ray.point.x + ray.vector3D.x, ray.point.y + ray.vector3D.y, ray.point.z + ray.vector3D.z
         };
         vertexArray = new VertexArray(vertices);
     }

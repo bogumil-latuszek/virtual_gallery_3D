@@ -1,11 +1,8 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
-import android.opengl.GLES20;
-import android.opengl.Matrix;
-
 import pl.wsei.mobilne.myapplication.space3d.geometry.Circle;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
-import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class MovementCtrl {
     private Circle circleCollider;
@@ -22,8 +19,8 @@ public class MovementCtrl {
 
     //add a function that changes pointPressed?;
 
-    public Vector getMovementVector(){
-        Vector movementVector = new Vector(0,0,0);
+    public Vector3D getMovementVector(){
+        Vector3D movementVector3D = new Vector3D(0,0,0);
 //        Point pointAdjusted = Matrix.multiplyMV (,
 //        int resultVecOffset,
 //        float[] lhsMat,
@@ -31,12 +28,12 @@ public class MovementCtrl {
 //        float[] rhsVec,
 //        int rhsVecOffset)
         if(circleCollider.checkIfPointInside(pointPressed)){
-            Vector vector2D = circleCollider.getVectorToPointFromCenter(pointPressed);
+            Vector3D vector2D = circleCollider.getVectorToPointFromCenter(pointPressed);
             float forwardOrBackward = vector2D.y;
             float leftOrRight = vector2D.x;
-            movementVector = new Vector(leftOrRight, 0, forwardOrBackward);
+            movementVector3D = new Vector3D(leftOrRight, 0, forwardOrBackward);
         }
-        return movementVector;
+        return movementVector3D;
     }
     public void updatePointPressed(Point point){
         pointPressed = point;

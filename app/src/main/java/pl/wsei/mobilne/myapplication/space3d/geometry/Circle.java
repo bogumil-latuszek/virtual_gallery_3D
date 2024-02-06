@@ -9,7 +9,7 @@ public class Circle {
         this.radius = radius;
     }
     public void translate(float dx, float dy){
-        this.center.translate(new Vector(dx, dy, 0));
+        this.center.translate(new Vector3D(dx, dy, 0));
     }
 
     public Point getCenter() {
@@ -29,9 +29,9 @@ public class Circle {
         return false;
     }
 
-    public Vector getVectorToPointFromCenter(Point point){
+    public Vector3D getVectorToPointFromCenter(Point point){
         float dx = point.x - center.x;
         float dy = point.y - center.y;
-        return new Vector(dx, dy, 0);
+        return new Vector3D(dx, dy, 0);
     }
 }

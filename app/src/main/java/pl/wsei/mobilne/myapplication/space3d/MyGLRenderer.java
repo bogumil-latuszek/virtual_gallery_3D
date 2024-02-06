@@ -6,10 +6,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import android.os.SystemClock;
 import android.util.Log;
-
-import androidx.transition.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +23,7 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
-import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
@@ -415,9 +412,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public void handleTouchPress(float normalizedX, float normalizedY) {
         Point pointPressed = new Point(normalizedX, normalizedY, 0f);
         this.movementCtrl.updatePointPressed(pointPressed);
-        Vector moveVector = this.movementCtrl.getMovementVector();
+        Vector3D moveVector3D = this.movementCtrl.getMovementVector();
         //this.projectionMatrix.
-        Matrix.translateM(viewMatrix,0, moveVector.x, moveVector.y, moveVector.z);
+        Matrix.translateM(viewMatrix,0, moveVector3D.x, moveVector3D.y, moveVector3D.z);
 
 
 

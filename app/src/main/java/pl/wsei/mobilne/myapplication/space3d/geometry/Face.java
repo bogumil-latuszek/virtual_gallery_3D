@@ -14,7 +14,7 @@ public class Face {
 
     private Plane plane;
     public  String faceID;
-    public Face(Point pointOnFace, Vector normal,
+    public Face(Point pointOnFace, Vector3D normal,
                 float minX, float maxX,
                 float minY, float maxY,
                 float minZ, float maxZ,

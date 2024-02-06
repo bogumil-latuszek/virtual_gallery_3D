@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
-import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
-import pl.wsei.mobilne.myapplication.space3d.geometry.Plane;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
-import pl.wsei.mobilne.myapplication.space3d.geometry.Vector;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class Wall extends Cuboid {
 
@@ -76,10 +74,10 @@ public class Wall extends Cuboid {
         for (PointOnFace hitFace: allFacesHitByRay) {
             Point rayFaceIntersection = hitFace.point;
             Point rayNearestFaceIntersection = nearestHitFace.point;
-            Vector vectorToFace = vectorBetweenTwoPoints(rayStartPoint, rayFaceIntersection);
-            Vector vectorToNearestFace = vectorBetweenTwoPoints(rayStartPoint, rayNearestFaceIntersection);
-            float distanceToFace = vectorToFace.length();
-            float distanceToNearestFace = vectorToNearestFace.length();
+            Vector3D vector3DToFace = vectorBetweenTwoPoints(rayStartPoint, rayFaceIntersection);
+            Vector3D vector3DToNearestFace = vectorBetweenTwoPoints(rayStartPoint, rayNearestFaceIntersection);
+            float distanceToFace = vector3DToFace.length();
+            float distanceToNearestFace = vector3DToNearestFace.length();
             if (distanceToFace < distanceToNearestFace) {
                 // remember which face is nearest to ray starting point
                 nearestHitFace = hitFace;
@@ -104,22 +102,22 @@ public class Wall extends Cuboid {
         wallID = WallID;
 
         frontFace = new Face(
-            new Point(X_position, 0, maxZ), new Vector(0,0,1),
+            new Point(X_position, 0, maxZ), new Vector3D(0,0,1),
             minX, maxX, minY, maxY, maxZ, maxZ,
             "frontFace"
         );
         leftFace = new Face(
-            new Point(minX, 0, Z_position), new Vector(-1,0,0),
+            new Point(minX, 0, Z_position), new Vector3D(-1,0,0),
             minX, minX, minY, maxY, minZ, maxZ,
             "leftFace"
         );
         rightFace = new Face(
-            new Point(maxX, 0, Z_position), new Vector(1,0,0),
+            new Point(maxX, 0, Z_position), new Vector3D(1,0,0),
             maxX, maxX, minY, maxY, minZ, maxZ,
             "rightFace"
         );
         backFace = new Face(
-            new Point(X_position, 0, minZ), new Vector(0,0,-1),
+            new Point(X_position, 0, minZ), new Vector3D(0,0,-1),
             minX, maxX, minY, maxY, minZ, minZ,
             "backFace"
         );
