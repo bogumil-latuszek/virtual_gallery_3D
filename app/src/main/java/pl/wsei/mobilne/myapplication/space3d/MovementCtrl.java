@@ -13,6 +13,8 @@ public class MovementCtrl {
     private Point pointPressed;
     //private Rectangle Image?
     private  Rectangle2D visualRepresentation;
+
+    private float[] aspectAdjustmentMatrix;
     public MovementCtrl(Point center, float radius) {
         this.circleCollider = new Circle(center, radius);
         this.visualRepresentation = new Rectangle2D(center,radius*2,radius*2);
@@ -22,6 +24,12 @@ public class MovementCtrl {
 
     public Vector getMovementVector(){
         Vector movementVector = new Vector(0,0,0);
+//        Point pointAdjusted = Matrix.multiplyMV (,
+//        int resultVecOffset,
+//        float[] lhsMat,
+//        int lhsMatOffset,
+//        float[] rhsVec,
+//        int rhsVecOffset)
         if(circleCollider.checkIfPointInside(pointPressed)){
             Vector vector2D = circleCollider.getVectorToPointFromCenter(pointPressed);
             float forwardOrBackward = vector2D.y;
@@ -39,6 +47,7 @@ public class MovementCtrl {
     }
 
     public void move(float[] aspectAdjustmentMatrix, float dx, float dy) {
+        this.aspectAdjustmentMatrix = aspectAdjustmentMatrix;
         this.circleCollider.translate(dx, dy);
         this.visualRepresentation.move(aspectAdjustmentMatrix, dx, dy);
     }

@@ -66,16 +66,16 @@ public class Rectangle2D {
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
 
-        float[] red = {1f, 0f, 0f};
-        GLES20.glUniform4f(uColorLocation, red[0], red[1], red[2], 1.0f);
+        float[] green = {0f, 1f, 0f};
+        GLES20.glUniform4f(uColorLocation, green[0], green[1], green[2], 1.0f);
 
         // we do not recalculate vertices per View-Projection matrices
         // View Controls (UI elements) are drawn directly in OpenGL normalized coordinates
         GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelMatrix, 0);
 
-//        int nbIndexes4triangles = 2*3;
-//        GLES20.glDrawElements(GLES20.GL_TRIANGLES, nbIndexes4triangles, GLES20.GL_UNSIGNED_BYTE,
-//                              vertexSequenceForDrawingRectangle.indexesBuffer);
+        int nbIndexes4triangles = 2*3;
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, nbIndexes4triangles, GLES20.GL_UNSIGNED_BYTE,
+                              vertexSequenceForDrawingRectangle.indexesBuffer);
 
     }
 

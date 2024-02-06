@@ -235,6 +235,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         movementCtrl.startTransforming();
         movementCtrl.move(aspectAdjustmentMatrix, 0, 0);
+        movementCtrl.startTransforming();
+// without aspect correction ctrl area is:
+// where you click is where you move
+// (besides very corner since they are outside
+//  circle/elipsis)
+//        float[] nochangeMatrix = new float[16];
+//        Matrix.setIdentityM(nochangeMatrix, 0);
+//        movementCtrl.move(nochangeMatrix, 0, 0); // ale po co przekazuje się "pustą" macierz?
+// with aspect correction control looks square
+// but you can click right/left outside it
+// and have move effect
+ movementCtrl.move(aspectAdjustmentMatrix, 0, 0);
     }
 
     @Override
