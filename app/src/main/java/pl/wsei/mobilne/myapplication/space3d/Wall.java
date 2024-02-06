@@ -1,6 +1,7 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
-import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vectorBetweenTwoPoints;
+import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vector3DBetweenTwoPoints;
+import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vector3DBetweenTwoPoints;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,8 +75,8 @@ public class Wall extends Cuboid {
         for (PointOnFace hitFace: allFacesHitByRay) {
             Point rayFaceIntersection = hitFace.point;
             Point rayNearestFaceIntersection = nearestHitFace.point;
-            Vector3D vector3DToFace = vectorBetweenTwoPoints(rayStartPoint, rayFaceIntersection);
-            Vector3D vector3DToNearestFace = vectorBetweenTwoPoints(rayStartPoint, rayNearestFaceIntersection);
+            Vector3D vector3DToFace = vector3DBetweenTwoPoints(rayStartPoint, rayFaceIntersection);
+            Vector3D vector3DToNearestFace = vector3DBetweenTwoPoints(rayStartPoint, rayNearestFaceIntersection);
             float distanceToFace = vector3DToFace.length();
             float distanceToNearestFace = vector3DToNearestFace.length();
             if (distanceToFace < distanceToNearestFace) {

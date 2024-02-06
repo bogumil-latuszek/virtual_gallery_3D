@@ -176,7 +176,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
         Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
         Ray fixedRay = new Ray(nearPointRay,
-                Geometry.vectorBetweenTwoPoints(nearPointRay, farPointRay));
+                Geometry.vector3DBetweenTwoPoints(nearPointRay, farPointRay));
         touchRay = new RayLine(fixedRay);
 
         textureProgram = new TextureShaderProgram(appContext);
@@ -515,7 +515,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Point farPointRay =
                 new Point(farPointWorld[0], farPointWorld[1], farPointWorld[2]);
         return new Ray(nearPointRay,
-                Geometry.vectorBetweenTwoPoints(nearPointRay, farPointRay));
+                Geometry.vector3DBetweenTwoPoints(nearPointRay, farPointRay));
     }
 
     private void divideByW(float[] vector) {

@@ -6,7 +6,7 @@ public class Geometry {
 
 
     public static Point rayToPlaneIntersectionPoint(Ray ray, Plane plane) {
-        Vector3D rayToPlaneVector3D = vectorBetweenTwoPoints(ray.point, plane.point);
+        Vector3D rayToPlaneVector3D = vector3DBetweenTwoPoints(ray.point, plane.point);
         float scaleFactor = rayToPlaneVector3D.dotProduct(plane.normal)
                 / ray.vector3D.dotProduct(plane.normal);
         Point intersectionPoint = ray.point.translate(ray.vector3D.scale(scaleFactor));
@@ -14,8 +14,8 @@ public class Geometry {
     }
 
     public static float distanceBetweenRayAndPoint(Point point, Ray ray) {
-        Vector3D p1ToPoint = vectorBetweenTwoPoints(ray.point, point);
-        Vector3D p2ToPoint = vectorBetweenTwoPoints(ray.point.translate(ray.vector3D), point);
+        Vector3D p1ToPoint = vector3DBetweenTwoPoints(ray.point, point);
+        Vector3D p2ToPoint = vector3DBetweenTwoPoints(ray.point.translate(ray.vector3D), point);
 
         // The length of the cross product gives the area of an imaginary
         // parallelogram having the two vectors as sides. A parallelogram can be
@@ -34,7 +34,7 @@ public class Geometry {
 
 
 
-    public static Vector3D vectorBetweenTwoPoints(Point from, Point to) {
+    public static Vector3D vector3DBetweenTwoPoints(Point from, Point to) {
         return new Vector3D(
                 to.x - from.x,
                 to.y - from.y,
