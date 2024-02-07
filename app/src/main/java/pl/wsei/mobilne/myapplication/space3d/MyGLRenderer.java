@@ -112,13 +112,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
         // prepare shaders
-        vertexShaderId = loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
-        fragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
-        programObjectId = loadProgram(vertexShaderId, fragmentShaderId);
+        programObjectId = ShaderHelper.buildProgram(vertexShaderCode, fragmentShaderCode);
+        textureProgramObjectId = ShaderHelper.buildProgram(textureVertexShaderCode, textureFragmentShaderCode);
 
-        textureVertexShaderId = loadShader(GLES20.GL_VERTEX_SHADER, textureVertexShaderCode);
-        textureFragmentShaderId = loadShader(GLES20.GL_FRAGMENT_SHADER, textureFragmentShaderCode);
-        textureProgramObjectId = loadProgram(textureVertexShaderId, textureFragmentShaderId);
+
+
 
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
@@ -339,17 +337,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glCompileShader(shaderObjectId);
 
         return shaderObjectId;
-    }
-
-    public int loadProgram(int vertexShaderId, int fragmentShaderId) {
-        // create empty OpenGL ES Program
-        final int programObjectId  = GLES20.glCreateProgram();
-        // add the shaders to program
-        GLES20.glAttachShader(programObjectId, vertexShaderId);
-        GLES20.glAttachShader(programObjectId, fragmentShaderId);
-        // create OpenGL ES program executables
-        GLES20.glLinkProgram(programObjectId);
-        return programObjectId;
     }
 
 
