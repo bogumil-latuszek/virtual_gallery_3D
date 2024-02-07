@@ -60,13 +60,13 @@ public class MovementCtrl {
         this.visualRepresentation.move(aspectAdjustmentMatrix, dx, dy);
     }
 
-    public void draw(int aPositionLocation, int uColorLocation,
+    public void draw(int aPositionLocation,
                      int aTextureCoordinatesLocation, int uTextureUnitLocation,
                      int uMatrixLocation,
                      int textureId,
                      float[] aspectAdjustmentMatrix){
 
-        this.visualRepresentation.draw(aPositionLocation, uColorLocation,
+        this.visualRepresentation.draw(aPositionLocation,
                 aTextureCoordinatesLocation, uTextureUnitLocation,
                 uMatrixLocation,
                 textureId, aspectAdjustmentMatrix);

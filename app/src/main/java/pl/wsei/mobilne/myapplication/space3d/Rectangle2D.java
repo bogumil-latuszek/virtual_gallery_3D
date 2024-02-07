@@ -53,16 +53,13 @@ public class Rectangle2D {
         });
     }
 
-    public void draw(int aPositionLocation, int uColorLocation, int aTextureCoordinatesLocation,
+    public void draw(int aPositionLocation, int aTextureCoordinatesLocation,
                      int uTextureUnitLocation, int uMatrixLocation,
                      int textureId,  float[] aspectAdjustmentMatrix) {
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
         prepareDataSource_forTextureCoordinateAttribute(aTextureCoordinatesLocation);
-
-//        float[] green = {0f, 1f, 0f};
-//        GLES20.glUniform4f(uColorLocation, green[0], green[1], green[2], 1.0f);
 
         // we do not recalculate vertices per View-Projection matrices
         // View Controls (UI elements) are drawn directly in OpenGL normalized coordinates
