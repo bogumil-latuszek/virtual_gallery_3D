@@ -61,16 +61,14 @@ public class MovementCtrl {
     }
 
     public void draw(int aPositionLocation, int uColorLocation,
-                     int uTextureUnitLocation, int uMatrixTextureLocation,
-                     int uMatrixLocation, float[] aspectAdjustmentMatrix){
-        float[] red_e = {235f/255f, 12f/255f, 49f/255f};
-        this.visualRepresentation.draw(aPositionLocation, uColorLocation,
-                uTextureUnitLocation, uMatrixTextureLocation,
-                uMatrixLocation, aspectAdjustmentMatrix,
-                red_e);
-    }
+                     int aTextureCoordinatesLocation, int uTextureUnitLocation,
+                     int uMatrixLocation,
+                     int textureId,
+                     float[] aspectAdjustmentMatrix){
 
-//    public void bindData(TextureShaderProgram textureProgram) {
-//        visualRepresentation.bindData(textureProgram);
-//    }
+        this.visualRepresentation.draw(aPositionLocation, uColorLocation,
+                aTextureCoordinatesLocation, uTextureUnitLocation,
+                uMatrixLocation,
+                textureId, aspectAdjustmentMatrix);
+    }
 }

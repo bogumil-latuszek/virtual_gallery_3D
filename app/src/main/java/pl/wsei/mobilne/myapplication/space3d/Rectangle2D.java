@@ -1,42 +1,33 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
-import static android.opengl.GLES20.GL_TRIANGLE_FAN;
-import static android.opengl.GLES20.glDrawArrays;
+import static android.opengl.GLES20.GL_TEXTURE0;
+import static android.opengl.GLES20.GL_TEXTURE_2D;
+import static android.opengl.GLES20.glActiveTexture;
+import static android.opengl.GLES20.glBindTexture;
+import static android.opengl.GLES20.glUniform1i;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import java.nio.ByteBuffer;
-
-import pl.wsei.mobilne.myapplication.Constants;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 
 public class Rectangle2D {
-    ///////////////////////////////////////////////////////
-    private static final int POSITION_COMPONENT_COUNT = 2;
-    private static final int TEXTURE_COORDINATES_COMPONENT_COUNT = 2;
-    private static final int STRIDE = (POSITION_COMPONENT_COUNT
-            + TEXTURE_COORDINATES_COMPONENT_COUNT) * Constants.BYTES_PER_FLOAT;
 
-    ////////////////////////////////////////////////////
-    private static final int COORDS_PER_VERTEX = 3;
+    private static final int COORDS_PER_VERTEX = 2;  // X, Y
+    private static final int COORDS_PER_TEXTURE_COORDINATE = 2;  // S, T
     private final float[] modelMatrix = new float[16]; //a 4x4 matrix
     private final VertexArray vertexArray;  // <-- Vertices
+    private final VertexArray texturePointsArray;  // <-- texture coordinates
     private final IndexArray vertexSequenceForDrawingRectangle;
 
     private Point centralPoint;
     private float width;
     private float height;
 
-    private  int numberOfIndexesPerFace = 3*2;//num. of vertexes per triange * triangles per face
-
-
     public Rectangle2D(Point centralPoint, float width, float height) {
         this.centralPoint = centralPoint;
         this.width = width;
         this.height = height;
-
-        //float [] vertices = new float[4 * COORDS_PER_VERTEX];
 
         float locateAtX = centralPoint.x;
         float locateAtY = centralPoint.z;
@@ -44,34 +35,46 @@ public class Rectangle2D {
         float dy = height/2;
 
         vertexArray = new VertexArray(new float[]{
-                locateAtX-dx,  locateAtY+dy, 0,            // (0) Top-left
-                locateAtX+dx,  locateAtY+dy, 0,            // (1) Top-right
-                locateAtX-dx,  locateAtY-dy, 0,            // (2) Bottom-left
-                locateAtX+dx,  locateAtY-dy, 0,            // (3) Bottom-right
+                locateAtX-dx,  locateAtY+dy,         // (0) Top-left  X, Y
+                locateAtX+dx,  locateAtY+dy,         // (1) Top-right
+                locateAtX-dx,  locateAtY-dy,         // (2) Bottom-left
+                locateAtX+dx,  locateAtY-dy          // (3) Bottom-right
         });
-
-        byte[] byteArray = new byte[]{
+        texturePointsArray = new VertexArray(new float[]{
+                0f,  1f,                                 // (0) Top-left  S, T
+                1f,  1f,                                 // (1) Top-right
+                0f,  0f,                                 // (2) Bottom-left
+                1f,  0f,                                 // (3) Bottom-right
+        });
+        vertexSequenceForDrawingRectangle = new IndexArray(new byte[]{
                 // Front - counter-clockwise (front-facing)
                 1, 0, 3,
                 0, 2, 3,
-        };
-        vertexSequenceForDrawingRectangle = new IndexArray(byteArray);
+        });
     }
 
-    public void draw(int aPositionLocation, int uColorLocation,
-                     int uTextureUnitLocation, int uMatrixTextureLocation,
-                     int uMatrixLocation, float[] aspectAdjustmentMatrix,
-                     float[] edgeColor) {
+    public void draw(int aPositionLocation, int uColorLocation, int aTextureCoordinatesLocation,
+                     int uTextureUnitLocation, int uMatrixLocation,
+                     int textureId,  float[] aspectAdjustmentMatrix) {
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
+        prepareDataSource_forTextureCoordinateAttribute(aTextureCoordinatesLocation);
 
-        float[] green = {0f, 1f, 0f};
-        GLES20.glUniform4f(uColorLocation, green[0], green[1], green[2], 1.0f);
+//        float[] green = {0f, 1f, 0f};
+//        GLES20.glUniform4f(uColorLocation, green[0], green[1], green[2], 1.0f);
 
         // we do not recalculate vertices per View-Projection matrices
         // View Controls (UI elements) are drawn directly in OpenGL normalized coordinates
         GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelMatrix, 0);
+
+        // Set the active texture unit to texture unit 0.
+        glActiveTexture(GL_TEXTURE0);
+        // Bind the texture to this unit.
+        glBindTexture(GL_TEXTURE_2D, textureId);
+        // Tell the texture uniform sampler to use this texture in the shader by
+        // telling it to read from texture unit 0.
+        glUniform1i(uTextureUnitLocation, 0);
 
         int nbIndexes4triangles = 2*3;
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, nbIndexes4triangles, GLES20.GL_UNSIGNED_BYTE,
@@ -82,6 +85,12 @@ public class Rectangle2D {
     public void prepareDataSource_forPositionAttribute(int aPositionLocation) {
         // bind data to shader variable
         vertexArray.setVertexAttribPointer(0, aPositionLocation, COORDS_PER_VERTEX, 0);
+    }
+
+    public void prepareDataSource_forTextureCoordinateAttribute(int aTextureCoordinatesLocation) {
+        // bind data to shader variable
+        texturePointsArray.setVertexAttribPointer(0, aTextureCoordinatesLocation,
+                COORDS_PER_TEXTURE_COORDINATE, 0);
     }
 
     public void startTransforming() {
@@ -96,18 +105,4 @@ public class Rectangle2D {
         // and then move shape
         Matrix.translateM(modelMatrix, 0, dx, dy, 0f);
     }
-    ////////////////////////////////////////////////
-//    public void bindData(TextureShaderProgram textureProgram) { //to tutaj zdaje się określane są lokacje pozycji werteksów, i koordyn. tekstury. Być może moglibyśmy je rozdzielić?
-//        vertexArray.setVertexAttribPointer(
-//                0,
-//                textureProgram.getPositionAttributeLocation(),
-//                POSITION_COMPONENT_COUNT,
-//                STRIDE);
-//        vertexArray.setVertexAttribPointer(
-//                POSITION_COMPONENT_COUNT,
-//                textureProgram.getTextureCoordinatesAttributeLocation(),
-//                TEXTURE_COORDINATES_COMPONENT_COUNT,
-//                STRIDE);
-//    }
-
 }

@@ -94,8 +94,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
-    private TextureShaderProgram textureProgram;
-    private ColorShaderProgram colorProgram;
     private int texture;
 
     private int uMatrixTextureLocation;
@@ -178,10 +176,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Ray fixedRay = new Ray(nearPointRay,
                 Geometry.vector3DBetweenTwoPoints(nearPointRay, farPointRay));
         touchRay = new RayLine(fixedRay);
-
-        textureProgram = new TextureShaderProgram(appContext);
-        colorProgram = new ColorShaderProgram(appContext);
-        texture = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
+        texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
     }
 
     @Override
@@ -231,17 +226,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.move(aspectAdjustmentMatrix, -1.32f, -0.67f);
 
         movementCtrl.startTransforming();
-// without aspect correction ctrl area is:
-// where you click is where you move
-// (besides very corner since they are outside
-//  circle/elipsis)
-//        float[] nochangeMatrix = new float[16];
-//        Matrix.setIdentityM(nochangeMatrix, 0);
-//        movementCtrl.move(nochangeMatrix, 0, 0); // ale po co przekazuje się "pustą" macierz?
-// with aspect correction control looks square
-// but you can click right/left outside it
-// and have move effect
- movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
+        movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
     }
 
     @Override
@@ -282,16 +267,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         // instruct OpenGL to use another (texture) program when drawing anything to the screen
         GLES20.glUseProgram(textureProgramObjectId);
-
-        // Draw movement Ctrl
-//        textureProgram.useProgram();
-//        textureProgram.setUniforms(projectionMatrix, texture);
-//        movementCtrl.bindData(textureProgram);
+        GLES20.glEnable(GLES20.GL_BLEND);
+        GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+         //Draw movement Ctrl
 
         movementCtrl.draw(aPositionTextureLocation,
                           uTextureColorLocation,  // <-- temporary
                           aTextureCoordinatesLocation, uTextureUnitLocation,
-                          uMatrixTextureLocation, aspectAdjustmentMatrix);
+                          uMatrixTextureLocation, texture,  aspectAdjustmentMatrix);
+        GLES20.glDisable(GLES20.GL_BLEND);
     }
 
 //    private void animateCameraView() {
@@ -441,30 +425,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("up")) {
-            this.zCameraPosition -= 0.1f;
+//            this.zCameraPosition -= 0.1f;
+//
+//            Matrix.setLookAtM(viewMatrix, 0,
+//                    dx, dy, this.zCameraPosition,
+//                    cx, cy, -10f,
+//                    upx, upy, 0f);
 
-            Matrix.setLookAtM(viewMatrix, 0,
-                    dx, dy, this.zCameraPosition,
-                    cx, cy, -10f,
-                    upx, upy, 0f);
-
-//            this.rotationCtrl.up();
-//            float lookUpAngle = this.rotationCtrl.getUpAngle();
-//            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-//            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            this.rotationCtrl.up();
+            float lookUpAngle = this.rotationCtrl.getUpAngle();
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("down")) {
-            this.zCameraPosition += 0.1f;
+//            this.zCameraPosition += 0.1f;
+//
+//            Matrix.setLookAtM(viewMatrix, 0,
+//                    dx, dy, this.zCameraPosition,
+//                    cx, cy, -10f,
+//                    upx, upy, 0f);
 
-            Matrix.setLookAtM(viewMatrix, 0,
-                    dx, dy, this.zCameraPosition,
-                    cx, cy, -10f,
-                    upx, upy, 0f);
-
-//            this.rotationCtrl.down();
-//            float lookUpAngle = this.rotationCtrl.getUpAngle();
-//            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-//            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            this.rotationCtrl.down();
+            float lookUpAngle = this.rotationCtrl.getUpAngle();
+            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("right")) {
             float addAngle = 5f;
