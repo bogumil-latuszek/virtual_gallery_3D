@@ -13,11 +13,6 @@ public class Point{
         this.z = z;
     }
 
-    @Override
-    public String toString() {
-        return "[" + this.x + ", " + this.y + ", " + this.z + "]";
-    }
-
     public Point translate(Vector3D vector3D) { // this is used in ray collision
         return new Point(
                 x + vector3D.x,
@@ -39,5 +34,9 @@ public class Point{
         float dy = this.y - b.y;
         float distance = (float) sqrt(dx * dx + dy * dy); //TODO:check if sqrt takes float as param
         return distance;
+    }
+    @Override
+    public String toString() {
+        return  "x: "+this.x+", y: "+ this.y +", z: "+ this.z;
     }
 }
