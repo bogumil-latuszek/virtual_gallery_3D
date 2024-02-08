@@ -121,9 +121,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private int uTextureUnitLocation;
 
+    private Point CameraPosition;
+
+    private float[] viewRotationMatrix;
+    private float[] viewTranslationMatrix;
+
 //////////////////////////////////////////////////////////
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+
+
+        viewRotationMatrix = new float[16];
+        Matrix.setIdentityM(viewRotationMatrix, 0);
+        viewTranslationMatrix = new float[16];
+        Matrix.setIdentityM(viewTranslationMatrix, 0);
+        CameraPosition = new Point(0,0,0);
 
         GLES20.glEnable(GLES20.GL_CULL_FACE);
         GLES20.glEnable(GLES20.GL_DEPTH_TEST);
@@ -214,10 +226,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         int offsetToStart_in_projectionMatrix = 0;
         Matrix.frustumM(projectionMatrix, offsetToStart_in_projectionMatrix,
-                -ratio, ratio, -1, 1, 3, 10);
+                -ratio, ratio, -1, 1, 3, 20);
 
         Matrix.setLookAtM(viewMatrix, 0,
-                0f, 1.5f, 0f,
+                0f, 1.5f, 2f,
                 0f, 0f, -10f,
                 0f, 1f, 0f);
 
@@ -243,6 +255,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 unused) {
 
+        //construct viewMatrix from viewTranslationMatrix and viewRotationMatrix
+        Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix,0, viewTranslationMatrix,0);
 
         // Redraw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
@@ -361,33 +375,35 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     //te dwie funkcje handleTouchDrag i handleTouchPress powinny być zdefiniowane w interfejsie, możemy zrobić do nich dekorator?
     // TODO: change type of renderer parameter inside constructor of Surface View
     public void handleTouchDrag(float normalizedX, float normalizedY) {
-        String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
-        Log.d("drag:", String.format("x = %s, y = %s [inside = %s]",
-                normalizedX, normalizedY, whereInsideRotationCtrl));
-        //there's a few problems with this function
-        //1) if you start dragging from a different point than you last touched the screen
-        //the view "jumps" around
-        //2) the span of rotation is limited
-        //3) we need a function that rotates camera on its own axis, not this
-
-        float dx = normalizedX * 4;
-        float dy = normalizedY * 4;
-        float dz = 0f;
-        float cx = 0f;
-        float cy = 0f;
-        float upx = 0f;
-        float upy = 1f;
-        if (whereInsideRotationCtrl.equals("outside")) {
-            Matrix.setLookAtM(viewMatrix, 0,
-                    dx, dy, dz,
-                    cx, cy, -10f,
-                    upx, upy, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("ring")) {
-            float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
-        }
+//        String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
+//        //Log.d("drag:", String.format("x = %s, y = %s [inside = %s]",
+//        //        normalizedX, normalizedY, whereInsideRotationCtrl));
+//        //there's a few problems with this function
+//        //1) if you start dragging from a different point than you last touched the screen
+//        //the view "jumps" around
+//        //2) the span of rotation is limited
+//        //3) we need a function that rotates camera on its own axis, not this
+//
+//        float dx = normalizedX * 4;
+//        float dy = normalizedY * 4;
+//        float dz = 0f;
+//        float cx = 0f;
+//        float cy = 0f;
+//        float upx = 0f;
+//        float upy = 1f;
+//        if (whereInsideRotationCtrl.equals("outside")) {
+//            Matrix.setLookAtM(viewMatrix, 0,
+//                    dx, dy, dz,
+//                    cx, cy, -10f,
+//                    upx, upy, 0f);
+//        }
+//        else if (whereInsideRotationCtrl.equals("ring")) {
+//            float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
+//            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+////            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+//
+//            Matrix.rotateM(viewMatrix, 0, lookAroundAngle, 0f, -1f, 0f);
+//        }
     }
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
@@ -400,13 +416,19 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.multiplyMV(targetVector4D, 0, viewProjectionMatrix, 0, moveVector4D, 0 );
         targetVector4D[1] = 0; // y coord must remain 0  so we won't fly
         //Matrix.translateM(viewMatrix,0, moveVector3D.x, moveVector3D.y, moveVector3D.z);
-        Matrix.translateM(viewMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+
+//        Matrix.translateM(viewMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+        Matrix.translateM(viewTranslationMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+
+        this.CameraPosition.move(targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+        Log.d("camera position:", CameraPosition.toString());
+
 
 
 
 
         String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
-        Log.d("touch:", String.format("x = %s, y = %s", normalizedX, normalizedY));
+        //Log.d("touch:", String.format("x = %s, y = %s", normalizedX, normalizedY));
         float dx = 0;
         float dy = 1.5f;
         float dz = 0f;
@@ -419,13 +441,19 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             this.zCameraPosition += 0.1f;
 
             float lookAroundAngle = 0.0f;
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+            Matrix.setRotateM(viewRotationMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("ring")) {
             float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookAroundAngle));
+//            Matrix.setRotateM(viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+
+//            float[] tempMatrix = new float[16];
+//            Matrix.rotateM(tempMatrix, 0, viewMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+//            System.arraycopy(tempMatrix, 0, viewMatrix, 0, tempMatrix.length);
+
+            Matrix.rotateM(viewRotationMatrix, 0, lookAroundAngle, 0f, -1f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("up")) {
 //            this.zCameraPosition -= 0.1f;
@@ -437,8 +465,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             this.rotationCtrl.up();
             float lookUpAngle = this.rotationCtrl.getUpAngle();
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
         else if (whereInsideRotationCtrl.equals("down")) {
 //            this.zCameraPosition += 0.1f;
@@ -450,30 +478,56 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
             this.rotationCtrl.down();
             float lookUpAngle = this.rotationCtrl.getUpAngle();
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
+            Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
         }
+//        else if (whereInsideRotationCtrl.equals("right")) {
+//            float addAngle = 5f;
+//            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
+//            Matrix.rotateM(viewMatrix, 0, addAngle, 0f, 1f, 0f);
+//        }
         else if (whereInsideRotationCtrl.equals("right")) {
-            float addAngle = 5f;
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
-            Matrix.rotateM(viewMatrix, 0, addAngle, 0f, 1f, 0f);
+            float addAngle = -5f;
+            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
+//            float camdx = CameraPosition.x;
+//            float camdy = CameraPosition.y;
+//            float camdz = CameraPosition.z;
+//            float[] tempMoveMatrix = new float[]{
+//                        1+camdx, 0f, 0f, 0f,
+//                        0f, 1+camdy, 0f, 0f,
+//                        0f, 0f, 1+camdz, 0f,
+//                        0f, 0f, 0f, 1f
+//            };
+//            //Matrix.setIdentityM(tempMoveMatrix, 0);
+//            Matrix.multiplyMM(tempMoveMatrix, 0, tempMoveMatrix, 0, viewMatrix,0);
+//            Matrix.rotateM(tempMoveMatrix, 0, addAngle, 0f, 1f, 0f);
+//            System.arraycopy(tempMoveMatrix, 0, viewMatrix, 0, tempMoveMatrix.length);
+            //Matrix.translateM(tempMoveMatrix, 0, viewMatrix, 0, this.CameraPosition.x,this.CameraPosition.y,this.CameraPosition.z);
+
+//            Matrix.translateM(tempMoveMatrix, 0, viewMatrix, 0, this.CameraPosition.x,this.CameraPosition.y,this.CameraPosition.z);
+//            Matrix.rotateM(tempMoveMatrix, 0, addAngle, 0f, 1f, 0f);
+//            System.arraycopy(tempMoveMatrix, 0, viewMatrix, 0, tempMoveMatrix.length);
+
+
+
         }
         else if (whereInsideRotationCtrl.equals("left")) {
             float addAngle = 5f;
-            Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
-            Matrix.rotateM(viewMatrix, 0, addAngle, 0f, -1f, 0f);
+            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, addAngle));
+            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
         }
         else { // "outside" - calculate Ray and check which wall/face it hits
-            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
-
-            touchRay = new RayLine(ray);
-
-            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
-            if (collisionWithNearestFace.isPresent()) {
-                PointOnFace pointedFace = collisionWithNearestFace.get();
-                // TODO: hang picture on that Face
-                Log.d("Pointed", pointedFace.toString());
-            }
+//            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+//
+//            touchRay = new RayLine(ray);
+//
+//            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
+//            if (collisionWithNearestFace.isPresent()) {
+//                PointOnFace pointedFace = collisionWithNearestFace.get();
+//                // TODO: hang picture on that Face
+//                //Log.d("Pointed", pointedFace.toString());
+//            }
         }
     }
 

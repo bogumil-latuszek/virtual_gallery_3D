@@ -51,7 +51,7 @@ public class Mode3DActivity extends AppCompatActivity {
                         gLView.queueEvent(new Runnable() {
                             @Override
                             public void run() {
-                                Log.d("event:", "action down");
+                                //Log.d("event:", "action down");
 
                                 glRenderer.handleTouchPress(
                                         normalizedX, normalizedY);

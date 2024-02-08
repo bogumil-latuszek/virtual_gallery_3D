@@ -249,7 +249,7 @@ public class RotationCtrl {
         else if ((angleSinus < 0) && (angleCosinus >= 0)) { // IV Q
             angle = 360.0f - angleQ1;
         }
-        Log.d("touch:", String.format("angle = %s --> %s degrees", angleQ1, angle));
+        //Log.d("touch:", String.format("angle = %s --> %s degrees", angleQ1, angle));
         float angleFromNorth = angle - 90.0f;
         return angleFromNorth;
     }
