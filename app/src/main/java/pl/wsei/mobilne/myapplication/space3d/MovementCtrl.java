@@ -40,8 +40,8 @@ public class MovementCtrl {
 
         if(circleCollider.checkIfPointInside(pointPressedAspectAdjusted)){
             Vector3D vector2D = circleCollider.getVectorToPointFromCenter(pointPressedAspectAdjusted);
-            float forwardOrBackward = vector2D.y;
-            float leftOrRight = vector2D.x;
+            float forwardOrBackward = vector2D.y * -1;
+            float leftOrRight = vector2D.x * -1;
             movementVector3D = new Vector3D(leftOrRight, 0, forwardOrBackward);
         }
         return movementVector3D;
