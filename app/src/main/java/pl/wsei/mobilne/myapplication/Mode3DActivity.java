@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import android.content.Intent;
+import java.util.ArrayList;
+
 import pl.wsei.mobilne.myapplication.space3d.MyGLRenderer;
 
 public class Mode3DActivity extends AppCompatActivity {
@@ -18,7 +21,13 @@ public class Mode3DActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        glRenderer = new MyGLRenderer(getApplicationContext());
+
+        // get intent
+        Intent intent = getIntent();
+        // retrieve walls data
+        ArrayList<String> walls = intent.getStringArrayListExtra("walls");
+
+        glRenderer = new MyGLRenderer(getApplicationContext(), walls);
         gLView = new MyGLSurfaceView(this, glRenderer);
 
         //according to the book, we can add touch events here

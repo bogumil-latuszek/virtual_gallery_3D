@@ -27,7 +27,7 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
-    public MyGLRenderer(Context context){
+    public MyGLRenderer(Context context, ArrayList<String> wallsCoordinates){
         this.appContext = context;
         dbHelper = new DatabaseHelper(context);
 
@@ -39,6 +39,23 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 context, R.raw.texture_fragment_shader);
        this.textureVertexShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.texture_vertex_shader);
+
+        // get walls from intent passed data and not from DB (temporary solution)
+        float[] red_e = {235f/255f, 12f/255f, 49f/255f};
+        float[] red_f = {242f/255f, 66f/255f, 95f/255f};
+        walls = new ArrayList<Wall>();
+        int i = 0;
+        for (String coordinate: wallsCoordinates) {
+            String[] parts = coordinate.split(",");
+            float xPosition = Float.valueOf(parts[0]).floatValue();
+            float zPosition = Float.valueOf(parts[1]).floatValue();
+            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+            newWall.setEdgeColor(red_e);
+            newWall.setFaceColor(red_f);
+            newWall.setFaceOpacity(0.8f);
+            walls.add(newWall);
+            i++;
+        }
     }
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
@@ -146,17 +163,17 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         floorGrid = new FloorGrid();
 
-        walls = new ArrayList<Wall>();
-        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
-        for (int i = 0; i < wallsLoaded.size(); i++) {
-            float xPosition = wallsLoaded.get(i).getX();
-            float zPosition = wallsLoaded.get(i).getZ();
-            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
-            newWall.setEdgeColor(red_e);
-            newWall.setFaceColor(red_f);
-            newWall.setFaceOpacity(0.8f);
-            walls.add(newWall);
-        }
+//        walls = new ArrayList<Wall>();
+//        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
+//        for (int i = 0; i < wallsLoaded.size(); i++) {
+//            float xPosition = wallsLoaded.get(i).getX();
+//            float zPosition = wallsLoaded.get(i).getZ();
+//            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+//            newWall.setEdgeColor(red_e);
+//            newWall.setFaceColor(red_f);
+//            newWall.setFaceOpacity(0.8f);
+//            walls.add(newWall);
+//        }
 
         blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
 

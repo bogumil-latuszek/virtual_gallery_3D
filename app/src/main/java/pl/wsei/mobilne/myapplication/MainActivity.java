@@ -58,9 +58,22 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 //
 
         Intent i = new Intent(MainActivity.this, Mode3DActivity.class);
+        // instead of passing data via DB (temporary solution)
+        ArrayList<String> walls = encodeWallPositions();
+        i.putStringArrayListExtra("walls", walls);
         startActivity(i);
     }
 
+    private ArrayList<String> encodeWallPositions() {
+        ArrayList<String> wallCoordinates = new ArrayList<>();
+        for (CellModel wall: cellModels) {
+            if (! wall.isEmpty()) {
+                String value = String.format("%s,%s", wall.columnPosition, wall.rowPosition);
+                wallCoordinates.add(value);
+            }
+        }
+        return wallCoordinates;
+    }
 
     private void SetUpCellModels(int rowCount, int columnCount){
         for(int i = 0; i < rowCount; i++){
@@ -72,19 +85,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     public void SaveWalls(View v) {
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        List<dbmWall> wallsLoaded1 = dbmWall.getAll(dbHelper);
-        dbmWall.emptyTable(dbHelper);
-        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
-//        DatabaseManager dbManager = new DatabaseManager(dbHelper);
-//        dbManager.emptyTable();
-//        dbManager.createWallsTable();
-        for (CellModel wall2D: cellModels) {
-            if (! wall2D.isEmpty()) {
-                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
-                dbmWall.add(dbHelper);
-//                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
-            }
-        }
+//        List<dbmWall> wallsLoaded1 = dbmWall.getAll(dbHelper);
+//        dbmWall.emptyTable(dbHelper);
+//        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
+////        DatabaseManager dbManager = new DatabaseManager(dbHelper);
+////        dbManager.emptyTable();
+////        dbManager.createWallsTable();
+//        for (CellModel wall2D: cellModels) {
+//            if (! wall2D.isEmpty()) {
+//                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
+//                dbmWall.add(dbHelper);
+////                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
+//            }
+//        }
     }
 
 
