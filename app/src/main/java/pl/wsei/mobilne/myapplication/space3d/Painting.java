@@ -11,10 +11,13 @@ import android.opengl.Matrix;
 import android.util.Log;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class Painting {
     //model matrix defines position, rotation etc
-    private float[] modelMatrix= new float[16];;
+    private float[] modelMatrix= new float[16];
+    private float[] rotationMatrix= new float[16];
+    private float[] translationMatrix= new float[16];
     private Point centralPoint;
     private float width;
     private float height;
@@ -25,8 +28,15 @@ public class Painting {
     private final IndexArray vertexSequenceForDrawingRectangle;
 
 
+    public void rotate(float degree ){
+        Matrix.rotateM(rotationMatrix, 0, degree, 0, 1f,0);
+    }
     public Painting(Point centralPoint, float width, float height) {
         //Painting's owner will give modelMatrix to it
+        translationMatrix = new float[16];
+        Matrix.setIdentityM(translationMatrix, 0);
+        rotationMatrix = new float[16];
+        Matrix.setIdentityM(rotationMatrix, 0);
 
         this.centralPoint = centralPoint;
         this.width = width;
@@ -38,12 +48,17 @@ public class Painting {
         float dx = width/2;
         float dy = height/2;
 
-        vertexArray = new VertexArray(new float[]{
-                locateAtX-dx,  locateAtY+dy, locateAtZ,        // (0) Top-left  X, Y
-                locateAtX+dx,  locateAtY+dy, locateAtZ,       // (1) Top-right
-                locateAtX-dx,  locateAtY-dy, locateAtZ,       // (2) Bottom-left
-                locateAtX+dx,  locateAtY-dy, locateAtZ          // (3) Bottom-right
-        });
+//        float[] rotationMatrix = createRotationMatrix(rotationDegree);
+        float[] modelVertexArray = new float[]{
+                0-dx,  0+dy, 0,        // (0) Top-left  X, Y
+                0+dx,  0+dy, 0,       // (1) Top-right
+                0-dx,  0-dy, 0,       // (2) Bottom-left
+                0+dx,  0-dy, 0          // (3) Bottom-right
+        };
+        Matrix.translateM(translationMatrix,0, locateAtX, locateAtY, locateAtZ);
+//        modelVertexArray = rotateModel(rotationMatrix, modelVertexArray);
+        vertexArray = new VertexArray(modelVertexArray);
+
         texturePointsArray = new VertexArray(new float[]{
                 0f,  1f,                                 // (0) Top-left  S, T
                 1f,  1f,                                 // (1) Top-right
@@ -57,10 +72,26 @@ public class Painting {
         });
     }
 
+//    public float[] createRotationMatrix(float degree){
+//        float[] rotationMatrix = new float[16];
+//        Matrix.setIdentityM(rotationMatrix,0);
+//        Matrix.rotateM(rotationMatrix, 0, degree, 0, 1f,0);
+//        return  rotationMatrix;
+//    }
+//    public float[] rotateModel(float[] rotationMatrix, float[] modelVertexArray){
+//        float[] tempModelVertexArray = new float[12];
+//        Matrix.multiplyMV(modelVertexArray,0, rotationMatrix, 0, modelVertexArray, 0);
+//        Matrix.multiplyMV(modelVertexArray,3, rotationMatrix, 0, modelVertexArray, 3);
+//        Matrix.multiplyMV(modelVertexArray,6, rotationMatrix, 0, modelVertexArray, 6);
+//        Matrix.multiplyMV(modelVertexArray,9, rotationMatrix, 0, modelVertexArray, 9);
+//        return  tempModelVertexArray;
+//    }
+
     public void draw(int aPositionLocation, int aTextureCoordinatesLocation,
                      int uTextureUnitLocation, int uMatrixLocation,
                      int textureId,  float[] viewProjectionMatrix) {
 
+        Matrix.multiplyMM(modelMatrix,0, translationMatrix,0, rotationMatrix,0);
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
         prepareDataSource_forTextureCoordinateAttribute(aTextureCoordinatesLocation);
@@ -126,8 +157,8 @@ public class Painting {
                 COORDS_PER_TEXTURE_COORDINATE, 0);
     }
 
-    public void startTransforming() {
-        Matrix.setIdentityM(modelMatrix, 0);
-    }
+//    public void startTransforming() {
+//        Matrix.setIdentityM(modelMatrix, 0);
+//    }
 
 }

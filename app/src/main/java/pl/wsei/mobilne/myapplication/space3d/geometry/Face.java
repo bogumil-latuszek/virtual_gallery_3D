@@ -16,6 +16,8 @@ public class Face {
     private float minZ;
     private float maxZ;
 
+    private Vector3D normal;
+
     private Plane plane;
     public  String faceID;
     public Face(Point pointOnFace, Vector3D normal,
@@ -24,6 +26,7 @@ public class Face {
                 float minZ, float maxZ,
                 String FaceID){
         plane = new Plane(pointOnFace, normal);
+        this.normal = normal;
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -31,8 +34,30 @@ public class Face {
         this.minZ = minZ;
         this.maxZ = maxZ;
         faceID = FaceID;
-        painting = new Painting(pointOnFace,0.5f, 0.5f);
-        painting.startTransforming();
+        addPainting();
+    }
+
+    public void addPainting(){
+        painting = new Painting(plane.point,0.5f, 0.5f);
+        int normalz = Math.round(normal.z);
+        int normalx = Math.round(normal.x);
+        switch(normalz) {
+            case 1:
+                painting.rotate(-90);
+                break;
+            case -1:
+                painting.rotate(90);
+                break;
+            default:
+        }
+        switch(normalx) {
+            case -1:
+                painting.rotate(-180);
+                break;
+            default:
+        }
+        painting.rotate(90);
+
     }
     @Override
     public String toString() {

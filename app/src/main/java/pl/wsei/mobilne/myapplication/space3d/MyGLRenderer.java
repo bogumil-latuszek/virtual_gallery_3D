@@ -114,6 +114,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
     private int texture;
+    private int textureLeaf;
 
     private int uMatrixTextureLocation;
 
@@ -204,6 +205,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 Geometry.vector3DBetweenTwoPoints(nearPointRay, farPointRay));
         touchRay = new RayLine(fixedRay);
         texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
+
+        textureLeaf = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
     }
 
     @Override
@@ -255,7 +258,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         movementCtrl.startTransforming();
         movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
 
-        painting.startTransforming();
+        //painting.startTransforming();
     }
 
     @Override
@@ -315,7 +318,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         for(Wall wall : walls){
             wall.drawPaintings(aPositionTextureLocation,
                     aTextureCoordinatesLocation, uTextureUnitLocation,
-                    uMatrixTextureLocation, texture, viewProjectionMatrix);
+                    uMatrixTextureLocation, textureLeaf, viewProjectionMatrix);
         }
 
         GLES20.glDisable(GLES20.GL_BLEND);
