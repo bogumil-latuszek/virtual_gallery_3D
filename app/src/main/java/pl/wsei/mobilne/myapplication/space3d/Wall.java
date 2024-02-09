@@ -123,5 +123,20 @@ public class Wall extends Cuboid {
             "backFace"
         );
     }
+    public void drawPaintings(int aPositionLocation, int aTextureCoordinatesLocation,
+                              int uTextureUnitLocation, int uMatrixLocation,
+                              int textureId,  float[] viewProjectionMatrix){
+        List<Face> facesWithPaintings = new ArrayList<>();
+        facesWithPaintings.add(this.backFace);
+        facesWithPaintings.add(this.frontFace);
+        facesWithPaintings.add(this.leftFace);
+        facesWithPaintings.add(this.rightFace);
+        for (Face faceWithPainting : facesWithPaintings)
+        {
+            faceWithPainting.drawPaintingIfExists(aPositionLocation, aTextureCoordinatesLocation,
+                                                  uTextureUnitLocation, uMatrixLocation,
+                                                  textureId, viewProjectionMatrix);
+        }
+    }
 
 }

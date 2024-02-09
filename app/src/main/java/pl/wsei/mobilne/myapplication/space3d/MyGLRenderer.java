@@ -312,6 +312,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                 aTextureCoordinatesLocation, uTextureUnitLocation,
                 uMatrixTextureLocation, texture, viewProjectionMatrix);
 
+        for(Wall wall : walls){
+            wall.drawPaintings(aPositionTextureLocation,
+                    aTextureCoordinatesLocation, uTextureUnitLocation,
+                    uMatrixTextureLocation, texture, viewProjectionMatrix);
+        }
+
         GLES20.glDisable(GLES20.GL_BLEND);
     }
 

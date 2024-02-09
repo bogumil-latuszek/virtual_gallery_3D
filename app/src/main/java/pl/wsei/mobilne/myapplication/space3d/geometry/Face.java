@@ -4,7 +4,11 @@ package pl.wsei.mobilne.myapplication.space3d.geometry;
 
 import java.util.Optional;
 
+import pl.wsei.mobilne.myapplication.space3d.Painting;
+
 public class Face {
+
+    private Painting painting;
     private float minX;
     private float maxX;
     private float minY;
@@ -27,6 +31,8 @@ public class Face {
         this.minZ = minZ;
         this.maxZ = maxZ;
         faceID = FaceID;
+        painting = new Painting(pointOnFace,0.5f, 0.5f);
+        painting.startTransforming();
     }
     @Override
     public String toString() {
@@ -51,5 +57,14 @@ public class Face {
         }
         Optional<PointOnFace> collisionWithFace = Optional.of(new PointOnFace(this, intersectionPoint));
         return collisionWithFace;
+    }
+    public void drawPaintingIfExists(int aPositionLocation, int aTextureCoordinatesLocation,
+                                     int uTextureUnitLocation, int uMatrixLocation,
+                                     int textureId,  float[] viewProjectionMatrix){
+        if(this.painting != null){
+            painting.draw(aPositionLocation, aTextureCoordinatesLocation,
+                          uTextureUnitLocation, uMatrixLocation,
+                          textureId, viewProjectionMatrix);
+        }
     }
 }
