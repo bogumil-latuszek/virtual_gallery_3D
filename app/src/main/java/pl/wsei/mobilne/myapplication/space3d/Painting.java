@@ -33,7 +33,7 @@ public class Painting {
         this.height = height;
 
         float locateAtX = centralPoint.x;
-        float locateAtY = centralPoint.z;
+        float locateAtY = centralPoint.y;
         float locateAtZ = centralPoint.z;
         float dx = width/2;
         float dy = height/2;
