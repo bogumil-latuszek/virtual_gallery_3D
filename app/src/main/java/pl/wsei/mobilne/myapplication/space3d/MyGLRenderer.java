@@ -107,6 +107,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private RotationCtrl rotationCtrl;
     private MovementCtrl movementCtrl;
 
+    private  Painting painting;
+
     private  ArrayList<Wall> walls;
 
     private float zCameraPosition = 0f;
@@ -194,6 +196,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         movementCtrl = new MovementCtrl(new Point(0,0,0),0.3f);
 
+        painting = new Painting(new Point(0f,0f,0f), 0.3f, 0.3f);
+
         Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
         Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
         Ray fixedRay = new Ray(nearPointRay,
@@ -250,6 +254,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         movementCtrl.startTransforming();
         movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
+
+        painting.startTransforming();
     }
 
     @Override
@@ -290,6 +296,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
+        //painting.drawColored(aPositionLocation, uColorLocation, uMatrixLocation, viewProjectionMatrix);
+
         // instruct OpenGL to use another (texture) program when drawing anything to the screen
         GLES20.glUseProgram(textureProgramObjectId);
         GLES20.glEnable(GLES20.GL_BLEND);
@@ -299,6 +307,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         movementCtrl.draw(aPositionTextureLocation,
                           aTextureCoordinatesLocation, uTextureUnitLocation,
                           uMatrixTextureLocation, texture,  aspectAdjustmentMatrix);
+
+        painting.draw(aPositionTextureLocation,
+                aTextureCoordinatesLocation, uTextureUnitLocation,
+                uMatrixTextureLocation, texture, viewProjectionMatrix);
+
         GLES20.glDisable(GLES20.GL_BLEND);
     }
 
