@@ -17,11 +17,19 @@ public class PaintingCollection {
     }
 
     public void loadAllTextures(){
-        int newTextureID1 = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
-        int newTextureID2 = TextureHelper.loadTexture(appContext, R.drawable.face1);
-
-        textureIDs.add(newTextureID1);
-        textureIDs.add(newTextureID2);
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.leaf_texture));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.face1));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.autumn_forest));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.fog_forest));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.garden));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.lion));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.mountain_lake));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.painting));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.ray_forest));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunrise));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunrise_dark));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunset));
+        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.underwater));
     }
 
     public int getRandomTextureID(){
