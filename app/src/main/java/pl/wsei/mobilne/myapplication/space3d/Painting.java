@@ -15,6 +15,7 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class Painting {
     //model matrix defines position, rotation etc
+    private int textureID;
     private float[] modelMatrix= new float[16];
     private float[] rotationMatrix= new float[16];
     private float[] translationMatrix= new float[16];
@@ -26,7 +27,6 @@ public class Painting {
     private final VertexArray vertexArray;  // <-- Vertices
     private final VertexArray texturePointsArray;  // <-- texture coordinates
     private final IndexArray vertexSequenceForDrawingRectangle;
-
 
     public void rotate(float degree ){
         Matrix.rotateM(rotationMatrix, 0, degree, 0, 1f,0);
@@ -87,9 +87,11 @@ public class Painting {
 //        return  tempModelVertexArray;
 //    }
 
+    public void setTextureID(int textureID){
+        this.textureID = textureID;
+    }
     public void draw(int aPositionLocation, int aTextureCoordinatesLocation,
-                     int uTextureUnitLocation, int uMatrixLocation,
-                     int textureId,  float[] viewProjectionMatrix) {
+                     int uTextureUnitLocation, int uMatrixLocation, float[] viewProjectionMatrix) {
 
         Matrix.multiplyMM(modelMatrix,0, translationMatrix,0, rotationMatrix,0);
         // prepare vertices buffer (floats --> bytes)
@@ -108,7 +110,7 @@ public class Painting {
         // Set the active texture unit to texture unit 0.
         glActiveTexture(GL_TEXTURE0);
         // Bind the texture to this unit.
-        glBindTexture(GL_TEXTURE_2D, textureId);
+        glBindTexture(GL_TEXTURE_2D, this.textureID);
         // Tell the texture uniform sampler to use this texture in the shader by
         // telling it to read from texture unit 0.
         glUniform1i(uTextureUnitLocation, 0);

@@ -313,12 +313,12 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         painting.draw(aPositionTextureLocation,
                 aTextureCoordinatesLocation, uTextureUnitLocation,
-                uMatrixTextureLocation, texture, viewProjectionMatrix);
+                uMatrixTextureLocation, viewProjectionMatrix);
 
         for(Wall wall : walls){
             wall.drawPaintings(aPositionTextureLocation,
                     aTextureCoordinatesLocation, uTextureUnitLocation,
-                    uMatrixTextureLocation, textureLeaf, viewProjectionMatrix);
+                    uMatrixTextureLocation, viewProjectionMatrix);
         }
 
         GLES20.glDisable(GLES20.GL_BLEND);
@@ -540,16 +540,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
         }
         else { // "outside" - calculate Ray and check which wall/face it hits
-//            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
-//
-//            touchRay = new RayLine(ray);
-//
-//            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
-//            if (collisionWithNearestFace.isPresent()) {
-//                PointOnFace pointedFace = collisionWithNearestFace.get();
-//                // TODO: hang picture on that Face
-//                //Log.d("Pointed", pointedFace.toString());
-//            }
+            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+
+            touchRay = new RayLine(ray);
+
+            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
+            if (collisionWithNearestFace.isPresent()) {
+                PointOnFace pointedFace = collisionWithNearestFace.get();
+                if(pointedFace.face.painting == null){
+                    pointedFace.face.addPainting(this.textureLeaf);
+                }
+                else{
+                    pointedFace.face.removePainting();
+                }
+                // TODO: hang picture on that Face
+                //Log.d("Pointed", pointedFace.toString());
+            }
         }
     }
 

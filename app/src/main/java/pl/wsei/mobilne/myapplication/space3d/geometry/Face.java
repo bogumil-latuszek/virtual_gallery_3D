@@ -8,7 +8,7 @@ import pl.wsei.mobilne.myapplication.space3d.Painting;
 
 public class Face {
 
-    private Painting painting;
+    public Painting painting;
     private float minX;
     private float maxX;
     private float minY;
@@ -34,10 +34,13 @@ public class Face {
         this.minZ = minZ;
         this.maxZ = maxZ;
         faceID = FaceID;
-        addPainting();
+        //addPainting();
     }
 
-    public void addPainting(){
+    public void removePainting(){
+        painting = null;
+    }
+    public void addPainting(int textureID){
         painting = new Painting(plane.point,0.5f, 0.5f);
         int normalz = Math.round(normal.z);
         int normalx = Math.round(normal.x);
@@ -57,6 +60,7 @@ public class Face {
             default:
         }
         painting.rotate(90);
+        painting.setTextureID(textureID);
 
     }
     @Override
@@ -84,12 +88,10 @@ public class Face {
         return collisionWithFace;
     }
     public void drawPaintingIfExists(int aPositionLocation, int aTextureCoordinatesLocation,
-                                     int uTextureUnitLocation, int uMatrixLocation,
-                                     int textureId,  float[] viewProjectionMatrix){
+                                     int uTextureUnitLocation, int uMatrixLocation, float[] viewProjectionMatrix){
         if(this.painting != null){
             painting.draw(aPositionLocation, aTextureCoordinatesLocation,
-                          uTextureUnitLocation, uMatrixLocation,
-                          textureId, viewProjectionMatrix);
+                          uTextureUnitLocation, uMatrixLocation, viewProjectionMatrix);
         }
     }
 }
