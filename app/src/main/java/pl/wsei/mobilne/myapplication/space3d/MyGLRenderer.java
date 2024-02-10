@@ -430,24 +430,23 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
         Point pointPressed = new Point(normalizedX, normalizedY, 0f);
-        this.movementCtrl.updatePointPressed(pointPressed);
-        Vector3D moveVector3D = this.movementCtrl.getMovementVector();
-        //this.projectionMatrix.
-        float[] moveVector4D = new float[]{moveVector3D.x, moveVector3D.y, moveVector3D.z, 0};
-        float[] targetVector4D = new  float[4];
-        Matrix.multiplyMV(targetVector4D, 0, viewProjectionMatrix, 0, moveVector4D, 0 );
-        targetVector4D[1] = 0; // y coord must remain 0  so we won't fly
-        //Matrix.translateM(viewMatrix,0, moveVector3D.x, moveVector3D.y, moveVector3D.z);
+        Optional<Vector3D> collision = this.movementCtrl.getMovementVector(pointPressed);
+        if(collision.isPresent()){
+            Vector3D moveVector3D = collision.get();
+            //this.projectionMatrix.
+            float[] moveVector4D = new float[]{moveVector3D.x, moveVector3D.y, moveVector3D.z, 0};
+            float[] targetVector4D = new  float[4];
+            Matrix.multiplyMV(targetVector4D, 0, viewProjectionMatrix, 0, moveVector4D, 0 );
+            targetVector4D[1] = 0; // y coord must remain 0  so we won't fly
+            //Matrix.translateM(viewMatrix,0, moveVector3D.x, moveVector3D.y, moveVector3D.z);
 
 //        Matrix.translateM(viewMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
-        Matrix.translateM(viewTranslationMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+            Matrix.translateM(viewTranslationMatrix,0, targetVector4D[0], targetVector4D[1], targetVector4D[2]);
 
-        this.CameraPosition.move(targetVector4D[0], targetVector4D[1], targetVector4D[2]);
-        Log.d("camera position:", CameraPosition.toString());
-
-
-
-
+            this.CameraPosition.move(targetVector4D[0], targetVector4D[1], targetVector4D[2]);
+            Log.d("camera position:", CameraPosition.toString());
+            return;
+        }
 
         String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
         //Log.d("touch:", String.format("x = %s, y = %s", normalizedX, normalizedY));

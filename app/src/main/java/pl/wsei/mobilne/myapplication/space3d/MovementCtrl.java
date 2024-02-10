@@ -2,6 +2,8 @@ package pl.wsei.mobilne.myapplication.space3d;
 
 import android.opengl.Matrix;
 
+import java.util.Optional;
+
 import pl.wsei.mobilne.myapplication.space3d.geometry.Circle;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
@@ -9,7 +11,6 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 public class MovementCtrl {
     private Circle circleCollider;
 
-    private Point pointPressed;
     //private Rectangle Image?
     private  Rectangle2D visualRepresentation;
 
@@ -21,8 +22,8 @@ public class MovementCtrl {
 
     //add a function that changes pointPressed?;
 
-    public Vector3D getMovementVector(){ //change is so that point pressed is given as param?
-        Vector3D movementVector3D = new Vector3D(0,0,0);
+    public Optional<Vector3D> getMovementVector(Point pointPressed){ //change is so that point pressed is given as param?
+        Optional<Vector3D> movementVector3D = Optional.empty();
 
         float[] invertedAspectMatrix = new float[16];
         Matrix.invertM(invertedAspectMatrix, 0, aspectAdjustmentMatrix, 0);
@@ -42,12 +43,9 @@ public class MovementCtrl {
             Vector3D vector2D = circleCollider.getVectorToPointFromCenter(pointPressedAspectAdjusted);
             float forwardOrBackward = vector2D.y * -1;
             float leftOrRight = vector2D.x * -1;
-            movementVector3D = new Vector3D(leftOrRight, 0, forwardOrBackward);
+            movementVector3D = Optional.of(new Vector3D(leftOrRight, 0, forwardOrBackward));
         }
         return movementVector3D;
-    }
-    public void updatePointPressed(Point point){
-        pointPressed = point;
     }
 
     public void startTransforming(){
