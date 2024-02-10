@@ -61,6 +61,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     // naming convention: A_ - shader attributes, U_ - shader uniforms
 //    private DatabaseManager dbManager;
     private Context appContext;
+
+    private PaintingCollection paintingCollection;
     private final float[] invertedViewProjectionMatrix = new float[16];
     private DatabaseHelper dbHelper;
 
@@ -207,6 +209,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
 
         textureLeaf = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
+        paintingCollection = new PaintingCollection(appContext);
     }
 
     @Override
@@ -547,7 +550,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             if (collisionWithNearestFace.isPresent()) {
                 PointOnFace pointedFace = collisionWithNearestFace.get();
                 if(pointedFace.face.painting == null){
-                    pointedFace.face.addPainting(this.textureLeaf);
+                    int randomTexture = paintingCollection.getRandomTextureID();
+                    pointedFace.face.addPainting(randomTexture);
                 }
                 else{
                     pointedFace.face.removePainting();
