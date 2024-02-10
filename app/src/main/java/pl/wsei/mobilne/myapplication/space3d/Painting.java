@@ -60,10 +60,10 @@ public class Painting {
         vertexArray = new VertexArray(modelVertexArray);
 
         texturePointsArray = new VertexArray(new float[]{
-                0f,  1f,                                 // (0) Top-left  S, T
-                1f,  1f,                                 // (1) Top-right
-                0f,  0f,                                 // (2) Bottom-left
-                1f,  0f,                                 // (3) Bottom-right
+                0f,  0f,                                 // (0) Top-left  S, T
+                1f,  0f,                                 // (1) Top-right
+                0f,  1f,                                 // (2) Bottom-left
+                1f,  1f,                                 // (3) Bottom-right
         });
         vertexSequenceForDrawingRectangle = new IndexArray(new byte[]{
                 // Front - counter-clockwise (front-facing)
