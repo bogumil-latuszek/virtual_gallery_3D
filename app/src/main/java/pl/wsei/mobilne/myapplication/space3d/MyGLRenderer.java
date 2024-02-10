@@ -116,7 +116,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
     private int texture;
-    private int textureLeaf;
 
     private int uMatrixTextureLocation;
 
@@ -208,7 +207,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         touchRay = new RayLine(fixedRay);
         texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
 
-        textureLeaf = TextureHelper.loadTexture(appContext, R.drawable.leaf_texture);
         paintingCollection = new PaintingCollection(appContext);
     }
 
