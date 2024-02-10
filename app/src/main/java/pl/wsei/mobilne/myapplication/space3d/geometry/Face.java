@@ -9,6 +9,7 @@ import pl.wsei.mobilne.myapplication.space3d.Painting;
 public class Face {
 
     public Painting painting;
+    private float paintingPositionOffset = 0.01f;
     private float minX;
     private float maxX;
     private float minY;
@@ -47,15 +48,21 @@ public class Face {
         switch(normalz) {
             case 1:
                 painting.rotate(-90);
+                painting.move(0,0, paintingPositionOffset);
                 break;
             case -1:
                 painting.rotate(90);
+                painting.move(0,0, -paintingPositionOffset);
                 break;
             default:
         }
         switch(normalx) {
+            case 1:
+                painting.move( paintingPositionOffset,0,0);
+                break;
             case -1:
                 painting.rotate(-180);
+                painting.move( -paintingPositionOffset,0,0);
                 break;
             default:
         }

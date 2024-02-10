@@ -67,12 +67,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private DatabaseHelper dbHelper;
 
     //define strings
+//    private static final String U_USE_GLOBAL_COLOR = "u_useGlobalColor";
     private static final String U_COLOR = "u_Color";
     private static final String A_POSITION = "a_Position";
     private static final String U_MATRIX = "u_Matrix";
     private static final String A_TEXTURE_COORDINATES = "a_TextureCoordinates";
     private static final String U_TEXTURE_UNIT = "u_TextureUnit";
 
+//    private int bUseGlobalColorLocation;
     private int uColorLocation;
 
     private int aPositionLocation;
@@ -148,9 +150,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         programObjectId = ShaderHelper.buildProgram(vertexShaderCode, fragmentShaderCode);
         textureProgramObjectId = ShaderHelper.buildProgram(textureVertexShaderCode, textureFragmentShaderCode);
 
-
-
-
         // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
@@ -161,6 +160,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         aPositionTextureLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_POSITION);
         aTextureCoordinatesLocation = GLES20.glGetAttribLocation(textureProgramObjectId, A_TEXTURE_COORDINATES);
         uTextureUnitLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_TEXTURE_UNIT);
+//        bUseGlobalColorLocation = GLES20.glGetUniformLocation(textureProgramObjectId, U_USE_GLOBAL_COLOR);
 
 
         // define color to be used as we call glClear()
@@ -264,7 +264,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 unused) {
-
         //construct viewMatrix from viewTranslationMatrix and viewRotationMatrix
         Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix,0, viewTranslationMatrix,0);
 
@@ -273,14 +272,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         //animateCameraView();
 
-        // instruct OpenGL to use given program when drawing anything to the screen
-        GLES20.glUseProgram(programObjectId);
-
         // TODO: move to code point where we change viewMatrix (f.ex into handleTouchPress(), handleTouchDrag()) ???
         Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 
         //this matrix will be useful for converting from normalised to world space
         Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
+
+        GLES20.glUseProgram(textureProgramObjectId);
+
+        for(Wall wall : walls){
+            wall.drawPaintings(aPositionTextureLocation,
+                    aTextureCoordinatesLocation, uTextureUnitLocation,
+                    uMatrixTextureLocation, viewProjectionMatrix);
+        }
+
+        // instruct OpenGL to use given program when drawing anything to the screen
+        GLES20.glUseProgram(programObjectId);
 
         // draw our shapes
         floorGrid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
@@ -304,6 +311,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         // instruct OpenGL to use another (texture) program when drawing anything to the screen
         GLES20.glUseProgram(textureProgramObjectId);
+
         GLES20.glEnable(GLES20.GL_BLEND);
         GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
          //Draw movement Ctrl
@@ -312,11 +320,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                           aTextureCoordinatesLocation, uTextureUnitLocation,
                           uMatrixTextureLocation, texture,  aspectAdjustmentMatrix);
 
-        for(Wall wall : walls){
-            wall.drawPaintings(aPositionTextureLocation,
-                    aTextureCoordinatesLocation, uTextureUnitLocation,
-                    uMatrixTextureLocation, viewProjectionMatrix);
-        }
 
         GLES20.glDisable(GLES20.GL_BLEND);
     }

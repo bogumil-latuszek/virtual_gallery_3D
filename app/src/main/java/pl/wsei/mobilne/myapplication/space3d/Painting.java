@@ -29,8 +29,14 @@ public class Painting {
     private final IndexArray vertexSequenceForDrawingRectangle;
 
     public void rotate(float degree ){
+
         Matrix.rotateM(rotationMatrix, 0, degree, 0, 1f,0);
     }
+
+    public void move(float dx, float dy, float dz){
+        Matrix.translateM(translationMatrix, 0, dx, dy, dz);
+    }
+
     public Painting(Point centralPoint, float width, float height) {
         //Painting's owner will give modelMatrix to it
         translationMatrix = new float[16];
