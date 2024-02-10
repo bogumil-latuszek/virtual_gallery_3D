@@ -294,7 +294,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         blueCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
-        touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+//        touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
@@ -311,10 +311,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         movementCtrl.draw(aPositionTextureLocation,
                           aTextureCoordinatesLocation, uTextureUnitLocation,
                           uMatrixTextureLocation, texture,  aspectAdjustmentMatrix);
-
-        painting.draw(aPositionTextureLocation,
-                aTextureCoordinatesLocation, uTextureUnitLocation,
-                uMatrixTextureLocation, viewProjectionMatrix);
 
         for(Wall wall : walls){
             wall.drawPaintings(aPositionTextureLocation,
