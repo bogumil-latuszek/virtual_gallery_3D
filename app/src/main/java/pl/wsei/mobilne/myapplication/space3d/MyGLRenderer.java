@@ -47,19 +47,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         // get walls from intent passed data and not from DB (temporary solution)
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
-//        walls = new ArrayList<Wall>();
-//        int i = 0;
-//        for (String coordinate: wallsCoordinates) {
-//            String[] parts = coordinate.split(",");
-//            float xPosition = Float.valueOf(parts[0]).floatValue();
-//            float zPosition = Float.valueOf(parts[1]).floatValue();
-//            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
-//            newWall.setEdgeColor(red_e);
-//            newWall.setFaceColor(red_f);
-//            newWall.setFaceOpacity(0.8f);
-//            walls.add(newWall);
-//            i++;
-//        }
+
         walls = new ArrayList<Wall>();
         List<dbmWall> wallsLoaded = dbmWall.getAll(database);
         for (int i = 0; i < wallsLoaded.size(); i++) {
