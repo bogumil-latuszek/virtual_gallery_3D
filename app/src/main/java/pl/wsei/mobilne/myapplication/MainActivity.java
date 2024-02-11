@@ -47,10 +47,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
 
-        if(savedInstanceState == null){
-            dbHelper = new DatabaseHelper(getApplicationContext());
-            this.database = dbHelper.getWritableDatabase();
-        }
+        dbHelper = new DatabaseHelper(getApplicationContext());
+        this.database = dbHelper.getWritableDatabase();
     }
 
     public void ChangeModeTo3D(View v){
