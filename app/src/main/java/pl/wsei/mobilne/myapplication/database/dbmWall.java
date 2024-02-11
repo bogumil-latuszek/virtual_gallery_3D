@@ -39,34 +39,29 @@ public class dbmWall {
     }
 
     // DB related ----------------
-    public static void createTable(DatabaseHelper dbHelper) {
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        sqLiteDatabase.rawQuery(CREATE_TABLE_SQL, null);
+
+    public static void createTable(SQLiteDatabase database) {
+        database.execSQL(CREATE_TABLE_SQL);
     }
-    public static void dropTable(DatabaseHelper dbHelper) {
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        sqLiteDatabase.rawQuery("DROP TABLE IF EXISTS "+ TABLE_NAME, null);
+    public static void dropTable(SQLiteDatabase database) {
+        database.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
     }
-    public static void emptyTable(DatabaseHelper dbHelper) {
-//        dropTable(dbHelper);
-//        createTable(dbHelper);
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+    public static void emptyTable(SQLiteDatabase database) {
 //        sqLiteDatabase.rawQuery("DELETE FROM "+ TABLE_NAME, null);
-        sqLiteDatabase.delete(TABLE_NAME, null, null);
+        database.delete(TABLE_NAME, null, null);
     }
 
-    public void add(DatabaseHelper dbHelper){
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+    public void add(SQLiteDatabase database){
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(X_COORDINATE, x);
         contentValues.put(Z_COORDINATE, z);
 
-        sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
+        database.insert(TABLE_NAME, null, contentValues);
     }
-    public static List<dbmWall> getAll(DatabaseHelper dbHelper) {
+    public static List<dbmWall> getAll(SQLiteDatabase database) {
         ArrayList<dbmWall> dbmWallArrayList = new ArrayList<>();
-        Cursor myCursor = fetch(dbHelper);
+        Cursor myCursor = fetch(database);
         if (myCursor.getCount() != 0){
             int xCoordIdx = myCursor.getColumnIndex(X_COORDINATE);
             int zCoordIdx = myCursor.getColumnIndex(Z_COORDINATE);
@@ -79,10 +74,9 @@ public class dbmWall {
         }
         return dbmWallArrayList;
     }
-    private static Cursor fetch(DatabaseHelper dbHelper) {
-        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+    private static Cursor fetch(SQLiteDatabase database) {
         String[] columns = new String[] { _ID, X_COORDINATE, Z_COORDINATE };
-        Cursor cursor = sqLiteDatabase.query(TABLE_NAME, columns, null, null, null, null, null);
+        Cursor cursor = database.query(TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }

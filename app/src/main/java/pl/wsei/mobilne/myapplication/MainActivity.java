@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -18,6 +19,8 @@ import pl.wsei.mobilne.myapplication.database.dbmWall;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
+    private SQLiteDatabase database;
+    private DatabaseHelper dbHelper;
     ArrayList<CellModel> cellModels = new ArrayList<>();
 
     //int[] images = {R.drawable.ic_alanine};
@@ -34,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
-
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
 
         int columnCount = 10;
@@ -44,23 +46,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
+
+        if(savedInstanceState == null){
+            dbHelper = new DatabaseHelper(getApplicationContext());
+            this.database = dbHelper.getWritableDatabase();
+        }
     }
 
     public void ChangeModeTo3D(View v){
 
-//        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-//        DatabaseManager dbManager = new DatabaseManager(dbHelper);
-//
-//        Wall myWall = new Wall(0.7f, 0.9f);
-//        dbManager.AddWall(myWall);
-//        List<Wall> wallList = dbManager.GetAll();
-//        Toast.makeText(this, wallList.toString(), Toast.LENGTH_SHORT).show();
-//
-
         Intent i = new Intent(MainActivity.this, Mode3DActivity.class);
-        // instead of passing data via DB (temporary solution)
-        ArrayList<String> walls = encodeWallPositions();
-        i.putStringArrayListExtra("walls", walls);
         startActivity(i);
     }
 
@@ -84,20 +79,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     public void SaveWalls(View v) {
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-//        List<dbmWall> wallsLoaded1 = dbmWall.getAll(dbHelper);
-//        dbmWall.emptyTable(dbHelper);
-//        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
-////        DatabaseManager dbManager = new DatabaseManager(dbHelper);
-////        dbManager.emptyTable();
-////        dbManager.createWallsTable();
-//        for (CellModel wall2D: cellModels) {
-//            if (! wall2D.isEmpty()) {
-//                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
-//                dbmWall.add(dbHelper);
-////                dbManager.AddWall(new Wall((float) wall.columnPosition, (float)wall.rowPosition));
-//            }
-//        }
+        dbmWall.emptyTable(database);
+        for (CellModel wall2D: cellModels) {
+            if (! wall2D.isEmpty()) {
+                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
+                dbmWall.add(database);
+            }
+        }
     }
 
 

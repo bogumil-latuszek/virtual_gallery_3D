@@ -3,6 +3,7 @@ package pl.wsei.mobilne.myapplication.space3d;
 import static android.opengl.Matrix.multiplyMV;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -27,35 +28,50 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
+    private SQLiteDatabase database;
+
     public MyGLRenderer(Context context, ArrayList<String> wallsCoordinates){
         this.appContext = context;
         dbHelper = new DatabaseHelper(context);
+        this.database = dbHelper.getReadableDatabase();
 
-       this.fragmentShaderCode = TextResourceReader.readTextFileFromResource(
+        this.fragmentShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.color_fragment_shader);
-       this.vertexShaderCode = TextResourceReader.readTextFileFromResource(
+        this.vertexShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.color_vertex_shader);
-       this.textureFragmentShaderCode = TextResourceReader.readTextFileFromResource(
+        this.textureFragmentShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.texture_fragment_shader);
-       this.textureVertexShaderCode = TextResourceReader.readTextFileFromResource(
+        this.textureVertexShaderCode = TextResourceReader.readTextFileFromResource(
                 context, R.raw.texture_vertex_shader);
 
         // get walls from intent passed data and not from DB (temporary solution)
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
+//        walls = new ArrayList<Wall>();
+//        int i = 0;
+//        for (String coordinate: wallsCoordinates) {
+//            String[] parts = coordinate.split(",");
+//            float xPosition = Float.valueOf(parts[0]).floatValue();
+//            float zPosition = Float.valueOf(parts[1]).floatValue();
+//            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+//            newWall.setEdgeColor(red_e);
+//            newWall.setFaceColor(red_f);
+//            newWall.setFaceOpacity(0.8f);
+//            walls.add(newWall);
+//            i++;
+//        }
         walls = new ArrayList<Wall>();
-        int i = 0;
-        for (String coordinate: wallsCoordinates) {
-            String[] parts = coordinate.split(",");
-            float xPosition = Float.valueOf(parts[0]).floatValue();
-            float zPosition = Float.valueOf(parts[1]).floatValue();
+        List<dbmWall> wallsLoaded = dbmWall.getAll(database);
+        for (int i = 0; i < wallsLoaded.size(); i++) {
+            float xPosition = wallsLoaded.get(i).getX();
+            float zPosition = wallsLoaded.get(i).getZ();
             Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
             newWall.setFaceOpacity(0.8f);
             walls.add(newWall);
-            i++;
         }
+
     }
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
@@ -179,18 +195,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         floorGrid = new FloorGrid();
 
-//        walls = new ArrayList<Wall>();
-//        List<dbmWall> wallsLoaded = dbmWall.getAll(dbHelper);
-//        for (int i = 0; i < wallsLoaded.size(); i++) {
-//            float xPosition = wallsLoaded.get(i).getX();
-//            float zPosition = wallsLoaded.get(i).getZ();
-//            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
-//            newWall.setEdgeColor(red_e);
-//            newWall.setFaceColor(red_f);
-//            newWall.setFaceOpacity(0.8f);
-//            walls.add(newWall);
-//        }
-
         blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
 
         rotationCtrl = new RotationCtrl();
@@ -208,6 +212,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
 
         paintingCollection = new PaintingCollection(appContext);
+
     }
 
     @Override
