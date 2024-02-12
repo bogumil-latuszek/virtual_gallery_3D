@@ -19,13 +19,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        dbmWall.createTable(db);
+
+        DbmWall.createTable(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-        dbmWall.dropTable(db);
+        DbmWall.dropTable(db);
         onCreate(db);
     }
 }

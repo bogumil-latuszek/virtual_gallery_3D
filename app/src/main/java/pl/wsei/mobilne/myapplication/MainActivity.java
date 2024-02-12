@@ -12,10 +12,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
-import pl.wsei.mobilne.myapplication.database.dbmWall;
+import pl.wsei.mobilne.myapplication.database.DbmWall;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewInterface{
 
@@ -77,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     public void SaveWalls(View v) {
-        dbmWall.emptyTable(database);
+        DbmWall.emptyTable(database);
         for (CellModel wall2D: cellModels) {
             if (! wall2D.isEmpty()) {
-                dbmWall dbmWall = new dbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition);
+                DbmWall dbmWall = new DbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition,null,null,null,null);
                 dbmWall.add(database);
             }
         }

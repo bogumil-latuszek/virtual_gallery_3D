@@ -18,7 +18,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
-import pl.wsei.mobilne.myapplication.database.dbmWall;
+import pl.wsei.mobilne.myapplication.database.DbmWall;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
@@ -49,10 +49,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
 
         walls = new ArrayList<Wall>();
-        List<dbmWall> wallsLoaded = dbmWall.getAll(database);
+        List<DbmWall> wallsLoaded = DbmWall.getAll(database);
         for (int i = 0; i < wallsLoaded.size(); i++) {
-            float xPosition = wallsLoaded.get(i).getX();
-            float zPosition = wallsLoaded.get(i).getZ();
+            DbmWall dbmWallNext = wallsLoaded.get(i);
+            float xPosition = dbmWallNext.getX();
+            float zPosition = dbmWallNext.getZ();
+            Integer backWallID = dbmWallNext.back_painting;
+            Integer frontWallID = dbmWallNext.front_painting;
+            Integer rightWallID = dbmWallNext.right_painting;
+            Integer leftWallID = dbmWallNext.left_painting;
+            //load non null walls from db and add them to wall
             Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
