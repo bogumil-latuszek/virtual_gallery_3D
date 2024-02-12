@@ -3,7 +3,10 @@ package pl.wsei.mobilne.myapplication.space3d;
 import static android.opengl.Matrix.multiplyMV;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -18,6 +21,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
+import pl.wsei.mobilne.myapplication.database.DbmPainting;
 import pl.wsei.mobilne.myapplication.database.DbmWall;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
@@ -25,6 +29,7 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
+import pl.wsei.mobilne.myapplication.utility.FileManager;
 
 public class MyGLRenderer implements GLSurfaceView.Renderer {
 
@@ -48,6 +53,22 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
 
+//        paintings = new ArrayList<Painting>();
+//        List<DbmPainting> paintingsLoaded = DbmPainting.getAll(database);
+//        for (int i = 0; i < paintingsLoaded.size(); i++) {
+//            DbmPainting dbmPaintingNext = paintingsLoaded.get(i);
+//            String texture_name = dbmPaintingNext.texture_name;
+//            Resources.
+//            //getResources(context.getTheme()).getIdentifier("image_name","drawable", getPackageName());
+//            Painting newPainting = new Painting(new Point(0,0,0), 0.5f, 0.5f);
+//            int textureID = R.drawable.
+//            newPainting
+//            newWall.setEdgeColor(red_e);
+//            newWall.setFaceColor(red_f);
+//            newWall.setFaceOpacity(0.8f);
+//            walls.add(newWall);
+//        }
+
         walls = new ArrayList<Wall>();
         List<DbmWall> wallsLoaded = DbmWall.getAll(database);
         for (int i = 0; i < wallsLoaded.size(); i++) {
@@ -58,7 +79,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             Integer frontWallID = dbmWallNext.front_painting;
             Integer rightWallID = dbmWallNext.right_painting;
             Integer leftWallID = dbmWallNext.left_painting;
-            //load non null walls from db and add them to wall
+            //load non null paintings from db and add them to wall
             Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
@@ -66,7 +87,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             walls.add(newWall);
         }
 
+//        //***********************************************************
+//        Resources res = context.getResources();
+//        int lionId = R.drawable.lion;
+//        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
+//
+//        String pathToLion = FileManager.saveImageToStorage(lionBitmap, context);
+//
+//        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage(pathToLion);
+//        int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
+//        walls.get(0).SetPainting(textureID);
+//        //***********************************************************
+
     }
+
+
     // access to "drawing color variable" inside OpenGL
     // naming convention: A_ - shader attributes, U_ - shader uniforms
 //    private DatabaseManager dbManager;
@@ -124,6 +159,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private  Painting painting;
 
     private  ArrayList<Wall> walls;
+    private ArrayList<Painting> paintings;
 
     private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
@@ -206,6 +242,18 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         texture = TextureHelper.loadTexture(appContext, R.drawable.move_icon_transparent);
 
         paintingCollection = new PaintingCollection(appContext);
+
+        //***********************************************************
+        Resources res = appContext.getResources();
+        int lionId = R.drawable.lion;
+        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
+
+        String pathToLion = FileManager.saveImageToStorage(lionBitmap, appContext);
+
+        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage(pathToLion);
+        int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
+        walls.get(0).SetPainting(textureID);
+        //***********************************************************
 
     }
 
