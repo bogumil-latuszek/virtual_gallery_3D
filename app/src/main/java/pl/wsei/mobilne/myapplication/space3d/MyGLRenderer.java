@@ -248,11 +248,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         int lionId = R.drawable.lion;
         Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
 
-        String pathToLion = FileManager.saveImageToStorage(lionBitmap, appContext);
+        Log.d("listing files before adding lion", "listing files before adding lion");
+        FileManager.listFiles();
+        FileManager.saveImageToStorage(lionBitmap, appContext, "cool_lion.jpg");
 
-        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage(pathToLion);
+        Log.d("listing files after adding lion", "listing files after adding lion");
+        FileManager.listFiles();
+        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage("another_lion.jpg");
         int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
-        walls.get(0).SetPainting(textureID);
+        walls.get(0).SetPainting(textureID);//will crash the app if walls is empty
         //***********************************************************
 
     }
