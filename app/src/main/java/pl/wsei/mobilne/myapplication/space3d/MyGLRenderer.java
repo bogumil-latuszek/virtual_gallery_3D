@@ -21,7 +21,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
-import pl.wsei.mobilne.myapplication.database.DbmPainting;
 import pl.wsei.mobilne.myapplication.database.DbmWall;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
@@ -156,10 +155,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private RotationCtrl rotationCtrl;
     private MovementCtrl movementCtrl;
 
-    private  Painting painting;
 
     private  ArrayList<Wall> walls;
-    private ArrayList<Painting> paintings;
 
     private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
@@ -231,8 +228,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         rotationCtrl.setEdgeColor(red_e);
 
         movementCtrl = new MovementCtrl(new Point(0,0,0),0.3f);
-
-        painting = new Painting(new Point(0f,0f,0f), 0.3f, 0.3f);
 
         Point nearPointRay = new Point(-0.2f, -0.3f, 2.5f);
         Point farPointRay = new Point(-0.2f, -0.3f, -9.5f);
@@ -310,7 +305,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         movementCtrl.startTransforming();
         movementCtrl.move(aspectAdjustmentMatrix, 1.32f, -0.67f);
 
-        //painting.startTransforming();
     }
 
     @Override
@@ -358,7 +352,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);
         rotationCtrl.draw(aPositionLocation, uColorLocation,   uMatrixLocation, aspectAdjustmentMatrix);
 
-        //painting.drawColored(aPositionLocation, uColorLocation, uMatrixLocation, viewProjectionMatrix);
+
 
         // instruct OpenGL to use another (texture) program when drawing anything to the screen
         GLES20.glUseProgram(textureProgramObjectId);
