@@ -1,39 +1,54 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import pl.wsei.mobilne.myapplication.R;
+import pl.wsei.mobilne.myapplication.utility.FileManager;
 
 public class PaintingCollection {
     private Context appContext;
     private ArrayList<Integer> textureIDs;
+    private Map<String, Integer> texturesCache; // filename --> textureId
     public PaintingCollection(Context context) {
         this.appContext = context;
         textureIDs = new ArrayList<>();
+        texturesCache = new HashMap<>();
         loadAllTextures();
     }
 
     public void loadAllTextures(){
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.leaf_texture));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.face1));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.autumn_forest));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.fog_forest));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.garden));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.lion));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.mountain_lake));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.painting));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.ray_forest));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunrise));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunrise_dark));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.sunset));
-        textureIDs.add(TextureHelper.loadTexture(appContext, R.drawable.underwater));
+
+        int imageNotFoundID = TextureHelper.loadTexture(appContext, R.drawable.image_not_found );
+        this.texturesCache.put("image_not_found.jpg", imageNotFoundID);
+
+        ArrayList<File> imageFiles = FileManager.getAllImageFiles();
+        for (File imageFile: imageFiles) {
+            String textureName = imageFile.getName();
+            Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
+            int textureId = TextureHelper.loadTexture(bitmap);
+            this.texturesCache.put(textureName, Integer.valueOf(textureId));
+            this.textureIDs.add(textureId);
+        }
     }
 
     public int getRandomTextureID(){
         int randomIndex = ThreadLocalRandom.current().nextInt(0, textureIDs.size());
         return textureIDs.get(randomIndex);
+    }
+    public int getTextureID(String textureName){
+        if (this.texturesCache.containsKey(textureName)) {
+            Integer textureId = this.texturesCache.get(textureName);
+            return textureId.intValue();
+        }
+        Integer textureId = this.texturesCache.get("image_not_found.jpg");
+        return textureId.intValue();
     }
 }

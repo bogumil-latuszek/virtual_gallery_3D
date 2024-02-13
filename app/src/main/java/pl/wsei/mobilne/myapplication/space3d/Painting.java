@@ -124,7 +124,7 @@ public class Painting {
         int nbIndexes4triangles = 2*3;
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, nbIndexes4triangles, GLES20.GL_UNSIGNED_BYTE,
                 vertexSequenceForDrawingRectangle.indexesBuffer);
-        Log.d("position of painting:", centralPoint.toString());
+       // Log.d("position of painting:", centralPoint.toString());
 
     }
 //    public void drawColored(int aPositionLocation, int uColorLocation,

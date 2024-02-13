@@ -26,19 +26,19 @@ public class DbmWall {
             + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + X_COORDINATE + " REAL NOT NULL, "
             + Z_COORDINATE + " REAL NOT NULL, "
-            + FRONT_PAINTING + " INTEGER, "
-            + BACK_PAINTING + " INTEGER, "
-            + LEFT_PAINTING + " INTEGER, "
-            + RIGHT_PAINTING + " INTEGER "
+            + FRONT_PAINTING + " STRING, "
+            + BACK_PAINTING + " STRING, "
+            + LEFT_PAINTING + " STRING, "
+            + RIGHT_PAINTING + " STRING "
             + ");";
 
     // ------------------- data
     private float x;
     private float z;
-    public Integer front_painting;
-    public Integer back_painting;
-    public Integer left_painting;
-    public Integer right_painting;
+    public String front_painting;
+    public String back_painting;
+    public String left_painting;
+    public String right_painting;
 
     public float getX() {
         return x;
@@ -57,7 +57,7 @@ public class DbmWall {
 //        this.right_painting = paintings.length > 3? paintings[3]:null;
 //
 //    }
-public DbmWall(float x, float z, Integer back_painting, Integer front_painting, Integer left_painting, Integer right_painting) {
+public DbmWall(float x, float z, String back_painting, String front_painting, String left_painting, String right_painting) {
     this.x = x;
     this.z = z;
     this.back_painting = back_painting;
@@ -100,10 +100,10 @@ public DbmWall(float x, float z, Integer back_painting, Integer front_painting, 
             do {
                 float x = myCursor.getFloat(xCoordIdx);
                 float z = myCursor.getFloat(zCoordIdx);
-                Integer back_painting_retrieved = myCursor.isNull(backPaintIdx)?null: myCursor.getInt(backPaintIdx);
-                Integer front_painting_retrieved = myCursor.isNull(frontPaintIdx)?null: myCursor.getInt(frontPaintIdx);
-                Integer left_painting_retrieved = myCursor.isNull(leftPaintIdx)?null: myCursor.getInt(leftPaintIdx);
-                Integer right_painting_retrieved = myCursor.isNull(rightPaintIdx)?null: myCursor.getInt(rightPaintIdx);
+                String back_painting_retrieved = myCursor.isNull(backPaintIdx)?null: myCursor.getString(backPaintIdx);
+                String front_painting_retrieved = myCursor.isNull(frontPaintIdx)?null: myCursor.getString(frontPaintIdx);
+                String left_painting_retrieved = myCursor.isNull(leftPaintIdx)?null: myCursor.getString(leftPaintIdx);
+                String right_painting_retrieved = myCursor.isNull(rightPaintIdx)?null: myCursor.getString(rightPaintIdx);
                 DbmWall dbmWall = new DbmWall(x ,z, back_painting_retrieved, front_painting_retrieved, left_painting_retrieved, right_painting_retrieved);
                 dbmWallArrayList.add(dbmWall);
             } while (myCursor.moveToNext());

@@ -52,39 +52,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
 
-//        paintings = new ArrayList<Painting>();
-//        List<DbmPainting> paintingsLoaded = DbmPainting.getAll(database);
-//        for (int i = 0; i < paintingsLoaded.size(); i++) {
-//            DbmPainting dbmPaintingNext = paintingsLoaded.get(i);
-//            String texture_name = dbmPaintingNext.texture_name;
-//            Resources.
-//            //getResources(context.getTheme()).getIdentifier("image_name","drawable", getPackageName());
-//            Painting newPainting = new Painting(new Point(0,0,0), 0.5f, 0.5f);
-//            int textureID = R.drawable.
-//            newPainting
-//            newWall.setEdgeColor(red_e);
-//            newWall.setFaceColor(red_f);
-//            newWall.setFaceOpacity(0.8f);
-//            walls.add(newWall);
-//        }
-
-        walls = new ArrayList<Wall>();
-        List<DbmWall> wallsLoaded = DbmWall.getAll(database);
-        for (int i = 0; i < wallsLoaded.size(); i++) {
-            DbmWall dbmWallNext = wallsLoaded.get(i);
-            float xPosition = dbmWallNext.getX();
-            float zPosition = dbmWallNext.getZ();
-            Integer backWallID = dbmWallNext.back_painting;
-            Integer frontWallID = dbmWallNext.front_painting;
-            Integer rightWallID = dbmWallNext.right_painting;
-            Integer leftWallID = dbmWallNext.left_painting;
-            //load non null paintings from db and add them to wall
-            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
-            newWall.setEdgeColor(red_e);
-            newWall.setFaceColor(red_f);
-            newWall.setFaceOpacity(0.8f);
-            walls.add(newWall);
-        }
 
 //        //***********************************************************
 //        Resources res = context.getResources();
@@ -176,9 +143,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float[] viewTranslationMatrix;
 
 //////////////////////////////////////////////////////////
+    private void addSomePicturesFromResourcesToFiles(Context context){
+        Resources res = context.getResources();
+        int lionId = R.drawable.lion;
+        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
+        FileManager.saveImageToStorage(lionBitmap, appContext, "lion.jpg");
+
+        int fog_forestId = R.drawable.fog_forest;
+        Bitmap fog_forestBitmap = BitmapFactory.decodeResource(res, fog_forestId);
+        FileManager.saveImageToStorage(fog_forestBitmap, appContext, "fog_forest.jpg");
+
+        int mountain_lakeId = R.drawable.mountain_lake;
+        Bitmap mountain_lakeBitmap = BitmapFactory.decodeResource(res, mountain_lakeId);
+        FileManager.saveImageToStorage(mountain_lakeBitmap, appContext, "mountain_lake.jpg");
+
+        int sunriseId = R.drawable.sunrise;
+        Bitmap sunriseBitmap = BitmapFactory.decodeResource(res, sunriseId);
+        FileManager.saveImageToStorage(sunriseBitmap, appContext, "sunrise.jpg");
+
+
+    }
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
+        addSomePicturesFromResourcesToFiles(appContext);
 
         viewRotationMatrix = new float[16];
         Matrix.setIdentityM(viewRotationMatrix, 0);
@@ -238,20 +226,50 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         paintingCollection = new PaintingCollection(appContext);
 
+        walls = new ArrayList<Wall>();
+        List<DbmWall> wallsLoaded = DbmWall.getAll(database);
+        for (int i = 0; i < wallsLoaded.size(); i++) {
+            DbmWall dbmWallNext = wallsLoaded.get(i);
+            float xPosition = dbmWallNext.getX();
+            float zPosition = dbmWallNext.getZ();
+            String backWallPaintingName = dbmWallNext.back_painting;
+            int backWallTextureID  = paintingCollection.getTextureID(backWallPaintingName);
+            String frontWallPaintingName  = dbmWallNext.front_painting;
+            int frontWallTextureID  = paintingCollection.getTextureID(frontWallPaintingName);
+            String leftWallPaintingName   = dbmWallNext.left_painting;
+            int leftWallTextureID  = paintingCollection.getTextureID(leftWallPaintingName);
+            String rightWallPaintingName  = dbmWallNext.right_painting;
+            int rightWallTextureID  = paintingCollection.getTextureID(rightWallPaintingName);
+            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+            newWall.setEdgeColor(red_e);
+            newWall.setFaceColor(red_f);
+            newWall.setFaceOpacity(0.8f);
+            newWall.setBackFacePaintingTexture(backWallTextureID);
+            newWall.setFrontFacePaintingTexture(frontWallTextureID);
+            newWall.setLeftFacePaintingTexture(leftWallTextureID);
+            newWall.setRightFacePaintingTexture(rightWallTextureID);
+            walls.add(newWall);
+        }
+
         //***********************************************************
-        Resources res = appContext.getResources();
-        int lionId = R.drawable.lion;
-        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
-
-        Log.d("listing files before adding lion", "listing files before adding lion");
-        FileManager.listFiles();
-        FileManager.saveImageToStorage(lionBitmap, appContext, "cool_lion.jpg");
-
-        Log.d("listing files after adding lion", "listing files after adding lion");
-        FileManager.listFiles();
-        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage("another_lion.jpg");
-        int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
-        walls.get(0).SetPainting(textureID);//will crash the app if walls is empty
+        //its verified onSurfaceCreated is being executed twice
+//        Resources res = appContext.getResources();
+//        int lionId = R.drawable.lion;
+//        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
+//
+//        Log.d("listing files before adding lion", "listing files before adding lion");
+//        FileManager.listFiles();
+//        FileManager.saveImageToStorage(lionBitmap, appContext, "mediocre_lion.png");
+//
+//        Log.d("listing files after adding lion", "listing files after adding lion");
+//        FileManager.listFiles();
+//        ArrayList<File> imageFiles = FileManager.getAllImageFiles();
+//        for (File imageFile: imageFiles) {
+//            Log.d("imageFile", imageFile.getName());
+//        }
+//        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage("ok_lion.png");
+//        int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
+//        walls.get(0).SetPainting(textureID);//will crash the app if walls is empty
         //***********************************************************
 
     }

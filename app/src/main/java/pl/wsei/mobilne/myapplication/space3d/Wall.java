@@ -87,12 +87,17 @@ public class Wall extends Cuboid {
         Optional<PointOnFace> collisionWithNearestFace = Optional.of(nearestHitFace);
         return collisionWithNearestFace;
     }
-    public void SetPainting(int textureID ){
+    public void setBackFacePaintingTexture(int textureID ){
         this.backFace.addPainting(textureID);
+    }
+    public void setFrontFacePaintingTexture(int textureID ){
         this.frontFace.addPainting(textureID);
+    }
+    public void setLeftFacePaintingTexture(int textureID ){
         this.leftFace.addPainting(textureID);
+    }
+    public void setRightFacePaintingTexture(int textureID ){
         this.rightFace.addPainting(textureID);
-
     }
 
     public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {
