@@ -23,6 +23,7 @@ public class PaintingCollection {
     private Context appContext;
     private ArrayList<Integer> textureIDs;
     private Map<String, Integer> texturesCache; // filename --> textureId
+    private int imageNotFoundID;
 
     private Pair<String, Integer> texture;
     public PaintingCollection(Context context) {
@@ -30,13 +31,10 @@ public class PaintingCollection {
         textureIDs = new ArrayList<>();
         texturesCache = new HashMap<>();
         loadAllTextures();
+        this.imageNotFoundID = TextureHelper.loadTexture(appContext, R.drawable.image_not_found );
     }
 
     public void loadAllTextures(){
-
-        int imageNotFoundID = TextureHelper.loadTexture(appContext, R.drawable.image_not_found );
-        this.texturesCache.put("image_not_found.jpg", imageNotFoundID);
-
         ArrayList<File> imageFiles = FileManager.getAllImageFiles();
         for (File imageFile: imageFiles) {
             String textureName = imageFile.getName();
@@ -70,8 +68,7 @@ public class PaintingCollection {
             Integer textureId = this.texturesCache.get(textureName);
             return textureId.intValue();
         }
-        Integer textureId = this.texturesCache.get("image_not_found.jpg");
-        return textureId.intValue();
+        return imageNotFoundID;
     }
     public static void addSomePicturesFromResourcesToFiles(Context context){
         Resources res = context.getResources();
