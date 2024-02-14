@@ -84,6 +84,10 @@ public DbmWall(float x, float z, String back_painting, String front_painting, St
         ContentValues contentValues = new ContentValues();
         contentValues.put(X_COORDINATE, x);
         contentValues.put(Z_COORDINATE, z);
+        contentValues.put(FRONT_PAINTING, front_painting);
+        contentValues.put(BACK_PAINTING, back_painting);
+        contentValues.put(LEFT_PAINTING, left_painting);
+        contentValues.put(RIGHT_PAINTING, right_painting);
 
         database.insert(TABLE_NAME, null, contentValues);
     }
@@ -111,7 +115,7 @@ public DbmWall(float x, float z, String back_painting, String front_painting, St
         return dbmWallArrayList;
     }
     private static Cursor fetch(SQLiteDatabase database) {
-        String[] columns = new String[] { _ID, X_COORDINATE, Z_COORDINATE };
+        String[] columns = new String[] { _ID, X_COORDINATE, Z_COORDINATE, BACK_PAINTING, FRONT_PAINTING, LEFT_PAINTING, RIGHT_PAINTING };
         Cursor cursor = database.query(TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
