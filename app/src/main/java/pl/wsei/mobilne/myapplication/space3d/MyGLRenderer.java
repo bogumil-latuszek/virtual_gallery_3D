@@ -3,10 +3,7 @@ package pl.wsei.mobilne.myapplication.space3d;
 import static android.opengl.Matrix.multiplyMV;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
@@ -211,13 +208,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         List<DbmWall> wallsLoaded = DbmWall.getAll(database);
         for (int i = 0; i < wallsLoaded.size(); i++) {
             DbmWall dbmWallNext = wallsLoaded.get(i);
+            int wallID = dbmWallNext.getId();
             float xPosition = dbmWallNext.getX();
             float zPosition = dbmWallNext.getZ();
             String backWallPaintingName = dbmWallNext.back_painting;
             String frontWallPaintingName  = dbmWallNext.front_painting;
             String leftWallPaintingName   = dbmWallNext.left_painting;
             String rightWallPaintingName  = dbmWallNext.right_painting;
-            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+            Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, wallID, database);
 
             if(backWallPaintingName != null){
                 int backWallTextureID  = paintingCollection.getTextureID(backWallPaintingName);
@@ -600,8 +598,10 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             if (collisionWithNearestFace.isPresent()) {
                 PointOnFace pointedFace = collisionWithNearestFace.get();
                 if(pointedFace.face.painting == null){
-                    int randomTexture = paintingCollection.getRandomTextureID();
-                    pointedFace.face.addPainting(randomTexture);
+                    if (! paintingCollection.isEmpty()) {
+                        Texture randomTexture = paintingCollection.getRandomTexture();
+                        pointedFace.face.addPainting(randomTexture.textureName, randomTexture.textureID);
+                    }
                 }
                 else{
                     pointedFace.face.removePainting();

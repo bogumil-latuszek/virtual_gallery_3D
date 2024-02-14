@@ -5,10 +5,15 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import androidx.core.util.Pair;
+
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import pl.wsei.mobilne.myapplication.R;
@@ -18,6 +23,8 @@ public class PaintingCollection {
     private Context appContext;
     private ArrayList<Integer> textureIDs;
     private Map<String, Integer> texturesCache; // filename --> textureId
+
+    private Pair<String, Integer> texture;
     public PaintingCollection(Context context) {
         this.appContext = context;
         textureIDs = new ArrayList<>();
@@ -40,9 +47,23 @@ public class PaintingCollection {
         }
     }
 
-    public int getRandomTextureID(){
-        int randomIndex = ThreadLocalRandom.current().nextInt(0, textureIDs.size());
-        return textureIDs.get(randomIndex);
+    public boolean isEmpty(){
+        return texturesCache.isEmpty();
+    }
+
+    public Texture getRandomTexture(){
+        //int randomIndex = ThreadLocalRandom.current().nextInt(0, textureIDs.size());
+        Set<String> keys = texturesCache.keySet();
+
+        ArrayList<String> keysList = new ArrayList<>(keys);
+        // Shuffling the list
+        Collections.shuffle(keysList);
+        String randomKey = keysList.get(0);
+
+//        String randomKey = keys.iterator().next(); //apparently this returns random element
+        Integer randomValue = texturesCache.get(randomKey);
+        Texture randomTexture = new Texture(randomKey, randomValue);
+        return randomTexture;
     }
     public int getTextureID(String textureName){
         if (this.texturesCache.containsKey(textureName)) {

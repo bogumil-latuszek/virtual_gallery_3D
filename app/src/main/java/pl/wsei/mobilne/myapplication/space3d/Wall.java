@@ -3,17 +3,21 @@ package pl.wsei.mobilne.myapplication.space3d;
 import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vector3DBetweenTwoPoints;
 import static pl.wsei.mobilne.myapplication.space3d.geometry.Geometry.vector3DBetweenTwoPoints;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import pl.wsei.mobilne.myapplication.database.DbmWall;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Face;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Point;
 import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
-public class Wall extends Cuboid {
+public class Wall extends Cuboid{
 
     //    private Point upperLeftFront;
 //    private Point lowerLeftFront;
@@ -23,11 +27,13 @@ public class Wall extends Cuboid {
 //    private Point lowerLeftBack;
 //    private Point lowerRightBack;
 //    private Point upperRightBack;
-    private String wallID;
+    private int wallID;
     private Face frontFace;
     private Face leftFace;
     private Face rightFace;
     private Face backFace;
+
+    private SQLiteDatabase database;
 
     public List<PointOnFace> GetCollidedFaces(Ray ray) {
         // Ray may collide with multiple faces of given wall
@@ -100,9 +106,19 @@ public class Wall extends Cuboid {
         this.rightFace.addPainting(textureID);
     }
 
-    public Wall(float dx, float dy, float dz, float moveX, float moveZ, String WallID) {
+
+    IUpdateWall updateWall = new IUpdateWall() {
+        @Override
+        public void UpdateWall(String textureName, String faceID) {
+            DbmWall.updateRow(wallID, faceID, textureName, database);
+            Log.d("updatingWall", "textureName: "+textureName+" faceID: "+faceID);
+        }
+    };
+    public Wall(float dx, float dy, float dz, float moveX, float moveZ, int WallID, SQLiteDatabase database) {
         //super(0.5f, 1f, 0.5f);
         super(dx, dy, dz, moveX, moveZ);
+
+        this.database = database;
 
         //will this line of code execute? TODO:CHECK IT
         float minX = -dx + moveX;
@@ -117,22 +133,22 @@ public class Wall extends Cuboid {
         frontFace = new Face(
             new Point(X_position, 0, maxZ), new Vector3D(0,0,1),
             minX, maxX, minY, maxY, maxZ, maxZ,
-            "frontFace"
+            "frontFace", updateWall
         );
         leftFace = new Face(
             new Point(minX, 0, Z_position), new Vector3D(-1,0,0),
             minX, minX, minY, maxY, minZ, maxZ,
-            "leftFace"
+            "leftFace", updateWall
         );
         rightFace = new Face(
             new Point(maxX, 0, Z_position), new Vector3D(1,0,0),
             maxX, maxX, minY, maxY, minZ, maxZ,
-            "rightFace"
+            "rightFace", updateWall
         );
         backFace = new Face(
             new Point(X_position, 0, minZ), new Vector3D(0,0,-1),
             minX, maxX, minY, maxY, minZ, minZ,
-            "backFace"
+            "backFace", updateWall
         );
     }
     public void drawPaintings(int aPositionLocation, int aTextureCoordinatesLocation,

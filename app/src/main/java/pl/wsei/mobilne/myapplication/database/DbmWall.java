@@ -33,6 +33,7 @@ public class DbmWall {
             + ");";
 
     // ------------------- data
+    private int id;
     private float x;
     private float z;
     public String front_painting;
@@ -48,7 +49,11 @@ public class DbmWall {
         return z;
     }
 
-//    public DbmWall(float x, float z, int... paintings) {
+    public int getId() {
+        return id;
+    }
+
+    //    public DbmWall(float x, float z, int... paintings) {
 //        this.x = x;
 //        this.z = z;
 //        this.back_painting = paintings.length > 0? paintings[0]:null;
@@ -57,7 +62,8 @@ public class DbmWall {
 //        this.right_painting = paintings.length > 3? paintings[3]:null;
 //
 //    }
-public DbmWall(float x, float z, String back_painting, String front_painting, String left_painting, String right_painting) {
+public DbmWall(int id, float x, float z, String back_painting, String front_painting, String left_painting, String right_painting) {
+    this.id = id;
     this.x = x;
     this.z = z;
     this.back_painting = back_painting;
@@ -95,6 +101,7 @@ public DbmWall(float x, float z, String back_painting, String front_painting, St
         ArrayList<DbmWall> dbmWallArrayList = new ArrayList<>();
         Cursor myCursor = fetch(database);
         if (myCursor.getCount() != 0){
+            int idIdx = myCursor.getColumnIndex(_ID);
             int xCoordIdx = myCursor.getColumnIndex(X_COORDINATE);
             int zCoordIdx = myCursor.getColumnIndex(Z_COORDINATE);
             int frontPaintIdx = myCursor.getColumnIndex(FRONT_PAINTING);
@@ -102,13 +109,14 @@ public DbmWall(float x, float z, String back_painting, String front_painting, St
             int leftPaintIdx = myCursor.getColumnIndex(LEFT_PAINTING);
             int rightPaintIdx = myCursor.getColumnIndex(RIGHT_PAINTING);
             do {
+                int id = myCursor.getInt(idIdx);
                 float x = myCursor.getFloat(xCoordIdx);
                 float z = myCursor.getFloat(zCoordIdx);
                 String back_painting_retrieved = myCursor.isNull(backPaintIdx)?null: myCursor.getString(backPaintIdx);
                 String front_painting_retrieved = myCursor.isNull(frontPaintIdx)?null: myCursor.getString(frontPaintIdx);
                 String left_painting_retrieved = myCursor.isNull(leftPaintIdx)?null: myCursor.getString(leftPaintIdx);
                 String right_painting_retrieved = myCursor.isNull(rightPaintIdx)?null: myCursor.getString(rightPaintIdx);
-                DbmWall dbmWall = new DbmWall(x ,z, back_painting_retrieved, front_painting_retrieved, left_painting_retrieved, right_painting_retrieved);
+                DbmWall dbmWall = new DbmWall(id, x ,z, back_painting_retrieved, front_painting_retrieved, left_painting_retrieved, right_painting_retrieved);
                 dbmWallArrayList.add(dbmWall);
             } while (myCursor.moveToNext());
         }
@@ -121,5 +129,24 @@ public DbmWall(float x, float z, String back_painting, String front_painting, St
             cursor.moveToFirst();
         }
         return cursor;
+    }
+
+    public static void updateRow(int wallID, String faceID, String textureName, SQLiteDatabase database){
+        ContentValues contentValues = new ContentValues();
+        switch (faceID){
+            case "frontFace":
+                contentValues.put(FRONT_PAINTING, textureName);
+                break;
+            case "backFace":
+                contentValues.put(BACK_PAINTING, textureName);
+                break;
+            case "leftFace":
+                contentValues.put(LEFT_PAINTING, textureName);
+                break;
+            case "rightFace":
+                contentValues.put(RIGHT_PAINTING, textureName);
+                break;
+        }
+        database.update(TABLE_NAME, contentValues, "_id = ?", new String[]{String.valueOf(wallID)});
     }
 }

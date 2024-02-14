@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         DbmWall.emptyTable(database);
         for (CellModel wall2D: cellModels) {
             if (! wall2D.isEmpty()) {
-                DbmWall dbmWall = new DbmWall((float) wall2D.columnPosition, (float)wall2D.rowPosition,null,null,null,null);
+                DbmWall dbmWall = new DbmWall(0, (float) wall2D.columnPosition, (float)wall2D.rowPosition,null,null,null,null);
                 dbmWall.add(database);
             }
         }

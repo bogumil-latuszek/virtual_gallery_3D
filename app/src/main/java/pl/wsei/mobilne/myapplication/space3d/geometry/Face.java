@@ -4,6 +4,7 @@ package pl.wsei.mobilne.myapplication.space3d.geometry;
 
 import java.util.Optional;
 
+import pl.wsei.mobilne.myapplication.space3d.IUpdateWall;
 import pl.wsei.mobilne.myapplication.space3d.Painting;
 
 public class Face {
@@ -18,6 +19,7 @@ public class Face {
     private float maxZ;
 
     private Vector3D normal;
+    private IUpdateWall updateWall;
 
     private Plane plane;
     public  String faceID;
@@ -25,7 +27,7 @@ public class Face {
                 float minX, float maxX,
                 float minY, float maxY,
                 float minZ, float maxZ,
-                String FaceID){
+                String FaceID, IUpdateWall updateWall){
         plane = new Plane(pointOnFace, normal);
         this.normal = normal;
         this.minX = minX;
@@ -35,7 +37,7 @@ public class Face {
         this.minZ = minZ;
         this.maxZ = maxZ;
         faceID = FaceID;
-        //addPainting();
+        this.updateWall = updateWall;
     }
 
     public void removePainting(){
@@ -68,6 +70,35 @@ public class Face {
         }
         painting.rotate(90);
         painting.setTextureID(textureID);
+    }
+    public void addPainting(String textureName, int textureID){
+        painting = new Painting(plane.point,0.5f, 0.5f);
+        int normalz = Math.round(normal.z);
+        int normalx = Math.round(normal.x);
+        switch(normalz) {
+            case 1:
+                painting.rotate(-90);
+                painting.move(0,0, paintingPositionOffset);
+                break;
+            case -1:
+                painting.rotate(90);
+                painting.move(0,0, -paintingPositionOffset);
+                break;
+            default:
+        }
+        switch(normalx) {
+            case 1:
+                painting.move( paintingPositionOffset,0,0);
+                break;
+            case -1:
+                painting.rotate(-180);
+                painting.move( -paintingPositionOffset,0,0);
+                break;
+            default:
+        }
+        painting.rotate(90);
+        painting.setTextureID(textureID);
+        updateWall.UpdateWall(textureName, this.faceID);
 
     }
     @Override
