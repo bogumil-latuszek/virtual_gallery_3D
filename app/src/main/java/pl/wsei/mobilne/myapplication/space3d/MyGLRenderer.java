@@ -233,21 +233,30 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             float xPosition = dbmWallNext.getX();
             float zPosition = dbmWallNext.getZ();
             String backWallPaintingName = dbmWallNext.back_painting;
-            int backWallTextureID  = paintingCollection.getTextureID(backWallPaintingName);
             String frontWallPaintingName  = dbmWallNext.front_painting;
-            int frontWallTextureID  = paintingCollection.getTextureID(frontWallPaintingName);
             String leftWallPaintingName   = dbmWallNext.left_painting;
-            int leftWallTextureID  = paintingCollection.getTextureID(leftWallPaintingName);
             String rightWallPaintingName  = dbmWallNext.right_painting;
-            int rightWallTextureID  = paintingCollection.getTextureID(rightWallPaintingName);
             Wall newWall = new Wall(0.5f, 1.0f, 0.5f, xPosition+0.5f, zPosition-8.5f, "Wall nr."+i);
+
+            if(backWallPaintingName != null){
+                int backWallTextureID  = paintingCollection.getTextureID(backWallPaintingName);
+                newWall.setBackFacePaintingTexture(backWallTextureID);
+            }
+            if(frontWallPaintingName != null){
+                int frontWallTextureID  = paintingCollection.getTextureID(frontWallPaintingName);
+                newWall.setFrontFacePaintingTexture(frontWallTextureID);
+            }
+            if(leftWallPaintingName != null){
+                int leftWallTextureID  = paintingCollection.getTextureID(leftWallPaintingName);
+                newWall.setLeftFacePaintingTexture(leftWallTextureID);
+            }
+            if(rightWallPaintingName != null){
+                int rightWallTextureID  = paintingCollection.getTextureID(rightWallPaintingName);
+                newWall.setRightFacePaintingTexture(rightWallTextureID);
+            }
             newWall.setEdgeColor(red_e);
             newWall.setFaceColor(red_f);
             newWall.setFaceOpacity(0.8f);
-            newWall.setBackFacePaintingTexture(backWallTextureID);
-            newWall.setFrontFacePaintingTexture(frontWallTextureID);
-            newWall.setLeftFacePaintingTexture(leftWallTextureID);
-            newWall.setRightFacePaintingTexture(rightWallTextureID);
             walls.add(newWall);
         }
 
