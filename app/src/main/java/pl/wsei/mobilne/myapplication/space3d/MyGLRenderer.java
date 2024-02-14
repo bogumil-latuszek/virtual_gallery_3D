@@ -143,30 +143,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float[] viewTranslationMatrix;
 
 //////////////////////////////////////////////////////////
-    private void addSomePicturesFromResourcesToFiles(Context context){
-        Resources res = context.getResources();
-        int lionId = R.drawable.lion;
-        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
-        FileManager.saveImageToStorage(lionBitmap, appContext, "lion.jpg");
 
-        int fog_forestId = R.drawable.fog_forest;
-        Bitmap fog_forestBitmap = BitmapFactory.decodeResource(res, fog_forestId);
-        FileManager.saveImageToStorage(fog_forestBitmap, appContext, "fog_forest.jpg");
-
-        int mountain_lakeId = R.drawable.mountain_lake;
-        Bitmap mountain_lakeBitmap = BitmapFactory.decodeResource(res, mountain_lakeId);
-        FileManager.saveImageToStorage(mountain_lakeBitmap, appContext, "mountain_lake.jpg");
-
-        int sunriseId = R.drawable.sunrise;
-        Bitmap sunriseBitmap = BitmapFactory.decodeResource(res, sunriseId);
-        FileManager.saveImageToStorage(sunriseBitmap, appContext, "sunrise.jpg");
-
-
-    }
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
-        addSomePicturesFromResourcesToFiles(appContext);
+        PaintingCollection.addSomePicturesFromResourcesToFiles(appContext);
 
         viewRotationMatrix = new float[16];
         Matrix.setIdentityM(viewRotationMatrix, 0);
