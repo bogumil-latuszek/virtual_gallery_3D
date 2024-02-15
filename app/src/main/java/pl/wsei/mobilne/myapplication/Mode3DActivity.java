@@ -67,6 +67,16 @@ public class Mode3DActivity extends AppCompatActivity {
                             }
                         });
                     }
+                    else if (event.getAction() == MotionEvent.ACTION_UP) {
+                        gLView.queueEvent(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("event:", "action move");
+                                glRenderer.handleTouchRelease(
+                                        normalizedX, normalizedY);
+                            }
+                        });
+                    }
                     return true;
                 } else {
                     return false;
