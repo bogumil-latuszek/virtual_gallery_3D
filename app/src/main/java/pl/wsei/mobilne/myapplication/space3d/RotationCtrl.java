@@ -154,10 +154,10 @@ public class RotationCtrl {
         System.arraycopy(color, 0, this.edgeColor, 0, 3);
     }
     public void up() {
-        this.upAngle += 5f;
+        this.upAngle += 1f;
     }
     public void down() {
-        this.upAngle -= 5f;
+        this.upAngle -= 1f;
     }
     public float getUpAngle() {
         return this.upAngle;
@@ -178,6 +178,22 @@ public class RotationCtrl {
         System.arraycopy(tempMatrix, 0, modelMatrix, 0, tempMatrix.length);
         // and then move shape
         Matrix.translateM(modelMatrix, 0, dx, dy, 0f);
+    }
+    public boolean isInsideRotationCtrl(float xCoordinate, float yCoordinate){
+        // shape may have been translated from (0.0, 0.0) origin
+        // we start test by translating point by inverted translationMatrix
+        float[] translatateBackToCenterMatrix = new float[16];
+        Matrix.invertM(translatateBackToCenterMatrix, 0, modelMatrix, 0);
+        float[] point = {xCoordinate, yCoordinate, 0f, 1f};
+        float[] pointTranslated = new float[4];
+        Matrix.multiplyMV(pointTranslated, 0, translatateBackToCenterMatrix, 0, point, 0);
+        float x = pointTranslated[0];
+        float y = pointTranslated[1];
+        float r = (float) Math.sqrt(x*x + y*y);
+        if (r <= this.outerRadius + 0.1f){
+            return true;
+        }
+        return false;
     }
     public String where(float xCoordinate, float yCoordinate) {
         // shape may have been translated from (0.0, 0.0) origin
@@ -252,6 +268,38 @@ public class RotationCtrl {
         //Log.d("touch:", String.format("angle = %s --> %s degrees", angleQ1, angle));
         float angleFromNorth = angle - 90.0f;
         return angleFromNorth;
+    }
+
+    public void rotateCamera(String rotationCtrlPressedLocation, float[] viewRotationMatrix, float rotationSpeed){
+        if(rotationCtrlPressedLocation == null){
+            return;
+        }
+        if (rotationCtrlPressedLocation.equals("center")) {
+            float lookAroundAngle = 0.0f;
+            Matrix.setRotateM(viewRotationMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
+        }
+        else if (rotationCtrlPressedLocation.equals("up")) {
+            float lookUpAngle = this.getUpAngle();
+            if(lookUpAngle <= 20f){
+                up();
+            }
+            Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+        }
+        else if (rotationCtrlPressedLocation.equals("down")) {
+            float lookUpAngle = this.getUpAngle();
+            if(lookUpAngle >= -20f){
+                this.down();
+            }
+           Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
+        }
+        else if (rotationCtrlPressedLocation.equals("right")) {
+            float addAngle = -5f * rotationSpeed;
+            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
+        }
+        else if (rotationCtrlPressedLocation.equals("left")) {
+            float addAngle = 5f* rotationSpeed;
+            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
+        }
     }
 
     public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function

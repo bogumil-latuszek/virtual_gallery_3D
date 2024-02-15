@@ -70,6 +70,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private Vector3D cameraMovementVector = new Vector3D(0f,0f,0f);
     private float cameraMoveSpeed = 0.2f;
+    private String rotationCtrlPressedLocation = null;
+    private float rotationSpeed = 0.2f;
+
     private PaintingCollection paintingCollection;
     private final float[] invertedViewProjectionMatrix = new float[16];
     private DatabaseHelper dbHelper;
@@ -122,7 +125,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     private  ArrayList<Wall> walls;
 
-    private float zCameraPosition = 0f;
 ////////////////////////////////////////////////////////
     private int texture;
 
@@ -316,6 +318,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 unused) {
+        rotationCtrl.rotateCamera(rotationCtrlPressedLocation, viewRotationMatrix, rotationSpeed);
         //move camera(viewTranslationMatrix)
         Matrix.translateM(viewTranslationMatrix,0, this.cameraMovementVector.x, this.cameraMovementVector.y, this.cameraMovementVector.z);
         //construct viewMatrix from viewTranslationMatrix and viewRotationMatrix
@@ -498,68 +501,35 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             return;
         }
 
-        String whereInsideRotationCtrl = this.rotationCtrl.where(normalizedX, normalizedY);
-        float dx = 0;
-        float dy = 1.5f;
-        float dz = 0f;
-        float cx = normalizedX;
-        float cy = normalizedY;
-        float upx = 0f;
-        float upy = 1f;
+        boolean pointInsideRotationCtrl = this.rotationCtrl.isInsideRotationCtrl(normalizedX, normalizedY);
+        if(pointInsideRotationCtrl){
+            this.rotationCtrlPressedLocation =  this.rotationCtrl.where(normalizedX, normalizedY);
+            return;
+        }
 
-        if (whereInsideRotationCtrl.equals("center")) {
-            this.zCameraPosition += 0.1f;
-            float lookAroundAngle = 0.0f;
-            Matrix.setRotateM(viewRotationMatrix, 0, lookAroundAngle, 0f, 1f, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("ring")) {
-            float lookAroundAngle = this.rotationCtrl.getRotationAngle(normalizedX, normalizedY);
-            Matrix.rotateM(viewRotationMatrix, 0, lookAroundAngle, 0f, -1f, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("up")) {
-            this.rotationCtrl.up();
-            float lookUpAngle = this.rotationCtrl.getUpAngle();
-            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("down")) {
-            this.rotationCtrl.down();
-            float lookUpAngle = this.rotationCtrl.getUpAngle();
-            //Log.d("touch:", String.format("x = %s, y = %s, angle = %s degrees", normalizedX, normalizedY, lookUpAngle));
-            Matrix.setRotateM(viewRotationMatrix, 0, lookUpAngle, -1f, 0f, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("right")) {
-            float addAngle = -5f;
-            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
-        }
-        else if (whereInsideRotationCtrl.equals("left")) {
-            float addAngle = 5f;
-            Matrix.rotateM(viewRotationMatrix, 0, addAngle, 0f, -1f, 0f);
-        }
-        else {
-            // "outside" - calculate Ray and check which wall/face it hits
-            Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
+        // "outside" - calculate Ray and check which wall/face it hits
+        Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
 
-            touchRay = new RayLine(ray);
+        touchRay = new RayLine(ray);
 
-            Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
-            if (collisionWithNearestFace.isPresent()) {
-                PointOnFace pointedFace = collisionWithNearestFace.get();
-                if(pointedFace.face.painting == null){
-                    if (! paintingCollection.isEmpty()) {
-                        Texture randomTexture = paintingCollection.getRandomTexture();
-                        pointedFace.face.addPainting(randomTexture.textureName, randomTexture.textureID);
-                    }
+        Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
+        if (collisionWithNearestFace.isPresent()) {
+            PointOnFace pointedFace = collisionWithNearestFace.get();
+            if(pointedFace.face.painting == null){
+                if (! paintingCollection.isEmpty()) {
+                    Texture randomTexture = paintingCollection.getRandomTexture();
+                    pointedFace.face.addPainting(randomTexture.textureName, randomTexture.textureID);
                 }
-                else{
-                    pointedFace.face.removePainting();
-                }
+            }
+            else{
+                pointedFace.face.removePainting();
             }
         }
     }
 
     public void handleTouchRelease(float normalizedX, float normalizedY) {
         this.cameraMovementVector = new Vector3D(0f,0f,0f);
+        this.rotationCtrlPressedLocation = null;
     }
 
     private Ray convertNormalized2DPointToRay(float normalizedX, float normalizedY) {
