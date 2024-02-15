@@ -166,7 +166,7 @@ public class RotationCtrl {
     public void prepareDataSource_forPositionAttribute(int aPositionLocation) {
         vertexArray.setVertexAttribPointer(0, aPositionLocation, COORDS_PER_VERTEX, 0);
 
-        GLES20.glLineWidth(5.0f);
+        GLES20.glLineWidth(40.0f);
     }
     public void startTransforming() {
         Matrix.setIdentityM(modelMatrix, 0);

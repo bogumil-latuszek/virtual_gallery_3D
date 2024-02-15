@@ -183,6 +183,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] lime_e = {60f/255f, 235f/255f, 12f/255f};
         float[] lime_f = {140f/255f, 231f/255f, 115f/255f};
         float[] red_e = {235f/255f, 12f/255f, 49f/255f};
+        float[] black = {0f,0f,0f};
         float[] red_f = {242f/255f, 66f/255f, 95f/255f};
         float[] purple_e = {190f/255f, 12f/255f, 235f/255f};
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
@@ -191,7 +192,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
 
         rotationCtrl = new RotationCtrl();
-        rotationCtrl.setEdgeColor(red_e);
+        rotationCtrl.setEdgeColor(black);
 
         movementCtrl = new MovementCtrl(new Point(0,0,0),0.3f);
 
@@ -349,9 +350,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         for(Wall wall : walls){
             wall.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
         }
-
-        blueCuboid.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
-
 //        touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
 
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
