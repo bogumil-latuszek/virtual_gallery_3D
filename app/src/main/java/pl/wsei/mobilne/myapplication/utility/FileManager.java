@@ -14,10 +14,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileManager {
-    public static String path = Environment.getExternalStorageDirectory().toString()+"/Pictures";
+    public static String path = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_DCIM).toString()+"/Camera";
+    public static boolean cameraDirExists = false;
 
+    private static void setPathToCamera(){
+        File cameraFolder = new File(path);
+        if(!cameraFolder.exists()){
+            path = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DCIM).toString();
+        }
+        cameraDirExists = true;
+    }
     public static Bitmap loadImageFromStorage(String fileName)
     {
+        if(!cameraDirExists){
+            setPathToCamera();
+        }
         try {
             File f=new File(path, fileName);
             Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(f));
@@ -34,6 +47,9 @@ public class FileManager {
     }
 
     public static void  listFiles(){
+        if(!cameraDirExists){
+            setPathToCamera();
+        }
         Log.d("Files", "Path: " + path);
         File directory = new File(path);
         File[] files = directory.listFiles();
@@ -45,6 +61,9 @@ public class FileManager {
     }
 
     public static ArrayList<File> getAllImageFiles(){
+        if(!cameraDirExists){
+            setPathToCamera();
+        }
         File directory = new File(path);
         ArrayList<File> imageFiles = new ArrayList<>();
         File[] files = directory.listFiles();
@@ -71,6 +90,9 @@ public class FileManager {
     }
 
     public static void saveImageToStorage(Bitmap bitmapImage, Context context, String fileName){
+        if(!cameraDirExists){
+            setPathToCamera();
+        }
         File directory = new File(path);
         File mypath=new File(directory,fileName);
         FileOutputStream fos = null;

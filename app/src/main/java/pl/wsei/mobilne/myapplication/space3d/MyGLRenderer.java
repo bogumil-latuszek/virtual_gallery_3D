@@ -146,7 +146,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 
-        PaintingCollection.addSomePicturesFromResourcesToFiles(appContext);
+        //PaintingCollection.addSomePicturesFromResourcesToFiles(appContext);
 
         viewRotationMatrix = new float[16];
         Matrix.setIdentityM(viewRotationMatrix, 0);
