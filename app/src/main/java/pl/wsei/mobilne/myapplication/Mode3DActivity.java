@@ -1,8 +1,13 @@
 package pl.wsei.mobilne.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +22,14 @@ import pl.wsei.mobilne.myapplication.space3d.MyGLRenderer;
 public class Mode3DActivity extends AppCompatActivity {
     private GLSurfaceView gLView;
     private MyGLRenderer glRenderer;
+    private static final int PERMISSION_REQ_CODE = 100;
+    private String whyNeedPermission = "Application needs access to your Pictures to let you place them on walls of Virtual Gallery";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        requestImagesPermission();  // <---- TO !!!
 
         // get intent
         Intent intent = getIntent();
@@ -85,4 +94,44 @@ public class Mode3DActivity extends AppCompatActivity {
         });
         setContentView(gLView);
     }
+
+    private void requestImagesPermission() {
+        if (ContextCompat.checkSelfPermission(Mode3DActivity.this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Mode3DActivity.this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(whyNeedPermission)
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // nothing to do
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(Mode3DActivity.this,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSION_REQ_CODE);
+            }
+        }
+        else {
+            // nothing to do - PERMISSION_GRANTED
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQ_CODE:
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // Now, reading from Pictures storage will work
+//                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }

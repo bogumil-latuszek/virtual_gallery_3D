@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileManager {
-    public static String path = Environment.getExternalStoragePublicDirectory(
-            Environment.DIRECTORY_DCIM).toString()+"/Camera";
+    //    public static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString()+"/Camera";
+    public static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
     public static boolean cameraDirExists = false;
 
     private static void setPathToCamera(){
@@ -78,13 +78,17 @@ public class FileManager {
         return imageFiles;
     }
     public static boolean isImageType(String fileName){
-        int fileNameLength = fileName.length();
+        final String[] imageFileExtensions = new String[] {
+                "jpg",
+                "png",
+                "gif",
+                "jpeg"
+        };
 
-        if(fileName.charAt(fileNameLength-3)=='p'&&fileName.charAt(fileNameLength-2)=='n'&&fileName.charAt(fileNameLength-1)=='g'){
-            return  true;
-        }
-        else if (fileName.charAt(fileNameLength-3)=='j'&&fileName.charAt(fileNameLength-2)=='p'&&fileName.charAt(fileNameLength-1)=='g') {
-            return  true;
+        for (String extension: imageFileExtensions) {
+            if (fileName.toLowerCase().endsWith(extension)) {
+                return true;
+            }
         }
         return false;
     }
