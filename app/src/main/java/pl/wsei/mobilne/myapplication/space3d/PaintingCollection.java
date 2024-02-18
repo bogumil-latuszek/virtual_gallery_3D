@@ -70,24 +70,4 @@ public class PaintingCollection {
         }
         return imageNotFoundID;
     }
-    public static void addSomePicturesFromResourcesToFiles(Context context){
-        Resources res = context.getResources();
-        int lionId = R.drawable.lion;
-        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
-        FileManager.saveImageToStorage(lionBitmap, context, "lion.jpg");
-
-        int fog_forestId = R.drawable.fog_forest;
-        Bitmap fog_forestBitmap = BitmapFactory.decodeResource(res, fog_forestId);
-        FileManager.saveImageToStorage(fog_forestBitmap, context, "fog_forest.jpg");
-
-        int mountain_lakeId = R.drawable.mountain_lake;
-        Bitmap mountain_lakeBitmap = BitmapFactory.decodeResource(res, mountain_lakeId);
-        FileManager.saveImageToStorage(mountain_lakeBitmap, context, "mountain_lake.jpg");
-
-        int sunriseId = R.drawable.sunrise;
-        Bitmap sunriseBitmap = BitmapFactory.decodeResource(res, sunriseId);
-        FileManager.saveImageToStorage(sunriseBitmap, context, "sunrise.jpg");
-
-
-    }
 }
