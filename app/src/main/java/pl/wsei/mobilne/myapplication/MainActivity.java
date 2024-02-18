@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
+import java.util.List;
 
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
 import pl.wsei.mobilne.myapplication.database.DbmWall;
@@ -26,26 +27,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-
-        //gLView = new MyGLSurfaceView(this);
-        //setContentView(gLView);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.mRecyclerView);
 
+        dbHelper = new DatabaseHelper(getApplicationContext());
+        this.database = dbHelper.getWritableDatabase();
+
         int columnCount = 10;
         SetUpCellModels(10,columnCount);
 
         adapter = new Cell_RecyclerViewAdapter(this, cellModels, this);
         recyclerView.setAdapter(adapter);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
-
-        dbHelper = new DatabaseHelper(getApplicationContext());
-        this.database = dbHelper.getWritableDatabase();
     }
 
     public void ChangeModeTo3D(View v){
@@ -66,10 +62,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     private void SetUpCellModels(int rowCount, int columnCount){
+        // build 2D grid
         for(int i = 0; i < rowCount; i++){
             for (int j = 0; j< columnCount; j++){
                 cellModels.add(new CellModel(i, j, R.drawable.empty_image));
             }
+        }
+        // restore 2D walls from DB
+        List<DbmWall> wallsLoaded = DbmWall.getAll(database);
+        for (int i = 0; i < wallsLoaded.size(); i++) {
+            DbmWall dbmWallNext = wallsLoaded.get(i);
+            int xPosition = (int) dbmWallNext.getX();
+            int zPosition = (int) dbmWallNext.getZ();
+            int indexAtArray = zPosition * columnCount + xPosition;
+            CellModel cellModel = cellModels.get(indexAtArray);
+            cellModel.setImage(R.drawable.wall);
         }
     }
 
