@@ -53,7 +53,8 @@ public class FileManager {
         File directory = new File(path);
         File[] files = directory.listFiles();
         Log.d("Files", "Size: "+ files.length);
-        for (int i = 0; i < files.length; i++)
+        int maxFilesToLoad = (files.length < 10) ? files.length : 10;
+        for (int i = 0; i < maxFilesToLoad; i++)
         {
             Log.d("Files", "FileName:" + files[i].getName());
         }
