@@ -9,8 +9,6 @@ import android.content.pm.ActivityInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 import pl.wsei.mobilne.myapplication.database.DatabaseHelper;
@@ -98,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         else{
             cellModel.setImage(R.drawable.empty_image);
         }
-        Toast.makeText(getApplicationContext(), "działa"+position, Toast.LENGTH_SHORT).show();
         adapter.notifyItemChanged(position);
     }
 
