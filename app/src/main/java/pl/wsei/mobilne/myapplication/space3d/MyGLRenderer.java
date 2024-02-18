@@ -517,7 +517,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             PointOnFace pointedFace = collisionWithNearestFace.get();
             if(pointedFace.face.painting == null){
                 if (! paintingCollection.isEmpty()) {
-                    Texture randomTexture = paintingCollection.getRandomTexture();
+                    Texture randomTexture = paintingCollection.getNextTexture();
                     pointedFace.face.addPainting(randomTexture.textureName, randomTexture.textureID);
                 }
             }

@@ -18,6 +18,7 @@ import pl.wsei.mobilne.myapplication.utility.FileManager;
 
 public class PaintingCollection {
     private Context appContext;
+    private int nextTextureIdx = 0;
     private ArrayList<Integer> textureIDs;
     private Map<String, Integer> texturesCache; // filename --> textureId
     private int imageNotFoundID;
@@ -46,16 +47,17 @@ public class PaintingCollection {
         return texturesCache.isEmpty();
     }
 
-    public Texture getRandomTexture(){
-        Set<String> keys = texturesCache.keySet();
+    public Texture getNextTexture(){
+        Set<String> textureNamesSet = texturesCache.keySet();
 
-        ArrayList<String> keysList = new ArrayList<>(keys);
-        // Shuffling the list
-        Collections.shuffle(keysList);
-        String randomKey = keysList.get(0);
+        ArrayList<String> textureNames = new ArrayList<>(textureNamesSet);
+        int textureCount = textureNames.size();
+        String nextTextureName = textureNames.get(nextTextureIdx);
+        nextTextureIdx = (nextTextureIdx + 1) % textureCount;
 
-        Integer randomValue = texturesCache.get(randomKey);
-        Texture randomTexture = new Texture(randomKey, randomValue);
+        Integer nextTextureID = texturesCache.get(nextTextureName);
+        Texture randomTexture = new Texture(nextTextureName, nextTextureID);
+
         return randomTexture;
     }
     public int getTextureID(String textureName){
