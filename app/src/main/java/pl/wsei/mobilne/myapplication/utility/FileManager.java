@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileManager {
-    //    public static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString()+"/Camera";
-    public static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+    public static String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString()+"/Camera";
     public static boolean cameraDirExists = false;
 
     private static void setPathToCamera(){
