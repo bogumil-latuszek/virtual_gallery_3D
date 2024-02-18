@@ -1,7 +1,6 @@
 package pl.wsei.mobilne.myapplication.space3d;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -11,10 +10,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.utility.FileManager;
@@ -50,7 +47,6 @@ public class PaintingCollection {
     }
 
     public Texture getRandomTexture(){
-        //int randomIndex = ThreadLocalRandom.current().nextInt(0, textureIDs.size());
         Set<String> keys = texturesCache.keySet();
 
         ArrayList<String> keysList = new ArrayList<>(keys);
@@ -58,7 +54,6 @@ public class PaintingCollection {
         Collections.shuffle(keysList);
         String randomKey = keysList.get(0);
 
-//        String randomKey = keys.iterator().next(); //apparently this returns random element
         Integer randomValue = texturesCache.get(randomKey);
         Texture randomTexture = new Texture(randomKey, randomValue);
         return randomTexture;
