@@ -81,12 +81,45 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     }
 
     public void SaveWalls(View v) {
-        DbmWall.emptyTable(database);
-        for (CellModel wall2D: cellModels) {
-            if (! wall2D.isEmpty()) {
-                DbmWall dbmWall = new DbmWall(0, (float) wall2D.columnPosition, (float)wall2D.rowPosition,null,null,null,null);
-                dbmWall.add(database);
+        //najpierw zdobądź listę walls z view
+        List<CellModel> wallsInCells = new ArrayList<>();
+        for (CellModel cell: cellModels) {
+            if(!cell.isEmpty()){
+                wallsInCells.add(cell);
             }
+        }
+        //zdobądz liste walls z database
+        List<DbmWall> wallsLoadedFromDb = DbmWall.getAll(database);
+
+        //lista toBeAdded = suma walls z view których nie ma w database(manualnie dodane przez usera)
+        // oraz tych z database które są z view (niezmienione przez usera)
+        List<DbmWall> wallsToBeAdded = new ArrayList<>();
+
+        for(int i = 0; i<wallsInCells.size(); i++) {
+            CellModel wallInCell = wallsInCells.get(i);
+            boolean wallInCellIsNew = true;
+            float wallInCellX = (float)wallInCell.columnPosition;
+            float wallInCellZ = (float)wallInCell.rowPosition;
+            for (int j = 0; j < wallsLoadedFromDb.size(); j++) {
+                DbmWall wallLoaded = wallsLoadedFromDb.get(j);
+                float wallLoadedX = wallLoaded.getX();
+                float wallLoadedZ = wallLoaded.getZ();
+                if (wallLoadedX == wallInCellX && wallLoadedZ == wallInCellZ) {
+                    //if a wall in db already exists in this position, we want to keep the one in db
+                    wallsToBeAdded.add(wallLoaded);
+                    wallInCellIsNew = false;
+                }
+            }
+            if(wallInCellIsNew){
+                wallsToBeAdded.add( new DbmWall(0,wallInCellX, wallInCellZ,null,null,null,null) );
+            }
+        }
+        //wyczyść stary table
+        DbmWall.emptyTable(database);
+
+        //dodaj każdą pozycje z toBeAdded
+        for (DbmWall wallToAdd: wallsToBeAdded){
+            wallToAdd.add(database);
         }
     }
 
