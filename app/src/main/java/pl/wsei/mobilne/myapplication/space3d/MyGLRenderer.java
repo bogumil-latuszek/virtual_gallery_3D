@@ -241,28 +241,6 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             newWall.setFaceOpacity(0.8f);
             walls.add(newWall);
         }
-
-        //***********************************************************
-        //its verified onSurfaceCreated is being executed twice
-//        Resources res = appContext.getResources();
-//        int lionId = R.drawable.lion;
-//        Bitmap lionBitmap = BitmapFactory.decodeResource(res, lionId);
-//
-//        Log.d("listing files before adding lion", "listing files before adding lion");
-//        FileManager.listFiles();
-//        FileManager.saveImageToStorage(lionBitmap, appContext, "mediocre_lion.png");
-//
-//        Log.d("listing files after adding lion", "listing files after adding lion");
-//        FileManager.listFiles();
-//        ArrayList<File> imageFiles = FileManager.getAllImageFiles();
-//        for (File imageFile: imageFiles) {
-//            Log.d("imageFile", imageFile.getName());
-//        }
-//        Bitmap lionBitmapLoaded = FileManager.loadImageFromStorage("ok_lion.png");
-//        int textureID = TextureHelper.loadTexture(lionBitmapLoaded);
-//        walls.get(0).SetPainting(textureID);//will crash the app if walls is empty
-        //***********************************************************
-
     }
 
     @Override

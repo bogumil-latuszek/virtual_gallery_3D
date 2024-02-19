@@ -42,21 +42,6 @@ public class FileManager {
         }
     }
 
-    public static void  listFiles(){
-        if(!cameraDirExists){
-            setPathToCamera();
-        }
-        Log.d("Files", "Path: " + path);
-        File directory = new File(path);
-        File[] files = directory.listFiles();
-        Log.d("Files", "Size: "+ files.length);
-        int maxFilesToLoad = (files.length < 10) ? files.length : 10;
-        for (int i = 0; i < maxFilesToLoad; i++)
-        {
-            Log.d("Files", "FileName:" + files[i].getName());
-        }
-    }
-
     public static ArrayList<File> getAllImageFiles(){
         if(!cameraDirExists){
             setPathToCamera();
@@ -64,7 +49,8 @@ public class FileManager {
         File directory = new File(path);
         ArrayList<File> imageFiles = new ArrayList<>();
         File[] files = directory.listFiles();
-        for (int i = 0; i < files.length; i++)
+        int maxFilesToLoad = (files.length < 10) ? files.length : 10;
+        for (int i = 0; i < maxFilesToLoad; i++)
         {
             String fileName = files[i].getName();
             if(isImageType(fileName)){
