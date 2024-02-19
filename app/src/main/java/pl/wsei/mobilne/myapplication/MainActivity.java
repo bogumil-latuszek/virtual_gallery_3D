@@ -1,11 +1,16 @@
 package pl.wsei.mobilne.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
     private DatabaseHelper dbHelper;
     ArrayList<CellModel> cellModels = new ArrayList<>();
 
-    //int[] images = {R.drawable.ic_alanine};
+    private static final int PERMISSION_REQ_CODE = 100;
+    private String whyNeedPermission = "Application needs access to your Pictures to let you place them on walls of Virtual Gallery";
 
     Cell_RecyclerViewAdapter adapter;
     @Override
@@ -42,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         adapter = new Cell_RecyclerViewAdapter(this, cellModels, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, columnCount));
+
+        requestImagesPermission();
     }
 
     public void ChangeModeTo3D(View v){
@@ -139,12 +147,43 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         adapter.notifyItemChanged(position);
     }
 
-    /*public void ChangeImage(View w){
-        int modelID = w.getId();
-        Log.d("myTag", "modelID: "+modelID);
-        int imageID = R.drawable.ic_awesome;
-        Log.d("myTag", "imageID: "+imageID);
-        adapter.ChangeImg(modelID, imageID);
-    }*/
+    private void requestImagesPermission() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(whyNeedPermission)
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // nothing to do
+                            }
+                        })
+                        .create().show();
+            } else {
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSION_REQ_CODE);
+            }
+        }
+        else {
+            // nothing to do - PERMISSION_GRANTED
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQ_CODE:
+//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // Now, reading from Pictures storage will work
+//                }
+                break;
+            default:
+                break;
+        }
+    }
 
 }
