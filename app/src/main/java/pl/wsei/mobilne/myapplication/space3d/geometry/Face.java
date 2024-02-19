@@ -42,6 +42,7 @@ public class Face {
 
     public void removePainting(){
         painting = null;
+        updateWall.UpdateWall(null, this.faceID);
     }
     public void addPainting(int textureID){
         painting = new Painting(plane.point,0.5f, 0.5f);
