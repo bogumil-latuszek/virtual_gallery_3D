@@ -1,7 +1,13 @@
-common problems:
+## how to install:
+1. download .apk file from releases
+2. find it in file system (it should be in Downloads), then klick on it and choose "install"
+3. agree to installation and wait until installation finishes
 
-> can't add any pictures
-after booting the app for the first time and going into 3d mode the app should ask you for permission to use photos stored in your device.
+
+## common problems:
+
+### can't add any pictures
+after booting the app for the first time and going into 3D mode the app should ask you for permission to use photos stored in your device.
 If That didn't happen, you can grant this permission manually:
 1. make sure to close the app
 2. navigate to settings > V-Gallery > permissions > not allowed > choose "allow" for photos and videos permission
