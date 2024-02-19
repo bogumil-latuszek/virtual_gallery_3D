@@ -1,6 +1,6 @@
 ## how to install:
 1. download .apk file from releases
-2. find it in file system (it should be in Downloads), then klick on it and choose "install"
+2. find it in file system (it should be in Downloads), then click on it and choose "install"
 3. agree to installation and wait until installation finishes
 
 
