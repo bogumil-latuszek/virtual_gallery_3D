@@ -1,0 +1,68 @@
+@startuml Prepare OpenGL
+actor       Android       as Android1 #green
+
+Android1 -> MyGLRenderer: new
+activate MyGLRenderer
+group Load OpenGL shaders
+MyGLRenderer -> TextResourceReader: readTextFileFromResource(color_vertex_shader)
+note over TextResourceReader
+uniform mat4 u_Matrix;
+attribute vec4 a_Position;
+void main()
+{
+    gl_Position = u_Matrix * a_Position;
+}
+end note
+TextResourceReader -> MyGLRenderer: vertexShaderCode
+MyGLRenderer -> TextResourceReader: readTextFileFromResource(color_fragment_shader)
+note over TextResourceReader #aqua
+uniform vec4 u_Color;
+void main()
+{
+    gl_FragColor = u_Color;
+}
+end note
+TextResourceReader -> MyGLRenderer: fragmentShaderCode
+
+end
+
+Android1 -> MyGLRenderer: onSurfaceCreated
+
+group Compile shaders to be run at GPU
+MyGLRenderer -> ShaderHelper: buildProgram(vertexShaderCode, fragmentShaderCode)
+
+group Compile Vertex shader
+ShaderHelper -> GLES20: glCreateShader
+ShaderHelper -> GLES20: glShaderSource
+ShaderHelper -> GLES20: glCompileShader
+GLES20 -> ShaderHelper: vertexShaderId
+end
+group Compile Fragment shader
+GLES20 -> ShaderHelper: fragmentShaderId
+end
+
+group Link OpenGL Program
+ShaderHelper -> GLES20: glCreateProgram
+ShaderHelper -> GLES20: glAttachShader(vertexShaderId)
+ShaderHelper -> GLES20: glAttachShader(fragmentShaderId)
+ShaderHelper -> GLES20: glLinkProgram
+participant GPU as GPU #99FF99
+GLES20 -> GPU: programToRun
+GLES20 -> ShaderHelper: programObjectId
+end
+
+ShaderHelper -> MyGLRenderer: programObjectId
+
+end
+
+group Retrieve GPU "address" of shader variables
+
+MyGLRenderer -> GLES20: glGetAttribLocation(programObjectId, a_Position)
+GPU -> MyGLRenderer: aPositionLocation
+MyGLRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Matrix)
+GPU -> MyGLRenderer: uMatrixLocation
+
+MyGLRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Color)
+GPU -> MyGLRenderer: uColorLocation
+end
+@enduml

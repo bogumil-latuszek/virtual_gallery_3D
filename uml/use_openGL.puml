@@ -1,0 +1,60 @@
+@startuml Prepare OpenGL
+actor       Android       as Android1 #green
+participant MyGLRenderer as MyGLRenderer
+participant Cuboid as Cuboid
+participant VertexArray as VertexArray
+participant GLES20 as GLES20
+participant GPU as GPU #99FF99
+
+Android1 -> MyGLRenderer: onSurfaceCreated
+activate MyGLRenderer
+MyGLRenderer -> Cuboid: rebuild from DB info of given wall
+Cuboid -> VertexArray: take 8 vertices (float x,y,z)
+VertexArray -> VertexArray: allocate byte buffer for vertices
+VertexArray -> VertexArray: store vertices in buffer
+
+Cuboid -> Cuboid: take 36 indexes of vertices
+note right Cuboid
+OpenGL ES draws faces
+composed out of triangles.
+Cuboid has 6 faces
+Each has 2 triangles of 3 vertices
+end note
+Cuboid -> Cuboid: allocate byte buffer for vertex indexes
+Cuboid -> Cuboid: store vertex indexes in buffer
+
+Android1 -> MyGLRenderer: onDrawFrame
+
+
+MyGLRenderer -> GLES20: glUseProgram(programObjectId)
+GLES20 -> GPU: select programToRun
+
+MyGLRenderer -> Cuboid: draw(aPositionLocation,\n          uColorLocation,\n          uMatrixLocation,\n          viewProjectionMatrix)
+group prepare DataSource for "attribute" variable of shader
+Cuboid -> VertexArray: setVertexAttribPointer(aPositionLocation)
+VertexArray -> GLES20: glVertexAttribPointer(aPositionLocation,\n                                    vertices buffer)
+note over GLES20
+link vertices buffer
+as input source for 3D shape
+calculation inside GPU shader
+end note
+VertexArray -> GLES20: glEnableVertexAttribArray(aPositionLocation)
+GLES20 -> GPU: pass vertices buffer for aPositionLocation
+end
+
+group set "uniform" Color variable of shader
+Cuboid -> Cuboid: extract R,G,B of Cuboid
+Cuboid -> GLES20: glUniform4f(uColorLocation, R, G, B)
+GLES20 -> GPU: set current "active" color
+end
+
+group set "uniform" Matrix variable of shader
+Cuboid -> Cuboid: multiply world viewProjectionMatrix\nwith Cuboid internal model Matrix
+Cuboid -> GLES20: glUniformMatrix4fv(uMatrixLocation, modelViewProjectionMatrix)
+GLES20 -> GPU: set current Matrix for 3D shapes calculation
+end
+
+Cuboid -> GLES20: glDrawElements(GL_TRIANGLES, 36 indexes, vertexIndexesBuffer)
+GLES20 -> GPU: pass indexes of vertices to build triangles from
+GLES20 -> GPU: draw triangles of Cuboid faces
+@enduml
