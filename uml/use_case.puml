@@ -5,11 +5,10 @@ left to right direction
 
 :User: as u
 
-u ---> (Start)
-u --> (dodaj/usuń scianę)
+u --> (dodaj/usuń scianę w widoku 2D)
 u ---> (zmień widok na 2D/3D)
-u --> (dodaj/usuń obraz \n na scianie)
-u ---> (zapisz układ scian)
+u --> (dodaj/usuń obraz \n na scianie w widoku 3D)
+u ---> (zapisz układ scian w widoku 2D)
 u --> (porusz się w przestrzeni 3D)
 u ---> (obróć się w przestrzeni 3D)
 
