@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+
+:User: as u
+
+u ---> (Start)
+u --> (dodaj/usuń scianę)
+u ---> (zmień widok na 2D/3D)
+u --> (dodaj/usuń obraz \n na scianie)
+u ---> (zapisz układ scian)
+u --> (porusz się w przestrzeni 3D)
+u ---> (obróć się w przestrzeni 3D)
+
+@enduml
