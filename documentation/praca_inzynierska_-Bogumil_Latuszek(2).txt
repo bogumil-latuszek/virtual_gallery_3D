@@ -1,0 +1,190 @@
+
+
+WYØSZA SZKO£A EKONOMII 
+I INFORMATYKI W KRAKOWIE
+
+
+Bogumi≥ Latuszek
+nr albumu 13132
+PROJEKT I IMPLEMENTACJA APLIKACJI MOBILNEJ ÑWIRTUALNA GALERIAî   KOØYSTAJ•CEJ  Z  BIBLOTEKI  OPENGL ES
+
+
+
+
+
+
+
+Praca inøynierska 
+napisana pod kierunkiem
+Prof. Jana Werewki
+
+KrakÛw 2023 r.
+1. Streszczenie
+HAS£O PRZYCI•GAJ•CE UWAG 
+KONTEKST BIZNESOWY - KR”TKI
+STRESZCZENIE ROZDZIA£”W
+S≥owa kluczowe
+Aplikacja mobilna, Android, Java, Open GL 
+
+Abstract
+
+Keywords
+Mobile Application, Android, Java, Open GL 
+Spis treúci
+1. Streszczenie	1
+2. WstÍp	4
+3. Cele i za≥oøenia projektowe	5
+3.1 Cele projektowe	5
+3.2 Wymagania funkcjonalne i pozafunkcjonalne	5
+3.2.1 Wymagania funkcjonalne:	5
+3.2.2 Wymagania pozafunkcjonalne:	5
+3.2.3 Wymagania Techniczne	6
+3.3 Analiza profilu uøytkownika	6
+3.4 Przeglπd istniejπcych rozwiπzaÒ	6
+3.5  Wizja realizacji projektu	6
+3.5.1 Schemat dzia≥ania aplikacji - Diagramy UML	6
+3.5.2 Koncepcja wyglπdu UI aplikacji	7
+3.5.3 Zadania projektowe	7
+4. Tworzenie aplikacji mobilnych - analiza zagadnieÒ teoretycznych	7
+4.1 Android ñ najwaøniejsze cechy systemu	7
+4.2 Aplikacje mobilne ñ typy aplikacji, proces tworzenia	8
+4.2.1 Aplikacje natywne	8
+4.2.2 Aplikacje Hybrydowe	8
+4.3 JÍzyk programowania i úrodowisko programistyczne	8
+4.4 Biblioteki i frameworki	9
+4.4.1 Biblioteki	9
+4.4.2 Frameworki	10
+4.5 NarzÍdzia graficzne	10
+4.6 Testowanie aplikacji	10
+4.7 Zarzπdzanie projektem informatycznym	10
+5. Proces implementacji i dokumentacja techniczna	11
+5.1 Konfiguracja úrodowiska i implementacja architektury	11
+5.2 Etap 1ÖÖ.	11
+5.3 Etap 2Ö..	11
+5.4 Projekt graficzny aplikacji	11
+5.5 Testowanie aplikacji	11
+5.6 Dokumentacja techniczna projektu	11
+Wnioski koÒcowe	12
+Bibliografia	13
+
+2. WstÍp
+Zaczynajπc od lat X, kiedy przeciÍtny telefon przechowywa≥ kilka zdjec na tapete, po 
+czasy dzisiejsze gdzie przeciÍtny urzytkownik posiada przeciÍtnie od Y do Z zapisanych zdjÍc, nie wspominajπc o plikach w catche przeglπdarki, moøemy zaobserwowaÊ ten trend na za≥πczonym wykresie <tu wstaw wykres>, wiÍc jak widaÊ wiÍkszoúÊ osÛb  w tych czasach ma zbyt durzo zdjÍÊ øeby mÛc realistycznie zapamiÍtaÊ gdzie je zapisali,<historia aleksandra ≥urii, pamiÍÊ ktÛra nie zna≥a granic> wiÍc moim rozwiπzaniem jest pomÛc tym osobom znaleüÊ te zdjÍcia. Pomys≥ na mojπ aplikacje zrodzi≥ siÍ z zainteresowania technikami pamiÍci, takimi jak pa≥ac pamiÍci. 
+WYKRES UDZIA£U ANDROID W RYNKU TELEFON”W
+HISTORIA ROZWOJU HARDWERE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KAØDEGO Z KOMPONENT”W(pamiÍÊ, cpu, gpu)
+    ï pierwsze komputry
+    ï pierwsze stacje graficzne
+    ï pierwsze komÛrki
+HISTORIA GRAFIKI 3D KT”RA DOPROWADZI£A DO POWSTANIA OPENGL ES (TIMELINE), ROZR”ØNIENIE I R”ØNICE W ROZWOJU GRAFIKI KOMPUTEROWEJ REAL-TIME I PRERENDERED, A TAKØE WSPOMNIJ O CAD-ach  I ICH INNOWACJACH. JESZCZE ROZR”ØNIENIE OPEN-SOURCE I CLOSED-SOURCE. HISTORIA OPEN SOURCE. ZAR”WNO ANDROID JAK I OPENGL S• OPEN-SURCE. JAKIE S• BENEFITY UØYWANIA OPEN SOURCE, KOGO I DLACZEGO PRZYCI•GA OPEN SOURCE(informatycy chcπcy zdobyÊ d≥ugotrwale aktualnπ wiedzÍ, firmy chcπce byÊ niezaleøne od providerÛw.) DLACZEGO FIRMY NADUØYWAJ• ÑOPEN SOURCEî JAKO FALSE MARKETING, np. OPEN AI. 
+*kto odpowiada za implementacje standardu open gl ñ producent hardware, czy programiúci tworzπcy system operacyjny
+
+Hardware vendors, the people who make GPUs, are responsible for writing implementations of the OpenGL rendering system. Their implementations, commonly called "drivers", translate OpenGL API commands into GPU commands. If a particular piece of hardware is unable to implement all of the OpenGL specification via hardware, the hardware vendor must still provide this functionality, typically via a software-based implementation of the features missing from hardware
+ ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
+opengl is a standard, an interface, an API definition. An implementation of it is the one that provides described functionality to apps using it. One such implementation is Mesa3D†
+
+
+SILICON GRAPHICS
+(ürÛd≥o ñ wikipedia) ñ W skrÛcie SGL - firma zajmujπca siÍ produkcjπ dedykowanych maszyn do tworzenia grafiki 3d. OpenGL powsta≥ jako rozwiniÍcie cpbiblioteki wewnÍtrznej SGI o nazwie IrisGL. Wraz ze wzrostem komputerÛw osobistych ich produkt straci≥ na popularnoúci a firma og≥osi≥a bankructwo(czy aby na pewno?). Potem udostÍpnili OpenGL i utworzyli Khronos?
+POMYS£ NA APLIKACJE, GENEZA
+Od d≥ugiego czasu ciekawi≥o mnie jak dzia≥a grafika komputerowa. Postanowi≥em wybraÊ ten temat pracy aby przy okazji pisania jej znaleüÊ odpowiedzi na nurtujπce mnie pytania. Jak 
+CELE I LIMITY PRACY. JEDNOZDANIOWE OM”WIENIE ROZDZIA£”W
+Celem pracy jest zapoznanie czytelnika z aplikacjπ ÑWirtualna Galeriaî, jej dzia≥aniem, przeznaczeniem, oraz omÛwienie zagadnieÒ teoretycznych zwiπzanych z jej powstaniem i rozwojem. 
+W rozdziale 3 ÑCele projektoweî zaczniemy od omÛwienia celu do jakiego zdπøa projekt. Opowiemy teø o postawionych wymaganiach funkcjonalnych, pozafunkcjonalnych i technicznych. Przyjøymy siÍ takøe profilowi docelowego urzytkownika korzystajπcego z aplikacji. Po sprecyzowaniu opisu  ÑWirtualnej Galeriiî porÛwnamy jπ z istniejπcymi juø na rynku podobnymi rozwiπzaniami i na podstawie tej analizy pokaøemy konkurencyjnoúÊ aplikacji na obecnym rynku. NastÍpnie, przejdziemy do opisu konkretnych krokÛw jakie muszπ byÊ wykonane aby urzeczywistniÊ powstanie aplikacji. Pokaøemy schemat dzia≥ania aplikacji, koncepcjÍ wyglπdu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przysz≥ych dzia≥aÒ, podzia≥ pracy w grupie i úledzenie postÍpu.
+Rozdzia≥ 4 skupia siÍ g≥Ûwnie na zagadnieniach teoretycznych. Przyjøymy siÍ systemowi operacyjnemu na ktÛrym aplikacja bÍdzie uruchamiana ñ Android. JÍzykom programowania w ktÛrych aplikacja bÍdzie napisana ñ Java, XML. NarzÍdziom uøytym w trakcie procesu tworzenia aplikacji ñ IDE -Android Studio, systemowi kontroli wersji ñ Git, narzÍdziu w ktÛrych tworzone by≥y pliki graficzne - Krita. A takøe bibliotekom ktÛrych funkcjonalnoúÊ zosta≥a uøyta w kodzie aplikacji. Opowiemy teø o testach i zarzπdzaniu projektem.
+Rozdzia≥ 5 pokazuje etapy pracy nad projektem, zawarta jest w nim teø dokumentacja techniczna. 
+Na koÒcu pracy znajdujπ siÍ wnioski koÒcowe MOØE ZROBMY Z TEGO 6 ROZDZIA£?  i bibliografia
+
+Cele i za≥oøenia projektowe
+Poniøszy rozdzia≥ poúwiÍcony zosta≥ opisowi wymagaÒ funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu uøytkownika do ktÛrego jest on skierowany, przypadkom uøycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem uøycia poszczegÛlnych narzÍdzi i frameworkÛw.
+2.1 Cele projektowe
+Celem projektu jest opracowanie i implementacja aplikacji mobilnej umoøliwiajπcej uøytkownikowi przeglπdanie multimediÛw w nowatorski sposÛb. Aplikacja ta wykoøystuje bibliotekÍ OpenGL ES do stworzenia przestrzeni 3D w ktÛrej bÍdzie moøna umiejscowiÊ obiekty takie jak Ñúcianyî i Ñobrazyî. Ñåcianyî to szeúcioboki ktÛre  wydzielajπ przestrzeÒ, oraz s≥uøπ jako miejsca powieszenia ÑobrazÛwî czyli p≥askich czworokπtÛw wyúwietlajπcych pliki multimedialne. Uøytkownik bÍdzie mÛg≥ rozmieszczaÊ te obiekty w dowolny sposÛb, zgodnie z swoim upodobaniem, tworzπc swojπ w≥asnπ ÑWirtualnπ GaleriÍî,  ktÛra moøe teø pos≥uøyÊ jako ÑPokÛj PamiÍciî, czyli medium potrzebne do technik mnemotechnicznych.
+2.2 Wymagania funkcjonalne i pozafunkcjonalne
+2.2.1 Wymagania funkcjonalne:
+    ï moøliwoúÊ projektowania uk≥adu úcian w widoku 2D
+    ï moøliwoúÊ wizualizacji pomieszczenia w widoku 3D
+    ï moøliwoúÊ poruszania siÍ w przestrzeni 3D
+    ï automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
+    ï wieszanie obrazÛw na úcianach
+    ï zdejmowanie obrazÛw ze úcian
+2.2.2 Wymagania pozafunkcjonalne:
+    ï Prosty i Intuicyjny interfejs uøytkownika
+    ï £atwoúÊ uøycia ñ maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
+2.2.3 Wymagania Techniczne
+    ï wersje Android API: minSdk 24 targetSdk 33
+    ï aplikacja potrzebuje pozwolenia na odczytywanie zdjÍÊ uøytkownika
+    ï aplikacja wysy≥a uøytkownikowi proúbÍ o pozwolenie na odczyt zdjÍÊ z urzπdzenia. Jeúli uøytkownik wyrazi zgodÍ aplikacja pozwala na wieszanie tych zdjÍÊ na úcianach. Bez tej zgody aplikacja dzia≥a w ograniczonym zakresie - uøytkownik moøe jedynie dodawaÊ/usuwaÊ puste úciany
+2.3 Analiza profilu uøytkownika
+Aplikacja bÍdzie skierowana do:
+    ï osÛb szukajπcych nowego sposobu oglπdania swoich kolekcji zdjÍÊ, filmÛw etc.
+    ï osÛb chcπcych wyprÛbowaÊ metodÍ mnemotechnicznπ PokÛj PamiÍci nie wk≥adajπc w niπ wielkiego wysi≥ku, lub niemajπcych moøliwoúci do wyprÛbowania jej w rzeczywistoúci z powodu braku miejsca
+    ï osÛb chcπcych zaplanowaÊ dekoracjÍ wnÍtrz
+    ï osÛb pragnπcych zademonstrowaÊ znajomym swoje zdjÍcia w ciekawej formie
+2.4 Przeglπd istniejπcych rozwiπzaÒ
+Istniejπ juø aplikacje przeznaczone do projektowania Pokoi PamiÍci, lecz nie spotkaliúmy siÍ z przypadkiem gdzie taka aplikacja by≥aby dostÍpna na systemy android.
+2.5  Wizja realizacji projektu
+2.5.1 Schemat dzia≥ania aplikacji - Diagramy UML
+
+
+
+
+2.5.2 Koncepcja wyglπdu UI aplikacji
+
+2.5.3 Zadania projektowe 
+
+3. Tworzenie aplikacji mobilnych - analiza zagadnieÒ teoretycznych
+Niniejszy rozdzia≥ przedstawia najwaøniejsze zagadnienia dotyczπce projektowania aplikacji mobilnych, jak rÛwnieø zawiera opis i analizÍ jÍzykÛw, frameworkÛw i innych narzÍdzi wykorzystanych w projekcie aplikacji ÑWirtualna Galeriaî, pod wzglÍdem ich przydatnoúci w kontekúcie rozwoju projektu. 
+TEORIA GRAFIKI 3D:
+macierze
+obracanie i przekszta≥cenia obiektÛw
+p≥aszczyzny i przeciÍcie z prostymi
+wektory normalne?
+Frustum, perspektywa, przekszta≥cenia widoku
+dlaczego uøywa siÍ 4 wymiar wektora punktu Ñwî podczas obliczania perspektywy ñ moøliwoúÊ prze≥πczania miÍdzy widokami izometryczny/perspektywa
+
+3.1 Android ñ najwaøniejsze cechy systemu
+Co do samego systemu android, to jest on w stanie uruchomiÊ aplikacje napisane w jÍzyku Kotlin,Java, lub C++. Zdecydowa≥em siÍ uøyÊ w projekcie jÍzyka Java, gdyø jestem z nim najlepiej zaznajomiony. Aby chroniÊ dane systemowe i czÍúciowo zabezpieczyÊ system przed szkodliwym oprogramowaniem, kaødy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co wiÍcej Android stosuje zasadÍ najmniejszych przywilejÛw - standardowo kaøda aplikacja dostaje dostÍp tylko do zasobÛw niezbÍdnych do jej dzia≥ania. Rozdziela teø aktywnoúci i widoki ñ czyni to poprzez rozdzielenie w strukturze projektu klas aktywnoúci obs≥ugujπcych logikÍ aplikacji i prezentacjÍ aplikacji. Opis wyglπdu aplikacji definiowany jest w plikach xml. Ta separacja umoøliwa w prosty sposÛb zastosowanie MVC - wzorca architektonicznego postulujπcego rozdzielenie dostÍpu do danych aplikacji, logiki aplikacji, i czÍúci wyúwietlajπcej interfejs uøytkownika. Taka architektura wspiera tworzenie kodu, ktÛry jest ≥atwiejszy do utrzymania. 
+3.2 Aplikacje mobilne ñ typy aplikacji, proces tworzenia
+3.2.1 Aplikacje natywne
+3.2.2 Aplikacje Hybrydowe
+3.3 JÍzyk programowania i úrodowisko programistyczne
+Java - jest to jÍzyk obiektowy, to znaczy funkcje i zmienne mogπ byÊ enkapsulowane wewnπtrz klas - wydzielonych fragmentÛw kodu o ograniczonym dostÍpie. DziÍki zastosowaniu obiektowoúci uzyskujemy m.in. dostÍp do dziedziczenia klas co znacznie zwiÍksza tempo rozwoju kodu i pozwala uniknπÊ duplikacji fragmentÛw kodu. Uøycie klas i interface-Ûw pozwala na rozleg≥π specyfikacjÍ typÛw danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to jÍzyk úciúle typowiony, to znaczy wartoúci danego typu mogπ zostaÊ przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji ktÛre akceptujπ argumenty tego samego typu. Ponadto okreúlenie typu zmiennej/parametru jest jawne i nastÍpuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartoúÊ. åcis≥e typowienie umoøliwia wykrywanie b≥ÍdÛw juø na etapie pisania kodu, jeszcze przed kompilacjπ za pomocπ inteligentnych asystentÛw wchodzπcych w sk≥ad popularnych IDE (zintegrowanych úrodowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio. Jako, iø w sk≥ad funkcjonalnoúci mojego projektu wchodzi tworzenie, edytowanie i wyúwietlanie grafiki 3D zdecydowa≥em siÍ uøyÊ do tego celu biblioteki OpenGL ES ñ obok biblioteki Vulcan jednej z najpopularniejszych i najlepiej udokumentowanych bibliotek do obs≥ugi grafiki 3D na urzπdzeniach z systemem Android.
+3.4 Biblioteki i frameworki
+3.4.1 Biblioteki
+OpenGL ES - definicja obiektÛw w przestrzeni za pomocπ wektorÛw 
+WstÍp- wyjaúnienie nazywy ES, overview urzytecznoúci, oraz porÛwnanie z opengl i innymi bibliotekami graficznymi.
+https://www.khronos.org/opengles/
+
+Obiekty 3D w OpenGL ES reprezentowane sπ poprzez zbiÛr wektorÛw, kaødy wektor sk≥ada siÍ z co najmniej 3 wartoúci: po≥oøenia na osi x, y i z, przy czym iloúÊ wartoúci dla kaødego wektora w danym obiekcie musi byÊ taka sama. NajczÍúciej obiekty bÍdπ przechowywane w pamiÍci w postaci "rozwiniÍtej", to znaczy wartoúci wszystkich wektorÛw bÍdπ zapisane w jednej liúcie - przyk≥adowo obiekt sk≥adajπcy siÍ z 3 wektorÛw kaødy o 5 wartoúciach bÍdzie zapisany za pomocπ listy piÍtnastu wartoúci float. Jednoczeúnie kaødy obiekt posiada teø jednπ zmiennπ okreúlajπcπ z ilu wartoúci sk≥ada siÍ jeden wektor tego obiektu, co potrzebne jest do "z≥oøenia" i wyúwietlenia sk≥adowych obiektu. 
+Uøycie wielowπtkowego procesora graficznego do zastosowania shaderÛw 
+OpenGL jest zaprojektowany do uøycia go razem z GPU, ktÛry standardowo obs≥uguje wiele wπtkÛw rÛwnoczeúnie - umoøliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorÛw o wiele szybciej niø obliczanie ich wewnπtrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocπ macierzy
+Macierze to dwu-wymiarowe tablice wartoúci numerycznych, opisywane jako m x n gdzie m to iloúÊ wierszy a n iloúÊ kolumn. Mnoøenie macierzy - m jednej macierzy musi byÊ rÛwne n w drugiej macierzy, albo innymi s≥owy: iloúÊ wierszy w jednej mnoøonej macierzy musi rÛwnaÊ siÍ iloúci kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnoøπc macierze razy wektor otrzymujemy wektor. Moøemy opisaÊ operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zw≥aszcza ze wzglÍdu na to, øe moøemy po≥πczyÊ instrukcje zawarte w kilku macierzach w jednπ sumarycznπ macierz poprzez mnoøenie tych macierzy ze sobπ. Takπ sumarycznπ macierz wystarczy obliczyÊ tylko raz, po czym moøna na≥oøyÊ jπ na wiele wektorÛw na raz co znacznie zmniejsza iloúÊ potrzebnych do wykonania obliczeÒ. 
+3.4.2 Frameworki
+3.5 NarzÍdzia graficzne
+Do wykonania obiektÛw graficznych takich jak min. logo aplikacji uøy≥em darmowej aplikacji open-source Krita
+3.6 Testowanie aplikacji
+3.7 Zarzπdzanie projektem informatycznym
+Kontrola Wersji ñ Git 
+Innym narzÍdziem ktÛre zosta≥o wykorzystane w projekcie jest git ktÛry jest jednym z najpopularniejszych systemÛw kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu ürÛd≥owego, a g≥Ûwnymi zaletemi uøycia systemu kontroli wersji jest zmniejszenie ryzyka zwiπzanego z wprowadzaniem zmian do projektu, oraz rÛwnoczesne wraz z wprowadzaniem zmian wytwarzanie historii rozwoju w ktÛrej zawarte sπ informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia b≥Ídu w dzia≥aniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny b≥Ídu i naprawÍ.
+4. Proces implementacji i dokumentacja techniczna
+
+4.1 Konfiguracja úrodowiska i implementacja architektury
+4.2 Etap 1ÖÖ.
+
+4.3 Etap 2Ö..
+
+4.4 Projekt graficzny aplikacji
+
+4.5 Testowanie aplikacji
+
+
+4.6 Dokumentacja techniczna projektu
+
+
+Wnioski koÒcowe
+
+Bibliografia
+    1. "OpenGL ES 3.0 Programming Guide ñ 2014, Ginsburg D, Purnomo B"
+èrÛd≥a internetowe
+    1. oficjalna dokumentacja systemu android:  https://developer.android.com/guide
+    2. oficjalna dokumentacja android opengl ES:  https://www.opengl.org/Documentation/Specs.html
+Spis rysunkÛw
