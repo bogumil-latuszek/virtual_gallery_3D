@@ -69,14 +69,64 @@ Bibliografia	13
 
 2. Wstêp
 Zaczynaj¹c od lat X, kiedy przeciêtny telefon przechowywa³ kilka zdjec na tapete, po 
-czasy dzisiejsze gdzie przeciêtny urzytkownik posiada przeciêtnie od Y do Z zapisanych zdjêc, nie wspominaj¹c o plikach w catche przegl¹darki, mo¿emy zaobserwowaæ ten trend na za³¹czonym wykresie <tu wstaw wykres>, wiêc jak widaæ wiêkszoœæ osób  w tych czasach ma zbyt durzo zdjêæ ¿eby móc realistycznie zapamiêtaæ gdzie je zapisali,<historia aleksandra ³urii, pamiêæ która nie zna³a granic> wiêc moim rozwi¹zaniem jest pomóc tym osobom znaleŸæ te zdjêcia. Pomys³ na moj¹ aplikacje zrodzi³ siê z zainteresowania technikami pamiêci, takimi jak pa³ac pamiêci. 
+czasy dzisiejsze gdzie przeciêtny urzytkownik posiada przeciêtnie od Y do Z zapisanych zdjêc, nie wspominaj¹c o plikach w catche przegl¹darki, mo¿emy zaobserwowaæ ten trend na za³¹czonym wykresie <tu wstaw wykres>, wiêc jak widaæ wiêkszoœæ osób  w tych czasach ma zbyt durzo zdjêæ ¿eby móc realistycznie zapamiêtaæ gdzie je zapisali,<historia aleksandra urii, pamiêæ która nie zna³a granic> wiêc moim rozwi¹zaniem jest pomóc tym osobom znaleŸæ te zdjêcia. Pomys³ na moj¹ aplikacje zrodzi³ siê z zainteresowania technikami pamiêci, takimi jak pa³ac pamiêci. 
 WYKRES UDZIA£U ANDROID W RYNKU TELEFONÓW
-HISTORIA ROZWOJU HARDWERE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KA¯DEGO Z KOMPONENTÓW(pamiêæ, cpu, gpu)
-    • pierwsze komputry
+HISTORIA ROZWOJU HARDWEARE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KA¯DEGO Z KOMPONENTÓW(pamiêæ, cpu, gpu)
+    • pierwsze komputery
     • pierwsze stacje graficzne
     • pierwsze komórki
 HISTORIA GRAFIKI 3D KTÓRA DOPROWADZI£A DO POWSTANIA OPENGL ES (TIMELINE), ROZRÓ¯NIENIE I RÓ¯NICE W ROZWOJU GRAFIKI KOMPUTEROWEJ REAL-TIME I PRERENDERED, A TAK¯E WSPOMNIJ O CAD-ach  I ICH INNOWACJACH. JESZCZE ROZRÓ¯NIENIE OPEN-SOURCE I CLOSED-SOURCE. HISTORIA OPEN SOURCE. ZARÓWNO ANDROID JAK I OPENGL S¥ OPEN-SURCE. JAKIE S¥ BENEFITY U¯YWANIA OPEN SOURCE, KOGO I DLACZEGO PRZYCI¥GA OPEN SOURCE(informatycy chc¹cy zdobyæ d³ugotrwale aktualn¹ wiedzê, firmy chc¹ce byæ niezale¿ne od providerów.) DLACZEGO FIRMY NADU¯YWAJ¥ „OPEN SOURCE” JAKO FALSE MARKETING, np. OPEN AI. 
 *kto odpowiada za implementacje standardu open gl – producent hardware, czy programiœci tworz¹cy system operacyjny
+
+https://marketsplash.com/statystyki-androida/  - st¹d wykres udzia³u Androida w rynku OS w 2023r
+
+Pocz¹tki Androida siêgaj¹ 2003 roku, kiedy to powsta³ jako przedsiêwziêcie Android Inc., amerykañskiej firmy technologicznej, której celem by³o stworzenie systemu operacyjnego dla aparatów cyfrowych. 1
+Jednak do 2004 roku projekt przeszed³ znacz¹c¹ transformacjê, przenosz¹c swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegaj¹c jego potencja³, Google Inc., amerykañski gigant wyszukiwarek internetowych, przej¹³ Android Inc. w 2005 roku. 1
+Nastêpnie zespó³ Android w Google podj¹³ strategiczn¹ decyzjê o zbudowaniu swojego projektu na Linuksie, systemie operacyjnym typu open source szeroko stosowanym w komputerach osobistych.1
+Pierwsze komercyjne wydanie Androida mia³o miejsce w 2008 roku.11
+Google Play, pocz¹tkowo uruchomiony w 2008 roku jako Android Market, sta³ siê wiod¹cym sklepem z aplikacjami na ca³ym œwiecie zarówno pod wzglêdem dostêpnoœci aplikacji, jak i liczby pobrañ.12
+W 2012 roku Google przeszed³ rebranding, konsoliduj¹c swoje aplikacje na Androida pod nazw¹ Google Play, daj¹c pocz¹tek znanemu Sklepowi Google Play, jaki znamy dzisiaj.12
+Opracowany przez Andy'ego Rubina jako realna alternatywa open-source dla iPhone'a i Palm OS, Android szybko zyska³ popularnoœæ jako preferowany system operacyjny dla wielu producentów telefonów komórkowych na pocz¹tku 2010 roku. 4
+
+https://www.cadblog.pl/historia-systemow-cad/
+
+PRONTO - prawdopodobnie pierwszy przyk³ad programu typu CAD w historii. Na podstawie danych wejœciowych zawieraj¹cych specyfikacje kszta³tów, ich wymiary itp. generowa³ instrukcje dla maszyn zajmuj¹cych siê wytwarzaniem czêœci np. maszyn CNC. 
+Zarówno dane wejœciowe jak i wyjœciowe opisywa³y kszta³ty 2D, dlatego wykorzystanie programu ogranicza³o siê do tworzenia profili ram itp. Warto zaznaczyæ ¿e PRONTO by³ dostêpny tylko na systemach komputerowych General Electric (GE)
+
+Sketchpad - stworzony w latach 60-tych przez Ivana Sutherlanda program CAD. Wprowadzi³ innowacje takie jak wprowadzanie danych przez pióro œwietlne, oraz instancjonowanie obiektów. Program Sketchpad by³ zaprojektowany i pozostaje silnie zwi¹zany z komputerem TX-2
+
+AutoCAD - jeden z pierwszych programów CAD dostêpnych na wielu platformach. Stworzony w 1982 przez firmê Autodesk, warto jednak zaznaczyæ ¿e z pocz¹tku dostêpny by³ tylko na systemie operacyjnym CP/M 
+To w³aœnie w latach 60. na MIT powsta³ „Sketchpad” (z ang. szkicownik) – pierwszy profesjonalny system wspomagaj¹cy projektowanie. Jego autor, Ivan Sutherland, u¿y³ systemu komputerowego, który w nowatorski sposób wykorzystywa³ pióro œwietlne jako narzêdzie do wprowadzania danych bezpoœrednio na ekran monitora
+Ale, jak wspomnia³em na samym pocz¹tku, pierwszym by³ system do cyfrowego programowania maszyn obróbczych „PRONTO”, wynaleziony (to dobre okreœlenie) w 1957 roku przez dr Patricka J. Hanratty’ego.
+programy CAD w znacznym stopniu usprawni³y pracê projektantów/architektów. Podczas gdy rêczne wprowadzenie zmiany do gotowego szkicu wi¹za³o siê najczêœciej z ca³oœciowym jego przerysowaniem, programy CAD umo¿liwi³y automatyczne wprowadzanie zmian w projekcie.
+
+https://partsolutions.com/60-years-of-cad-infographic-the-history-of-cad-since-1957/
+nie widzê zastosowania dla tego diagramu
+
+https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze napisane
+
+at first CAD programs allowed only for creation of 2D models/diagrams. However, the pressure from car industry which desperately needed better solutions for designing 3d vehicle parts, gave rise to emergance of brand new feature in CAD programs - the creation of 3D objects. At first such options were fairly limited, allowing only for creation of wireframe models - that is a mesh containing only points and connecting lines. Such composition clearly shows the origins of 3D modeling as emergent from 2D, since the simplest wireframe model - a cube, is very reminiscent of 2 2D rectangles stacked on top of each other.
+
+
+Na pocz¹tku programy CAD pozwala³y tylko na tworzenie modeli 2D, daj¹c urzytkownikom jedynie alternatywny sposób tworzenia rysunków technicznych. Jednak prawdziwy potencja³ jaki skrywa³o w sobie projektowanie komputerowe zosta³ wyzwolony dopiero wraz z nadejœciem projektowania 3D. Bran¿a samochodowa potrzebowa³a lepszych rozwi¹zañ, aby poradziæ sobie z projektowaniem z³o¿onych bry³ czêœci samochodowych. Ten nacisk doprowadzi³ do dodania nowych funkcjonalnoœci w programach CAD umo¿liwiaj¹cych projektowanie bry³ 3D. Z pocz¹tku przeskok pomiêdzy modelami 2D a 3D by³ doœæ p³ynny - pierwsze modele ogranicza³y siê do widoku Wireframe - tzn. by³y zbudowane z punktów i ³¹cz¹cych je lini, podobnie jak modele 2D. Poniewa¿ bry³y szeœcienne 
+
+https://inspirationtuts.com/the-history-of-3d-modeling-and-animation/  ma zazêbienie z CADami
+https://ufo3d.com/history-of-3d-modeling/
+
+////////////////////////////////////////
+OPEN SOURCE
+porównanie open source/free software/proprietary software
+
+Open Source - czyli "Otwarte Oprogramowanie", to typ oprogramowania którego kod Ÿród³owy jest udostêpniany za darmo przez jego autorów. Ruch Open Source 
+
+Richard Stallman - creator of GNU?
+
+GNU - kolekcja opensource software
+UNIX - 
+
+multix was a failed os, but ken thompson that worked on it went on to create unix. then in version 4 of unix, a guy working on the project Dennis Richie created C language. that allowed unix to be imported to different machines??. linux and windows are both inspired by unix, but windows is much less compared to linux, also the core of linux is something called gnu?
+
+
 
 Hardware vendors, the people who make GPUs, are responsible for writing implementations of the OpenGL rendering system. Their implementations, commonly called "drivers", translate OpenGL API commands into GPU commands. If a particular piece of hardware is unable to implement all of the OpenGL specification via hardware, the hardware vendor must still provide this functionality, typically via a software-based implementation of the features missing from hardware
  ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
