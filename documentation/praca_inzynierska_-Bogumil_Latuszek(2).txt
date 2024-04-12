@@ -123,6 +123,24 @@ Open Source - czyli "Otwarte Oprogramowanie", to typ oprogramowania którego kod
 
 Richard Stallman - creator of GNU?
 
+---------------------------------------------------
+https://web.archive.org/web/20171211040818/https://www.buzzle.com/articles/linux-history-and-introduction.html
+
+By the term 'free software', we mean that Linux can be copied and redistributed in the altered or unaltered form without many restrictions. Each recipient of the Linux software is entitled to obtain the human readable form of the software and a notice granting the person the permissions to modify its source code. In other words, the distribution of the Linux software implies the distribution of a free software license to its recipients. Linux supports open source development by which we mean that all its underlying source code can be freely modified, used and distributed. The open source method of development enables the users to access its source code.
+Read more at Buzzle: https://www.buzzle.com/articles/linux-history-and-introduction.html
+
+---------------------------------------------------
+
+https://www.free-soft.org/gpl_history/
+
+The GPL (The GNU General Public License), created by Richard Stallman, serves as the de facto constitution for the Free Software movement. It covers the majority of Free Software/Open Source software and has become the legal and philosophical cornerstone of the Free Software community. Because of its fundamental nature, it is useful to document the historical evolution of the GPL.
+
+----------------------------------------------------
+https://web.archive.org/web/20121008170109/https://osrc.blackducksoftware.com/data/licenses/
+
+tutaj jest wykres licencji. pytania:
+-czym się różnią?
+-jakie są licencje nie open source?
 
 https://www.britannica.com/biography/Richard-Stallman:
 -----------------------------------------------------
