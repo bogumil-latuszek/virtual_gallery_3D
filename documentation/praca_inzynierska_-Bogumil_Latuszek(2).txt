@@ -123,6 +123,41 @@ Open Source - czyli "Otwarte Oprogramowanie", to typ oprogramowania którego kod
 
 Richard Stallman - creator of GNU?
 
+
+https://www.britannica.com/biography/Richard-Stallman:
+-----------------------------------------------------
+1983 GNU Project (czy to był pełnoprawny Unix OS?)
+GNU was intended to be a free version of AT&T’s UNIX (proprietary Unix),
+In 1985 Stallman created the nonprofit Free Software Foundation, which initially focused on supporting his GNU Project.
+With the release of a free operating system, Stallman and the Free Software Foundation focused on promoting free software and the development of the GNU General Public License (GNU GPL)
+
+https://www.britannica.com/biography/Linus-Torvalds:
+-----------------------------------------------------
+Linus Torvalds,
+1994 creates Linux kernel 1.0
+W 1991 kupił swój pierwszy PC ale nie był zadowolony z jego OS - MS DOS Microsoftu.
+Podobał mu się Unix z którym pracował na studiach na uczelni i postanowił napisać swój własny Unix-like OS.
+
+it was not as easy to use as more popular operating systems such as Windows, Apple’s Mac OS, or IBM OS/2.
+However, Linux evolved into a remarkably reliable, efficient system that rarely crashed.
+Combined with Apache, an open-source Web server, Linux accounts for most of the servers used on the Internet.
+
+https://www.britannica.com/technology/Linux:
+-----------------------------------------------------
+ In 1991 he released version 0.02
+ About the same time, American software developer Richard Stallman and the FSF made efforts to create an open-source UNIX-like operating system called GNU.
+ In contrast to Torvalds, Stallman and the FSF started by creating utilities for the operating system first.
+ These utilities were then added to the Linux kernel to create a complete system called GNU/Linux, or, less precisely, just Linux.
+
+https://www.britannica.com/topic/open-source:
+-----------------------------------------------------
+ The practice of sharing code was most effective and consistent among developers of the UNIX operating system, which was central to UNIX’s early success.
+ UNIX was first developed about 1970 at the Bell Laboratories subsidiary of the AT&T Corporation for use on the Digital Equipment Corporation PDP-7 minicomputer.
+ As UNIX was adapted for various computer hardware systems, new variants of the operating system were developed. By the time that AT&T and Sun Microsystems, Inc.
+ (a proponent of the UNIX variant developed at the University of California, Berkeley), finally decided to commercialize UNIX in 1987
+
+[???] jak się ma FSF do Open Source
+
 GNU - kolekcja opensource software
 UNIX - 
 
