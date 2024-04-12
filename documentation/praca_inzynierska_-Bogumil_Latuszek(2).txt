@@ -137,6 +137,8 @@ The GPL (The GNU General Public License), created by Richard Stallman, serves as
 
 ----------------------------------------------------
 https://web.archive.org/web/20121008170109/https://osrc.blackducksoftware.com/data/licenses/
+https://www.gnu.org/licenses/license-recommendations.html
+https://www.gnu.org/licenses/gpl-faq.html#DoesUsingTheGPLForAProgramMakeItGNUSoftware
 
 tutaj jest wykres licencji. pytania:
 -czym się różnią?
