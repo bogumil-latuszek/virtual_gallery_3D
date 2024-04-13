@@ -144,6 +144,10 @@ tutaj jest wykres licencji. pytania:
 -czym się różnią?
 -jakie są licencje nie open source?
 
+*chce zaznaczyć że jest to praca mająca charakter techniczny i ogólnonaukowy, wspominamy o licencjach software jedynie w kontekście historii open source, a nie faktycznego stanu prawnego. Innymi słowy aktualna interpretacja prawna wymienionych licencji może się różnić od tutaj przedstawionej
+
+licencja GPL - stworzona przez Richarda Stallmana, stworzenie jej zainspirowane było przykrym doświadczeniem Richarda z przedsiębiorstwem które wykorzystywało źródła z domeny publicznej, jednocześnie odmawiając udostępnienia kodu źródłowego swojego produktu. Aby przeciwdziałać takiemu postępowaniu, w licencji GPL została zawarta klauzula, że objęte nią oprogramowanie może stać się częścią jedynie innego oprogramowania z tą samą licencją. Poza tym licencja GPL daje użytkownikowi niemalże te same uprawnienia co public domain.
+
 https://www.britannica.com/biography/Richard-Stallman:
 -----------------------------------------------------
 1983 GNU Project (czy to był pełnoprawny Unix OS?)
