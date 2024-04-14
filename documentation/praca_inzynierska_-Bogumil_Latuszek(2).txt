@@ -161,6 +161,7 @@ Mozilla Public - podobnie do GPL wymaga aby pochodne oprogramowanie zawierało t
 Public-Domain - inaczej brak jakiejkolwiek licencji, zrzeczenie się kontroli nad oprogramowaniem. Może być użyta w kombinacji? Można wprowadzać modyfikacje
 Wszystkie prawa zastrzeżone - najbardziej restrykcyjna licencja, rozpowszechnianie i modyfikowanie dozwolone jest jedynie w ramach Fair Use.
 Open-art - podobne do GPL, z dodatkową klauzulą wedle której wszelkie użycie oprogramowania musi być zarejestrowane w miejscu skąd pochodzi
+
 https://www.britannica.com/biography/Richard-Stallman:
 -----------------------------------------------------
 1983 GNU Project (czy to był pełnoprawny Unix OS?)
@@ -228,12 +229,26 @@ https://en.wikipedia.org/wiki/OpenGL
 https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
-Silicon Graphics (SGI) to firma powstała w 1981r
-SGI zaczął prace nad OpenGL w 1991r i wypuścił wersję 1.0 w 1992r
+
+Silicon Graphics (SGI) to firma powstała w 1981r. Jej pierwotnym obszarem działalności było tworzenie stacji graficznych
+czyli bardzo wydajnych komputerów do zastosowań profesjonalnych w grafice. Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
+wojsko, instytucje rządowe i akademickie. I tak np. przez 8 kolejnych lat 1995-2002 wszystkie filny nominowane do Academy Award
+za efekty wizualne były filmami stworzonymi na komputerach SGI.
+Firma tworzyła zarówno hardware jak i software. Stworzyła swój własny klon Unixa nazwany Irix. Silnikiem graficznym Irixa był IrisGL API który był protoplastą OpenGL-a.
+Na początku lat 90-tych konkurenci SGI (Sun, HP, IBM) również produkowali sprzęt i oprogramowanie do grafiki 3D. ten nacisk konkurencyjny rynku spowodował
+że SGI postanowił udostępnić do open souce zmodyfikowany kod IrisGL czyli OpenGL. SGI zaczął prace nad nim w 1991r i wypuścił wersję 1.0 w 1992r.
+W 1992 SGI utworzyła konsorcjum z innymi firmami (nazwane pierwotnie  OpenGL Architecture Review Board)
+aby dbać i promować standard OpenGL. Konsorcjum to później przemianowano na Khronos Grup.
 W 2017 KG ogłosił że nie będzie nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydany w 2016)
 2014 Apple wydaje swój silnik 3D o nazwie Metal
 2015 start projektu Vulkan (następca OpenGL)
+
+https://en.wikipedia.org/wiki/Vulkan
+
+2016 pierwsza wersja Vulkan oparta o kod przekazany do Khronos przez AMD
+Vulkan jest bardziej niskopoziomowy niż OpenGL i bardziej dostosowany do architektur współczesnych GPU a przez to wydajniejszy od OpenGL.
 2018 Apple rezygnuje z OpenGL we wszystkich swoich produktach na rzecz Metal API
+2022r Vulkan 1.3
 
 1996r Microsoft wypuszcza Direct3D - główny konkurent standardu OpenGL
 In July 2006, the OpenGL Architecture Review Board voted to transfer control of the OpenGL API standard to the Khronos Group
