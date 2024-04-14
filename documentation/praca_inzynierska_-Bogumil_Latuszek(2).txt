@@ -139,6 +139,8 @@ The GPL (The GNU General Public License), created by Richard Stallman, serves as
 https://web.archive.org/web/20121008170109/https://osrc.blackducksoftware.com/data/licenses/
 https://www.gnu.org/licenses/license-recommendations.html
 https://www.gnu.org/licenses/gpl-faq.html#DoesUsingTheGPLForAProgramMakeItGNUSoftware
+https://www.fsf.org/about/
+https://three.org/openart/license_chooser/
 
 tutaj jest wykres licencji. pytania:
 -czym się różnią?
@@ -146,8 +148,19 @@ tutaj jest wykres licencji. pytania:
 
 *chce zaznaczyć że jest to praca mająca charakter techniczny i ogólnonaukowy, wspominamy o licencjach software jedynie w kontekście historii open source, a nie faktycznego stanu prawnego. Innymi słowy aktualna interpretacja prawna wymienionych licencji może się różnić od tutaj przedstawionej
 
+wolne oprogramowanie - na stronie fsf(free software fundation) znajdziemy takie stwierdzenie "Wolne oprogramowanie to oprogramowanie które daje tobie - użytkownikowi - prawo do rozpowszechniania, analizowania i modyfikowania go. Nazywamy je wolnym oprogramowaniem, ponieważ użytkownik jest wolny". Tak więc jeżeli inne licencje oprogramowania wiążą się z odebraniem użytkownikowi pewnych praw, licencja wolnego oprogramowania ma w zamyśle mu te prawa nadać.
+
 licencja GPL - stworzona przez Richarda Stallmana, stworzenie jej zainspirowane było przykrym doświadczeniem Richarda z przedsiębiorstwem które wykorzystywało źródła z domeny publicznej, jednocześnie odmawiając udostępnienia kodu źródłowego swojego produktu. Aby przeciwdziałać takiemu postępowaniu, w licencji GPL została zawarta klauzula, że objęte nią oprogramowanie może stać się częścią jedynie innego oprogramowania z tą samą licencją. Poza tym licencja GPL daje użytkownikowi niemalże te same uprawnienia co public domain.
 
+inne popularne licencje oprogramowania:
+
+Apache
+MIT
+BSD
+Mozilla Public - podobnie do GPL wymaga aby pochodne oprogramowanie zawierało tą samą licencję co orginał
+Public-Domain - inaczej brak jakiejkolwiek licencji, zrzeczenie się kontroli nad oprogramowaniem. Może być użyta w kombinacji? Można wprowadzać modyfikacje
+Wszystkie prawa zastrzeżone - najbardziej restrykcyjna licencja, rozpowszechnianie i modyfikowanie dozwolone jest jedynie w ramach Fair Use.
+Open-art - podobne do GPL, z dodatkową klauzulą wedle której wszelkie użycie oprogramowania musi być zarejestrowane w miejscu skąd pochodzi
 https://www.britannica.com/biography/Richard-Stallman:
 -----------------------------------------------------
 1983 GNU Project (czy to był pełnoprawny Unix OS?)
