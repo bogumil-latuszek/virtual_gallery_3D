@@ -194,7 +194,34 @@ https://www.britannica.com/topic/open-source:
  As UNIX was adapted for various computer hardware systems, new variants of the operating system were developed. By the time that AT&T and Sun Microsystems, Inc.
  (a proponent of the UNIX variant developed at the University of California, Berkeley), finally decided to commercialize UNIX in 1987
 
+https://opensource.org/history
+-----------------------------------------------------
+Open Source Initiative (OSI) założona w lutym 1998 przez Bruce Perens i Eric Raymond
+Eric Raymond napisał slynny artykuł "Cathedral and the Bazaar." http://www.catb.org/esr/writings/homesteading/cathedral-bazaar/
+opisujący różnicę podejścia w tworzeniu oprogramowania zamkniętego/korporacyjnego vs open-source
+Termin "open source" powstał w lutym 1998r, autorka Christine Peterson, cel nowej nazwy - odróżnienie od "free software"
+Nazwa zyskała szybkie wsparcie dzięki takim uznanym osobistościom jak Linus Torvalds i spotkaniu Free Software Summit w kwietniu 1998r
+na którym byli twórcy otwartoźródlowego oprogramowania takiego jak Perl, Python, Apache.
+
 [???] jak się ma FSF do Open Source
+FSF definiuje "Free Software", OSI definiuje "Open Source"
+https://www.geeksforgeeks.org/difference-between-free-software-and-open-source-software/
+https://www.knowledgeboat.com/question/what-is-the-difference-between-an-open-source-and-free--722662359894548200
+Najistotniejsze podobieństwa
+- Oba wymagają dostępu do kodu źródłowego
+- Oba pozwalają użytkownikom modyfikować ten kod
+Najistotniejsze Róznice
+       FSF                                                                   OSI
+- "free" nie znaczy darmowy ale focus jest na "wolności"                  | - focus jest bardziej technologiczny (nie etyczny)
+  użytkowników oprogramowania do jego, oglądu, zmiany, redystrybucji      |   na dostęp do kodu źródlowego
+  Jest tu zatem mocny akcent filozoficzny i etyczny, a nawet polityczny   |
+- "wolność" software-u przekłada się na "wolności" obywatelskie           | - etyka winna być wiązana z ludźmi nie oprogramowaniem
+  i "wolność" jest wartością większą niż postęp ekonomiczny               |   "wolność" nie jest wartością absolutną - winna być dozwolona, a nie wymuszona
+- software powinien być dystrybuowany pod licencją GPL lub podobną        | - pozwala na dystrybucję pod większą ilością licencji które różnią się
+  która chroni "wolności" użytkowników                                    |   poziomami "wolności" użytkowników
+Konkluzja
+- każdy "free software" jest "open source"
+- nie każdy "open source" jest "free software"
 
 GNU - kolekcja opensource software
 UNIX - 
