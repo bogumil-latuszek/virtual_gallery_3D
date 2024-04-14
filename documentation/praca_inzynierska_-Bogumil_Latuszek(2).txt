@@ -68,6 +68,9 @@ Wnioski końcowe	12
 Bibliografia	13
 
 2. Wstęp
+
+Wirtualna galeria to aplikacja na system android, kożystająca z biblioteki OpenGL ES. W tej pracy prześledzimy historię bibliotek graficznych, oraz wolnego oprogramowania których rozwój umożliwił powstanie Wirtualnej Galerii
+
 Zaczynając od lat X, kiedy przeciętny telefon przechowywał kilka zdjec na tapete, po 
 czasy dzisiejsze gdzie przeciętny urzytkownik posiada przeciętnie od Y do Z zapisanych zdjęc, nie wspominając o plikach w catche przeglądarki, możemy zaobserwować ten trend na załączonym wykresie <tu wstaw wykres>, więc jak widać większość osób  w tych czasach ma zbyt durzo zdjęć żeby móc realistycznie zapamiętać gdzie je zapisali,<historia aleksandra urii, pamięć która nie znała granic> więc moim rozwiązaniem jest pomóc tym osobom znaleźć te zdjęcia. Pomysł na moją aplikacje zrodził się z zainteresowania technikami pamięci, takimi jak pałac pamięci. 
 WYKRES UDZIAŁU ANDROID W RYNKU TELEFONÓW
