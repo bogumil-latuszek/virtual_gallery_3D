@@ -206,8 +206,48 @@ Hardware vendors, the people who make GPUs, are responsible for writing implemen
  ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
 opengl is a standard, an interface, an API definition. An implementation of it is the one that provides described functionality to apps using it. One such implementation is Mesa3D 
 
+Open GL historia
+----------------
+>>>>> https://www.khronos.org/about
+Khronos group jest jest konsorcjum firm, uczelni i pojedynczych developerów którego celem jest m.in. wytwarzanie i promocja standardów grafiki 3D.
+Oprócz samych standardów dba też o ich promocję dlatego wytwarza materiały szkoleniowe, konferencje i spotkania, testy zgodności ze standardem, przykładowe implementacje, SDK dla różnych języków programowania.
+Ważnym aspektem działalności Khronos Group jest dbanie o współpracę i unikanie "wojen Patentowych". Dlatego jej członkowie i użytkownicy jej standardów zgadzają się nie dochodzić swoich praw patentowych wględem twórców implementacji zgodnych z danym standardem.
+Innymi słowy konsorcjum to dba o tworzenie całego ekosystemu wokół określonych standardów.
+Jednym z takich standardów jest OpenGL.
+>>>>> https://www.khronos.org/api/opengl
+OpenGL jest najpopularniejszym standardem dla grafiki wektorowej 2D i 3D. Jest niezależny od hardware-u, systemu operacyjnego, rodzaju GUI i przeźroczysty dla protokołów sieciowych.
+Used in markets such as CAD, content creation, energy, entertainment, game development, manufacturing, medical, and virtual reality.
+Powstał w 1992r , 2000r powstanie working group OpenGL ES (Embeded Systems), 2003 OpenGL ES 1.0, 2007 OpenGL ES 2.0, 2012 OpenGL ES 3.0, 2015 OpenGL ES 3.2
+2011 WebGL 1.0 - możliwość korzystania z funkcjonalności OpenGL ES 3.0 przez twórców stron internetowych
+2014 Apple wydaje swój silnik 3D o nazwie Metal
+2015 start projektu Vulkan (następca OpenGL)
+2017 webGL 2.0 - możliwość korzystania z funkcjonalności OpenGL ES 3.0 przez twórców stron internetowych
+2020 Vulkan 1.2
+
+https://en.wikipedia.org/wiki/OpenGL
+https://en.wikipedia.org/wiki/IRIS_GL
+https://en.wikipedia.org/wiki/IRIX
+https://en.wikipedia.org/wiki/Silicon_Graphics
+Silicon Graphics (SGI) to firma powstała w 1981r
+SGI zaczął prace nad OpenGL w 1991r i wypuścił wersję 1.0 w 1992r
+W 2017 KG ogłosił że nie będzie nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydany w 2016)
+2014 Apple wydaje swój silnik 3D o nazwie Metal
+2015 start projektu Vulkan (następca OpenGL)
+2018 Apple rezygnuje z OpenGL we wszystkich swoich produktach na rzecz Metal API
+
+1996r Microsoft wypuszcza Direct3D - główny konkurent standardu OpenGL
+In July 2006, the OpenGL Architecture Review Board voted to transfer control of the OpenGL API standard to the Khronos Group
+
+
+
 
 SILICON GRAPHICS
+(źródło – wikipedia) – W skrócie SGL - firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d.
+OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL.
+Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?).
+Potem udostępnili OpenGL i utworzyli Khronos?
+
+
 (źródło – wikipedia) – W skrócie SGL - firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d. OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL. Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?). Potem udostępnili OpenGL i utworzyli Khronos?
 POMYSŁ NA APLIKACJE, GENEZA
 Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak 
