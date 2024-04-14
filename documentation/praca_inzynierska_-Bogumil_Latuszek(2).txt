@@ -220,6 +220,11 @@ OpenGL jest najpopularniejszym standardem dla grafiki wektorowej 2D i 3D. Jest n
 Used in markets such as CAD, content creation, energy, entertainment, game development, manufacturing, medical, and virtual reality.
 Powstał w 1992r , 2000r powstanie working group OpenGL ES (Embeded Systems), 2003 OpenGL ES 1.0, 2007 OpenGL ES 2.0, 2012 OpenGL ES 3.0, 2015 OpenGL ES 3.2
 2011 WebGL 1.0 - możliwość korzystania z funkcjonalności OpenGL ES 3.0 przez twórców stron internetowych
+
+https://en.wikipedia.org/wiki/WebGL - WebGL czyli OpenGL w przeglądarce
+
+Jest biblioteką  opartą na OpenGL ES napisaną w Javascript plus shadery w GLSL (klon języka C). Pozwala renderować grafikę 2D/3D w browserze wykorzystując możliwości GPU. Grafika jest renderowana w elemencie Canvas HTML5.
+
 2014 Apple wydaje swój silnik 3D o nazwie Metal
 2015 start projektu Vulkan (następca OpenGL)
 2017 webGL 2.0 - możliwość korzystania z funkcjonalności OpenGL ES 3.0 przez twórców stron internetowych
