@@ -72,8 +72,14 @@ Bibliografia	13
 Wirtualna galeria to aplikacja na system android, kożystająca z biblioteki OpenGL ES. W tej pracy prześledzimy historię bibliotek graficznych, oraz wolnego oprogramowania których rozwój umożliwił powstanie Wirtualnej Galerii
 
 Zaczynając od lat X, kiedy przeciętny telefon przechowywał kilka zdjec na tapete, po 
-czasy dzisiejsze gdzie przeciętny urzytkownik posiada przeciętnie od Y do Z zapisanych zdjęc, nie wspominając o plikach w catche przeglądarki, możemy zaobserwować ten trend na załączonym wykresie <tu wstaw wykres>, więc jak widać większość osób  w tych czasach ma zbyt durzo zdjęć żeby móc realistycznie zapamiętać gdzie je zapisali,<historia aleksandra urii, pamięć która nie znała granic> więc moim rozwiązaniem jest pomóc tym osobom znaleźć te zdjęcia. Pomysł na moją aplikacje zrodził się z zainteresowania technikami pamięci, takimi jak pałac pamięci. 
-WYKRES UDZIAŁU ANDROID W RYNKU TELEFONÓW
+czasy dzisiejsze gdzie przeciętny urzytkownik posiada przeciętnie od Y do Z zapisanych zdjęc, nie wspominając o plikach w catche przeglądarki, możemy zaobserwować ten trend na załączonym wykresie <tu wstaw wykres>,
+--------------------------------------------------------------------------------------------
+zakładając że przeciętny aparat telefonu z średniej półki cenowej robi zdjęcia zajmujące ok. 3 mb, i biorąc pod uwagę że najczęstsza pojemność pamięci wewnętrznej na rynku wynosi 64 GB, to użytkownik takiego telefonu może mieć nawet 21 333 zdjęcia zapisane w pamięci wewnętrznej. I to wszystko nie wspominając nawet o pamięci zewnętrznej, w której też mogą być zapisane zdjęcia!
+
+--------------------------------------------------------------------------------------------
+Jak widać większość osób  w tych czasach ma zbyt durzo zdjęć żeby móc realistycznie zapamiętać gdzie je zapisali,<historia aleksandra urii, pamięć która nie znała granic> więc moim rozwiązaniem jest pomóc tym osobom znaleźć te zdjęcia. Pomysł na moją aplikacje zrodził się z zainteresowania technikami pamięci, takimi jak pałac pamięci.
+
+WYKRES UDZIAŁU SYSTEMU ANDROID W RYNKU TELEFONÓW
 HISTORIA ROZWOJU HARDWEARE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KAŻDEGO Z KOMPONENTÓW(pamięć, cpu, gpu)
     • pierwsze komputery
     • pierwsze stacje graficzne
@@ -81,17 +87,22 @@ HISTORIA ROZWOJU HARDWEARE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KAŻDEGO Z KOM
 HISTORIA GRAFIKI 3D KTÓRA DOPROWADZIŁA DO POWSTANIA OPENGL ES (TIMELINE), ROZRÓŻNIENIE I RÓŻNICE W ROZWOJU GRAFIKI KOMPUTEROWEJ REAL-TIME I PRERENDERED, A TAKŻE WSPOMNIJ O CAD-ach  I ICH INNOWACJACH. JESZCZE ROZRÓŻNIENIE OPEN-SOURCE I CLOSED-SOURCE. HISTORIA OPEN SOURCE. ZARÓWNO ANDROID JAK I OPENGL SĄ OPEN-SURCE. JAKIE SĄ BENEFITY UŻYWANIA OPEN SOURCE, KOGO I DLACZEGO PRZYCIĄGA OPEN SOURCE(informatycy chcący zdobyć długotrwale aktualną wiedzę, firmy chcące być niezależne od providerów.) DLACZEGO FIRMY NADUŻYWAJĄ „OPEN SOURCE” JAKO FALSE MARKETING, np. OPEN AI. 
 *kto odpowiada za implementacje standardu open gl – producent hardware, czy programiści tworzący system operacyjny
 
+----------------------------------------------ANDROID-----------------------------------------------
 https://marketsplash.com/statystyki-androida/  - stąd wykres udziału Androida w rynku OS w 2023r
+
 
 Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. 1
 Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. 1
 Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linuksie, systemie operacyjnym typu open source szeroko stosowanym w komputerach osobistych.1
 Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku.11
 Google Play, początkowo uruchomiony w 2008 roku jako Android Market, stał się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań.12
-W 2012 roku Google przeszedł rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play, dając początek znanemu Sklepowi Google Play, jaki znamy dzisiaj.12
-Opracowany przez Andy'ego Rubina jako realna alternatywa open-source dla iPhone'a i Palm OS, Android szybko zyskał popularność jako preferowany system operacyjny dla wielu producentów telefonów komórkowych na początku 2010 roku. 4
-
+W 2012 roku Google przeszedł rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play, dając początek znanemu Sklepowi Google Play, jaki znamy dzisiaj.
+----------------------------------------------ANDROID-----------------------------------------------
+----------------------------------------------CAD---------------------------------------------------
 https://www.cadblog.pl/historia-systemow-cad/
+https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze napisane
+https://inspirationtuts.com/the-history-of-3d-modeling-and-animation/  ma zazębienie z CADami
+https://ufo3d.com/history-of-3d-modeling/
 
 PRONTO - prawdopodobnie pierwszy przykład programu typu CAD w historii. Na podstawie danych wejściowych zawierających specyfikacje kształtów, ich wymiary itp. generował instrukcje dla maszyn zajmujących się wytwarzaniem części np. maszyn CNC. 
 Zarówno dane wejściowe jak i wyjściowe opisywały kształty 2D, dlatego wykorzystanie programu ograniczało się do tworzenia profili ram itp. Warto zaznaczyć że PRONTO był dostępny tylko na systemach komputerowych General Electric (GE)
@@ -100,138 +111,12 @@ Sketchpad - stworzony w latach 60-tych przez Ivana Sutherlanda program CAD. Wpro
 
 AutoCAD - jeden z pierwszych programów CAD dostępnych na wielu platformach. Stworzony w 1982 przez firmę Autodesk, warto jednak zaznaczyć że z początku dostępny był tylko na systemie operacyjnym CP/M 
 
-To właśnie w latach 60. na MIT powstał „Sketchpad” (z ang. szkicownik) – pierwszy profesjonalny system wspomagający projektowanie. Jego autor, Ivan Sutherland, użył systemu komputerowego, który w nowatorski sposób wykorzystywał pióro świetlne jako narzędzie do wprowadzania danych bezpośrednio na ekran monitora
-Ale, jak wspomniałem na samym początku, pierwszym był system do cyfrowego programowania maszyn obróbczych „PRONTO”, wynaleziony (to dobre określenie) w 1957 roku przez dr Patricka J. Hanratty’ego.
-programy CAD w znacznym stopniu usprawniły pracę projektantów/architektów. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły automatyczne wprowadzanie zmian w projekcie.
-
+programy CAD w znacznym stopniu usprawniły pracę projektantów/architektów. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły automatyczne wprowadzanie zmian w projekcie. Na początku programy CAD pozwalały tylko na tworzenie modeli 2D, dając urzytkownikom jedynie alternatywny sposób tworzenia rysunków technicznych. Jednak prawdziwy potencjał jaki skrywało w sobie projektowanie komputerowe został wyzwolony dopiero wraz z nadejściem projektowania 3D. Branża samochodowa potrzebowała lepszych rozwiązań, aby poradzić sobie z projektowaniem złożonych brył części samochodowych. Ten nacisk doprowadził do dodania nowych funkcjonalności w programach CAD umożliwiających projektowanie brył 3D. Z początku przeskok pomiędzy modelami 2D a 3D był dość płynny - pierwsze modele ograniczały się do widoku Wireframe - tzn. były zbudowane z punktów i łączących je lini, podobnie jak modele 2D. Ponieważ bryły sześcienne
+----------------------------------------------CAD---------------------------------------------------
+----------------------------------------------OpenGL------------------------------------------------
 OpenGL ES - powstał w 2003 roku(https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html
 - jescze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
  - oficjalne wydanie ), stworzony przez grupę Khronos
-
-https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze napisane
-
-at first CAD programs allowed only for creation of 2D models/diagrams. However, the pressure from car industry which desperately needed better solutions for designing 3d vehicle parts, gave rise to emergance of brand new feature in CAD programs - the creation of 3D objects. At first such options were fairly limited, allowing only for creation of wireframe models - that is a mesh containing only points and connecting lines. Such composition clearly shows the origins of 3D modeling as emergent from 2D, since the simplest wireframe model - a cube, is very reminiscent of 2 2D rectangles stacked on top of each other.
-
-
-Na początku programy CAD pozwalały tylko na tworzenie modeli 2D, dając urzytkownikom jedynie alternatywny sposób tworzenia rysunków technicznych. Jednak prawdziwy potencjał jaki skrywało w sobie projektowanie komputerowe został wyzwolony dopiero wraz z nadejściem projektowania 3D. Branża samochodowa potrzebowała lepszych rozwiązań, aby poradzić sobie z projektowaniem złożonych brył części samochodowych. Ten nacisk doprowadził do dodania nowych funkcjonalności w programach CAD umożliwiających projektowanie brył 3D. Z początku przeskok pomiędzy modelami 2D a 3D był dość płynny - pierwsze modele ograniczały się do widoku Wireframe - tzn. były zbudowane z punktów i łączących je lini, podobnie jak modele 2D. Ponieważ bryły sześcienne 
-
-https://inspirationtuts.com/the-history-of-3d-modeling-and-animation/  ma zazębienie z CADami
-https://ufo3d.com/history-of-3d-modeling/
-
-////////////////////////////////////////
-OPEN SOURCE
-porównanie open source/free software/proprietary software
-
-Open Source - czyli "Otwarte Oprogramowanie", to typ oprogramowania którego kod źródłowy jest udostępniany za darmo przez jego autorów. Ruch Open Source 
-
-Richard Stallman - creator of GNU?
-
----------------------------------------------------
-https://web.archive.org/web/20171211040818/https://www.buzzle.com/articles/linux-history-and-introduction.html
-
-By the term 'free software', we mean that Linux can be copied and redistributed in the altered or unaltered form without many restrictions. Each recipient of the Linux software is entitled to obtain the human readable form of the software and a notice granting the person the permissions to modify its source code. In other words, the distribution of the Linux software implies the distribution of a free software license to its recipients. Linux supports open source development by which we mean that all its underlying source code can be freely modified, used and distributed. The open source method of development enables the users to access its source code.
-Read more at Buzzle: https://www.buzzle.com/articles/linux-history-and-introduction.html
-
----------------------------------------------------
-
-https://www.free-soft.org/gpl_history/
-
-The GPL (The GNU General Public License), created by Richard Stallman, serves as the de facto constitution for the Free Software movement. It covers the majority of Free Software/Open Source software and has become the legal and philosophical cornerstone of the Free Software community. Because of its fundamental nature, it is useful to document the historical evolution of the GPL.
-
-----------------------------------------------------
-https://web.archive.org/web/20121008170109/https://osrc.blackducksoftware.com/data/licenses/
-https://www.gnu.org/licenses/license-recommendations.html
-https://www.gnu.org/licenses/gpl-faq.html#DoesUsingTheGPLForAProgramMakeItGNUSoftware
-https://www.fsf.org/about/
-https://three.org/openart/license_chooser/
-
-tutaj jest wykres licencji. pytania:
--czym się różnią?
--jakie są licencje nie open source?
-
-*chce zaznaczyć że jest to praca mająca charakter techniczny i ogólnonaukowy, wspominamy o licencjach software jedynie w kontekście historii open source, a nie faktycznego stanu prawnego. Innymi słowy aktualna interpretacja prawna wymienionych licencji może się różnić od tutaj przedstawionej
-
-wolne oprogramowanie - na stronie fsf(free software fundation) znajdziemy takie stwierdzenie "Wolne oprogramowanie to oprogramowanie które daje tobie - użytkownikowi - prawo do rozpowszechniania, analizowania i modyfikowania go. Nazywamy je wolnym oprogramowaniem, ponieważ użytkownik jest wolny". Tak więc jeżeli inne licencje oprogramowania wiążą się z odebraniem użytkownikowi pewnych praw, licencja wolnego oprogramowania ma w zamyśle mu te prawa nadać.
-
-licencja GPL - stworzona przez Richarda Stallmana, stworzenie jej zainspirowane było przykrym doświadczeniem Richarda z przedsiębiorstwem które wykorzystywało źródła z domeny publicznej, jednocześnie odmawiając udostępnienia kodu źródłowego swojego produktu. Aby przeciwdziałać takiemu postępowaniu, w licencji GPL została zawarta klauzula, że objęte nią oprogramowanie może stać się częścią jedynie innego oprogramowania z tą samą licencją. Poza tym licencja GPL daje użytkownikowi niemalże te same uprawnienia co public domain.
-
-inne popularne licencje oprogramowania:
-
-Apache
-MIT
-BSD
-Mozilla Public - podobnie do GPL wymaga aby pochodne oprogramowanie zawierało tą samą licencję co orginał
-Public-Domain - inaczej brak jakiejkolwiek licencji, zrzeczenie się kontroli nad oprogramowaniem. Może być użyta w kombinacji? Można wprowadzać modyfikacje
-Wszystkie prawa zastrzeżone - najbardziej restrykcyjna licencja, rozpowszechnianie i modyfikowanie dozwolone jest jedynie w ramach Fair Use.
-Open-art - podobne do GPL, z dodatkową klauzulą wedle której wszelkie użycie oprogramowania musi być zarejestrowane w miejscu skąd pochodzi
-
-https://www.britannica.com/biography/Richard-Stallman:
------------------------------------------------------
-1983 GNU Project (czy to był pełnoprawny Unix OS?)
-GNU was intended to be a free version of AT&T’s UNIX (proprietary Unix),
-In 1985 Stallman created the nonprofit Free Software Foundation, which initially focused on supporting his GNU Project.
-With the release of a free operating system, Stallman and the Free Software Foundation focused on promoting free software and the development of the GNU General Public License (GNU GPL)
-
-https://www.britannica.com/biography/Linus-Torvalds:
------------------------------------------------------
-Linus Torvalds,
-1994 creates Linux kernel 1.0
-W 1991 kupił swój pierwszy PC ale nie był zadowolony z jego OS - MS DOS Microsoftu.
-Podobał mu się Unix z którym pracował na studiach na uczelni i postanowił napisać swój własny Unix-like OS.
-
-it was not as easy to use as more popular operating systems such as Windows, Apple’s Mac OS, or IBM OS/2.
-However, Linux evolved into a remarkably reliable, efficient system that rarely crashed.
-Combined with Apache, an open-source Web server, Linux accounts for most of the servers used on the Internet.
-
-https://www.britannica.com/technology/Linux:
------------------------------------------------------
- In 1991 he released version 0.02
- About the same time, American software developer Richard Stallman and the FSF made efforts to create an open-source UNIX-like operating system called GNU.
- In contrast to Torvalds, Stallman and the FSF started by creating utilities for the operating system first.
- These utilities were then added to the Linux kernel to create a complete system called GNU/Linux, or, less precisely, just Linux.
-
-https://www.britannica.com/topic/open-source:
------------------------------------------------------
- The practice of sharing code was most effective and consistent among developers of the UNIX operating system, which was central to UNIX’s early success.
- UNIX was first developed about 1970 at the Bell Laboratories subsidiary of the AT&T Corporation for use on the Digital Equipment Corporation PDP-7 minicomputer.
- As UNIX was adapted for various computer hardware systems, new variants of the operating system were developed. By the time that AT&T and Sun Microsystems, Inc.
- (a proponent of the UNIX variant developed at the University of California, Berkeley), finally decided to commercialize UNIX in 1987
-
-https://opensource.org/history
------------------------------------------------------
-Open Source Initiative (OSI) założona w lutym 1998 przez Bruce Perens i Eric Raymond
-Eric Raymond napisał slynny artykuł "Cathedral and the Bazaar." http://www.catb.org/esr/writings/homesteading/cathedral-bazaar/
-opisujący różnicę podejścia w tworzeniu oprogramowania zamkniętego/korporacyjnego vs open-source
-Termin "open source" powstał w lutym 1998r, autorka Christine Peterson, cel nowej nazwy - odróżnienie od "free software"
-Nazwa zyskała szybkie wsparcie dzięki takim uznanym osobistościom jak Linus Torvalds i spotkaniu Free Software Summit w kwietniu 1998r
-na którym byli twórcy otwartoźródlowego oprogramowania takiego jak Perl, Python, Apache.
-
-[???] jak się ma FSF do Open Source
-FSF definiuje "Free Software", OSI definiuje "Open Source"
-https://www.geeksforgeeks.org/difference-between-free-software-and-open-source-software/
-https://www.knowledgeboat.com/question/what-is-the-difference-between-an-open-source-and-free--722662359894548200
-Najistotniejsze podobieństwa
-- Oba wymagają dostępu do kodu źródłowego
-- Oba pozwalają użytkownikom modyfikować ten kod
-Najistotniejsze Róznice
-       FSF                                                                   OSI
-- "free" nie znaczy darmowy ale focus jest na "wolności"                  | - focus jest bardziej technologiczny (nie etyczny)
-  użytkowników oprogramowania do jego, oglądu, zmiany, redystrybucji      |   na dostęp do kodu źródlowego
-  Jest tu zatem mocny akcent filozoficzny i etyczny, a nawet polityczny   |
-- "wolność" software-u przekłada się na "wolności" obywatelskie           | - etyka winna być wiązana z ludźmi nie oprogramowaniem
-  i "wolność" jest wartością większą niż postęp ekonomiczny               |   "wolność" nie jest wartością absolutną - winna być dozwolona, a nie wymuszona
-- software powinien być dystrybuowany pod licencją GPL lub podobną        | - pozwala na dystrybucję pod większą ilością licencji które różnią się
-  która chroni "wolności" użytkowników                                    |   poziomami "wolności" użytkowników
-Konkluzja
-- każdy "free software" jest "open source"
-- nie każdy "open source" jest "free software"
-
-GNU - kolekcja opensource software
-UNIX - 
-
-multix was a failed os, but ken thompson that worked on it went on to create unix. then in version 4 of unix, a guy working on the project Dennis Richie created C language. that allowed unix to be imported to different machines??. linux and windows are both inspired by unix, but windows is much less compared to linux, also the core of linux is something called gnu?
-
-
 
 Hardware vendors, the people who make GPUs, are responsible for writing implementations of the OpenGL rendering system. Their implementations, commonly called "drivers", translate OpenGL API commands into GPU commands. If a particular piece of hardware is unable to implement all of the OpenGL specification via hardware, the hardware vendor must still provide this functionality, typically via a software-based implementation of the features missing from hardware
  ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
@@ -299,6 +184,114 @@ Potem udostępnili OpenGL i utworzyli Khronos?
 
 
 (źródło – wikipedia) – W skrócie SGL - firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d. OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL. Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?). Potem udostępnili OpenGL i utworzyli Khronos?
+----------------------------------------------OpenGL------------------------------------------------
+------------------------------------------ OPEN SOURCE ---------------------------------------------
+
+
+------------------------------------------ OPEN SOURCE ---------------------------------------------
+-------------------------------------------- LICENCJE ----------------------------------------------
+https://web.archive.org/web/20121008170109/https://osrc.blackducksoftware.com/data/licenses/
+https://www.gnu.org/licenses/license-recommendations.html
+https://www.gnu.org/licenses/gpl-faq.html#DoesUsingTheGPLForAProgramMakeItGNUSoftware
+https://www.fsf.org/about/
+https://three.org/openart/license_chooser/
+
+tutaj jest wykres licencji. pytania:
+-czym się różnią?
+-jakie są licencje nie open source?
+
+*chce zaznaczyć że jest to praca mająca charakter techniczny i ogólnonaukowy, wspominamy o licencjach software jedynie w kontekście historii open source, a nie faktycznego stanu prawnego. Innymi słowy aktualna interpretacja prawna wymienionych licencji może się różnić od tutaj przedstawionej
+
+wolne oprogramowanie - na stronie fsf(free software fundation) znajdziemy takie stwierdzenie "Wolne oprogramowanie to oprogramowanie które daje tobie - użytkownikowi - prawo do rozpowszechniania, analizowania i modyfikowania go. Nazywamy je wolnym oprogramowaniem, ponieważ użytkownik jest wolny". Tak więc jeżeli inne licencje oprogramowania wiążą się z odebraniem użytkownikowi pewnych praw, licencja wolnego oprogramowania ma w zamyśle mu te prawa nadać.
+
+licencja GPL - stworzona przez Richarda Stallmana, stworzenie jej zainspirowane było przykrym doświadczeniem Richarda z przedsiębiorstwem które wykorzystywało źródła z domeny publicznej, jednocześnie odmawiając udostępnienia kodu źródłowego swojego produktu. Aby przeciwdziałać takiemu postępowaniu, w licencji GPL została zawarta klauzula, że objęte nią oprogramowanie może stać się częścią jedynie innego oprogramowania z tą samą licencją. Poza tym licencja GPL daje użytkownikowi niemalże te same uprawnienia co public domain.
+
+inne popularne licencje oprogramowania:
+
+Apache
+MIT
+BSD
+Mozilla Public - podobnie do GPL wymaga aby pochodne oprogramowanie zawierało tą samą licencję co orginał
+Public-Domain - inaczej brak jakiejkolwiek licencji, zrzeczenie się kontroli nad oprogramowaniem. Może być użyta w kombinacji? Można wprowadzać modyfikacje
+Wszystkie prawa zastrzeżone - najbardziej restrykcyjna licencja, rozpowszechnianie i modyfikowanie dozwolone jest jedynie w ramach Fair Use.
+Open-art - podobne do GPL, z dodatkową klauzulą wedle której wszelkie użycie oprogramowania musi być zarejestrowane w miejscu skąd pochodzi
+--------------------------------------
+https://www.free-soft.org/gpl_history/
+
+"The GPL (The GNU General Public License), created by Richard Stallman, serves as the de facto constitution for the Free Software movement. It covers the majority of Free Software/Open Source software and has become the legal and philosophical cornerstone of the Free Software community. Because of its fundamental nature, it is useful to document the historical evolution of the GPL."
+-------------------------------------------- LICENCJE ----------------------------------------------
+----------------------------------------- GNU-UNIX-LINUX -------------------------------------------
+
+--------------------------------------
+https://www.britannica.com/biography/Richard-Stallman:
+-----------------------------------------------------
+1983 GNU Project (czy to był pełnoprawny Unix OS?)
+GNU was intended to be a free version of AT&T’s UNIX (proprietary Unix),
+In 1985 Stallman created the nonprofit Free Software Foundation, which initially focused on supporting his GNU Project.
+With the release of a free operating system, Stallman and the Free Software Foundation focused on promoting free software and the development of the GNU General Public License (GNU GPL)
+
+https://www.britannica.com/biography/Linus-Torvalds:
+-----------------------------------------------------
+Linus Torvalds,
+1994 creates Linux kernel 1.0
+W 1991 kupił swój pierwszy PC ale nie był zadowolony z jego OS - MS DOS Microsoftu.
+Podobał mu się Unix z którym pracował na studiach na uczelni i postanowił napisać swój własny Unix-like OS.
+
+it was not as easy to use as more popular operating systems such as Windows, Apple’s Mac OS, or IBM OS/2.
+However, Linux evolved into a remarkably reliable, efficient system that rarely crashed.
+Combined with Apache, an open-source Web server, Linux accounts for most of the servers used on the Internet.
+
+https://www.britannica.com/technology/Linux:
+-----------------------------------------------------
+ In 1991 he released version 0.02
+ About the same time, American software developer Richard Stallman and the FSF made efforts to create an open-source UNIX-like operating system called GNU.
+ In contrast to Torvalds, Stallman and the FSF started by creating utilities for the operating system first.
+ These utilities were then added to the Linux kernel to create a complete system called GNU/Linux, or, less precisely, just Linux.
+----------------------------------------- GNU-UNIX-LINUX -------------------------------------------
+https://www.britannica.com/topic/open-source:
+
+ The practice of sharing code was most effective and consistent among developers of the UNIX operating system, which was central to UNIX’s early success.
+ UNIX was first developed about 1970 at the Bell Laboratories subsidiary of the AT&T Corporation for use on the Digital Equipment Corporation PDP-7 minicomputer.
+ As UNIX was adapted for various computer hardware systems, new variants of the operating system were developed. By the time that AT&T and Sun Microsystems, Inc.
+ (a proponent of the UNIX variant developed at the University of California, Berkeley), finally decided to commercialize UNIX in 1987
+
+https://opensource.org/history
+-----------------------------------------------------
+Open Source Initiative (OSI) założona w lutym 1998 przez Bruce Perens i Eric Raymond
+Eric Raymond napisał slynny artykuł "Cathedral and the Bazaar." http://www.catb.org/esr/writings/homesteading/cathedral-bazaar/
+opisujący różnicę podejścia w tworzeniu oprogramowania zamkniętego/korporacyjnego vs open-source
+Termin "open source" powstał w lutym 1998r, autorka Christine Peterson, cel nowej nazwy - odróżnienie od "free software"
+Nazwa zyskała szybkie wsparcie dzięki takim uznanym osobistościom jak Linus Torvalds i spotkaniu Free Software Summit w kwietniu 1998r
+na którym byli twórcy otwartoźródlowego oprogramowania takiego jak Perl, Python, Apache.
+
+[???] jak się ma FSF do Open Source
+FSF definiuje "Free Software", OSI definiuje "Open Source"
+https://www.geeksforgeeks.org/difference-between-free-software-and-open-source-software/
+https://www.knowledgeboat.com/question/what-is-the-difference-between-an-open-source-and-free--722662359894548200
+Najistotniejsze podobieństwa
+- Oba wymagają dostępu do kodu źródłowego
+- Oba pozwalają użytkownikom modyfikować ten kod
+Najistotniejsze Róznice
+       FSF                                                                   OSI
+- "free" nie znaczy darmowy ale focus jest na "wolności"                  | - focus jest bardziej technologiczny (nie etyczny)
+  użytkowników oprogramowania do jego, oglądu, zmiany, redystrybucji      |   na dostęp do kodu źródlowego
+  Jest tu zatem mocny akcent filozoficzny i etyczny, a nawet polityczny   |
+- "wolność" software-u przekłada się na "wolności" obywatelskie           | - etyka winna być wiązana z ludźmi nie oprogramowaniem
+  i "wolność" jest wartością większą niż postęp ekonomiczny               |   "wolność" nie jest wartością absolutną - winna być dozwolona, a nie wymuszona
+- software powinien być dystrybuowany pod licencją GPL lub podobną        | - pozwala na dystrybucję pod większą ilością licencji które różnią się
+  która chroni "wolności" użytkowników                                    |   poziomami "wolności" użytkowników
+Konkluzja
+- każdy "free software" jest "open source"
+- nie każdy "open source" jest "free software"
+
+GNU - kolekcja opensource software
+UNIX - 
+
+multix was a failed os, but ken thompson that worked on it went on to create unix. then in version 4 of unix, a guy working on the project Dennis Richie created C language. that allowed unix to be imported to different machines??. linux and windows are both inspired by unix, but windows is much less compared to linux, also the core of linux is something called gnu?
+
+
+
+
 POMYSŁ NA APLIKACJE, GENEZA
 Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak 
 CELE I LIMITY PRACY. JEDNOZDANIOWE OMÓWIENIE ROZDZIAŁÓW
