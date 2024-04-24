@@ -20,6 +20,11 @@ Prof. Jana Werewki
 
 Kraków 2023 r.
 1. Streszczenie
+Kto z nas nie lubi zwiedzać galerii sztuki? W tej pracy opowiem o aplikacji która pozwala użytkownikowi nie tylko zwiedzać, ale też projektować swoją własną prywatną galerię sztuki, a to wszystko na dowolnym telefonie z systemem android (w wersji 7.0 lub wyższej). Zacznę od omówienia genezy projektu, początkowego zamysłu. Pierwszy rozdział zawiera opis celów i założeń projektowych, wymagań funkcjonalnych, pozafunkcjonalnych i technicznych, a także analizę profilu potencjalnego użytkownika i przegląd istniejących rozwiązań. Na koniec rozdziału przedstawię wizję realizacji projektu, schemat działania aplikacji, koncepcję wyglądu UI, oraz zadania projektowe.
+Rozdział drugi został poświęcony na omówienie zagadnień technicznych i teoretycznych.
+Ostatni, trzeci rozdział, zawiera opis procesu implementacji, dokumentację techniczną, oraz instrukcję instalacji.
+Na końcu pracy znajdują się wnioski końcowe, oraz bibliografia
+
 HASŁO PRZYCIĄGAJĄCE UWAGĘ
 KONTEKST BIZNESOWY - KRÓTKI
 STRESZCZENIE ROZDZIAŁÓW
@@ -80,7 +85,7 @@ zakładając że przeciętny aparat telefonu z średniej półki cenowej robi zd
 Jak widać większość osób  w tych czasach ma zbyt durzo zdjęć żeby móc realistycznie zapamiętać gdzie je zapisali,<historia aleksandra urii, pamięć która nie znała granic> więc moim rozwiązaniem jest pomóc tym osobom znaleźć te zdjęcia. Pomysł na moją aplikacje zrodził się z zainteresowania technikami pamięci, takimi jak pałac pamięci.
 
 WYKRES UDZIAŁU SYSTEMU ANDROID W RYNKU TELEFONÓW
-HISTORIA ROZWOJU HARDWEARE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KAŻDEGO Z KOMPONENTÓW(pamięć, cpu, gpu)
+HISTORIA ROZWOJU HARDWARE DLA GRAFIKI 3D NA TELEFONY I ZNACZENIE KAŻDEGO Z KOMPONENTÓW(pamięć, cpu, gpu)
     • pierwsze komputery
     • pierwsze stacje graficzne
     • pierwsze komórki
