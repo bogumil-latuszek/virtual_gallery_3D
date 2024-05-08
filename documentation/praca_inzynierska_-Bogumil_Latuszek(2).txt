@@ -86,11 +86,11 @@ W 1965 MIT we współpracy z kilkoma innymi przedsiębiorstwami(min.  Bell Labs)
 Na jego własnej stronie:
    https://stallman.org/cgi-bin/showpage.cgi?path=/common/bio.html&term=biography&type=norm&case=0
 Możemy dowiedzieć się o biografii Stallmana.
-Tutaj warto wspomnieć o Richardzie Stallmanie, który odegrał wielką rolę w rozwoju open-source i systemów operacyjnych. Richard ukończył fizykę na Harvardzie w  1974 r. Jescze w trakcie studiów rozpoczął pracę w laboratorium sztucznej inteligencji na MIT, gdzie pracował w latach 1971-1984. W 1983 Stallman rozpoczął pracę na stworzeniem systemu operacyjnego pod nazwą GNU w całości złożonego z bibliotek free-softwere. O różnicach pomiędzy free-software a open-source opowiemy za chwilę, na razie warto zaznaczyć że każdy program free-software jest równocześnie programem open-source, choć zależność ta niekoniecznie działa w drugą stronę. Kontrybucjami samego Stallmana były min. kompilator GNU, symboliczny debugger(gdb), czy GNU Emacs, ale praca nad GNU była wysiłkiem zbiorowym, wielu twórców oprogramowania na prośbę Stallmana włączyło swoje biblioteki w jego skład. W 1985 r. Stworzył Free Software Movement(w skrócie FSF), organizację która miała na celu chronić prawa użytkowników oprogramowania.
+Tutaj warto wspomnieć o Richardzie Stallmanie, który odegrał wielką rolę w rozwoju open-source i systemów operacyjnych. Richard ukończył fizykę na Harvardzie w  1974 r. Jescze w trakcie studiów rozpoczął pracę w laboratorium sztucznej inteligencji na MIT, gdzie pracował w latach 1971-1984. W 1983 Stallman rozpoczął pracę na stworzeniem systemu operacyjnego pod nazwą GNU w całości złożonego z bibliotek free-softwere. O różnicach pomiędzy free-software a open-source opowiemy za chwilę, na razie warto zaznaczyć że każdy program free-software jest równocześnie programem open-source, choć zależność ta niekoniecznie działa w drugą stronę. Kontrybucjami samego Stallmana były min. kompilator GNU, debugger(gdb), czy GNU Emacs, ale praca nad GNU była wysiłkiem zbiorowym, wielu twórców oprogramowania na prośbę Stallmana włączyło swoje biblioteki w jego skład. W 1985 r. Stworzył Free Software Fundation(w skrócie FSF), organizację która miała na celu chronić prawa użytkowników oprogramowania.
    https://www.britannica.com/biography/Linus-Torvalds:
    https://www.britannica.com/technology/Linux:
    https://youtu.be/lrcdhzr2qnk?si=mjnZ_knk-_IIarmN
-Linus Torvalds, zainspirowany systemem Unix(MINIX) z którym pracował na studiach postanowił napisać swój własny system operacyjny. Pisanie go rozpoczął od zbudowania kernela - W 1991 wydał wersję 0.02, a w 1994 1.0. Podczas gdy Linus kończył pracę nad kernelem Linuxa, projekt GNU Stallmana zbliżał się ku końcowi. Ponieważ obaj programiści obrali odwrotne podejście do tworzenia systemu operacyjnego(Linus zaczął od podstaw - Kernela, a Stallman od bibliotek), postanowili rozpocząć współpracę i połączyć swoje systemy. W ten sposób powstał system będący fuzją tych dwuch systemów- opierający się na jądrze Linuxa, i wykorzystujący biblioteki GNU system GNU-Linux, zwany popularnie Linuxem. GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rzeszę pasjonatów. W połączeniu z Apache, serwerem webowym open-source, GNU-Linux jest systemem operacyjnym większości serwerów sieci internetowej.
+Linus Torvalds, zainspirowany systemem Unix(MINIX) z którym pracował na studiach postanowił napisać swój własny system operacyjny. Pisanie go rozpoczął od zbudowania kernela - W 1991 wydał wersję 0.02, a w 1994 1.0. Podczas gdy Linus kończył pracę nad kernelem Linuxa, projekt GNU Stallmana zbliżał się ku końcowi. Ponieważ obaj programiści obrali odwrotne podejście do tworzenia systemu operacyjnego(Linus zaczął od Kernela, a Stallman od bibliotek), postanowili rozpocząć współpracę i połączyć swoje systemy. W ten sposób powstał system będący fuzją tych dwuch systemów- opierający się na jądrze Linuxa, i wykorzystujący biblioteki GNU system GNU-Linux, zwany popularnie Linuxem. GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rzeszę pasjonatów. W połączeniu z Apache, serwerem webowym open-source, GNU-Linux jest systemem operacyjnym większości serwerów sieci internetowej.
 
    https://marketsplash.com/statystyki-androida/  - stąd wykres udziału Androida w rynku OS w 2023r
 Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linux-ie, systemie operacyjnym typu open source szeroko stosowanym w komputerach osobistych. Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku. Google Play, początkowo uruchomiony w 2008 roku jako Android Market, stał się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań. W 2012 roku Google przeszedł rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play, dając początek znanemu Sklepowi Google Play, jaki znamy dzisiaj.
@@ -126,7 +126,7 @@ Konkluzja
 - nie każdy "open source" jest "free software"
 
    https://www.gnu.org/philosophy/open-source-misses-the-point.en.html
-Stallman discusses differences between open source and free software. Besides ideological undertones, he mentiones these practical differences:
+Stallman discusses differences between open source and free software. Besides ideological undertones, he mentions these practical differences:
 =First, some open source licenses are too restrictive
 Every Free software is Open source, but not every open source is free softwere. To count as Free source, an Open source project has to also fulfill these conditions:
 =has to allow it's user to change it, and distribute it
@@ -139,15 +139,29 @@ https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze nap
 https://inspirationtuts.com/the-history-of-3d-modeling-and-animation/  ma zazębienie z CADami
 https://ufo3d.com/history-of-3d-modeling/
 
-Historia grafiki komputerowej ma swój początek w programach CAD(Computer Aided Design). Programy te początkowo przeznaczone były głównie do tworzenia rysunków technicznych. Wraz z rozwojem branży komputerowej i programistycznej, poszerzano je o coraz to bardziej zaawansowane funkcjonalności. Introdukcja tworzenia modeli wireframe zbudowanych z punktów i linii otworzyła drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertex-y, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować w przekonujące obrazy 3D. Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne, kumulujące w sobie większość innowacji grafiki komputerowej programy o wszechstronnym zastosowaniu. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś.
+Historia grafiki komputerowej ma swój początek w programach CAD(Computer Aided Design).
 
-PRONTO - prawdopodobnie pierwszy przykład programu typu CAD w historii. Na podstawie danych wejściowych zawierających specyfikacje kształtów, ich wymiary itp. generował instrukcje dla maszyn zajmujących się wytwarzaniem części np. maszyn CNC. Zarówno dane wejściowe jak i wyjściowe opisywały kształty 2D, dlatego wykorzystanie programu ograniczało się do tworzenia profili ram itp. Warto zaznaczyć że PRONTO był dostępny tylko na systemach komputerowych General Electric (GE)
+Prawdopodobnie pierwszym w historii programem typu CAD był stworzony w 1957r. PRONTO. Na podstawie danych wejściowych zawierających specyfikacje kształtów, ich wymiary itp. generował instrukcje dla maszyn zajmujących się wytwarzaniem części np. maszyn CNC. Zarówno dane wejściowe jak i wyjściowe opisywały kształty 2D, dlatego wykorzystanie programu ograniczało się do tworzenia profili ram itp. Warto zaznaczyć że PRONTO był dostępny tylko na systemach komputerowych General Electric (GE)
 
-Sketchpad - stworzony w latach 60-tych przez Ivana Sutherlanda program CAD. Wprowadził innowacje takie jak wprowadzanie danych przez pióro świetlne, oraz instancjonowanie obiektów. Program Sketchpad był zaprojektowany i pozostaje silnie związany z komputerem TX-2
+programy CAD w znacznym stopniu usprawniły pracę projektantów/architektów. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły automatyczne wprowadzanie zmian w projekcie.
 
-AutoCAD - jeden z pierwszych programów CAD dostępnych na wielu platformach. Stworzony w 1982 przez firmę Autodesk, warto jednak zaznaczyć że z początku dostępny był tylko na systemie operacyjnym CP/M
+https://www.youtube.com/watch?v=Yb66RzGj8TI
 
-programy CAD w znacznym stopniu usprawniły pracę projektantów/architektów. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły automatyczne wprowadzanie zmian w projekcie. Na początku programy CAD pozwalały tylko na tworzenie modeli 2D, dając urzytkownikom jedynie alternatywny sposób tworzenia rysunków technicznych. Jednak prawdziwy potencjał jaki skrywało w sobie projektowanie komputerowe został wyzwolony dopiero wraz z nadejściem projektowania 3D. Branża samochodowa potrzebowała lepszych rozwiązań, aby poradzić sobie z projektowaniem złożonych brył części samochodowych. Ten nacisk doprowadził do dodania nowych funkcjonalności w programach CAD umożliwiających projektowanie brył 3D. Z początku przeskok pomiędzy modelami 2D a 3D był dość płynny - pierwsze modele ograniczały się do widoku Wireframe - tzn. były zbudowane z punktów i łączących je lini, podobnie jak modele 2D. Ponieważ bryły sześcienne
+Niedługo później, w latach 60-tych Ivan Sutherland stworzył Sketchpad. Sketchpad wprowadził innowacje takie jak wprowadzanie danych przez pióro świetlne, oraz instancjonowanie obiektów, ale najbardziej przełomową funkcją Sketchpada była możliwość tworzenia i manipulacji kształtów w 3D. Wszystkie kształty jakie można było stworzyć w Sketchpadzie były modelami Wireframe - tzn byly zbudowane z punktów i łączących je linii. Program Sketchpad był zaprojektowany i pozostaje silnie związany z komputerem TX-2
+
+Choć programy CAD początkowo przeznaczone były głównie do tworzenia rysunków technicznych, to wraz z rozwojem branży komputerowej i programistycznej, poszerzano je o coraz to bardziej zaawansowane funkcjonalności.
+
+https://www.youtube.com/watch?v=m8Rbl7JG4Ng
+
+W 1963 Edward E. Zajac stworzył animację "Simulation of a two-giro gravity attitude control system". Prawdopodobnie było to pierwsze użycie tekstur w grafice komputerowej.
+
+Introdukcja tworzenia modeli wireframe zbudowanych z punktów i linii otworzyła drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertex-y, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować przekonujące obrazy 3D.
+
+Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne, kumulujące w sobie większość innowacji grafiki komputerowej programy o wszechstronnym zastosowaniu. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś.
+
+
+
+Jednym z pierwszych programów CAD dostępnych na więcej niż jednej platformie był program AutoCAD. Stworzony w 1982 przez firmę Autodesk, warto jednak zaznaczyć że z początku dostępny był tylko na systemie operacyjnym CP/M
 
 
 https://en.wikipedia.org/wiki/OpenGL
@@ -155,12 +169,11 @@ https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
 
-(źródło – wikipedia) – W skrócie SGL - firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d.
+(źródło – wikipedia) – W skrócie SGL - powstała w 1981 r. firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d.
 OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL.
 Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?).
 Potem udostępnili OpenGL i utworzyli Khronos?
 
-(źródło – wikipedia) – W skrócie SGL - firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d. OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL. Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?). Potem udostępnili OpenGL i utworzyli Khronos?
 
 Silicon Graphics (SGI) to firma powstała w 1981r. Jej pierwotnym obszarem działalności było tworzenie stacji graficznych
 czyli bardzo wydajnych komputerów do zastosowań profesjonalnych w grafice. Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
