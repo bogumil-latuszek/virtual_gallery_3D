@@ -202,22 +202,8 @@ Cele i założenia projektowe
 Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
 2.1 Cele projektowe
 Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykożystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
-2.2 Wymagania funkcjonalne i pozafunkcjonalne
-2.2.1 Wymagania funkcjonalne:
-    • możliwość projektowania układu ścian w widoku 2D
-    • możliwość wizualizacji pomieszczenia w widoku 3D
-    • możliwość poruszania się w przestrzeni 3D
-    • automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
-    • wieszanie obrazów na ścianach
-    • zdejmowanie obrazów ze ścian
-2.2.2 Wymagania pozafunkcjonalne:
-    • Prosty i Intuicyjny interfejs użytkownika
-    • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
-2.2.3 Wymagania Techniczne
-    • wersje Android API: minSdk 24 targetSdk 33
-    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
-    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
-2.3 Analiza profilu użytkownika
+
+
 Aplikacja będzie skierowana do:
     • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
     • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku, lub niemających możliwości do wypróbowania jej w rzeczywistości z powodu braku miejsca
