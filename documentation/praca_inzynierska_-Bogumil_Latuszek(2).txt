@@ -197,10 +197,20 @@ W 2017 KG ogłosił że nie będzie nowych wersji OpenGL, bo skupiają się na j
 2014 Apple wydaje swój silnik 3D o nazwie Metal
 2015 start projektu Vulkan (następca OpenGL)
 
+CELE I LIMITY PRACY. JEDNOZDANIOWE OMÓWIENIE ROZDZIAŁÓW
 
-Cele i założenia projektowe
+Celem pracy jest zapoznanie czytelnika z aplikacją „Wirtualna Galeria”, jej działaniem, przeznaczeniem, oraz omówienie zagadnień teoretycznych związanych z jej powstaniem i rozwojem.
+W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, pozafunkcjonalnych i technicznych. Przyjżymy się także profilowi docelowego urzytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań, podział pracy w grupie i śledzenie postępu.
+Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjżymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana – Android. Językom programowania w których aplikacja będzie napisana – Java, XML. Narzędziom użytym w trakcie procesu tworzenia aplikacji – IDE -Android Studio, systemowi kontroli wersji – Git, narzędziu w których tworzone były pliki graficzne - Krita. A także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
+Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
+Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
+
+2 Cele i założenia projektowe
+
 Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
+
 2.1 Cele projektowe
+
 Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykożystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
 
 
@@ -209,12 +219,14 @@ Aplikacja będzie skierowana do:
     • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku, lub niemających możliwości do wypróbowania jej w rzeczywistości z powodu braku miejsca
     • osób chcących zaplanować dekorację wnętrz
     • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
+
 2.4 Przegląd istniejących rozwiązań
+
 Istnieją już aplikacje przeznaczone do projektowania Pokoi Pamięci, lecz nie spotkaliśmy się z przypadkiem gdzie taka aplikacja byłaby dostępna na systemy android.
+
 2.5  Wizja realizacji projektu
+
 2.5.1 Schemat działania aplikacji - Diagramy UML
-
-
 
 
 2.5.2 Koncepcja wyglądu UI aplikacji
@@ -222,6 +234,7 @@ Istnieją już aplikacje przeznaczone do projektowania Pokoi Pamięci, lecz nie 
 2.5.3 Zadania projektowe 
 
 3. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
+
 Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
 TEORIA GRAFIKI 3D:
 macierze
@@ -232,14 +245,23 @@ Frustum, perspektywa, przekształcenia widoku
 dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
 3.1 Android – najważniejsze cechy systemu
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania. 
+
+Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
+
 3.2 Aplikacje mobilne – typy aplikacji, proces tworzenia
+
 3.2.1 Aplikacje natywne
+
 3.2.2 Aplikacje Hybrydowe
+
 3.3 Język programowania i środowisko programistyczne
+
 Java - jest to język obiektowy, to znaczy funkcje i zmienne mogą być enkapsulowane wewnątrz klas - wydzielonych fragmentów kodu o ograniczonym dostępie. Dzięki zastosowaniu obiektowości uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio. Jako, iż w skład funkcjonalności mojego projektu wchodzi tworzenie, edytowanie i wyświetlanie grafiki 3D zdecydowałem się użyć do tego celu biblioteki OpenGL ES – obok biblioteki Vulcan jednej z najpopularniejszych i najlepiej udokumentowanych bibliotek do obsługi grafiki 3D na urządzeniach z systemem Android.
+
 3.4 Biblioteki i frameworki
+
 3.4.1 Biblioteki
+
 OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
 Wstęp- wyjaśnienie nazywy ES, overview urzyteczności, oraz porównanie z opengl i innymi bibliotekami graficznymi.
 https://www.khronos.org/opengles/
@@ -247,17 +269,25 @@ https://www.khronos.org/opengles/
 Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą listy piętnastu wartości float. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu. 
 Użycie wielowątkowego procesora graficznego do zastosowania shaderów 
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
-Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń. 
+Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
+
 3.4.2 Frameworki
+
 3.5 Narzędzia graficzne
+
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
+
 3.6 Testowanie aplikacji
+
 3.7 Zarządzanie projektem informatycznym
+
 Kontrola Wersji – Git 
 Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a głównymi zaletemi użycia systemu kontroli wersji jest zmniejszenie ryzyka związanego z wprowadzaniem zmian do projektu, oraz równoczesne wraz z wprowadzaniem zmian wytwarzanie historii rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
+
 4. Proces implementacji i dokumentacja techniczna
 
 4.1 Konfiguracja środowiska i implementacja architektury
+
 4.2 Etap 1…….
 
 4.3 Etap 2…..
