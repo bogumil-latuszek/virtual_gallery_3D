@@ -157,38 +157,37 @@ W 1963 Edward E. Zajac stworzył animację "Simulation of a two-giro gravity att
 
 Introdukcja tworzenia modeli wireframe zbudowanych z punktów i linii otworzyła drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertex-y, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować przekonujące obrazy 3D.
 
-Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne, kumulujące w sobie większość innowacji grafiki komputerowej programy o wszechstronnym zastosowaniu. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś.
+Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne, kumulujące w sobie większość innowacji grafiki komputerowej programy o wszechstronnym zastosowaniu. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś. Poniżej przedstawimy historię jego powstania
 
-
-
+Do tej pory programy CAD były w większości nie przenaszalne, związane na stałe z komputerem na który zostały zaprojektowane.
 Jednym z pierwszych programów CAD dostępnych na więcej niż jednej platformie był program AutoCAD. Stworzony w 1982 przez firmę Autodesk, warto jednak zaznaczyć że z początku dostępny był tylko na systemie operacyjnym CP/M
-
 
 https://en.wikipedia.org/wiki/OpenGL
 https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
 
-(źródło – wikipedia) – W skrócie SGL - powstała w 1981 r. firma zajmująca się produkcją dedykowanych maszyn do tworzenia grafiki 3d.
-OpenGL powstał jako rozwinięcie cpbiblioteki wewnętrznej SGI o nazwie IrisGL.
-Wraz ze wzrostem komputerów osobistych ich produkt stracił na popularności a firma ogłosiła bankructwo(czy aby na pewno?).
-Potem udostępnili OpenGL i utworzyli Khronos?
-
-
-Silicon Graphics (SGI) to firma powstała w 1981r. Jej pierwotnym obszarem działalności było tworzenie stacji graficznych
-czyli bardzo wydajnych komputerów do zastosowań profesjonalnych w grafice. Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
-wojsko, instytucje rządowe i akademickie. I tak np. przez 8 kolejnych lat 1995-2002 wszystkie filny nominowane do Academy Award
-za efekty wizualne były filmami stworzonymi na komputerach SGI.
-Firma tworzyła zarówno hardware jak i software. Stworzyła swój własny klon Unixa nazwany Irix. Silnikiem graficznym Irixa był IrisGL API który był protoplastą OpenGL-a.
-Na początku lat 90-tych konkurenci SGI (Sun, HP, IBM) również produkowali sprzęt i oprogramowanie do grafiki 3D. ten nacisk konkurencyjny rynku spowodował
-że SGI postanowił udostępnić do open souce zmodyfikowany kod IrisGL czyli OpenGL. SGI zaczął prace nad nim w 1991r i wypuścił wersję 1.0 w 1992r.
+Stacje graficzne, czyli wyspecjalizowane komputery do tworzenia grafiki komputerowej stały się popularne (w latach 90?). Te maszyny posiadały własne silniki graficzne, choć ich kod źródłowy najczęściej nie wychodził poza firmę produkującą stacje graficzną. Jednym z wiodących przedsiębiorstw zajmujących się produkcją tego typu maszyn była firma Silicon Graphics (SGI) powstała w 1981 r, sami również rozwijali oprogramowanie swojego produktu. Ciekawostką na temat oprogramowania stacji graficznych SGI jest fakt iż systemem operacyjnym tych maszyn był stworzony przez SGI klon Unixa nazwany Irix, zaś silnikiem graficznym uruchamianym na tym systemie był IrisGL.
+Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
+wojsko, instytucje rządowe i akademickie.
+W latach 1995-2002 ich produkty cieszyły się wyjątkowo dużą popularnością, o czym świadczy fakt że wszystkie filmy nominowane w tym okresie do Academy Award za efekty wizualne były filmami stworzonymi na komputerach SGI.
+Jednak z biegiem czasu, presja ze strony konkurencji czyli innych producentów użądzeń do produkcji grafiki komputerowej (Sun, HP, IBM), spowodowała iż aby utrzymać silną pozycję na rynku, zarząd SGI podjął drastyczną decyzję. Otóż postanowili oni udostępnić do open souce (nieco zmodyfikowane)  API swojego silnika graficznego IrisGL pod nową nazwą OpenGL. SGI zaczął prace nad tym projektem w 1991r i wypuścił wersję 1.0 w 1992r.
 W 1992 SGI utworzyła konsorcjum z innymi firmami (nazwane pierwotnie  OpenGL Architecture Review Board)
 aby dbać i promować standard OpenGL. Konsorcjum to później przemianowano na Khronos Grup.
-
+Widząc wzrastającą popularność OpenGL grupa Khronos postanowiła wydać także wersję wyspecjalizowaną na użądzenia embedowane, w tym telefony mobilne.
 
 OpenGL ES - powstał w 2003 roku(https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html
 - jescze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
- - oficjalne wydanie ), stworzony przez grupę Khronos
+ - oficjalne wydanie )
+
+https://en.wikipedia.org/wiki/OpenGL
+https://en.wikipedia.org/wiki/IRIS_GL
+https://en.wikipedia.org/wiki/IRIX
+https://en.wikipedia.org/wiki/Silicon_Graphics
+
+ Pomimo iż w 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016), zdecydowałem się użyć w moim projekcie silnika OpenGL ES, z racji tego iż jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android, a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu
+
+
 
 Hardware vendors, the people who make GPUs, are responsible for writing implementations of the OpenGL rendering system. Their implementations, commonly called "drivers", translate OpenGL API commands into GPU commands. If a particular piece of hardware is unable to implement all of the OpenGL specification via hardware, the hardware vendor must still provide this functionality, typically via a software-based implementation of the features missing from hardware
  ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
