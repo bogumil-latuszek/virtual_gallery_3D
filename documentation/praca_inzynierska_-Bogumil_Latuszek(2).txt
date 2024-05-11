@@ -72,65 +72,27 @@ Wnioski końcowe	12
 Bibliografia	13
 
 2. Wstęp
-Wirtualna Galeria(WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL i systemu Android, dwuch kluczowych elementów dzięki którym WG może działać. Jednak powstanie tych dwuch kluczowych elementów zawdzięczamy postępowi jaki został dokonany na przestrzeni lat w obrębie Grafiki Komputerowej oraz ruchu Open-Source. Poniżej pragnę przybliżyć historię która doprowadziła do ich powstania
+Wirtualna Galeria(WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL i systemu Android, dwuch kluczowych elementów dzięki którym WG może działać. Jednak powstanie tych dwóch kluczowych elementów zawdzięczamy postępowi jaki został dokonany na przestrzeni lat w obrębie Grafiki Komputerowej oraz ruchu Open-Source. Poniżej pragnę przybliżyć historię która doprowadziła do ich powstania
 
 <TUTAJ WYKRES KLUCZOWYCH MOMENTÓW NA PRZESTRZENI LAT>
 
 OPEN SOURCE:
 
    wikipedia, https://archive.is/20120720042557/http://cm.bell-labs.com/cm/cs/who/dmr/hist.html:
-W 1965 MIT we współpracy z kilkoma innymi przedsiębiorstwami(min.  Bell Labs) rozpoczęło pracę nad systemem operacyjnym Multics. Multics był przeznaczony do użytku na specjalnym komputerze -  GE 645.(*czy jednak Multics miał być na wiele komputerów, ale stworzony został na GE 645?). Po pięciu latach trwania projektu Multics wciąż nie był ukończony, co zraziło kierownictwo Bell Labs do inwestowania w systemy operacyjne. Jakiś czas później grupa programistów pracujących w Bell Labs, na czele której stali poprzednio pracujący nad Multicsem Ken Thompson i Dennis Ritchie, próbowała przekonać zarząd do zakupienia nowego komputera do którego zobowiązali śię napisać OS, nie dostali jednak zgody na to przedsięwzięcie. Udało im się jednak znaleść w Bell Labs mało używany mini komputer PDP-7, na którym stworzyli system Unix, wzorując się na systemie Multics. Warto wspomnieć że ich system uzyskał nazwę "Unix" dopiero w 1970 r.
+W 1965 roku MIT we współpracy z kilkoma innymi przedsiębiorstwami(w tym Bell Labs) rozpoczęło pracę nad systemem operacyjnym Multics. Multics był przeznaczony do użytku na specjalnym komputerze -  GE 645. Po pięciu latach trwania projektu Multics wciąż nie był ukończony, co zraziło kierownictwo Bell Labs do inwestowania w systemy operacyjne. Jakiś czas później grupa programistów pracujących w Bell Labs, na czele której stali poprzednio pracujący nad Multicsem Ken Thompson i Dennis Ritchie, próbowała przekonać zarząd do zakupienia nowego komputera do którego zobowiązali się napisać OS. Nie dostali jednak zgody na to przedsięwzięcie. Udało im się natomiast znaleść w Bell Labs mało używany mini komputer PDP-7, na którym stworzyli system Unix, wzorując się na systemie Multics. Warto wspomnieć że ich system uzyskał nazwę "Unix" dopiero w 1970 r.
  W 1970 r. do Bell Labs przyszło zamówienie z Amerykańskiego Biura Patentowego na edytor tekstowy. Zespół Richiego i Thompsona wykorzystał tę okazję żeby zdobyć zgodę na zakup komputera PDP-11. Najpierw przenieśli na niego system Unix, a potem zbudowali na nim edytor tekstowy. W 1971r wdrożyli edytor w biurze patentowym, a projekt oficjalnie zakończył się sukcesem. W ten sposób naukowcy udowodnili firmie Bell Labs użyteczność systemu Unix.
- Kod źródłowy Unix był przez długi czas zamknięty, dostęp do niego mieli tylko pracownicy Bell Labs. W 1972 r. Richie i Kernigan stworzyli język C, a w 1973 r. czwarta edycja Unixa została przepisana z Assemblera na C. W 1975 r. kod źródłowy szóstej wersji Unixa, wyszedł poza Bell Labs na odpłatnej licencji AT&T do kilku amerykańskich uniwersytetów. Na jego podstawie powstały klony Unixa, min. stworzony przez Uniwersytet Berkeley w Kaliforni Unix BSD. Twórcy Unixa BSD zmodyfikowali go na tyle że mogli upublicznić jego kod źródłowy i uniezależnić się od licencji AT&T. Na innej uczelni Andrew S. Tanenbaum stworzył MINIX, wersję Unixa z której kożystał później Linus Thorvalds podczas nauki na  Uniwersytecie w Helsinkach, i która zainspirowała go do stworzenia Linuxa
+ Kod źródłowy Unix był przez długi czas zamknięty, dostęp do niego mieli tylko pracownicy Bell Labs. W 1972 r. Richie i Kernigan stworzyli język C, a w 1973 r. czwarta edycja Unixa została przepisana z Assemblera na C. W 1975 r. kod źródłowy szóstej wersji Unixa, wyszedł poza Bell Labs na odpłatnej licencji AT&T do kilku amerykańskich uniwersytetów. Ponieważ AT&T nie widziało potencjału w komercjalizacji Unixa, koszt był symboliczny - rzędu kilkuset dolarów. Na jego podstawie powstały klony Unixa, min. stworzony przez Uniwersytet Berkeley w Kaliforni Unix BSD. Twórcy Unixa BSD zmodyfikowali go na tyle że mogli upublicznić jego kod źródłowy i uniezależnić się od licencji AT&T. Na innej uczelni Andrew S. Tanenbaum stworzył MINIX, wersję Unixa z której kożystał później Linus Thorvalds podczas nauki na  Uniwersytecie w Helsinkach, i która zainspirowała go do stworzenia Linuxa
 
-Na jego własnej stronie:
    https://stallman.org/cgi-bin/showpage.cgi?path=/common/bio.html&term=biography&type=norm&case=0
-Możemy dowiedzieć się o biografii Stallmana.
-Tutaj warto wspomnieć o Richardzie Stallmanie, który odegrał wielką rolę w rozwoju open-source i systemów operacyjnych. Richard ukończył fizykę na Harvardzie w  1974 r. Jescze w trakcie studiów rozpoczął pracę w laboratorium sztucznej inteligencji na MIT, gdzie pracował w latach 1971-1984. W 1983 Stallman rozpoczął pracę na stworzeniem systemu operacyjnego pod nazwą GNU w całości złożonego z bibliotek free-softwere. O różnicach pomiędzy free-software a open-source opowiemy za chwilę, na razie warto zaznaczyć że każdy program free-software jest równocześnie programem open-source, choć zależność ta niekoniecznie działa w drugą stronę. Kontrybucjami samego Stallmana były min. kompilator GNU, debugger(gdb), czy GNU Emacs, ale praca nad GNU była wysiłkiem zbiorowym, wielu twórców oprogramowania na prośbę Stallmana włączyło swoje biblioteki w jego skład. W 1985 r. Stworzył Free Software Fundation(w skrócie FSF), organizację która miała na celu chronić prawa użytkowników oprogramowania.
+
+Tutaj warto wspomnieć o Richardzie Stallmanie, który odegrał wielką rolę w rozwoju open-source i systemów operacyjnych. Richard ukończył fizykę na Harvardzie w  1974 r. Jescze w trakcie studiów rozpoczął pracę w laboratorium sztucznej inteligencji na MIT, gdzie pracował w latach 1971-1984. Tam zetknął się z kodem źródłowym Unixa. W 1983 Stallman rozpoczął pracę na stworzeniem systemu operacyjnego pod nazwą GNU w całości złożonego z bibliotek free-software. O różnicach pomiędzy free-software a open-source opowiemy za chwilę, na razie warto zaznaczyć że każdy program free-software jest równocześnie programem open-source, choć zależność ta niekoniecznie działa w drugą stronę. Kontrybucjami samego Stallmana były min. kompilator GCC, debugger(gdb), czy edytor Emacs, ale praca nad GNU była wysiłkiem zbiorowym, wielu twórców oprogramowania na prośbę Stallmana włączyło swoje biblioteki w jego skład. W 1985 r. Stworzył Free Software Fundation(w skrócie FSF), organizację która miała na celu chronić prawa użytkowników oprogramowania, w tym przede wszystkim możliwość wglądu do kodu źródłowego i jego modyfikacji.
    https://www.britannica.com/biography/Linus-Torvalds:
    https://www.britannica.com/technology/Linux:
    https://youtu.be/lrcdhzr2qnk?si=mjnZ_knk-_IIarmN
-Linus Torvalds, zainspirowany systemem Unix(MINIX) z którym pracował na studiach postanowił napisać swój własny system operacyjny. Pisanie go rozpoczął od zbudowania kernela - W 1991 wydał wersję 0.02, a w 1994 1.0. Podczas gdy Linus kończył pracę nad kernelem Linuxa, projekt GNU Stallmana zbliżał się ku końcowi. Ponieważ obaj programiści obrali odwrotne podejście do tworzenia systemu operacyjnego(Linus zaczął od Kernela, a Stallman od bibliotek), postanowili rozpocząć współpracę i połączyć swoje systemy. W ten sposób powstał system będący fuzją tych dwuch systemów- opierający się na jądrze Linuxa, i wykorzystujący biblioteki GNU system GNU-Linux, zwany popularnie Linuxem. GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rzeszę pasjonatów. W połączeniu z Apache, serwerem webowym open-source, GNU-Linux jest systemem operacyjnym większości serwerów sieci internetowej.
+Linus Torvalds, zainspirowany systemem MINIX postanowił napisać swój własny system operacyjny. Pisanie go rozpoczął od zbudowania kernela - W 1991 wydał wersję 0.02, a w 1994 1.0. Podczas gdy Linus kończył pracę nad kernelem Linuxa, projekt GNU Stallmana zbliżał się ku końcowi. Ponieważ obaj programiści obrali odwrotne podejście do tworzenia systemu operacyjnego(Linus zaczął od Kernela, a Stallman od bibliotek i narzędzi), postanowili rozpocząć współpracę i połączyć swoje systemy. W ten sposób powstał system będący fuzją tych dwuch systemów- opierający się na jądrze Linuxa, i wykorzystujący biblioteki GNU system GNU-Linux, zwany popularnie Linuxem. GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rzeszę pasjonatów. W połączeniu z Apache, serwerem webowym open-source, GNU-Linux jest systemem operacyjnym większości serwerów sieci internetowej. Znalazł też zastosowanie w komputerach NASA, minikomputerach Raspberry Pi, a sam kernel Linux został później wykorzystany jako jądro systemu Android
 
    https://marketsplash.com/statystyki-androida/  - stąd wykres udziału Androida w rynku OS w 2023r
-Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linux-ie, systemie operacyjnym typu open source szeroko stosowanym w komputerach osobistych. Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku. Google Play, początkowo uruchomiony w 2008 roku jako Android Market, stał się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań. W 2012 roku Google przeszedł rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play, dając początek znanemu Sklepowi Google Play, jaki znamy dzisiaj.
-
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
-
-   https://opensource.org/history
-Open Source Initiative (OSI) założona w lutym 1998 przez Bruce Perensa i Eric-a Raymonda
-Eric Raymond napisał slynny artykuł "Cathedral and the Bazaar." http://www.catb.org/esr/writings/homesteading/cathedral-bazaar/
-opisujący różnicę podejścia w tworzeniu oprogramowania zamkniętego/korporacyjnego vs open-source
-Termin "open source" powstał w lutym 1998r, autorka Christine Peterson, cel nowej nazwy - odróżnienie od "free software"
-Nazwa zyskała szybkie wsparcie dzięki takim uznanym osobistościom jak Linus Torvalds i spotkaniu Free Software Summit w kwietniu 1998r
-na którym byli twórcy otwartoźródlowego oprogramowania takiego jak Perl, Python, Apache.
-
-[???] jak się ma FSF do Open Source
-FSF definiuje "Free Software", OSI definiuje "Open Source"
-https://www.geeksforgeeks.org/difference-between-free-software-and-open-source-software/
-https://www.knowledgeboat.com/question/what-is-the-difference-between-an-open-source-and-free--722662359894548200
-Najistotniejsze podobieństwa
-- Oba wymagają dostępu do kodu źródłowego
-- Oba pozwalają użytkownikom modyfikować ten kod
-Najistotniejsze Róznice
-       FSF                                                                   OSI
-- "free" nie znaczy darmowy ale focus jest na "wolności"                  | - focus jest bardziej technologiczny (nie etyczny)
-  użytkowników oprogramowania do jego, oglądu, zmiany, redystrybucji      |   na dostęp do kodu źródlowego
-  Jest tu zatem mocny akcent filozoficzny i etyczny, a nawet polityczny   |
-- "wolność" software-u przekłada się na "wolności" obywatelskie           | - etyka winna być wiązana z ludźmi nie oprogramowaniem
-  i "wolność" jest wartością większą niż postęp ekonomiczny               |   "wolność" nie jest wartością absolutną - winna być dozwolona, a nie wymuszona
-- software powinien być dystrybuowany pod licencją GPL lub podobną        | - pozwala na dystrybucję pod większą ilością licencji które różnią się
-  która chroni "wolności" użytkowników                                    |   poziomami "wolności" użytkowników
-Konkluzja
-- każdy "free software" jest "open source"
-- nie każdy "open source" jest "free software"
-
-   https://www.gnu.org/philosophy/open-source-misses-the-point.en.html
-Stallman discusses differences between open source and free software. Besides ideological undertones, he mentions these practical differences:
-=First, some open source licenses are too restrictive
-Every Free software is Open source, but not every open source is free softwere. To count as Free source, an Open source project has to also fulfill these conditions:
-=has to allow it's user to change it, and distribute it
-
+Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linux-ie. Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku. Działająca na nim aplikacja Android Market stała się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań. W 2012 roku Google przeprowadził rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play.
 
 GRAFIKA KOMPUTEROWA:
 
@@ -141,13 +103,13 @@ https://ufo3d.com/history-of-3d-modeling/
 
 Historia grafiki komputerowej ma swój początek w programach CAD(Computer Aided Design).
 
-Prawdopodobnie pierwszym w historii programem typu CAD był stworzony w 1957r. PRONTO. Na podstawie danych wejściowych zawierających specyfikacje kształtów, ich wymiary itp. generował instrukcje dla maszyn zajmujących się wytwarzaniem części np. maszyn CNC. Zarówno dane wejściowe jak i wyjściowe opisywały kształty 2D, dlatego wykorzystanie programu ograniczało się do tworzenia profili ram itp. Warto zaznaczyć że PRONTO był dostępny tylko na systemach komputerowych General Electric (GE)
+Prawdopodobnie pierwszym w historii programem typu CAD był stworzony w 1957r. PRONTO. Na podstawie danych wejściowych zawierających matematyczny opis kształtów generował instrukcje dla maszyn zajmujących się wytwarzaniem części np. maszyn CNC. Zarówno dane wejściowe jak i wyjściowe opisywały kształty 2D, dlatego wykorzystanie programu ograniczało się do tworzenia profili ram itp. Warto zaznaczyć że PRONTO był dostępny tylko na systemach komputerowych General Electric (GE)
 
-programy CAD w znacznym stopniu usprawniły pracę projektantów/architektów. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły automatyczne wprowadzanie zmian w projekcie.
+programy CAD w znacznym stopniu usprawniły pracę projektantów, architektów i kreślarzy. Podczas gdy ręczne wprowadzenie zmiany do gotowego szkicu wiązało się najczęściej z całościowym jego przerysowaniem, programy CAD umożliwiły łatwe wprowadzanie zmian w projekcie.
 
 https://www.youtube.com/watch?v=Yb66RzGj8TI
 
-Niedługo później, w latach 60-tych Ivan Sutherland stworzył Sketchpad. Sketchpad wprowadził innowacje takie jak wprowadzanie danych przez pióro świetlne, oraz instancjonowanie obiektów, ale najbardziej przełomową funkcją Sketchpada była możliwość tworzenia i manipulacji kształtów w 3D. Wszystkie kształty jakie można było stworzyć w Sketchpadzie były modelami Wireframe - tzn byly zbudowane z punktów i łączących je linii. Program Sketchpad był zaprojektowany i pozostaje silnie związany z komputerem TX-2
+Niedługo później, w latach 60-tych Ivan Sutherland stworzył Sketchpad. Sketchpad wprowadził innowacje takie jak wprowadzanie danych bezpośrednio na ekranie przez pióro świetlne, oraz instancjonowanie obiektów, ale najbardziej przełomową funkcją Sketchpada była możliwość tworzenia i manipulacji kształtów w 3D. Wszystkie kształty jakie można było stworzyć w Sketchpadzie były modelami Wireframe - tzn byly zbudowane z punktów i łączących je linii. Program Sketchpad był zaprojektowany i pozostaje silnie związany z komputerem TX-2
 
 Choć programy CAD początkowo przeznaczone były głównie do tworzenia rysunków technicznych, to wraz z rozwojem branży komputerowej i programistycznej, poszerzano je o coraz to bardziej zaawansowane funkcjonalności.
 
@@ -155,29 +117,27 @@ https://www.youtube.com/watch?v=m8Rbl7JG4Ng
 
 W 1963 Edward E. Zajac stworzył animację "Simulation of a two-giro gravity attitude control system". Prawdopodobnie było to pierwsze użycie tekstur w grafice komputerowej.
 
-Introdukcja tworzenia modeli wireframe zbudowanych z punktów i linii otworzyła drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertex-y, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować przekonujące obrazy 3D.
+Opracowanie tworzenia modeli wireframe zbudowanych z punktów i linii otworzyła drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertex-y, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować realistyczne obrazy 3D.
 
-Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne, kumulujące w sobie większość innowacji grafiki komputerowej programy o wszechstronnym zastosowaniu. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś. Poniżej przedstawimy historię jego powstania
+Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne. te programy o wszechstronnym zastosowaniu kumulują w sobie większość innowacji grafiki komputerowej. Jednym z nich jest Open GL, silnik(biblioteka?) graficzny którego wpływ na grafikę komputerową odczówany jest do dziś. W dalszej części pracy przedstawimy historię jego powstania
 
-Do tej pory programy CAD były w większości nie przenaszalne, związane na stałe z komputerem na który zostały zaprojektowane.
-Jednym z pierwszych programów CAD dostępnych na więcej niż jednej platformie był program AutoCAD. Stworzony w 1982 przez firmę Autodesk, warto jednak zaznaczyć że z początku dostępny był tylko na systemie operacyjnym CP/M
+Programy CAD powstałe w latach 6o-tych i 70-tych były w większości nieprzenaszalne, związane na stałe z komputerem na który zostały zaprojektowane.
+W 1982 r. powstał program AutoCAD stworzony przez firmę Autodesk. Był to prawdopodobnie pierwszy program CAD  dostępny na więcej niż jednej platformie sprzętowej
 
 https://en.wikipedia.org/wiki/OpenGL
 https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
 
-Stacje graficzne, czyli wyspecjalizowane komputery do tworzenia grafiki komputerowej stały się popularne (w latach 90?). Te maszyny posiadały własne silniki graficzne, choć ich kod źródłowy najczęściej nie wychodził poza firmę produkującą stacje graficzną. Jednym z wiodących przedsiębiorstw zajmujących się produkcją tego typu maszyn była firma Silicon Graphics (SGI) powstała w 1981 r, sami również rozwijali oprogramowanie swojego produktu. Ciekawostką na temat oprogramowania stacji graficznych SGI jest fakt iż systemem operacyjnym tych maszyn był stworzony przez SGI klon Unixa nazwany Irix, zaś silnikiem graficznym uruchamianym na tym systemie był IrisGL.
+Stacje graficzne, czyli wyspecjalizowane komputery do tworzenia grafiki komputerowej stały się popularne (w latach 90?). Te maszyny posiadały własne silniki graficzne, choć ich kod źródłowy najczęściej nie wychodził poza firmę produkującą stacje graficzną. Jednym z wiodących przedsiębiorstw zajmujących się produkcją tego typu maszyn była firma Silicon Graphics (SGI) powstała w 1981 r. Ciekawostką na temat oprogramowania stacji graficznych SGI jest fakt iż systemem operacyjnym tych maszyn był stworzony przez SGI klon Unixa nazwany Irix, zaś silnikiem graficznym uruchamianym na tym systemie był IrisGL.
 Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
 wojsko, instytucje rządowe i akademickie.
 W latach 1995-2002 ich produkty cieszyły się wyjątkowo dużą popularnością, o czym świadczy fakt że wszystkie filmy nominowane w tym okresie do Academy Award za efekty wizualne były filmami stworzonymi na komputerach SGI.
-Jednak z biegiem czasu, presja ze strony konkurencji czyli innych producentów użądzeń do produkcji grafiki komputerowej (Sun, HP, IBM), spowodowała iż aby utrzymać silną pozycję na rynku, zarząd SGI podjął drastyczną decyzję. Otóż postanowili oni udostępnić do open souce (nieco zmodyfikowane)  API swojego silnika graficznego IrisGL pod nową nazwą OpenGL. SGI zaczął prace nad tym projektem w 1991r i wypuścił wersję 1.0 w 1992r.
-W 1992 SGI utworzyła konsorcjum z innymi firmami (nazwane pierwotnie  OpenGL Architecture Review Board)
-aby dbać i promować standard OpenGL. Konsorcjum to później przemianowano na Khronos Grup.
-Widząc wzrastającą popularność OpenGL grupa Khronos postanowiła wydać także wersję wyspecjalizowaną na użądzenia embedowane, w tym telefony mobilne.
+Jednak z biegiem czasu, inni producenci urządzeń do tworzenia grafiki komputerowej (Sun, HP, IBM), stali się realną konkurencją dla SGI. Aby utrzymać silną pozycję na rynku, zarząd SGI podjął drastyczną decyzję. Otóż postanowili oni udostępnić do open souce (nieco zmodyfikowane)  API swojego silnika graficznego IrisGL pod nową nazwą OpenGL. SGI zaczął prace nad tym projektem w 1991r i wypuścił OpenGL w wersjii 1.0 w 1992r.
+W 1992 SGI utworzyła wraz z innymi firmami konsorcjum OpenGL Architecture Review Boar aby dbać i promować standard OpenGL. W 2006 obowiązki te przejęło inne konsorcjum zwane Khronos Group.
+Widząc wzrastającą popularność OpenGL grupa Khronos postanowiła wydać także wersję wyspecjalizowaną na użądzenia embeded, w tym telefony mobilne.
 
-OpenGL ES - powstał w 2003 roku(https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html
-- jescze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
+Tak powstał wydany w 2003 roku OpenGL ES (https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html - jescze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
  - oficjalne wydanie )
 
 https://en.wikipedia.org/wiki/OpenGL
@@ -185,17 +145,9 @@ https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
 
- Pomimo iż w 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016), zdecydowałem się użyć w moim projekcie silnika OpenGL ES, z racji tego iż jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android, a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu
+W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016), ja jednak zdecydowałem się użyć w moim projekcie silnika OpenGL ES, ponieważ jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android(w przeciwieństwie do ich głównego konkurenta Apple (*1) ) a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu.
 
-
-
-Hardware vendors, the people who make GPUs, are responsible for writing implementations of the OpenGL rendering system. Their implementations, commonly called "drivers", translate OpenGL API commands into GPU commands. If a particular piece of hardware is unable to implement all of the OpenGL specification via hardware, the hardware vendor must still provide this functionality, typically via a software-based implementation of the features missing from hardware
- ( https://www.khronos.org/opengl/wiki/FAQ#What_is_OpenGL?)
-opengl is a standard, an interface, an API definition. An implementation of it is the one that provides described functionality to apps using it. One such implementation is Mesa3D 
-
-W 2017 KG ogłosił że nie będzie nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydany w 2016)
-2014 Apple wydaje swój silnik 3D o nazwie Metal
-2015 start projektu Vulkan (następca OpenGL)
+(*1) OpenGL był również przez jakiś czas wspierany przez firmę Apple, jednak w roku 2014 Apple stworzyło swój własny silnik graficzny Metal, i cztery lata później oficjalnie zakończyło wspieranie OpenGL.
 
 CELE I LIMITY PRACY. JEDNOZDANIOWE OMÓWIENIE ROZDZIAŁÓW
 
