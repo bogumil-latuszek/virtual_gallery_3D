@@ -6,7 +6,7 @@ I INFORMATYKI W KRAKOWIE
 
 Bogumił Latuszek
 nr albumu 13132
-PROJEKT I IMPLEMENTACJA APLIKACJI MOBILNEJ „WIRTUALNA GALERIA”   KOŻYSTAJĄCEJ  Z  BIBLOTEKI  OPENGL ES
+PROJEKT I IMPLEMENTACJA APLIKACJI MOBILNEJ „WIRTUALNA GALERIA SZTUKI”   KORZYSTAJĄCEJ  Z  BIBLOTEKI  OPENGL ES
 
 
 
@@ -19,63 +19,84 @@ napisana pod kierunkiem
 Prof. Jana Werewki
 
 Kraków 2023 r.
-1. Streszczenie
-Kto z nas nie lubi zwiedzać galerii sztuki? W tej pracy opowiem o aplikacji która pozwala użytkownikowi nie tylko zwiedzać, ale też projektować swoją własną prywatną galerię sztuki, a to wszystko na dowolnym telefonie z systemem android (w wersji 7.0 lub wyższej). Zacznę od omówienia genezy projektu, początkowego zamysłu. Pierwszy rozdział zawiera opis celów i założeń projektowych, wymagań funkcjonalnych, pozafunkcjonalnych i technicznych, a także analizę profilu potencjalnego użytkownika i przegląd istniejących rozwiązań. Na koniec rozdziału przedstawię wizję realizacji projektu, schemat działania aplikacji, koncepcję wyglądu UI, oraz zadania projektowe.
-Rozdział drugi został poświęcony na omówienie zagadnień technicznych i teoretycznych.
-Ostatni, trzeci rozdział, zawiera opis procesu implementacji, dokumentację techniczną, oraz instrukcję instalacji. Na końcu pracy znajdują się wnioski końcowe, oraz bibliografia
 
-KONTEKST BIZNESOWY - KRÓTKI
-STRESZCZENIE ROZDZIAŁÓW
+Streszczenie
+
+Kto z nas nie lubi zwiedzać galerii sztuki? Ta praca opisuje aplikację która pozwala użytkownikowi nie tylko zwiedzać, ale też projektować swoją własną prywatną galerię sztuki, a to wszystko na dowolnym telefonie z systemem android (w wersji 7.0 lub wyższej).
+W pierwszym rozdziale przedstawione zostały cele, zakres i streszczenie pracy
+Drugi rozdział został poświęcony na przybliżenie czytelnikowi historii powstania narzędzi/frameworków użytych w projekcie, a także powiązanych tematów
+Trzeci rozdział zawiera opis celów i założeń projektowych, wymagań funkcjonalnych, pozafunkcjonalnych i technicznych, a także analizę profilu potencjalnego użytkownika i przegląd istniejących rozwiązań. Na końcu rozdziału znajduje się wizja realizacji projektu, schemat działania aplikacji, koncepcja wyglądu UI, oraz zadania projektowe.
+Rozdział czwarty został poświęcony na omówienie zagadnień technicznych i teoretycznych.
+Ostatni, piąty rozdział, zawiera opis procesu implementacji, dokumentację techniczną, oraz instrukcję instalacji.
+Na końcu pracy znajdują się wnioski końcowe, oraz bibliografia
+
 Słowa kluczowe
-Aplikacja mobilna, Android, Java, Open GL 
+Wirtualna Galeria, Aplikacja mobilna, Android, Java, Open GL
 
 Abstract
 
 Keywords
-Mobile Application, Android, Java, Open GL 
-Spis treści
-1. Streszczenie	1
-2. Wstęp	4
-3. Cele i założenia projektowe	5
-3.1 Cele projektowe	5
-3.2 Wymagania funkcjonalne i pozafunkcjonalne	5
-3.2.1 Wymagania funkcjonalne:	5
-3.2.2 Wymagania pozafunkcjonalne:	5
-3.2.3 Wymagania Techniczne	6
-3.3 Analiza profilu użytkownika	6
-3.4 Przegląd istniejących rozwiązań	6
-3.5  Wizja realizacji projektu	6
-3.5.1 Schemat działania aplikacji - Diagramy UML	6
-3.5.2 Koncepcja wyglądu UI aplikacji	7
-3.5.3 Zadania projektowe	7
-4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych	7
-4.1 Android – najważniejsze cechy systemu	7
-4.2 Aplikacje mobilne – typy aplikacji, proces tworzenia	8
-4.2.1 Aplikacje natywne	8
-4.2.2 Aplikacje Hybrydowe	8
-4.3 Język programowania i środowisko programistyczne	8
-4.4 Biblioteki i frameworki	9
-4.4.1 Biblioteki	9
-4.4.2 Frameworki	10
-4.5 Narzędzia graficzne	10
-4.6 Testowanie aplikacji	10
-4.7 Zarządzanie projektem informatycznym	10
-5. Proces implementacji i dokumentacja techniczna	11
-5.1 Konfiguracja środowiska i implementacja architektury	11
-5.2 Etap 1…….	11
-5.3 Etap 2…..	11
-5.4 Projekt graficzny aplikacji	11
-5.5 Testowanie aplikacji	11
-5.6 Dokumentacja techniczna projektu	11
-Wnioski końcowe	12
-Bibliografia	13
+Wirtual Gallery, Mobile Application, Android, Java, Open GL
 
-2. Wstęp
+Spis treści
+Streszczenie	1
+1. Wstęp	4
+1.1 Cele, zakres i streszczenie pracy	4
+2. Historia rozwoju narzędzi graficznych	5
+2.1 Open source:	6
+2.2 Grafika komputerowa:	8
+3. Cele i założenia projektowe	11
+3.1 Cele projektowe	11
+3.2 Wymagania funkcjonalne i pozafunkcjonalne	11
+3.2.1 Wymagania funkcjonalne:	11
+3.2.2 Wymagania pozafunkcjonalne:	11
+3.2.3 Wymagania Techniczne	12
+3.3 Analiza profilu użytkownika	12
+3.4 Przegląd istniejących rozwiązań	12
+3.5  Wizja realizacji projektu	12
+3.5.1 Schemat działania aplikacji - Diagramy UML	12
+3.5.2 Koncepcja wyglądu UI aplikacji	12
+3.5.3 Zadania projektowe	13
+4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych	13
+4.1 Android – najważniejsze cechy systemu	13
+4.2 Aplikacje mobilne – typy aplikacji, proces tworzenia	14
+4.2.1 Aplikacje natywne	14
+4.2.2 Aplikacje Hybrydowe	14
+4.3 Język programowania i środowisko programistyczne	14
+4.4 Biblioteki i frameworki	14
+4.4.1 Biblioteki	14
+4.4.2 Frameworki	15
+4.5 Narzędzia graficzne	15
+4.6 Testowanie aplikacji	16
+4.7 Zarządzanie projektem informatycznym	16
+5. Proces implementacji i dokumentacja techniczna	17
+5.1 Konfiguracja środowiska i implementacja architektury	17
+5.2 Etap 1…….	17
+5.3 Etap 2…..	17
+5.4 Projekt graficzny aplikacji	17
+5.5 Testowanie aplikacji	17
+5.6 Dokumentacja techniczna projektu	17
+Wnioski końcowe	18
+Bibliografia	19
+
+
+1. Wstęp
+Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak
+
+1.1 Cele, zakres i streszczenie pracy
+
+Celem pracy jest zapoznanie czytelnika z aplikacją „Wirtualna Galeria”, jej działaniem, przeznaczeniem, oraz omówienie zagadnień teoretycznych związanych z jej powstaniem i rozwojem.
+W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
+Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjrzymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana (Android), językom programowania w których aplikacja będzie napisana (Java, XML), narzędziom użytym w trakcie procesu tworzenia aplikacji (IDE - Android Studio), systemowi kontroli wersji (Git), narzędziu w którym tworzone były pliki graficzne (Krita), a także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
+Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
+Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
+
+2. Historia rozwoju narzędzi graficznych
 Wirtualna Galeria (WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL i systemu Android, dwóch kluczowych elementów dzięki którym WG może działać. Jednak powstanie tych elementów zawdzięczamy postępowi jaki został dokonany na przestrzeni lat w obrębie Grafiki Komputerowej oraz ruchu Open-Source. Poniżej pragnę przybliżyć historię która doprowadziła do ich powstania
 
 <TUTAJ WYKRES KLUCZOWYCH MOMENTÓW NA PRZESTRZENI LAT>
 
-OPEN SOURCE:
+2.1 Open source:
 
    wikipedia, https://archive.is/20120720042557/http://cm.bell-labs.com/cm/cs/who/dmr/hist.html:
 W 1965 roku MIT we współpracy z kilkoma innymi przedsiębiorstwami (w tym Bell Labs) rozpoczęło pracę nad systemem operacyjnym Multics1. Był on przeznaczony do użytku na specjalnym komputerze -  GE 645. Po pięciu latach trwania projektu Multics wciąż nie był ukończony, co zraziło kierownictwo Bell Labs do inwestowania w systemy operacyjne. Jakiś czas później grupa programistów pracujących w Bell Labs, na czele której stali poprzednio pracujący nad Multicsem Ken Thompson i Dennis Ritchie, próbowała przekonać zarząd do zakupienia nowego komputera do którego zobowiązali się napisać OS. Nie dostali jednak zgody na to przedsięwzięcie. Udało im się natomiast znaleźć w Bell Labs mało używany mini komputer PDP-7, na którym stworzyli system Unix, wzorując się na systemie Multics. Warto wspomnieć że ich system uzyskał nazwę "Unix" dopiero w 1970 r.
@@ -96,7 +117,7 @@ GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rz
    https://marketsplash.com/statystyki-androida/  - stąd wykres udziału Androida w rynku OS w 2023r
 Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linux-ie. Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku. Działająca na nim aplikacja Android Market stała się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań. W 2012 roku Google przeprowadził rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play.
 
-GRAFIKA KOMPUTEROWA:
+2.2 Grafika komputerowa:
 
 https://www.cadblog.pl/historia-systemow-cad/
 https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze napisane
@@ -149,25 +170,17 @@ https://en.wikipedia.org/wiki/Silicon_Graphics
 
 W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016). Ja jednak zdecydowałem się użyć w moim projekcie silnika OpenGL ES, ponieważ jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android (w przeciwieństwie do ich głównego konkurenta Apple), a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu.
 
-2.1 Cele, zakres i streszczenie pracy
-
-Celem pracy jest zapoznanie czytelnika z aplikacją „Wirtualna Galeria”, jej działaniem, przeznaczeniem, oraz omówienie zagadnień teoretycznych związanych z jej powstaniem i rozwojem.
-W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
-Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjrzymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana (Android), językom programowania w których aplikacja będzie napisana (Java, XML), narzędziom użytym w trakcie procesu tworzenia aplikacji (IDE - Android Studio), systemowi kontroli wersji (Git), narzędziu w którym tworzone były pliki graficzne (Krita), a także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
-Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
-Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
-
-2 Cele i założenia projektowe
+3 Cele i założenia projektowe
 
 Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
 
-2.1 Cele projektowe
+3.1 Cele projektowe
 
 Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykożystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
 
-2.2 Wymagania funkcjonalne i pozafunkcjonalne
+3.2 Wymagania funkcjonalne i pozafunkcjonalne
 
-2.2.1 Wymagania funkcjonalne:
+3.2.1 Wymagania funkcjonalne:
 
     • możliwość projektowania układu ścian w widoku 2D
     • możliwość wizualizacji pomieszczenia w widoku 3D
@@ -176,37 +189,37 @@ Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiają
     • wieszanie obrazów na ścianach
     • zdejmowanie obrazów ze ścian
 
-2.2.2 Wymagania pozafunkcjonalne:
+3.2.2 Wymagania pozafunkcjonalne:
 
     • Prosty i Intuicyjny interfejs użytkownika
     • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
 
-2.2.3 Wymagania Techniczne
+3.2.3 Wymagania Techniczne
 
     • wersje Android API: minSdk 24 targetSdk 33
     • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
     • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
 
-2.3 Aplikacja będzie skierowana do:
+3.3 Aplikacja będzie skierowana do:
     • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
     • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku, lub niemających możliwości do wypróbowania jej w rzeczywistości z powodu braku miejsca
     • osób chcących zaplanować dekorację wnętrz
     • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
 
-2.4 Przegląd istniejących rozwiązań
+3.4 Przegląd istniejących rozwiązań
 
 Istnieją już aplikacje przeznaczone do projektowania Pokoi Pamięci, lecz nie spotkaliśmy się z przypadkiem gdzie taka aplikacja byłaby dostępna na systemy android.
 
-2.5  Wizja realizacji projektu
+3.5  Wizja realizacji projektu
 
-2.5.1 Schemat działania aplikacji - Diagramy UML
+3.5.1 Schemat działania aplikacji - Diagramy UML
 
 
-2.5.2 Koncepcja wyglądu UI aplikacji
+3.5.2 Koncepcja wyglądu UI aplikacji
 
-2.5.3 Zadania projektowe 
+3.5.3 Zadania projektowe
 
-3. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
+4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
 
 Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
 TEORIA GRAFIKI 3D:
@@ -217,23 +230,23 @@ wektory normalne?
 Frustum, perspektywa, przekształcenia widoku
 dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
-3.1 Android – najważniejsze cechy systemu
+4.1 Android – najważniejsze cechy systemu
 
 Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin, Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
 
-3.2 Aplikacje mobilne – typy aplikacji, proces tworzenia
+4.2 Aplikacje mobilne – typy aplikacji, proces tworzenia
 
-3.2.1 Aplikacje natywne
+4.2.1 Aplikacje natywne
 
-3.2.2 Aplikacje Hybrydowe
+4.2.2 Aplikacje Hybrydowe
 
-3.3 Język programowania i środowisko programistyczne
+4.3 Język programowania i środowisko programistyczne
 
 Java - jest to język obiektowy, to znaczy funkcje i zmienne mogą być enkapsulowane wewnątrz klas - wydzielonych fragmentów kodu o ograniczonym dostępie. Dzięki zastosowaniu obiektowości uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio. Jako, iż w skład funkcjonalności mojego projektu wchodzi tworzenie, edytowanie i wyświetlanie grafiki 3D zdecydowałem się użyć do tego celu biblioteki OpenGL ES – obok biblioteki Vulcan jednej z najpopularniejszych i najlepiej udokumentowanych bibliotek do obsługi grafiki 3D na urządzeniach z systemem Android.
 
-3.4 Biblioteki i frameworki
+4.4 Biblioteki i frameworki
 
-3.4.1 Biblioteki
+4.4.1 Biblioteki
 
 OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
 Wstęp- wyjaśnienie nazywy ES, overview urzyteczności, oraz porównanie z opengl i innymi bibliotekami graficznymi.
@@ -244,33 +257,33 @@ Użycie wielowątkowego procesora graficznego do zastosowania shaderów
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
 
-3.4.2 Frameworki
+4.4.2 Frameworki
 
-3.5 Narzędzia graficzne
+4.5 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
 
-3.6 Testowanie aplikacji
+4.6 Testowanie aplikacji
 
-3.7 Zarządzanie projektem informatycznym
+4.7 Zarządzanie projektem informatycznym
 
 Kontrola Wersji – Git 
 Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a głównymi zaletemi użycia systemu kontroli wersji jest zmniejszenie ryzyka związanego z wprowadzaniem zmian do projektu, oraz równoczesne wraz z wprowadzaniem zmian wytwarzanie historii rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
 
-4. Proces implementacji i dokumentacja techniczna
+5. Proces implementacji i dokumentacja techniczna
 
-4.1 Konfiguracja środowiska i implementacja architektury
+5.1 Konfiguracja środowiska i implementacja architektury
 
-4.2 Etap 1…….
+5.2 Etap 1…….
 
-4.3 Etap 2…..
+5.3 Etap 2…..
 
-4.4 Projekt graficzny aplikacji
+5.4 Projekt graficzny aplikacji
 
-4.5 Testowanie aplikacji
+5.5 Testowanie aplikacji
 
 
-4.6 Dokumentacja techniczna projektu
+5.6 Dokumentacja techniczna projektu
 
 
 Wnioski końcowe
