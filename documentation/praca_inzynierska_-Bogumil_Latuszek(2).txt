@@ -208,7 +208,7 @@ Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiają
 
 3.4 Przegląd istniejących rozwiązań
 
-Istnieją już aplikacje przeznaczone do projektowania Pokoi Pamięci, lecz nie spotkaliśmy się z przypadkiem gdzie taka aplikacja byłaby dostępna na systemy android.
+Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Memory Palace”, „Mind Palace”, czy „Trening Pałacu Pamięci”, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD” czy „Pro 3D Magic Gallery”. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to wystarczający dowód aby stwierdzić jej potencjalną przewagę rynkową
 
 3.5  Wizja realizacji projektu
 
