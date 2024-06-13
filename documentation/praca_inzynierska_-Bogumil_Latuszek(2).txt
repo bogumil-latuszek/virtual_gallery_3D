@@ -273,6 +273,18 @@ Innym narzędziem które zostało wykorzystane w projekcie jest git który jest 
 5. Proces implementacji i dokumentacja techniczna
 
 5.1 Konfiguracja środowiska i implementacja architektury
+    Rozwój projektu był prowadzony w sposób iteracyjny. Jak pokazują wypunktowane poniżej etapy rozwoju,  nowa funkcjonalność była wprowadzana w jak najbardziej ograniczonej wersji. Takie podejście do rozwoju oprogramowania pozwala na lepsze zrozumienie jego działania, i łatwiejsze planowanie kolejnych etapów rozwoju.
+
+     Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
+
+     Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „MyGLRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „MyGLRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem czy program działa poprawnie
+
+     Etap 3 „Zielony Trójkąt” – celem tego etapu było wyświetlenie jakiejkolwiek bryły w przygotowaniu do wyświetlania bardziej zaawansowanych obiektów składających się na scenę Wirtualnej Galerii. Aby szybko wypróbować działanie programu, wybrałem najprostszą figurę geometryczną do wyświetlenia – trójkąt. W tym celu musiałem stworzyć klasę Triangle, posiadającą listę punktów z których będzie składał się trójkąt (vertex-ów), a następnie napisać „vertex shader”i „fragment shader” czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru fragmentów, czyli wartości dwu wymiarowej listy na podstawie których będą wyświetlane piksele obiektu na ekranie urządzenia. Aby można było ich użyć, w metodzie „onSurfaceCreated”, podczas inicjowania klas użytych w aktywności, shadery są przekazywane jako wartości String do metod biblioteki GLES20, gdzie są tworzone, kompilowane, i łączone w „program”. Taki „program” jest następnie wysyłany zapisywany, aby mógł zostać użyty podczas wyświetlania obiektu poprzez „GLES20.glUseProgram”. Po skonfigurowaniu używanego programu, koloru, oraz odnośnika do listy werteksów, figura jest rysowana przez „GLES20.glDrawArrays”
+
+     Etap 4 „Sześcian”
+     Etap 3 „Obrót kamery”
+     Etap 3 „Sterowanie”
+     Etap ostatni „Refaktoring”
 
 5.2 Etap 1…….
 
