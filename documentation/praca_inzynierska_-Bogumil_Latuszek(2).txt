@@ -152,7 +152,7 @@ https://en.wikipedia.org/wiki/IRIS_GL
 https://en.wikipedia.org/wiki/IRIX
 https://en.wikipedia.org/wiki/Silicon_Graphics
 
-Lata 80-te i 90-te to okres w którym na rynku narzędzi do tworzenia grafiki komputerowej rządziły stacje graficzne, czyli wyspecjalizowane do tego celu komputery o wysokich parametrach sprzętowych. Te maszyny posiadały własne silniki graficzne, choć ich kod źródłowy najczęściej nie wychodził poza firmę produkującą stację graficzną. Jednym z wiodących przedsiębiorstw zajmujących się produkcją tego typu maszyn była firma Silicon Graphics1 (SGI) powstała w 1981 r. Ciekawostką na temat oprogramowania stacji graficznych SGI jest fakt, iż systemem operacyjnym tych maszyn był stworzony przez SGI klon Unixa nazwany Irix, zaś silnikiem graficznym uruchamianym na tym systemie był IrisGL2.
+Lata 80-te i 90-te to okres w którym na rynku narzędzi do tworzenia grafiki komputerowej rządziły stacje graficzne, czyli wyspecjalizowane do tego celu komputery o wysokich parametrach sprzętowych. Te maszyny posiadały własne silniki graficzne, choć ich kod źródłowy najczęściej nie wychodził poza firmę produkującą stację graficzną. Jednym z wiodących przedsiębiorstw zajmujących się produkcją tego typu maszyn była firma Silicon Graphics1 (SGI) powstała w 1981 r. Ciekawostką na temat oprogramowania stacji graficznych SGI jest fakt, iż systemem operacyjnym tych maszyn był stworzony przez SGI klon Unixa nazwany Irix, zaś silnikiem graficznym uruchamianym na tym systemie był IrisGL.
 Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
 wojsko, instytucje rządowe i akademickie.
 W latach 1995-2002 ich produkty cieszyły się wyjątkowo dużą popularnością, o czym świadczy fakt że wszystkie filmy nominowane w tym okresie do Academy Award za efekty wizualne były filmami stworzonymi na komputerach SGI.
@@ -176,18 +176,19 @@ Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozaf
 
 3.1 Cele projektowe
 
-Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykożystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
+Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykorzystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
 
 3.2 Wymagania funkcjonalne i pozafunkcjonalne
 
 3.2.1 Wymagania funkcjonalne:
-
     • możliwość projektowania układu ścian w widoku 2D
     • możliwość wizualizacji pomieszczenia w widoku 3D
     • możliwość poruszania się w przestrzeni 3D
     • automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
     • wieszanie obrazów na ścianach
     • zdejmowanie obrazów ze ścian
+    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
+    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
 
 3.2.2 Wymagania pozafunkcjonalne:
 
@@ -195,27 +196,43 @@ Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiają
     • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
 
 3.2.3 Wymagania Techniczne
-
     • wersje Android API: minSdk 24 targetSdk 33
-    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
-    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
+    • baza danych SQLite
 
-3.3 Aplikacja będzie skierowana do:
-    • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
-    • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku, lub niemających możliwości do wypróbowania jej w rzeczywistości z powodu braku miejsca
-    • osób chcących zaplanować dekorację wnętrz
-    • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
+3.3 6.3 Analiza profilu użytkownika
+    Aplikacja będzie skierowana do:
+        • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
+        • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
+        • osób chcących zaplanować dekorację wnętrz
+        • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
 
 3.4 Przegląd istniejących rozwiązań
 
-Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Memory Palace”, „Mind Palace”, czy „Trening Pałacu Pamięci”, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD” czy „Pro 3D Magic Gallery”. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to wystarczający dowód aby stwierdzić jej potencjalną przewagę rynkową
+Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
 
 3.5  Wizja realizacji projektu
 
 3.5.1 Schemat działania aplikacji - Diagramy UML
 
+<TUTAJ WYKRES sekwencji przygotowania shader-ów>
+
+Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
+
+<TUTAJ WYKRES sekwencji renderowania obiektów>
+
+Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D.
+
+<TUTAJ diagram  przypadków użycia>
 
 3.5.2 Koncepcja wyglądu UI aplikacji
+
+<TUTAJ koncept UI w widoku 2D>
+
+Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
+
+<TUTAJ koncept UI w widoku 3D>
+
+Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
 
 3.5.3 Zadania projektowe
 
@@ -232,7 +249,7 @@ dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspekt
 
 4.1 Android – najważniejsze cechy systemu
 
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin, Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
+Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
 
 4.2 Aplikacje mobilne – typy aplikacji, proces tworzenia
 
@@ -242,7 +259,7 @@ Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane 
 
 4.3 Język programowania i środowisko programistyczne
 
-Java - jest to język obiektowy, to znaczy funkcje i zmienne mogą być enkapsulowane wewnątrz klas - wydzielonych fragmentów kodu o ograniczonym dostępie. Dzięki zastosowaniu obiektowości uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio. Jako, iż w skład funkcjonalności mojego projektu wchodzi tworzenie, edytowanie i wyświetlanie grafiki 3D zdecydowałem się użyć do tego celu biblioteki OpenGL ES – obok biblioteki Vulcan jednej z najpopularniejszych i najlepiej udokumentowanych bibliotek do obsługi grafiki 3D na urządzeniach z systemem Android.
+Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
 
 4.4 Biblioteki i frameworki
 
@@ -252,12 +269,12 @@ OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów
 Wstęp- wyjaśnienie nazywy ES, overview urzyteczności, oraz porównanie z opengl i innymi bibliotekami graficznymi.
 https://www.khronos.org/opengles/
 
-Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą listy piętnastu wartości float. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu. 
-Użycie wielowątkowego procesora graficznego do zastosowania shaderów 
+Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
+Użycie wielowątkowego procesora graficznego do zastosowania shaderów
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
-
-4.4.2 Frameworki
+Rola shaderów
+Shadery to czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
 
 4.5 Narzędzia graficzne
 
@@ -268,23 +285,21 @@ Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmo
 4.7 Zarządzanie projektem informatycznym
 
 Kontrola Wersji – Git 
-Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a głównymi zaletemi użycia systemu kontroli wersji jest zmniejszenie ryzyka związanego z wprowadzaniem zmian do projektu, oraz równoczesne wraz z wprowadzaniem zmian wytwarzanie historii rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
+Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
 
 5. Proces implementacji i dokumentacja techniczna
 
 5.1 Konfiguracja środowiska i implementacja architektury
-    Rozwój projektu był prowadzony w sposób iteracyjny. Jak pokazują wypunktowane poniżej etapy rozwoju,  nowa funkcjonalność była wprowadzana w jak najbardziej ograniczonej wersji. Takie podejście do rozwoju oprogramowania pozwala na lepsze zrozumienie jego działania, i łatwiejsze planowanie kolejnych etapów rozwoju.
 
-     Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
-
-     Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „MyGLRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „MyGLRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem czy program działa poprawnie
-
-     Etap 3 „Zielony Trójkąt” – celem tego etapu było wyświetlenie jakiejkolwiek bryły w przygotowaniu do wyświetlania bardziej zaawansowanych obiektów składających się na scenę Wirtualnej Galerii. Aby szybko wypróbować działanie programu, wybrałem najprostszą figurę geometryczną do wyświetlenia – trójkąt. W tym celu musiałem stworzyć klasę Triangle, posiadającą listę punktów z których będzie składał się trójkąt (vertex-ów), a następnie napisać „vertex shader”i „fragment shader” czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru fragmentów, czyli wartości dwu wymiarowej listy na podstawie których będą wyświetlane piksele obiektu na ekranie urządzenia. Aby można było ich użyć, w metodzie „onSurfaceCreated”, podczas inicjowania klas użytych w aktywności, shadery są przekazywane jako wartości String do metod biblioteki GLES20, gdzie są tworzone, kompilowane, i łączone w „program”. Taki „program” jest następnie wysyłany zapisywany, aby mógł zostać użyty podczas wyświetlania obiektu poprzez „GLES20.glUseProgram”. Po skonfigurowaniu używanego programu, koloru, oraz odnośnika do listy werteksów, figura jest rysowana przez „GLES20.glDrawArrays”
-
-     Etap 4 „Sześcian”
-     Etap 3 „Obrót kamery”
-     Etap 3 „Sterowanie”
-     Etap ostatni „Refaktoring”
+Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
+    • Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
+    • Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „MyGLRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „MyGLRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem że aplikacja uruchamia się i wyświetla się czarny ekran
+    • Etap 3 „Zielony Trójkąt” – celem tego etapu było wyświetlenie jakiejkolwiek bryły w przygotowaniu do wyświetlania bardziej zaawansowanych obiektów składających się na scenę Wirtualnej Galerii. Aby szybko wypróbować działanie programu, wybrałem najprostszą figurę geometryczną do wyświetlenia – trójkąt. W tym celu musiałem stworzyć klasę Triangle, posiadającą listę punktów z których będzie składał się trójkąt (vertex-ów), a następnie napisać „vertex shader”i „fragment shader” Aby można było ich użyć, w metodzie „onSurfaceCreated”, podczas inicjowania klas użytych w aktywności, shadery są przekazywane jako wartości String do metod biblioteki GLES20, gdzie są tworzone, kompilowane, i łączone w „program”. Taki „program” jest następnie wysyłany zapisywany, aby mógł zostać użyty podczas wyświetlania obiektu poprzez „GLES20.glUseProgram”. Po skonfigurowaniu używanego programu, koloru, oraz odnośnika do listy werteksów, figura jest rysowana przez „GLES20.glDrawArrays”. Po uruchomieniu aplikacji na tym etapie wyświetla się statyczny zielony trójkąt
+    • Etap 4 „Obrót” –(b6e1da8a) ten etap służył zrozumieniu obrotu figur w przestrzeni 3d. W „MyGLRenderer” dodałem zmienną przechowującą macierz rotacji *(w kolejnych etapach przemianowaną na „modelMatrix” i przeniesioną do klasy obiektu do którego się odnosi). Przy każdym wywołaniu funkcji rysującej obiekty, najpierw, na podstawie punktu czasowego w animacji(reszta z dzielenia czasu systemowego przez czas potrzebny na wykonanie pełnej animacji) podstawie czasu systemowego oraz kąta rotacji obliczana jest na nowo macierz rotacji, a następnie na jej podstawie macierz mvp(model, view, projection). W tym przypadku macierz rotacji to macierz „model”, ponieważ odnosi się tylko do modelu – trójkąta (tylko on będzie obracany). Pozostałe macierze „view” i „projection” pozostają bez zmian w trakcie działania programu. Macierz mvp obliczana jest przez pomnożenie tych trzech macierzy, a następnie zostaje przekazana do funkcji „Draw()” w klasie „Triangle”. Stamtąd wysyłana jest do vertex shadera, który na jej podstawie oblicza aktualną pozycję każdego vertexa figury. Po uruchomieniu aplikacji na tym etapie wyświetla się obracający się zielony trójkąt
+    • Etap 4 „Sześcian”  - w tym etapie testowałem wyświetlanie jednej z najprostszych figur sześciennych – sześcianu.
+    • Etap 3 „Obrót kamery”
+    • Etap 3 „Sterowanie”
+    • Etap ostatni „Refaktoring”
 
 5.2 Etap 1…….
 
@@ -296,6 +311,57 @@ Innym narzędziem które zostało wykorzystane w projekcie jest git który jest 
 
 
 5.6 Dokumentacja techniczna projektu
+
+Instrukcja użytkowania
+
+5.6.1  Instalacja aplikacji
+
+Aby zainstalować aplikację należy:
+
+ 1. pobrać plik .apk z https://github.com/bogumil-latuszek/android_OpenGL_learning/releases/tag/v1.0
+ 2. odszukać go w systemie plików, najprawdopodobniej będzie w katalogu Downloads, potem kliknąć na niego i wybrać opcję „zainstaluj”
+ 3. wyrazić zgodę na instalację i poczekać aż instalacja zakończy się pomyślnie
+
+5.6.2  uruchomienie aplikacji i opis funkcjonalności 2D
+
+Po zainstalowaniu i uruchomieniu aplikacji pokaże nam się poniższy ekran:
+
+Jeśli jest to pierwsze uruchomienie, wyświetli się pop-up z prośbą o udzielenie uprawnienia do odczytu zdjęć z urządzenia. Należy wyrazić zgodę, aby aplikacja miała pełną funkcjonalność. W przypadku odmówienia przyzwolenia użytkownik może tylko tworzyć/usuwać puste ściany. W przypadku jeśli pop-up się nie pojawia, można też przydzielić uprawnienia manualnie. W tym celu należy wejść w ustawienia > aplikacje, wybrać ikonę aplikacji z podanej listy, wejść w przyzwolenia i tam udzielić zgodę na odczyt zdjęć. Po zamknięciu pop-upa ukaże się właściwy ekran aplikacji – widok 2D
+
+pierwsze co rzuca się w oczy w widoku 2D to kratownica zabierająca większość ekranu. Przeciągając palcem po ekranie możemy ją przesuwać w górę/dół prawo/lewo. Na poniższym zdjęciu kierunek przesuwania palcem jest zobrazowany czarną strzałką, a kierunek przesuwania kratownicy czerwoną:
+
+Okno zawierające kratownicę służy przede wszystkim do projektowania układu ścian, a ściany służą do wieszania obrazów. Opowiemy o nich więcej przy opisie widoku 3D, na razie na potrzebę demonstracji stworzymy tylko jedną ścianę. Aby tego dokonać wystarczy kliknąć w dowolną komórkę na kratownicy. Pojawi się w niej ikona pokazująca, że w tym miejscu znajduje się ściana.
+Jeśli umieściliśmy ścianę w złym miejscu, lub po prostu zmienimy zdanie co do układu, wystarczy jeszcze raz kliknąć w zajętą komórkę, a ikona zniknie:
+
+Kiedy uznamy, że stworzony układ ścian nam pasuje, możemy go otworzyć w widoku 3D. Jednak aby widok 3D mógł odczytać i wyświetlić tak stworzony układ ścian, należy go wcześniej zapisać. Zapisu dokonujemy poprzez kliknięcie w ikonę zapisu na pasku narzędzi
+
+Teraz możemy już przejść do widoku 3D, aby to zrobić klikamy w ikonę uruchomienia widoku 3D:
+
+5.6.3 Opis funkcjonalności 3D
+
+Po uruchomieniu widoku 3D zobaczymy poniższy ekran:
+
+Jak widać jesteśmy teraz wewnątrz reprezentacji 3D układu ścian który stworzyliśmy w poprzednim rozdziale, nazwijmy ją „pokojem”. Po prawej widzimy stworzoną przez nas jedyną ścianę. Na dole ekranu widzimy kontrolki służące do poruszania się po pokoju. Przyjrzyjmy się najpierw kontrolce w lewym dolnym kącie ekranu, jest to kontrolka rotacji służąca do obracania się. Przytrzymanie jednej ze strzałek wskazujących w 4 kierunkach powoduje obrót w tym kierunku, kliknięcie w okrąg na środku kontrolki spowoduje zresetowanie obrotu, poniżej zobrazowane jest jej użycie, niebieskie punktowe światło reprezentuje dotyk palca.
+
+Kontrolka w prawym dolnym ekranie służy do poruszania się, poniżej pokazane jest jej użycie:
+
+Przejdźmy teraz do omówienia wieszania obrazów. Dostępne obrazy są ładowane z pamięci telefonu podczas uruchamiania aplikacji. Ładują się z katalogu DCIM/Camera. Aby zawiesić któryś z nich na jednej ze ścian należy jej dotknąć
+
+Pojawi się na niej jeden z dostępnych obrazów:
+
+Aby usunąć dany obraz należy jeszcze raz dotknąć ściany na której jest powieszony,
+
+a obraz zniknie:
+
+po kliknięciu jeszcze raz na ścianę zostanie zawieszony kolejny dostępny obraz, możemy w ten sposób wybrać który nam pasuje:
+
+
+Podsumowanie
+
+Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. Stworzony interface jest minimalistyczny przez co użytkownik może skupić się na swoich celach artystycznych, a nie pokonywać złożonego UI jak w przypadku takich programów 3D jak Blender czy AutoCAD – one mają inne obszary zastosowań. Wirtualna Galeria ma natomiast służyć użytkownikom przez swoją Prostotę i intuicyjność – ma pozwolić im wykorzystać ich kreatywność do tworzenia barwnej, przestrzennej galerii obrazów lub zdjęć.
+
+
+
 
 
 Wnioski końcowe
