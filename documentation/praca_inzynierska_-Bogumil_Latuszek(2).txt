@@ -253,9 +253,14 @@ Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane 
 
 4.2 Aplikacje mobilne – typy aplikacji, proces tworzenia
 
+https://www.bitstudios.com/blog/types-of-mobile-applications/#:~:text=Types%20of%20Mobile%20Applications%3A%20Native%2C%20Hybrid%2C%20Web%2C%20and,UI.%20...%204%204.%20Progressive%20Web%20Apps%20
+https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-for-your-app-df68ce9926fc
+
 4.2.1 Aplikacje natywne
 
 4.2.2 Aplikacje Hybrydowe
+
+4.2.3 Aplikacje Web UI
 
 4.3 Język programowania i środowisko programistyczne
 
@@ -266,8 +271,6 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 4.4.1 Biblioteki
 
 OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
-Wstęp- wyjaśnienie nazywy ES, overview urzyteczności, oraz porównanie z opengl i innymi bibliotekami graficznymi.
-https://www.khronos.org/opengles/
 
 Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
 Użycie wielowątkowego procesora graficznego do zastosowania shaderów
@@ -289,26 +292,21 @@ Innym narzędziem które zostało wykorzystane w projekcie jest git który jest 
 
 5. Proces implementacji i dokumentacja techniczna
 
-5.1 Konfiguracja środowiska i implementacja architektury
+5.1 Historia rozwoju projektu
 
 Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
     • Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
     • Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „MyGLRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „MyGLRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem że aplikacja uruchamia się i wyświetla się czarny ekran
     • Etap 3 „Zielony Trójkąt” – celem tego etapu było wyświetlenie jakiejkolwiek bryły w przygotowaniu do wyświetlania bardziej zaawansowanych obiektów składających się na scenę Wirtualnej Galerii. Aby szybko wypróbować działanie programu, wybrałem najprostszą figurę geometryczną do wyświetlenia – trójkąt. W tym celu musiałem stworzyć klasę Triangle, posiadającą listę punktów z których będzie składał się trójkąt (vertex-ów), a następnie napisać „vertex shader”i „fragment shader” Aby można było ich użyć, w metodzie „onSurfaceCreated”, podczas inicjowania klas użytych w aktywności, shadery są przekazywane jako wartości String do metod biblioteki GLES20, gdzie są tworzone, kompilowane, i łączone w „program”. Taki „program” jest następnie wysyłany zapisywany, aby mógł zostać użyty podczas wyświetlania obiektu poprzez „GLES20.glUseProgram”. Po skonfigurowaniu używanego programu, koloru, oraz odnośnika do listy werteksów, figura jest rysowana przez „GLES20.glDrawArrays”. Po uruchomieniu aplikacji na tym etapie wyświetla się statyczny zielony trójkąt
     • Etap 4 „Obrót” –(b6e1da8a) ten etap służył zrozumieniu obrotu figur w przestrzeni 3d. W „MyGLRenderer” dodałem zmienną przechowującą macierz rotacji *(w kolejnych etapach przemianowaną na „modelMatrix” i przeniesioną do klasy obiektu do którego się odnosi). Przy każdym wywołaniu funkcji rysującej obiekty, najpierw, na podstawie punktu czasowego w animacji(reszta z dzielenia czasu systemowego przez czas potrzebny na wykonanie pełnej animacji) podstawie czasu systemowego oraz kąta rotacji obliczana jest na nowo macierz rotacji, a następnie na jej podstawie macierz mvp(model, view, projection). W tym przypadku macierz rotacji to macierz „model”, ponieważ odnosi się tylko do modelu – trójkąta (tylko on będzie obracany). Pozostałe macierze „view” i „projection” pozostają bez zmian w trakcie działania programu. Macierz mvp obliczana jest przez pomnożenie tych trzech macierzy, a następnie zostaje przekazana do funkcji „Draw()” w klasie „Triangle”. Stamtąd wysyłana jest do vertex shadera, który na jej podstawie oblicza aktualną pozycję każdego vertexa figury. Po uruchomieniu aplikacji na tym etapie wyświetla się obracający się zielony trójkąt
-    • Etap 4 „Sześcian”  - w tym etapie testowałem wyświetlanie jednej z najprostszych figur sześciennych – sześcianu.
-    • Etap 3 „Obrót kamery”
-    • Etap 3 „Sterowanie”
-    • Etap ostatni „Refaktoring”
+    • Etap 5 „Sześcian”  - w tym etapie testowałem wyświetlanie jednej z najprostszych figur przestrzennych – sześcianu.
+    • Etap 6 „Obrót kamery”
+    • Etap 7 „Sterowanie”
+    • Etap 8 ostatni „Refaktoring”
 
 5.2 Etap 1…….
 
 5.3 Etap 2…..
-
-5.4 Projekt graficzny aplikacji
-
-5.5 Testowanie aplikacji
-
 
 5.6 Dokumentacja techniczna projektu
 
