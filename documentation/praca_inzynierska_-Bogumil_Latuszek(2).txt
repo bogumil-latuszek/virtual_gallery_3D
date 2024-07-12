@@ -258,6 +258,8 @@ https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-
 
 4.2.1 Aplikacje natywne
 
+Aplikacje natywne - aplikacje napisane w jednym bądź kilku językach wspieranych natywnie przez Android (Java, C# etc.). zazwyczaj można je zainstalować i uruchomić jedynie na Systemie Android. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na kożystanie z wbudowanych urządzeń takich jak magazyn danych, mikrofon, głośniki czy kamera. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru(ilości zajmowanego miejsca w magazynie danych). Do wad aplikacji natywnych należy zaliczyć  wymaganą znajomość kilku języków programowania i docelowego systemu przez programistów chcących tworzyć aplikacje natywne, a także fakt iż działają tylko na jednym systemie operacyjnym.
+
 4.2.2 Aplikacje Hybrydowe
 
 4.2.3 Aplikacje Web UI
