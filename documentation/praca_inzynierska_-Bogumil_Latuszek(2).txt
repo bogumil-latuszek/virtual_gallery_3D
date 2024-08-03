@@ -236,16 +236,12 @@ Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika wido
 
 3.5.3 Zadania projektowe
 
+
+
 4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
 
 Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
-TEORIA GRAFIKI 3D:
-macierze
-obracanie i przekształcenia obiektów
-płaszczyzny i przecięcie z prostymi
-wektory normalne?
-Frustum, perspektywa, przekształcenia widoku
-dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
+
 
 4.1 Android – najważniejsze cechy systemu
 
@@ -288,8 +284,25 @@ Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wekto
 Użycie wielowątkowego procesora graficznego do zastosowania shaderów
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
+
 Rola shaderów
 Shadery to czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
+
+
+Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
+
+
+
+
+macierze
+obracanie i przekształcenia obiektów
+płaszczyzny i przecięcie z prostymi
+wektory normalne?
+Frustum, perspektywa, przekształcenia widoku
+dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
+
+
+
 
 4.5 Narzędzia graficzne
 
