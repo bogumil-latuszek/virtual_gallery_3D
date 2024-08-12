@@ -279,13 +279,16 @@ Użycie wielowątkowego procesora graficznego do zastosowania shaderów
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
 
-Rola shaderów
-Shadery to czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
+Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
+- vertex shader - obliczenia geometrii
+- fragment shader - obliczenia koloru pikseli na ekranie
+- compute shader - wszelakie obliczenia równoległe, przykładowo kopanie kryptowalut.
+
+
+czym jest fragment shader? - to program który jako argument bierze jeden fragment. Na podstawie danych zawartych w fragmencie oblicza kolor piksela. W OpenGL, wynik obliczeń z jednego fragment shadera może posłużyć jako argument innego fragment shadera, co pozwala łączyć je w łańcuch wykonań. W OpenGL ES nie jest to możliwe.
 
 
 Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
-
-
 
 
 macierze
@@ -295,7 +298,6 @@ wektory normalne?
 Frustum, perspektywa, przekształcenia widoku
 dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
-Czym  są fragmenty? - Obiekty 3d to bryły opisane przez zbiór wierzchołków. Najmniejsza możliwa powierzchnia płaska może być utworzona z 3 wierzchołków, dlatego też w procesie rasteryzacji bryła jest traktowana jako zbiór trójkątów. . Sprawdzane jest czy istnieją punkty odpowiadające pozycji pikseli na ekranie (x, y), które mieszczą się wewnątrz trójkąta. Z każdego takiego punktu, na podstawie właściwości obiektu jest generowany jeden fragment. Fragment może zawierać w sobie różne wartości, opisujące min. jego kolor czy głębie. 
 
 
 
