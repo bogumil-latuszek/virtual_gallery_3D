@@ -295,6 +295,7 @@ wektory normalne?
 Frustum, perspektywa, przekształcenia widoku
 dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
+Czym  są fragmenty? - Obiekty 3d to bryły opisane przez zbiór wierzchołków. Najmniejsza możliwa powierzchnia płaska może być utworzona z 3 wierzchołków, dlatego też w procesie rasteryzacji bryła jest traktowana jako zbiór trójkątów. . Sprawdzane jest czy istnieją punkty odpowiadające pozycji pikseli na ekranie (x, y), które mieszczą się wewnątrz trójkąta. Z każdego takiego punktu, na podstawie właściwości obiektu jest generowany jeden fragment. Fragment może zawierać w sobie różne wartości, opisujące min. jego kolor czy głębie. 
 
 
 
