@@ -298,7 +298,32 @@ wektory normalne?
 Frustum, perspektywa, przekształcenia widoku
 dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
+Czym jest openCL - openCL to standard tworzony przez grupę Khronos. W przeciwieństwie do OpenGL skupia się głównie na urzyciu GPU do obliczeń matematycznych.
 
+OpenGL Pipeline - czyli kolejne etapy w procesie wyświetlania grafiki 3D w OpenGL. Kolejne kroki to:
+1) Vertex Specification
+2) Vertex Shader
+3) Tasselation - zwiększenie/uproszczenie geometrii obiektu w zależności od odległości do kamery
+4) Geometry shader
+5) Vertex Post-Processing
+6) Primitive Assembly
+7) Rasterization
+8) Fragment Shader
+9) Per-Sample Operations
+
+OpenGL ES Pipeline - chyba jest uproszczone. na: https://gamedev.stackexchange.com/questions/150/what-is-the-difference-between-opengl-es-and-opengl znalazłem info że w OpenGL ES nie ma "Fixed Pipeline".
+
+Może lepiej opisać graphics pipeline bardziej ogólnie?
+
+Kolejne etapy różnią się nazwą w zależności od silnika graficznego. W zależności czy jest to Direct3D, OpenGL, Vulcan, czy inny silnik graficzny, niektóre z wymienionych etapów mogą być dostępne pod inną nazwą, pominięte, lub niedostępne do edycji przez użytkownika, a nawet różnić się kolejnością. Przykładowo to co w OpenGL dostępne jest pod nazwą Fragment Shader, w Direct3D znane jest jako Pixel Shader. Dlatego też omówimy tylko najważniejsze etapy, wspólne dla większości silników graficznych:
+
+1) Przekazanie Informacji dotyczących obiektów zawartych w scenie do GPU. Najczęściej wymaga konwersji danych na typ obsługiwany przez driver GPU.
+2) Zastosowanie shadera manipulującego geometrią obiektu
+5) Vertex Post-Processing
+6) Primitive Assembly
+7) Rasteryzacja
+8) Fragment Shader
+9) Post processing
 
 
 4.3 Język programowania i środowisko programistyczne
