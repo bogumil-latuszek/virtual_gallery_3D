@@ -263,9 +263,53 @@ Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane
 
 Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API opengl es, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miała by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia opengl es w języku java, wybrałem aplikację natywną.
 
+4.3 Język programowania i środowisko programistyczne
+
+Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
+
+4.4 Biblioteki i frameworki
+
+4.4.1 Biblioteki
+
+OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
+
+Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
+Użycie wielowątkowego procesora graficznego do zastosowania shaderów
+OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
+Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
+
+Rola shaderów
+Shadery to programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
 
 
-4.2.4 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
+Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
+
+
+
+
+macierze
+obracanie i przekształcenia obiektów
+płaszczyzny i przecięcie z prostymi
+wektory normalne?
+Frustum, perspektywa, przekształcenia widoku
+dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
+
+
+
+
+4.5 Narzędzia graficzne
+
+Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
+
+4.6 Testowanie aplikacji
+
+4.7 Zarządzanie projektem informatycznym
+
+Kontrola Wersji – Git 
+Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
+
+5 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
 
 Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka fali światła widzialnego. Jednak obliczanie trajektorii promieni świelnych, poza tymi które trafiły by do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogły by równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących z źródłą światła. 
 
@@ -324,54 +368,9 @@ Kolejne etapy różnią się nazwą w zależności od silnika graficznego. W zal
 
 
 
-4.3 Język programowania i środowisko programistyczne
+6. Proces implementacji i dokumentacja techniczna
 
-Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
-
-4.4 Biblioteki i frameworki
-
-4.4.1 Biblioteki
-
-OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
-
-Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
-Użycie wielowątkowego procesora graficznego do zastosowania shaderów
-OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
-Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
-
-Rola shaderów
-Shadery to czyli programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
-
-
-Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
-
-
-
-
-macierze
-obracanie i przekształcenia obiektów
-płaszczyzny i przecięcie z prostymi
-wektory normalne?
-Frustum, perspektywa, przekształcenia widoku
-dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
-
-
-
-
-4.5 Narzędzia graficzne
-
-Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
-
-4.6 Testowanie aplikacji
-
-4.7 Zarządzanie projektem informatycznym
-
-Kontrola Wersji – Git 
-Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
-
-5. Proces implementacji i dokumentacja techniczna
-
-5.1 Historia rozwoju projektu
+6.1 Historia rozwoju projektu
 
 Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
     • Etap 0 „Konfiguracja Środowiska” – aby móc rozpocząć pracę w android studio musiałem najpierw wykonać kilka niezbędnych kroków. Po pierwsze musiałem dodać ścierzkę komendy adb do zmiennej środowiskowej PATH. Następnie musiałem stworzyć emulator telefonu na którym będę testował działanie aplikacji, a na koniec stworzyć nowy projekt i wybrać odpowiednią wersję sdk.
@@ -384,15 +383,15 @@ Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoj
     • Etap 7 „Sterowanie”
     • Etap 8 ostatni „Refaktoring”
 
-5.2 Etap 1…….
+6.2 Etap 1…….
 
-5.3 Etap 2…..
+6.3 Etap 2…..
 
-5.6 Dokumentacja techniczna projektu
+6.4 Dokumentacja techniczna projektu
 
 Instrukcja użytkowania
 
-5.6.1  Instalacja aplikacji
+6.4.1  Instalacja aplikacji
 
 Aby zainstalować aplikację należy:
 
@@ -400,7 +399,7 @@ Aby zainstalować aplikację należy:
  2. odszukać go w systemie plików, najprawdopodobniej będzie w katalogu Downloads, potem kliknąć na niego i wybrać opcję „zainstaluj”
  3. wyrazić zgodę na instalację i poczekać aż instalacja zakończy się pomyślnie
 
-5.6.2  uruchomienie aplikacji i opis funkcjonalności 2D
+6.4.2  uruchomienie aplikacji i opis funkcjonalności 2D
 
 Po zainstalowaniu i uruchomieniu aplikacji pokaże nam się poniższy ekran:
 
@@ -415,7 +414,7 @@ Kiedy uznamy, że stworzony układ ścian nam pasuje, możemy go otworzyć w wid
 
 Teraz możemy już przejść do widoku 3D, aby to zrobić klikamy w ikonę uruchomienia widoku 3D:
 
-5.6.3 Opis funkcjonalności 3D
+6.4.3 Opis funkcjonalności 3D
 
 Po uruchomieniu widoku 3D zobaczymy poniższy ekran:
 
