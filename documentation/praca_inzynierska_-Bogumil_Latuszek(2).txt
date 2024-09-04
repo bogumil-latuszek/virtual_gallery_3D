@@ -342,7 +342,13 @@ transformacje obiektów - Aby obliczyć ostateczną macierz transformacji obiekt
 - modelu - zawiera informację o obrocie modelu według własnej osi
 - świata - zawiera informację o pozycji modelu w koordynatach świata, to znaczy jęśli przyjmiemy że nasz świat ma środek w punkcie (0,0,0), to macierz świata informuje gdzie w relacji do tego punktu znajduje się obiekt
 - kamery - zawarte są w niej transformacje kamery. Ponieważ najłatwiej jest wyświetlić scenę 3D gdy kamera leży na osi z, aby zasymulować ruch kamery, zamiast transformować pozycję kamery, nakładamy odpowiednią transformację na wszystkie inne obiekty w scenie. Dlatego też macierz kamery jest jednym z komponentów wchodzących w skład ostatecznej macierzy transformacji wszystkich obiektów
-- frustum - ta macierz zawiera transformacje symulujące perspektywę, najprościej mówiąc punkty położone dalej od kamery będą w większym stopniu przyciągane do środka ekranu.
+- frustum - Słowo frustum wywodzi się z łaciny(łac. frustum - kąsek), w języku angielskim przyjęło jednak nieco inne znaczenie, mianowicie frustum odnosi się do fragmentu stożka lub ostrosłupa wyciętego dwoma  płaszczyznami równoległymi do jego podstawy.
+<tu wstawić grafikę pokazującą frustum>
+W grafice komputerowej wykożystuje się frustum ostrosłupa prostokątnego do obliczenia perspektywy.
+<tu wstawić grafike pokazującą frustum perspektywy>
+Warto zauważyć że powyższy kształt w pewnym stopniu przypomina pole widzenia człowieka - jeśli założyć że obserwator znajduje się prostopadle do środka mniejszej podstawy frustum, skierowany wzrokiem w stronę środka większej podstawy.
+Działanie frustum możemy zobrazować na przykładzie plastrów wizji
+ta macierz zawiera transformacje symulujące perspektywę, najprościej mówiąc punkty położone dalej od kamery będą w większym stopniu przyciągane do środka ekranu.
 Ostateczna macierz transformacji przekazywana jest do vector shader-a, który używa jej żeby obliczyć pozycje wszystkich punktów obiektu.
 
 Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
