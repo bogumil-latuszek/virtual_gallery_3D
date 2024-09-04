@@ -95,7 +95,7 @@ public class ColliderOBB{
         Vector3D frontFaceNormalOrigin = this.findFaceCenter(v_front_upper_left, v_front_upper_right, v_front_down_left, v_front_down_right);
 
         int COORDS_PER_VERTEX = 3;
-        float[] lineColor = {0f, 0f, 1f}; // opengl requires color as float in range 0-1
+        float[] lineColor = {0f, 1f, 0f}; // opengl requires color as float in range 0-1
         VertexArray vertexArray = new VertexArray(new float[]{
                 frontFaceNormalOrigin.x, frontFaceNormalOrigin.y, frontFaceNormalOrigin.z,
                 frontFaceNormalOrigin.x + frontFaceNormalVector.x, frontFaceNormalOrigin.y + frontFaceNormalVector.y, frontFaceNormalOrigin.z + frontFaceNormalVector.z});  // <-- Vertices

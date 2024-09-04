@@ -6,6 +6,7 @@ import android.opengl.Matrix;
 import java.nio.ByteBuffer;
 
 import pl.wsei.mobilne.myapplication.space3d.geometry.Geometry;
+import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class Cuboid {
     // number of coordinates per vertex in this array
@@ -16,14 +17,14 @@ public class Cuboid {
     private static final int VERTEX_COUNT = CUBE_LINES_NB*2;
     static float[] cubeCoords = new float[VERTEX_COUNT*COORDS_PER_VERTEX];
     */
-    private final float[] modelMatrix = new float[16]; //a 4x4 matrix
+    protected final float[] modelMatrix = new float[16]; //a 4x4 matrix
 
     private float[] edgeColor = {37f/256f, 58f/256f, 190f/256f}; // opengl requires color as float in range 0-1
     private float[] faceColor = {81f/256f, 97f/256f, 203f/256f}; // default is blue
     private float faceOpacity = 0.5f; // default is 50%
     float X_position;
     float Z_position;
-    private final VertexArray vertexArray;  // <-- Vertices
+    protected final VertexArray vertexArray;  // <-- Vertices
     private final ByteBuffer vertexSequenceForDrawingFaces;
     private final ByteBuffer vertexSequenceForDrawingEdges;
 
@@ -86,6 +87,18 @@ public class Cuboid {
                 });
         vertexSequenceForDrawingEdges.position(0);
     }
+    /*
+    public Vector3D[] getOrderedMesh(){
+        Vector3D v_front_upper_left = vertexArray.
+        Vector3D v_front_upper_right;
+        Vector3D v_front_down_left;
+        Vector3D v_front_down_right;
+        Vector3D v_back_upper_left;
+        Vector3D v_back_upper_right;
+        Vector3D v_back_down_left;
+        Vector3D v_back_down_right;
+    }
+     */
     public void setEdgeColor(float[] color) {
         //  float with 3 values:   R   G   B
         System.arraycopy(color, 0, this.edgeColor, 0, 3);

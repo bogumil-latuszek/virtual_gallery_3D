@@ -118,12 +118,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private FloorGrid floorGrid;
     private RayLine touchRay;
 
-    private Cuboid blueCuboid;
+    //private Cuboid blueCuboid;
     private RotationCtrl rotationCtrl;
     private MovementCtrl movementCtrl;
 
 
     private  ArrayList<Wall> walls;
+
+    private CubeDynamic dynamicCube;
 
 ////////////////////////////////////////////////////////
     private int texture;
@@ -191,7 +193,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         float[] purple_f = {218f/255f, 79f/255f, 253f/255f};
         floorGrid = new FloorGrid();
 
-        blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
+        //blueCuboid = new Cuboid(1f, 1f, 1f, 2f, -6f);
+        dynamicCube = new CubeDynamic(1f, 1f, 1f, -4f, 4f);
 
         rotationCtrl = new RotationCtrl();
         rotationCtrl.setEdgeColor(black);
@@ -281,8 +284,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         }
 
 
-        blueCuboid.startTransforming();
-        blueCuboid.scale(0.1f, 1f, 1f);
+       // blueCuboid.startTransforming();
+       // blueCuboid.scale(0.1f, 1f, 1f);
+        dynamicCube.startTransforming();
 
         touchRay.startTransforming();
 
@@ -335,6 +339,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             wall.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
         }
 //        touchRay.draw(aPositionLocation, uColorLocation,   uMatrixLocation, viewProjectionMatrix);
+
+        dynamicCube.draw(aPositionLocation, uColorLocation, uMatrixLocation, viewProjectionMatrix);
 
         // to draw UI controls without depth test - just using draw order (drawn last is at front)
         GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT);

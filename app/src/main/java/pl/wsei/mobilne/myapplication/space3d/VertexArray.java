@@ -25,6 +25,9 @@ public class VertexArray {
     public int length() {
         return this._length;
     }
+    public float get(int index){
+        return vertexData[index];
+    }
     public void setVertexAttribPointer(int dataOffset, int attributeLocation,
                                        int componentCount, int stride) {
         // ensure Vertex buffer has "start pointer" in correct place
