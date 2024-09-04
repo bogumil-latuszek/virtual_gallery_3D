@@ -20,6 +20,18 @@ public class Vector3D {
                 + y * other.y
                 + z * other.z;
     }
+    public Vector3D substract(Vector3D other) {
+        return new Vector3D(
+                x - other.x,
+                y - other.y,
+                z - other.z);
+    }
+    public Vector3D add(Vector3D other) {
+        return new Vector3D(
+                x + other.x,
+                y + other.y,
+                z + other.z);
+    }
     public Vector3D crossProduct(Vector3D other) {
         return new Vector3D(
                 (y * other.z) - (z * other.y),
