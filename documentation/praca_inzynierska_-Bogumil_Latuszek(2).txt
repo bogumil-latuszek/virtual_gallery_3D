@@ -354,7 +354,16 @@ Ostateczna macierz transformacji przekazywana jest do vector shader-a, który u�
 Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
 
 
-płaszczyzny i przecięcie z prostymi - Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W projekcie ta technika została zastosowana do rozpoznawania kolizji.
+
+płaszczyzny i przecięcie z prostymi - Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. Użytkownik aplikacji, będąc w widoku 3D, wybiera bok ściany z którym chce wejść w interakcję poprzez kliknięcie na jego reprezentacje na ekranie. Następnie, jeśli bok był pusty - to znaczy nie posiadał przypisanego obrazu - przypisany zostanie do niego kolejny obraz z listy dostępnych obrazów. W przeciwnym wypadku, jeśli jakiś obraz był już przypisany do tego boku, zostanie on odpięty. Wizualnie, przypięcie obrazu jest równoznaczne z jego zawieszeniem, a odpięcie ze zdjęciem go. 
+Implementacja tej funkcjonalności:
+1) zdobycie koordynatów punktu kliknięcia na ekranie. - klasa GLSurfaceView w bibliotece android.opengl posiada funkcję setOnTouchListener(). Dzięki niej można ustawić jaka funkcja będzie wywoływana po wykryciu kliknięcia na ekranie, ponadto setOnTouchListener() może przekazać do tej funkcji koordynaty x,y punktu w którym wykryto kliknięcie w przestrzeni ekranu. Aby móc wykożystać te koordynaty, jeszcze przed przekazaniem ich do wybranej funkcji, poddawane są normalizacji, czyli zmapowaniu z przestrzeni ekranu na znormalizowaną przestrzeń wartości pomiędzy 0-1. 
+2) stworzenie promienia pomiędzy dwoma końcami frustum
+3) wykrycie kolizji pomiędzy promieniem a ścianami w scenie
+4) po wybraniu najbliższego boku najbliższej ściany, przypisanie/odpięcie obrazu.
+
+
+Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W projekcie ta technika została zastosowana do rozpoznawania kolizji.
 korzystając z tego że powierzchnie wszystkich ścian i obrazów znajdujących się w scenie są równoległe do osi x, z i y,
 
 wektory normalne - wektory normalne określają kierunek w jakim zwrócona jest płaszczyzna
