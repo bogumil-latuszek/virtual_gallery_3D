@@ -269,12 +269,15 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.frustumM(projectionMatrix, offsetToStart_in_projectionMatrix,
                 -ratio, ratio, -1, 1, 3, 20);
 
+        // why did I use this if it gets overwritten anyway?
+        /*
         Matrix.setLookAtM(viewMatrix, 0,
                 0f, 1.5f, 2f,
                 0f, 0f, -10f,
                 0f, 1f, 0f);
-
+        */
         // TODO: loop to initialize wall internal modelMatrix
+
 
         for (Wall wall : walls) {
             wall.startTransforming();
@@ -463,6 +466,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
     public void handleTouchPress(float normalizedX, float normalizedY) {
         Point pointPressed = new Point(normalizedX, normalizedY, 0f);
+        // this isn't checking for collision with objects in scene
+        // this is just detection of user interacting with movement control
+        // since there's actual collision detection being used in the form of rays, we should avoid
+        // confusion, and change the name for the variable below to something more intuitive
+        // for example: "movement_control_triggered"
         Optional<Vector3D> collision = this.movementCtrl.getMovementVector(pointPressed);
         if(collision.isPresent()){
             Vector3D moveVector3D = collision.get();
@@ -478,18 +486,21 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 //            Log.d("camera position:", CameraPosition.toString());
             return;
         }
-
         boolean pointInsideRotationCtrl = this.rotationCtrl.isInsideRotationCtrl(normalizedX, normalizedY);
         if(pointInsideRotationCtrl){
             this.rotationCtrlPressedLocation =  this.rotationCtrl.where(normalizedX, normalizedY);
             return;
         }
-
         // "outside" - calculate Ray and check which wall/face it hits
+        // there's a problem here, that I may didn't realize before.
+        // this function works only becouse we assume frustum has width and height 2
+        // so we don't need to convert normalised coordinates in range of(-1 <-> 1)
+        // what we should do instead is resize them to frustum width/height:
+        // normalisedX * cameraFrustum.width/2
+        // but there remains one problem - what does invertedViewProjectionMatrix do?
+        // it's probably elongating and bending the further point and that's a problem since it's unpredictable
         Ray ray = convertNormalized2DPointToRay(normalizedX, normalizedY);
-
         touchRay = new RayLine(ray);
-
         Optional<PointOnFace> collisionWithNearestFace = Wall.getPointedFace(ray, walls);
         if (collisionWithNearestFace.isPresent()) {
             PointOnFace pointedFace = collisionWithNearestFace.get();
