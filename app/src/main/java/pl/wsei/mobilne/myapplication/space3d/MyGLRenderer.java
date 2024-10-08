@@ -285,7 +285,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
 
         blueCuboid.startTransforming();
-        blueCuboid.scale(0.1f, 1f, 1f);
+        //blueCuboid.scale(0.1f, 1f, 1f);
 
         touchRay.startTransforming();
 

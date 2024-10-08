@@ -28,21 +28,25 @@ public class Cuboid {
     private final ByteBuffer vertexSequenceForDrawingEdges;
 
     //private Geometry.Point centerPoint;
+    //TODO: try if this overloading of constructor works, (I'm not sure):
+    public Cuboid(float width, float height, float length){
+        this(width, height, length, 0, 0);
+    }
 
-    public Cuboid(float dx, float dy, float dz, float locateAtX, float locateAtZ) {
+    public Cuboid(float width, float height, float length, float locateAtX, float locateAtZ) {
         //centerPoint = new Geometry.Point(0f,0f,0f);
         X_position = locateAtX;
         Z_position = locateAtZ;
         // prepare buffer for vertices
         vertexArray = new VertexArray(new float[]{
-                locateAtX-dx,  dy, locateAtZ+dz,            // (0) Top-left near
-                locateAtX+dx,  dy, locateAtZ+dz,            // (1) Top-right near
-                locateAtX-dx, -dy, locateAtZ+dz,            // (2) Bottom-left near
-                locateAtX+dx, -dy, locateAtZ+dz,            // (3) Bottom-right near
-                locateAtX-dx,  dy, locateAtZ-dz,            // (4) Top-left far
-                locateAtX+dx,  dy, locateAtZ-dz,            // (5) Top-right far
-                locateAtX-dx, -dy, locateAtZ-dz,            // (6) Bottom-left far
-                locateAtX+dx, -dy, locateAtZ-dz             // (7) Bottom-right far
+                -width,  height, +length,            // (0) Top-left near
+                +width,  height, +length,            // (1) Top-right near
+                -width, -height, +length,            // (2) Bottom-left near
+                +width, -height, +length,            // (3) Bottom-right near
+                -width,  height, -length,            // (4) Top-left far
+                +width,  height, -length,            // (5) Top-right far
+                -width, -height, -length,            // (6) Bottom-left far
+                +width, -height, -length             // (7) Bottom-right far
         });
         vertexSequenceForDrawingFaces = ByteBuffer.allocateDirect(3 * 2 * 6)//num. of vertexes per triange * triangles per face * faces per cuboid
                 .put(new byte[]{
@@ -103,15 +107,21 @@ public class Cuboid {
         GLES20.glLineWidth(5.0f);
     }
     public void startTransforming() {
-        Matrix.setIdentityM(modelMatrix, 0);
+        //there's no need to do this, if the same function is called again during each draw call
+        // for now I just commented this out, but later you should delete this function, and all calls to it.
+        // Matrix.setIdentityM(modelMatrix, 0);
     }
-    public void move(float dx, float dy, float dz) {
-        Matrix.translateM(modelMatrix, 0, dx, dy, dz);
+    public void move(float dx, float dz) {
+        this.X_position += dx;
+        this.Z_position += dz;
     }
+    /*
+    // model matrix should be calculated "just in time" from internal variables of the object,
+    // to avoid acummulation of floating point multiplication errors
     public void scale(float x, float y, float z) {
         Matrix.scaleM(modelMatrix, 0, x, y, z);
     }
-
+    */
     public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function
                      int uMatrixLocation, float[] viewProjectionMatrix) {
         draw(aPositionLocation, uColorLocation,
@@ -123,6 +133,10 @@ public class Cuboid {
 
         // prepare vertices buffer (floats --> bytes)
         prepareDataSource_forPositionAttribute(aPositionLocation);
+
+        //recalculate modelMatrix
+        Matrix.setIdentityM(modelMatrix, 0);
+        Matrix.translateM(modelMatrix, 0, this.X_position, 0, this.Z_position);
 
         // recalculate vertices per matrices
         float[] modelViewProjectionMatrix = new float[16];
