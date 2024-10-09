@@ -121,13 +121,25 @@ public class Cuboid {
         this.X_position += dx;
         this.Z_position += dz;
     }
-    /*
-    // model matrix should be calculated "just in time" from internal variables of the object,
-    // to avoid acummulation of floating point multiplication errors
-    public void scale(float x, float y, float z) {
-        Matrix.scaleM(modelMatrix, 0, x, y, z);
+    public void set_Y_rotation(float angle) {
+        this.Y_rotation = angle;
     }
-    */
+    public float[] CreateTranslationAndRotationMatrix(float moveX, float moveY, float moveZ, float angleX, float angleY, float angleZ){
+        angleX = (float)Math.toRadians((double) angleX);
+        angleY = (float)Math.toRadians((double) angleY);
+        angleZ = (float)Math.toRadians((double) angleZ);
+        float a11 = (float)(Math.cos(angleY)*Math.cos(angleZ));
+        float a12 = (float)(Math.cos(angleY)*-Math.sin(angleZ));
+        float a13 = (float)(-Math.sin(angleY));
+        float a21 = (float)(-Math.sin(angleX)*Math.sin(angleY)*Math.cos(angleZ)+Math.cos(angleX)*Math.sin(angleZ));
+        float a22 = (float)(-Math.sin(angleX)*Math.sin(angleY)*-Math.sin(angleZ)+Math.cos(angleX)*Math.cos(angleZ));
+        float a23 = (float)(-Math.sin(angleX)*Math.cos(angleY));
+        float a31 = (float)(Math.cos(angleX)*Math.sin(angleY)*Math.cos(angleZ)+Math.sin(angleX)*Math.sin(angleZ));
+        float a32 = (float)(Math.cos(angleX)*Math.sin(angleY)*-Math.sin(angleZ)+Math.sin(angleX)*Math.cos(angleZ));
+        float a33 = (float)(Math.cos(angleX)*Math.cos(angleY));
+        float[] rotationMatrix = {a11, a21, a31, 0f, a12, a22,a32,0f, a13,a23,a33,0f, moveX, moveY, moveZ, 1f};
+        return rotationMatrix;
+    }
     public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function
                      int uMatrixLocation, float[] viewProjectionMatrix) {
         draw(aPositionLocation, uColorLocation,
@@ -152,9 +164,11 @@ public class Cuboid {
         Matrix.rotateM(modelMatrix, 0, Z_rotation, 0f, 0f, 1f);
         Matrix.scaleM(modelMatrix,0,width,height,length);
 
+        float[] alternativeModelMatrix = CreateTranslationAndRotationMatrix(this.X_position,0f,this.Z_position,this.X_rotation, this.Y_rotation, this.Z_rotation);
+
         // recalculate vertices per matrices
         float[] modelViewProjectionMatrix = new float[16];
-        Matrix.multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, modelMatrix, 0); //what happens if we change the order?
+        Matrix.multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, alternativeModelMatrix, 0);
         GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
 
         // Opacity must be enabled and opacity-mode selected

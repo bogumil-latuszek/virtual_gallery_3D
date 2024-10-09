@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
+import android.os.SystemClock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -318,6 +319,16 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glUseProgram(textureProgramObjectId);
 
+        //***************** animation *************************
+        Wall firstwall = walls.get(0);// only crushes with no walls
+
+        long timePassedInMiliseconds = SystemClock.uptimeMillis();
+        float animationPeriodInMilliseconds = 10000f;
+        float currentFractionOfAnimation = (timePassedInMiliseconds % animationPeriodInMilliseconds)/animationPeriodInMilliseconds;
+        float angle = currentFractionOfAnimation*360; //czas od ostatnich 10 sekund
+        firstwall.set_Y_rotation(angle);
+
+        //***************** animation *************************
 
         for(Wall wall : walls){
             wall.drawPaintings(aPositionTextureLocation,
