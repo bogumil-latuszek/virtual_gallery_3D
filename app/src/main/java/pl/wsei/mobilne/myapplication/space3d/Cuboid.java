@@ -23,6 +23,12 @@ public class Cuboid {
     private float faceOpacity = 0.5f; // default is 50%
     float X_position;
     float Z_position;
+    float X_rotation = 0f;
+    float Y_rotation = 0f;
+    float Z_rotation = 0f;
+    float width = 1f;
+    float height = 1f;
+    float length = 1f;
     private final VertexArray vertexArray;  // <-- Vertices
     private final ByteBuffer vertexSequenceForDrawingFaces;
     private final ByteBuffer vertexSequenceForDrawingEdges;
@@ -135,8 +141,16 @@ public class Cuboid {
         prepareDataSource_forPositionAttribute(aPositionLocation);
 
         //recalculate modelMatrix
+        // modelMatrix should be calculated "just in time" from internal variables of the object,
+        // to avoid acummulation of floating point multiplication errors
+
         Matrix.setIdentityM(modelMatrix, 0);
         Matrix.translateM(modelMatrix, 0, this.X_position, 0, this.Z_position);
+
+        Matrix.rotateM(modelMatrix, 0, Y_rotation, 0f, 1f, 0f);
+        Matrix.rotateM(modelMatrix, 0, X_rotation, 1f, 0f, 0f);
+        Matrix.rotateM(modelMatrix, 0, Z_rotation, 0f, 0f, 1f);
+        Matrix.scaleM(modelMatrix,0,width,height,length);
 
         // recalculate vertices per matrices
         float[] modelViewProjectionMatrix = new float[16];
