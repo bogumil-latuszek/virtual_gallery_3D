@@ -163,11 +163,11 @@ public class Cuboid {
         Matrix.rotateM(modelMatrix, 0, Z_rotation, 0f, 0f, 1f);
         Matrix.scaleM(modelMatrix,0,width,height,length);
 
-        float[] alternativeModelMatrix = CreateTranslationAndRotationMatrix(this.X_position,0f,this.Z_position,this.X_rotation, this.Y_rotation, this.Z_rotation);
+        //float[] alternativeModelMatrix = CreateTranslationAndRotationMatrix(this.X_position,0f,this.Z_position,this.X_rotation, this.Y_rotation, this.Z_rotation);
 
         // recalculate vertices per matrices
         float[] modelViewProjectionMatrix = new float[16];
-        Matrix.multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, alternativeModelMatrix, 0);
+        Matrix.multiplyMM(modelViewProjectionMatrix, 0, viewProjectionMatrix, 0, modelMatrix, 0);
         GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
 
         // Opacity must be enabled and opacity-mode selected
