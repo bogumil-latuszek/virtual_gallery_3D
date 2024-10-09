@@ -16,7 +16,6 @@ public class Cuboid {
     private static final int VERTEX_COUNT = CUBE_LINES_NB*2;
     static float[] cubeCoords = new float[VERTEX_COUNT*COORDS_PER_VERTEX];
     */
-    private final float[] modelMatrix = new float[16]; //a 4x4 matrix
 
     private float[] edgeColor = {37f/256f, 58f/256f, 190f/256f}; // opengl requires color as float in range 0-1
     private float[] faceColor = {81f/256f, 97f/256f, 203f/256f}; // default is blue
@@ -155,7 +154,7 @@ public class Cuboid {
         //recalculate modelMatrix
         // modelMatrix should be calculated "just in time" from internal variables of the object,
         // to avoid acummulation of floating point multiplication errors
-
+        float[] modelMatrix = new float[16];
         Matrix.setIdentityM(modelMatrix, 0);
         Matrix.translateM(modelMatrix, 0, this.X_position, 0, this.Z_position);
 
