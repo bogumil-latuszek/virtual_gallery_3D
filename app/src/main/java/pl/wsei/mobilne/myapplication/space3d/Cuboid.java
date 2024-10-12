@@ -130,13 +130,20 @@ public class Cuboid {
         float a11 = (float)(Math.cos(angleY)*Math.cos(angleZ));
         float a12 = (float)(Math.cos(angleY)*-Math.sin(angleZ));
         float a13 = (float)(-Math.sin(angleY));
+        float a14 = moveX;
         float a21 = (float)(-Math.sin(angleX)*Math.sin(angleY)*Math.cos(angleZ)+Math.cos(angleX)*Math.sin(angleZ));
         float a22 = (float)(-Math.sin(angleX)*Math.sin(angleY)*-Math.sin(angleZ)+Math.cos(angleX)*Math.cos(angleZ));
         float a23 = (float)(-Math.sin(angleX)*Math.cos(angleY));
+        float a24 = moveY;
         float a31 = (float)(Math.cos(angleX)*Math.sin(angleY)*Math.cos(angleZ)+Math.sin(angleX)*Math.sin(angleZ));
         float a32 = (float)(Math.cos(angleX)*Math.sin(angleY)*-Math.sin(angleZ)+Math.sin(angleX)*Math.cos(angleZ));
         float a33 = (float)(Math.cos(angleX)*Math.cos(angleY));
-        float[] rotationMatrix = {a11, a21, a31, 0f, a12, a22,a32,0f, a13,a23,a33,0f, moveX, moveY, moveZ, 1f};
+        float a34 = moveZ;
+        float a41 = 0f;
+        float a42 = 0f;
+        float a43 = 0f;
+        float a44 = 1f;
+        float[] rotationMatrix = {a11, a21, a31, a41, a12, a22,a32,a42, a13,a23,a33,a43, a14, a24, a34, a44};
         return rotationMatrix;
     }
     public void draw(int aPositionLocation, int uColorLocation, //overloading draw  function
