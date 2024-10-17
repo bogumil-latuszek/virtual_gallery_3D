@@ -270,6 +270,9 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
         Matrix.frustumM(projectionMatrix, offsetToStart_in_projectionMatrix,
                 -ratio, ratio, -1, 1, 3, 20);
 
+
+        //projectionMatrix = CreateOrthographicProjectionMatrix(10, 10,3, 20);
+
         // why did I use this if it gets overwritten anyway?
         /*
         Matrix.setLookAtM(viewMatrix, 0,
@@ -370,7 +373,29 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glDisable(GLES20.GL_BLEND);
     }
-
+/*
+// I will come back to this, but for now, it doesn't work and I don't understand why
+    private float[] CreateOrthographicProjectionMatrix (float right, float top,  float near, float far){
+        float a11 = 1/right;
+        float a12 = 0;
+        float a13 = 0;
+        float a14 = 0;
+        float a21 = 0;
+        float a22 = 1/top;
+        float a23 = 0;
+        float a24 = 0;
+        float a31 = 0;
+        float a32 = 0;
+        float a33 = 1/(far-near);
+        float a34 = -near/(far-near);
+        float a41 = 0f;
+        float a42 = 0f;
+        float a43 = 0f;
+        float a44 = 1f;
+        float[] orthographicProjectionMatrix = {a11, a21, a31, a41, a12, a22,a32,a42, a13,a23,a33,a43, a14, a24, a34, a44};
+        return orthographicProjectionMatrix;
+    }
+*/
 //    private void animateCameraView() {
 //        long uptimeMs = SystemClock.uptimeMillis();
 //        long angle = uptimeMs % 3600L;
