@@ -142,6 +142,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     private float[] viewRotationMatrix;
     private float[] viewTranslationMatrix;
 
+    private FpsCounter fpsCounter;
+
 //////////////////////////////////////////////////////////
 
     @Override
@@ -242,6 +244,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
             newWall.setFaceOpacity(0.8f);
             walls.add(newWall);
         }
+
+        fpsCounter = new FpsCounter(appContext, 0,0, 0.2f);
     }
 
     @Override
@@ -370,6 +374,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
                           aTextureCoordinatesLocation, uTextureUnitLocation,
                           uMatrixTextureLocation, texture,  aspectAdjustmentMatrix);
 
+        // draw fps counter
+        fpsCounter.draw(aPositionLocation, aTextureCoordinatesLocation,uTextureUnitLocation,uMatrixLocation, aspectAdjustmentMatrix);
 
         GLES20.glDisable(GLES20.GL_BLEND);
     }
