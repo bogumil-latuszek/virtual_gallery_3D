@@ -4,12 +4,15 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import pl.wsei.mobilne.myapplication.R;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
 public class FpsCounter {
 
-    private float spacing = 1;
+    private float spacing;
     private Letter[] letters;
     private float positionX;
     private float positionY;
@@ -28,23 +31,15 @@ public class FpsCounter {
         this.positionY = positionY;
         charTableTextureID = TextureHelper.loadTexture(context, R.drawable.char_table);
         letters = new Letter[7];
-        letters[0] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX,positionY, 'f' );
-        letters[1] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + spacing,positionY, 'p' );
-        letters[2] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 2*spacing,positionY, 's' );
-        letters[3] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 3*spacing,positionY, ':' );
-        letters[4] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 4*spacing,positionY, '0' );
-        letters[5] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 5*spacing,positionY, '5' );
-        letters[6] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 6*spacing,positionY, '6' );
+        letters[0] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX,positionY, 'f');
+        letters[1] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + spacing,positionY, 'p');
+        letters[2] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 2*spacing,positionY, 's');
+        letters[3] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 3*spacing,positionY, ':');
+        letters[4] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 4*spacing,positionY, '0');
+        letters[5] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 5*spacing,positionY, '5');
+        letters[6] = new Letter(charTableTextureID, letterWidth,letterHeight,positionX + 6*spacing,positionY, '6');
     }
 
-    /*
-    public int[] convertCount( int count){
-        int ones = count%10;
-        int tens = count%10;
-        int hundreds = count%10;
-        fpsCount = new int[]{ones, tens, hundreds};
-    }
-    */
 
     private void UpdateFpsCounter(){
         long currentTime = SystemClock.uptimeMillis();
@@ -63,8 +58,6 @@ public class FpsCounter {
 
     private void updateLetters(){
         int ones = fpsCount%10;
-        //Log.d("ones:", ""+ ones );
-        //Log.d("onesconv:", ""+ onesConverted );
         int tens = (fpsCount/10)%10;
         int hundreds = (fpsCount/100)%10;
         if(hundreds==0){
@@ -106,7 +99,6 @@ public class FpsCounter {
         for(int i=0; i<this.letters.length; i++){
             letters[i].draw(aPositionLocation, aTextureCoordinatesLocation, uTextureUnitLocation, uMatrixLocation, viewProjectionMatrix);
         }
-        Log.d("fps", ""+fpsCount);
     }
 
 }

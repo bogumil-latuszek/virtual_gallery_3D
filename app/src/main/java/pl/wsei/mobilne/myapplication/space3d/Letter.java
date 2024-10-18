@@ -9,6 +9,10 @@ import static android.opengl.GLES20.glUniform1i;
 import android.content.Context;
 import android.opengl.GLES20;
 
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
+
 import pl.wsei.mobilne.myapplication.R;
 
 public class Letter {
@@ -36,63 +40,34 @@ public class Letter {
         vertexArray = new VertexArray(modelVertexArray);
 
         alphabetTextureSize = 1;
-        int charID = 18;
-        // this should be replaced with dictionary
-        switch (letter){
-            case 'f':
-                charID = 70;
-                break;
-            case 'p':
-                charID = 80;
-                break;
-            case 's':
-                charID = 83;
-                break;
-            case ':':
-                charID = 26;
-                break;
-            case '0':
-                charID = 16;
-                break;
-            case '1':
-                charID = 17;
-                break;
-            case '2':
-                charID = 18;
-                break;
-            case '3':
-                charID = 19;
-                break;
-            case '4':
-                charID = 20;
-                break;
-            case '5':
-                charID = 21;
-                break;
-            case '6':
-                charID = 22;
-                break;
-            case '7':
-                charID = 23;
-                break;
-            case '8':
-                charID = 24;
-                break;
-            case '9':
-                charID = 25;
-                break;
-            case 'x':
-                charID = 130;
-                break;
 
+        Map<Character,Integer> charPositionDictionary = new HashMap<Character, Integer>();
+        charPositionDictionary.put('f', 70);
+        charPositionDictionary.put('p', 80);
+        charPositionDictionary.put('s', 83);
+        charPositionDictionary.put(':', 26);
+        charPositionDictionary.put('0', 16);
+        charPositionDictionary.put('1', 17);
+        charPositionDictionary.put('2', 18);
+        charPositionDictionary.put('3', 19);
+        charPositionDictionary.put('4', 20);
+        charPositionDictionary.put('5', 21);
+        charPositionDictionary.put('6', 22);
+        charPositionDictionary.put('7', 23);
+        charPositionDictionary.put('8', 24);
+        charPositionDictionary.put('9', 25);
+
+        int charID = 130;
+        Integer charIDOrNull = charPositionDictionary.get(letter);
+        if (charIDOrNull != null){
+            charID = charIDOrNull;
         }
-
 
 
         int columnCount = 15;
         int rowCount = 11;
-        float columnWidth = (float) alphabetTextureSize /15;
-        float rowHeight = (float) alphabetTextureSize /11;
+        float columnWidth = (float) alphabetTextureSize /columnCount;
+        float rowHeight = (float) alphabetTextureSize /rowCount;
         int numberInRow = charID%columnCount;
         int numberInColumn = charID/columnCount;
         float positionInRow = numberInRow*columnWidth;
@@ -104,15 +79,6 @@ public class Letter {
                 positionInRow,  positionInColumn+rowHeight,                                 // (2) Bottom-left
                 positionInRow+columnWidth,  positionInColumn+rowHeight                                  // (3) Bottom-right
         });
-
-/*
-        texturePointsArray = new VertexArray(new float[]{
-                0f,  0f,                                 // (0) Top-left  S, T
-                0.1f,  0f,                                 // (1) Top-right
-                0f,  0.1f,                                 // (2) Bottom-left
-                0.1f,  0.1f,                                 // (3) Bottom-right
-        });
-*/
         vertexSequenceArray = new IndexArray(new byte[]{
                 // Front - counter-clockwise (front-facing)
                 1, 0, 3,
