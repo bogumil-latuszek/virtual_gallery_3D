@@ -6,18 +6,14 @@ import static android.opengl.GLES20.glActiveTexture;
 import static android.opengl.GLES20.glBindTexture;
 import static android.opengl.GLES20.glUniform1i;
 
-import android.content.Context;
 import android.opengl.GLES20;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
-import pl.wsei.mobilne.myapplication.R;
+public class CharacterDisplayingRectangle {
 
-public class Letter {
-
-    public char letter ='X';
+    public char character ='X';
     private int alphabetTextureID;
     private int alphabetTextureSize;
     private VertexArray texturePointsArray;
@@ -26,9 +22,9 @@ public class Letter {
     private static final int COORDS_PER_VERTEX = 3;  // X, Y, Z
     private static final int COORDS_PER_TEXTURE_COORDINATE = 2;  // S, T
 
-    public Letter(int textureID, float width, float height, float positionX, float positionY, char letter) {
+    public CharacterDisplayingRectangle(int textureID, float width, float height, float positionX, float positionY, char character) {
 
-        this.letter = letter;
+        this.character = character;
         alphabetTextureID = textureID ; // rename to charTableTextureID?
 
         float[] modelVertexArray = new float[]{
@@ -58,7 +54,7 @@ public class Letter {
         charPositionDictionary.put('9', 25);
 
         int charID = 130;
-        Integer charIDOrNull = charPositionDictionary.get(letter);
+        Integer charIDOrNull = charPositionDictionary.get(character);
         if (charIDOrNull != null){
             charID = charIDOrNull;
         }
