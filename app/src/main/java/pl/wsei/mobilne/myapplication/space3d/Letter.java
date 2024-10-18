@@ -13,18 +13,19 @@ import pl.wsei.mobilne.myapplication.R;
 
 public class Letter {
 
-    private char letter ='X';
-    private int AlphabetTextureID;
+    public char letter ='X';
+    private int alphabetTextureID;
+    private int alphabetTextureSize;
     private VertexArray texturePointsArray;
     private IndexArray vertexSequenceArray;
     private VertexArray vertexArray;
     private static final int COORDS_PER_VERTEX = 3;  // X, Y, Z
     private static final int COORDS_PER_TEXTURE_COORDINATE = 2;  // S, T
 
-    public Letter(Context context, float width, float height, float positionX, float positionY, char letter) {
+    public Letter(int textureID, float width, float height, float positionX, float positionY, char letter) {
 
         this.letter = letter;
-        AlphabetTextureID = TextureHelper.loadTexture(context, R.drawable.char_table);
+        alphabetTextureID = textureID ; // rename to charTableTextureID?
 
         float[] modelVertexArray = new float[]{
                 0-width+positionX,  0+height+positionY, 0,        // (0) Top-left  X, Y
@@ -33,12 +34,85 @@ public class Letter {
                 0+width+positionX,  0-height+positionY, 0          // (3) Bottom-right
         };
         vertexArray = new VertexArray(modelVertexArray);
+
+        alphabetTextureSize = 1;
+        int charID = 18;
+        // this should be replaced with dictionary
+        switch (letter){
+            case 'f':
+                charID = 70;
+                break;
+            case 'p':
+                charID = 80;
+                break;
+            case 's':
+                charID = 83;
+                break;
+            case ':':
+                charID = 26;
+                break;
+            case '0':
+                charID = 16;
+                break;
+            case '1':
+                charID = 17;
+                break;
+            case '2':
+                charID = 18;
+                break;
+            case '3':
+                charID = 19;
+                break;
+            case '4':
+                charID = 20;
+                break;
+            case '5':
+                charID = 21;
+                break;
+            case '6':
+                charID = 22;
+                break;
+            case '7':
+                charID = 23;
+                break;
+            case '8':
+                charID = 24;
+                break;
+            case '9':
+                charID = 25;
+                break;
+            case 'x':
+                charID = 130;
+                break;
+
+        }
+
+
+
+        int columnCount = 15;
+        int rowCount = 11;
+        float columnWidth = (float) alphabetTextureSize /15;
+        float rowHeight = (float) alphabetTextureSize /11;
+        int numberInRow = charID%columnCount;
+        int numberInColumn = charID/columnCount;
+        float positionInRow = numberInRow*columnWidth;
+        float positionInColumn = numberInColumn*rowHeight;
+
+        texturePointsArray = new VertexArray(new float[]{
+                positionInRow,  positionInColumn,                                 // (0) Top-left  S, T
+                positionInRow+columnWidth,  positionInColumn,                                  // (1) Top-right
+                positionInRow,  positionInColumn+rowHeight,                                 // (2) Bottom-left
+                positionInRow+columnWidth,  positionInColumn+rowHeight                                  // (3) Bottom-right
+        });
+
+/*
         texturePointsArray = new VertexArray(new float[]{
                 0f,  0f,                                 // (0) Top-left  S, T
-                1f,  0f,                                 // (1) Top-right
-                0f,  1f,                                 // (2) Bottom-left
-                1f,  1f,                                 // (3) Bottom-right
+                0.1f,  0f,                                 // (1) Top-right
+                0f,  0.1f,                                 // (2) Bottom-left
+                0.1f,  0.1f,                                 // (3) Bottom-right
         });
+*/
         vertexSequenceArray = new IndexArray(new byte[]{
                 // Front - counter-clockwise (front-facing)
                 1, 0, 3,
@@ -56,7 +130,7 @@ public class Letter {
         // Set the active texture unit to texture unit 0.
         glActiveTexture(GL_TEXTURE0);
         // Bind the texture to this unit.
-        glBindTexture(GL_TEXTURE_2D, this.AlphabetTextureID);
+        glBindTexture(GL_TEXTURE_2D, this.alphabetTextureID);
         // Tell the texture uniform sampler to use this texture in the shader by
         // telling it to read from texture unit 0.
         glUniform1i(uTextureUnitLocation, 0);
