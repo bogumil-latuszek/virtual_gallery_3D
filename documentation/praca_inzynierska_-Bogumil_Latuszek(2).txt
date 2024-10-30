@@ -370,7 +370,35 @@ Klasa "obraz" zawiera:
 
 Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
 Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
-Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie komput
+Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. Zazwyczaj najpierw oblicza się ostateczną macierz transformacji dla danego obiektu, a następnie wysyła się ją jako parametr do Vertex Shadera
+
+Przyjżyjmy się teraz mnożeniu macierzy, pojedynczych transformacji które składają się na ostateczną macierz transformacji wykożystaną w Vertex Shader-rze. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby te transformacje gdyby nałożyć je na dany obiekt w sekwencji:
+
+1 Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu:
+<tu wstawić wzory rotacji>
+przyjmijmy że chcemy obrócić model o 45stopni po osi y, i 10 stopni po osi x:
+<tu wstawić wypełnioną macierz modelu>
+<tu wstawić rysunek przekształcenia w blenderze>
+
+2 Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata:
+<tu wstawić wzór na translacje>
+powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 2,-6, 15
+<tu wstawić rysunek przekształcenia w blenderze>
+
+3 Macierz kamery - przesunięcie i obrót macierzy tak aby zasymulować przemieszczenie się kamery - a więc odwrotny obrót i przemieszczenie
+<tu wstawić wzór na przesunięcie> <tu wstawić wzór na obrót>
+aby obrócić obiekt nie po wlasnej osi a w stosunku do innego punktu (np. centrum innego obiektu), należy najpierw zastosować przesunięcie, które sprawi że w przestrzeni w jakiej znajdzie się obiekt, jego centrum znajduje się w środku tego obiektu
+Powiedzmy że chcemy przesunąć kamerę o 5 po osi z, a następnie obrócić nią w prawo po osi y o 90stopni:
+<tu wstawić rysunek przekształcenia w blenderze>
+
+4 Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
+<tu wstawić wzór na perspektywę(projekcję)> 
+przyjmijmy że nasza macierz perspektywy zakłada fov == 30 stopni:
+<tutaj wstawić rysunek przekształcenia w blenderze>
+
+
+
+5 Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
 
 
 Obiekty w grafice 3D reprezentowane są poprzez zbiór wektorów - wierzchołków. każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
