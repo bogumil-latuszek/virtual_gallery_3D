@@ -315,26 +315,16 @@ Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem progr
 
 Zamiast tego w grafice Raymarching, stosuje się odwrócony paradygmat - aby mieć pewność że obliczenia skupiają się wyłącznie na promieniach światła rejestrowanych przez kamerę, symulowane promienie wychodzą z samej kamery a nie ze źródła światła. W najprostszej wersji tego algorytmu, po osiągnięciu minimalnej odległości do obiektu w przestrzeni 3D, funkcja obliczająca trajektorię promienia potwierdza zderzenie z tą bryłą, a do piksela z którego wyszedł promień przypisywany jest jej kolor. Promienie które nie zarejestrują kolizji z żadnym obiektem, po osiągnięciu maksymalnej długości lub cykli przedłużających promień, zwracają informację o braku kolizji. Wtedy piksel z którego wyszedł taki promień otrzyma domyślny kolor tła. Jest to oczywiście uproszczony opis działania algorytmu Raymarching, jednak nawet w takim uproszczeniu, oczywistym jest że ograniczenie liczby promieni do tych które rejestrowane są na kamerze, a także ograniczenie się do prostoliniowych promieni z pominięciem odbić, pozwala drastycznie przyspieszyć wyświetlenie sceny.
 
-Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. 
+Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. Scena to zbiór wszystkich brył w przestrzeni 3D, w danym punkcie czasowym działania programu.
 <tu wstawić ilustrację przedstawiającą rzutowanie bryły na near clipping plane>
 Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja bryły wytworzy na płaszczyźnie kamery figurę 2d będącą zbiorem trójkątów. Trójkąty na płaszczyźnie, powstałe w ten sposób, są wykorzystywane do określenia koloru punktów na ekranie. Każdemu punktowi leżącemu wewnątrz danego trójkąta przypisywany jest odpowiedni kolor. W przypadku gdy kolor bryły jest jednolity, określenie koloru trójkąta jest bardzo proste. Jeżeli natomiast kolor jest przypisany do wierzchołka - to kolor punktu wewnątrz trójkąta jest interpolowany na podstawie koloru trzech otaczających go wierzchołków. Możliwe jest też zastosowanie tekstury, wtedy obliczenie koloru punktu wewnątrz trójkąta wymaga innego, bardziej skomplikowanego podejścia.
 
 (a co jeśli trójkąty nakładają się??).
 
-transformacje użyte w projekcie:
-
-- transformacja przesunięcie
-- transformacja obrót według kamery
-- transformacja perspektywa
-
-Wyświetlanie sceny 3d. Scena 3D w "Wirtualnej Galerii" składa się tak naprawdę z następujących zmiennych:
-- ścian
-- obrazów
-- podłogi
-Ale czym tak naprawde są te obiekty? Otóż każda klasa obiektu w przestrzeni 3D zawiera:
-- zbiór punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
-- współrzędne x, y, z określające gdzie znajduje się centrum tego obiektu w "przestrzeni świata". Pozycja niekoniecznie musi być określona w zmiennych klasowych, czasem pozycja obiektu ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ten obiekt jest "przyczepiony" do innego obiektu;
-- zmienne r g b definiujące kolor bryły, lub zbiór punktów tekstury. Jeśli obiekt ma teksturę, każdemu jego wierzchołkowi odpowiada jeden punkt na płaszczyźnie tekstury. Dzięki temu podczas(triangulacji??/rasteryzacji??), na podstawie pozycji 3 otaczających go wierzchołków, silnik graficzny może ustalić gdzie na teksturze znajduje się środek danego fragmentu, i na tej podstawie dobrać dla niego odpowiedni kolor
+Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następujących elementów:
+- zbioru punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
+- współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". Pozycja ta niekoniecznie musi być określona wewnątrz obiektu, czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
+- koloru bryły - gdy bryła ma jednolity kolor; zbioru kolorów każdego wierzchołka, albo współrzędnych na teksturze przypisanych do konkretnych wierzchołków - jeśli została użyta tekstura.
 
 Każda klasa obiektu będzie się w pewnym stopniu różnić od wymienionej normy.
 I tak przykładowo klasa "ściana" zawiera:
