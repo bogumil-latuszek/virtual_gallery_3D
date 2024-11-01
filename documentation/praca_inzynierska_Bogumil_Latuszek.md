@@ -374,30 +374,35 @@ Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transforma
 
 Przyjżyjmy się teraz mnożeniu macierzy, pojedynczych transformacji które składają się na ostateczną macierz transformacji wykożystaną w Vertex Shader-rze. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby te transformacje gdyby nałożyć je na dany obiekt w sekwencji:
 
+0 Bryła opisana przez zbiór wierzchołków:
+
+<img src="../ilustracje/kostka.png" width=400></img>
+
 1 Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu:
 <tu wstawić wzory rotacji>
 przyjmijmy że chcemy obrócić model o 45stopni po osi y, i 10 stopni po osi x:
 <tu wstawić wypełnioną macierz modelu>
-<tu wstawić rysunek przekształcenia w blenderze>
 
 <img src="../ilustracje/kostka_model_matrix.png" width=400></img>
 
 2 Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata:
 <tu wstawić wzór na translacje>
 powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 2,-6, 15
-<tu wstawić rysunek przekształcenia w blenderze>
+
+<img src="../ilustracje/kostka_world_space.png" width=400></img>
 
 3 Macierz kamery - przesunięcie i obrót macierzy tak aby zasymulować przemieszczenie się kamery - a więc odwrotny obrót i przemieszczenie
 <tu wstawić wzór na przesunięcie> <tu wstawić wzór na obrót>
 aby obrócić obiekt nie po wlasnej osi a w stosunku do innego punktu (np. centrum innego obiektu), należy najpierw zastosować przesunięcie, które sprawi że w przestrzeni w jakiej znajdzie się obiekt, jego centrum znajduje się w środku tego obiektu
 Powiedzmy że chcemy przesunąć kamerę o 5 po osi z, a następnie obrócić nią w prawo po osi y o 90stopni:
-<tu wstawić rysunek przekształcenia w blenderze>
+
+<img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
 4 Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
 <tu wstawić wzór na perspektywę(projekcję)> 
 przyjmijmy że nasza macierz perspektywy zakłada fov == 30 stopni:
-<tutaj wstawić rysunek przekształcenia w blenderze>
 
+<img src="../ilustracje/frustum.png" width=400></img>
 
 
 5 Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
