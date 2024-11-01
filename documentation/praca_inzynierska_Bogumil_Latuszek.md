@@ -323,86 +323,63 @@ Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja
 
 Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następujących elementów:
 - zbioru punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
-- współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". Pozycja ta niekoniecznie musi być określona wewnątrz obiektu, czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
-- koloru bryły - gdy bryła ma jednolity kolor; zbioru kolorów każdego wierzchołka, albo współrzędnych na teksturze przypisanych do konkretnych wierzchołków - jeśli została użyta tekstura.
-
-Każda klasa obiektu będzie się w pewnym stopniu różnić od wymienionej normy.
-I tak przykładowo klasa "ściana" zawiera:
-- zbiór ośmiu wierzchołków opisujących sześcian
-- współrzędne x,z w przestrzeni świata (co z y??)
-- zmiene r, g, b
-
-Klasa "obraz" zawiera:
-- zbiór czterech wierzchołków opisujących prostokąt
-- nie zawiera współrzędnych x,y,z gdyż pozycja obiektu zależy od pozycji ściany do której jest przypisany
-- zbiór czterech punktów na płaszczyźnie tekstury, po jednym na każdy wierzchołek bryły.
-
-Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
-Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
-Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. Zazwyczaj najpierw oblicza się ostateczną macierz transformacji dla danego obiektu, a następnie wysyła się ją jako parametr do Vertex Shadera
-
-Przyjżyjmy się teraz mnożeniu macierzy, pojedynczych transformacji które składają się na ostateczną macierz transformacji wykożystaną w Vertex Shader-rze. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby te transformacje gdyby nałożyć je na dany obiekt w sekwencji:
-
-0 Bryła opisana przez zbiór wierzchołków:
 
 <img src="../ilustracje/kostka.png" width=400></img>
 
-1 Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu:
+- współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". Pozycja ta niekoniecznie musi być określona wewnątrz obiektu, czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
+- koloru bryły - gdy bryła ma jednolity kolor; zbioru kolorów każdego wierzchołka, albo współrzędnych na teksturze przypisanych do konkretnych wierzchołków - jeśli została użyta tekstura.
+
+Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
+
+Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
+Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. 
+
+Przyjrzyjmy się teraz mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji:
+
+1. Bryła taka jak jest opisana przez zbiór wierzchołków:
+
+<img src="../ilustracje/kostka.png" width=400></img>
+
+2. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu:
 <tu wstawić wzory rotacji>
-przyjmijmy że chcemy obrócić model o 45stopni po osi y, i 10 stopni po osi x:
+przyjmijmy że chcemy obrócić model o 30 stopni po osi y:
 <tu wstawić wypełnioną macierz modelu>
 
 <img src="../ilustracje/kostka_model_matrix.png" width=400></img>
 
-2 Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata:
+3. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata:
 <tu wstawić wzór na translacje>
-powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 2,-6, 15
+powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 1,2,-5
 
 <img src="../ilustracje/kostka_world_space.png" width=400></img>
 
-3 Macierz kamery - przesunięcie i obrót macierzy tak aby zasymulować przemieszczenie się kamery - a więc odwrotny obrót i przemieszczenie
+4. Macierz kamery - przesunięcie i obrót macierzy tak aby zasymulować przemieszczenie się kamery - a więc odwrotny obrót i przemieszczenie
 <tu wstawić wzór na przesunięcie> <tu wstawić wzór na obrót>
 aby obrócić obiekt nie po wlasnej osi a w stosunku do innego punktu (np. centrum innego obiektu), należy najpierw zastosować przesunięcie, które sprawi że w przestrzeni w jakiej znajdzie się obiekt, jego centrum znajduje się w środku tego obiektu
-Powiedzmy że chcemy przesunąć kamerę o 5 po osi z, a następnie obrócić nią w prawo po osi y o 90stopni:
+Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni
 
 <img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
-4 Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
+5. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
 <tu wstawić wzór na perspektywę(projekcję)> 
 przyjmijmy że nasza macierz perspektywy zakłada fov == 30 stopni:
 
 <img src="../ilustracje/frustum.png" width=400></img>
 
-
-5 Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
-
-
-Obiekty w grafice 3D reprezentowane są poprzez zbiór wektorów - wierzchołków. każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
-Użycie wielowątkowego procesora graficznego do zastosowania shaderów
-OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
-Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
+6. Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
 
 Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
 - fragment shader - obliczenia koloru pikseli na ekranie
 - compute shader - wszelakie obliczenia równoległe, przykładowo kopanie kryptowalut.
 
-
 czym jest fragment shader? - to program który jako argument bierze jeden fragment. Na podstawie danych zawartych w fragmencie oblicza kolor piksela. W OpenGL, wynik obliczeń z jednego fragment shadera może posłużyć jako argument innego fragment shadera, co pozwala łączyć je w łańcuch wykonań. W OpenGL ES nie jest to możliwe. Fragment shader co to jest
-
 
 Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
 
 
-macierze
 
-macierze, czy tablice, stoją u podstawy obliczeń grafiki komputerowej. Macierze umożliwiają reprezentacje złożonych matematycznych konceptów takich jak obrót, translacja, czy skalowanie, poprzez dwu wymiarowe tablice wartości. Aby transformować punkt w przestrzeni, np. przesunąć go o pięć jednostek w prawo, należy go pomnożyć przez macierz reprezentującą tą transformację. Na szczęście kiedy jeden punkt ulega więcej niż jednej transformacji, np. obrotowi i translacji, nie musimy mnożyć go przez każdą macierz translacji, wystarczy pomnożyć  te macierze ze sobą, a punkt pomnożyć przez macierz będącą wynikiem mnożenia macierzy. Może nie być od razu oczywiste w jaki sposób takie podejście jest korzystne, w końcu w obu przypadkach wykonywana jest taka sama ilość obliczeń. Jednak sytuacja zmienia się diametralnie, kiedy chcemy zastosować takie same przekształcenia na wielu różnych punktach. Wtedy macierz transformacji łącząca w sobie wszystkie potrzebne transformacje wyliczana jest tylko raz, po czym można ją użyć do obliczenia pozycji wszystkich punktów w zbiorze. Dzięki temu drastycznie redukowana jest ilość potrzebnych obliczeń. Opisana sytuacja zdaża się bardzo często w grafice 3D, zazwyczaj obiekty w scenie składają się z więcej niż jednego punktu, a kiedy te punkty ulegają transformacji, każdy punkt musi być transformowany w ten sam sposób, aby wyświetlane bryły nie ulegały deformacji. 
-
-transformacje obiektów - Aby obliczyć ostateczną macierz transformacji obiektu, którą będzie można użyć podczas wyświetlenia go, mnożone są ze sobą macierze modelu, świata, kamery i frustum:
-- modelu - zawiera informację o obrocie modelu według własnej osi
-- świata - zawiera informację o pozycji modelu w koordynatach świata, to znaczy jęśli przyjmiemy że nasz świat ma środek w punkcie (0,0,0), to macierz świata informuje gdzie w relacji do tego punktu znajduje się obiekt
-- kamery - zawarte są w niej transformacje kamery. Ponieważ najłatwiej jest wyświetlić scenę 3D gdy kamera leży na osi z, aby zasymulować ruch kamery, zamiast transformować pozycję kamery, nakładamy odpowiednią transformację na wszystkie inne obiekty w scenie. Dlatego też macierz kamery jest jednym z komponentów wchodzących w skład ostatecznej macierzy transformacji wszystkich obiektów
-- frustum - Słowo frustum wywodzi się z łaciny(łac. frustum - kąsek), w języku angielskim przyjęło jednak nieco inne znaczenie, mianowicie frustum odnosi się do fragmentu stożka lub ostrosłupa wyciętego dwoma  płaszczyznami równoległymi do jego podstawy.
+frustum - Słowo frustum wywodzi się z łaciny(łac. frustum - kąsek), w języku angielskim przyjęło jednak nieco inne znaczenie, mianowicie frustum odnosi się do fragmentu stożka lub ostrosłupa wyciętego dwoma  płaszczyznami równoległymi do jego podstawy.
 <tu wstawić grafikę pokazującą frustum>
 W grafice komputerowej wykożystuje się frustum ostrosłupa prostokątnego do obliczenia perspektywy.
 <tu wstawić grafike pokazującą frustum perspektywy>
@@ -412,8 +389,6 @@ ta macierz zawiera transformacje symulujące perspektywę, najprościej mówiąc
 Ostateczna macierz transformacji przekazywana jest do vector shader-a, który używa jej żeby obliczyć pozycje wszystkich punktów obiektu.
 
 Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
-
-
 
 płaszczyzny i przecięcie z prostymi - Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. Użytkownik aplikacji, będąc w widoku 3D, wybiera bok ściany z którym chce wejść w interakcję poprzez kliknięcie na jego reprezentacje na ekranie. Następnie, jeśli bok był pusty - to znaczy nie posiadał przypisanego obrazu - przypisany zostanie do niego kolejny obraz z listy dostępnych obrazów. W przeciwnym wypadku, jeśli jakiś obraz był już przypisany do tego boku, zostanie on odpięty. Wizualnie, przypięcie obrazu jest równoznaczne z jego zawieszeniem, a odpięcie ze zdjęciem go. 
 Implementacja tej funkcjonalności:
@@ -427,9 +402,6 @@ Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W 
 korzystając z tego że powierzchnie wszystkich ścian i obrazów znajdujących się w scenie są równoległe do osi x, z i y,
 
 wektory normalne - wektory normalne określają kierunek w jakim zwrócona jest płaszczyzna
-
-Frustum, perspektywa, przekształcenia widoku
-dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
 
 *Czym jest openCL - openCL to standard tworzony przez grupę Khronos. W przeciwieństwie do OpenGL skupia się głównie na uzyciu GPU do obliczeń matematycznych.
 
