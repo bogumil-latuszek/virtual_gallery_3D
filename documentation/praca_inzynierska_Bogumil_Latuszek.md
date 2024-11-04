@@ -315,7 +315,7 @@ Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem progr
 
 Zamiast tego w grafice Raymarching, stosuje się odwrócony paradygmat - aby mieć pewność że obliczenia skupiają się wyłącznie na promieniach światła rejestrowanych przez kamerę, symulowane promienie wychodzą z samej kamery a nie ze źródła światła. W najprostszej wersji tego algorytmu, po osiągnięciu minimalnej odległości do obiektu w przestrzeni 3D, funkcja obliczająca trajektorię promienia potwierdza zderzenie z tą bryłą, a do piksela z którego wyszedł promień przypisywany jest jej kolor. Promienie które nie zarejestrują kolizji z żadnym obiektem, po osiągnięciu maksymalnej długości lub cykli przedłużających promień, zwracają informację o braku kolizji. Wtedy piksel z którego wyszedł taki promień otrzyma domyślny kolor tła. Jest to oczywiście uproszczony opis działania algorytmu Raymarching, jednak nawet w takim uproszczeniu, oczywistym jest że ograniczenie liczby promieni do tych które rejestrowane są na kamerze, a także ograniczenie się do prostoliniowych promieni z pominięciem odbić, pozwala drastycznie przyspieszyć wyświetlenie sceny.
 
-Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. Scena to zbiór wszystkich brył w przestrzeni 3D, w danym punkcie czasowym działania programu.
+Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. Scena to zbiór wszystkich brył w przestrzeni 3D, w danym punkcie czasowym działania programu.
 <tu wstawić ilustrację przedstawiającą rzutowanie bryły na near clipping plane>
 Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja bryły wytworzy na płaszczyźnie kamery figurę 2d będącą zbiorem trójkątów. Trójkąty na płaszczyźnie, powstałe w ten sposób, są wykorzystywane do określenia koloru punktów na ekranie. Każdemu punktowi leżącemu wewnątrz danego trójkąta przypisywany jest odpowiedni kolor. W przypadku gdy kolor bryły jest jednolity, określenie koloru trójkąta jest bardzo proste. Jeżeli natomiast kolor jest przypisany do wierzchołka - to kolor punktu wewnątrz trójkąta jest interpolowany na podstawie koloru trzech otaczających go wierzchołków. Możliwe jest też zastosowanie tekstury, wtedy obliczenie koloru punktu wewnątrz trójkąta wymaga innego, bardziej skomplikowanego podejścia.
 
@@ -340,23 +340,45 @@ Przyjrzyjmy się teraz mnożeniu macierzy, które składają się na ostateczną
 
 <img src="../ilustracje/kostka.png" width=400></img>
 
-2. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu:
-<tu wstawić wzory rotacji>
-przyjmijmy że chcemy obrócić model o 30 stopni po osi y:
-<tu wstawić wypełnioną macierz modelu>
+2. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po osi y:
+
+<img src="../ilustracje/mmodelu.png" width=400></img>
+
+(kąt β = 30°)
+Po wstawieniu wartości otrzymamy macierz:
+
+<img src="../ilustracje/mmodelu_values.png" width=400></img>
+
+Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją wierzchołka (zaznaczonego na rysunku na czerwono):
+
+<img src="../ilustracje/mmodelu_equation.png" width=400></img>
+
+Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
 <img src="../ilustracje/kostka_model_matrix.png" width=400></img>
 
-3. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata:
-<tu wstawić wzór na translacje>
-powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 1,2,-5
+3. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata. Wzór na macierz świata(macierz translacji):
+
+<img src="../ilustracje/mworld.png" width=400></img>
+
+powiedzmy że chcemy ustawić model w przestrzeni świata na pozycji 1,2,-5:
+
+<img src="../ilustracje/mworld_values.png" width=400></img>
+
+Zobaczmy więc jak macierz świata transformuje wierzchołek ustawiony poprzednio w przestrzeni modelu:
+
+<img src="../ilustracje/mworld_equation.png" width=400></img>
+
+Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
 <img src="../ilustracje/kostka_world_space.png" width=400></img>
 
-4. Macierz kamery - przesunięcie i obrót macierzy tak aby zasymulować przemieszczenie się kamery - a więc odwrotny obrót i przemieszczenie
-<tu wstawić wzór na przesunięcie> <tu wstawić wzór na obrót>
-aby obrócić obiekt nie po wlasnej osi a w stosunku do innego punktu (np. centrum innego obiektu), należy najpierw zastosować przesunięcie, które sprawi że w przestrzeni w jakiej znajdzie się obiekt, jego centrum znajduje się w środku tego obiektu
-Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni
+4. Macierz kamery – Aby uprościć proces wyświetlania sceny, kamera powinna znajdować się w punkcie 0.0.0 w przestrzeni świata, być skierowana wprost w kierunku osi -z,(w używanym w tym przypadku ułożeniu świata „prawej ręki”), a jej środek leżeć na osi z. Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie same jak gdyby to kamera się poruszała a nie cały wirtualny świat wokół niej.
+Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: odwrotną translacje do zamierzonego ruchu kamery => odwrotny obrót do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie(w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
+
+<img src="../ilustracje/mcamera_equation.png" width=400></img>
+
+Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
 <img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
