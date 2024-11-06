@@ -374,7 +374,15 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 <img src="../ilustracje/kostka_world_space.png" width=400></img>
 
 4. Macierz kamery – Aby uprościć proces wyświetlania sceny, kamera powinna znajdować się w punkcie 0.0.0 w przestrzeni świata, być skierowana wprost w kierunku osi -z,(w używanym w tym przypadku ułożeniu świata „prawej ręki”), a jej środek leżeć na osi z. Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie same jak gdyby to kamera się poruszała a nie cały wirtualny świat wokół niej.
-Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: odwrotną translacje do zamierzonego ruchu kamery => odwrotny obrót do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie(w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
+Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: translacje odwrotną do zamierzonego ruchu kamery => obrót odwrotny do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie(w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
+
+<img src="../ilustracje/mcamera.png" width=400></img>
+
+Po wstawieniu wartości:
+
+<img src="../ilustracje/mcamera_values.png" width=400></img>
+
+Zobaczmy jak otrzymana macierz kamery transformuje wierzchołek ustawiony poprzednio w przestrzeni świata:
 
 <img src="../ilustracje/mcamera_equation.png" width=400></img>
 
