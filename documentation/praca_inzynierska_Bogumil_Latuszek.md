@@ -395,10 +395,27 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 <img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
 5. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
-<tu wstawić wzór na perspektywę(projekcję)> 
-przyjmijmy że nasza macierz perspektywy zakłada fov == 30 stopni:
+Wzór na macierz projekcji perspektywicznej:
 
-<img src="../ilustracje/frustum.png" width=400></img>
+<img src="../ilustracje/mpersp.png" width=400></img>
+
+Wyjaśnijmy co oznaczają podane zmienne:
+• aspekt – to stosunek szerokości near clipping plane(bliższej płaszczyźnie ucięcia?) do jej wysokości
+• fov –  (z j.ang: field of view, czyli zasięg wzroku), odnosi się do kąta pomiędzy near clipping plane a środkiem układu współrzędnych (w przestrzeni kamery):
+      <tu wstawić rysunek frustum z zaznaczonym fov>
+• far – odległość między środkiem far clipping plane, a środkiem układu współrzędnych
+• near – odległość między środkiem near clipping plane, a środkiem układu współrzędnych 
+Przyjmijmy że nasza macierz perspektywy zakłada fov równe 60 stopni, aspekt równy 2, near równe 1, a far równe 20. Po wstawieniu wartości do wzoru otrzymamy:
+
+<img src="../ilustracje/mpersp_values.png" width=400></img>
+
+Zobaczmy więc jak otrzymana macierz kamery transformuje wierzchołek ustawiony poprzednio w przestrzeni świata:
+
+<img src="../ilustracje/mpersp_equation.png" width=400></img>
+
+Poniższa ilustracja pokazuje tą transformację
+
+<tu wstawić ilustrację pokazującą transformację perspektywy>
 
 6. Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
 
