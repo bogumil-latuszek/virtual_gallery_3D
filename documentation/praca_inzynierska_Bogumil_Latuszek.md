@@ -340,19 +340,24 @@ Przypomnijmy że bryła to zbiór wierzchołków:
 
 Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
 
-<tu wstawić wektor x, y, z>
-
 $`
 \begin{pmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i
+  x \\
+  y \\
+  z
 \end{pmatrix}
 `$
 
 Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych.
 
-<tu dać wektor x, y, z, w>
+$`
+\begin{bmatrix}
+  x \\
+  y \\
+  z \\
+  w
+\end{bmatrix}
+`$
 
 Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 (lub w specyficznych przypadkach 0, ale takich przypadków tutaj nie będziemy omawiać)
 
@@ -368,6 +373,15 @@ Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po
 Po wstawieniu wartości otrzymamy macierz:
 
 <img src="../ilustracje/mmodelu_values.png" width=400></img>
+
+$`
+\begin{bmatrix}
+  0.866 & 0 & -0.5   & 0 \\
+  0     & 1 &  0     & 0 \\
+  0.5   & 0 &  0.866 & 0 \\
+  0     & 0 &  0     & 1
+\end{bmatrix}
+`$
 
 Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją wierzchołka (zaznaczonego na rysunku na czerwono):
 
