@@ -394,26 +394,28 @@ Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją 
 
 <img src="../ilustracje/mmodelu_equation.png" width=400></img>
 
-$`\begin{bmatrix}
+```math
+\begin{bmatrix}
   0.866 & 0 & -0.5   & 0 \\
   0     & 1 &  0     & 0 \\
   0.5   & 0 &  0.866 & 0 \\
   0     & 0 &  0     & 1
 \end{bmatrix}
- \times 
+\times 
 \begin{bmatrix}
   x \\
   y \\
   z \\
   1
 \end{bmatrix}
- =
+=
 \begin{bmatrix}
   x=0.866*x - 0.5*z \\
   y=1*y \\
   z=0.5*x + 0.866*z \\
   1
-\end{bmatrix}`$
+\end{bmatrix}
+```
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
