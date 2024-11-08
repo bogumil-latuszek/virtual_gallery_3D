@@ -332,13 +332,17 @@ Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następ
 Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
 
 Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
-Otóż w formie macierzy o wymiarach 4x4 możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. 
+Otóż w formie macierzy  możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. 
 
 Przyjrzyjmy się teraz mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji:
 
 1. Bryła taka jak jest opisana przez zbiór wierzchołków:
 
 <img src="../ilustracje/kostka.png" width=400></img>
+
+Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
+<tu wstawić wektor>
+Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych. Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 (lub w specyficznych przypadkach 0, ale takich przypadków tutaj nie będziemy omawiać)
 
 2. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po osi y:
 
