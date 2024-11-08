@@ -334,17 +334,25 @@ Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
 Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
 Otóż w formie macierzy  możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. 
 
-Przyjrzyjmy się teraz mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażmy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji:
-
-1. Bryła taka jak jest opisana przez zbiór wierzchołków:
+Przypomnijmy że bryła to zbiór wierzchołków:
 
 <img src="../ilustracje/kostka.png" width=400></img>
 
 Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
-<tu wstawić wektor>
-Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych. Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 (lub w specyficznych przypadkach 0, ale takich przypadków tutaj nie będziemy omawiać)
 
-2. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po osi y:
+<tu wstawić wektor x, y, z>
+
+Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych.
+
+<tu dać wektor x, y, z, w>
+
+Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 (lub w specyficznych przypadkach 0, ale takich przypadków tutaj nie będziemy omawiać)
+
+Kolejność transformacji jest następująca:
+
+1. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. 
+
+Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po osi y:
 
 <img src="../ilustracje/mmodelu.png" width=400></img>
 
@@ -361,7 +369,9 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 
 <img src="../ilustracje/kostka_model_matrix.png" width=400></img>
 
-3. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata. Wzór na macierz świata(macierz translacji):
+2. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata. 
+
+Wzór na macierz świata (macierz translacji):
 
 <img src="../ilustracje/mworld.png" width=400></img>
 
@@ -377,8 +387,10 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 
 <img src="../ilustracje/kostka_world_space.png" width=400></img>
 
-4. Macierz kamery – Aby uprościć proces wyświetlania sceny, kamera powinna znajdować się w punkcie 0.0.0 w przestrzeni świata, być skierowana wprost w kierunku osi -z,(w używanym w tym przypadku ułożeniu świata „prawej ręki”), a jej środek leżeć na osi z. Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie same jak gdyby to kamera się poruszała a nie cały wirtualny świat wokół niej.
-Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: translacje odwrotną do zamierzonego ruchu kamery => obrót odwrotny do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie(w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
+3. Macierz kamery – ustawienie brył w scenie w stosunku do pozycji kamery.
+
+Aby uprościć proces wyświetlania sceny, kamera powinna znajdować się w punkcie 0.0.0 w przestrzeni świata, być skierowana wprost w kierunku osi -z, (w używanym w tym przypadku ułożeniu świata „prawej ręki”), a jej środek leżeć na osi z. Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie samo jak gdyby to kamera się poruszała a nie cały wirtualny świat wokół niej.
+Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: translacje odwrotną do zamierzonego ruchu kamery => obrót odwrotny do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie (w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
 
 <img src="../ilustracje/mcamera.png" width=400></img>
 
@@ -394,7 +406,7 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 
 <img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
-5. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
+4. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
 Wzór na macierz perspektywy:
 
 <img src="../ilustracje/mpersp.png" width=400></img>
@@ -426,7 +438,7 @@ Poniższa ilustracja pokazuje tą transformację
 
 <tu wstawić ilustrację pokazującą transformację perspektywy>
 
-6. Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
+*Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
 
 Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
