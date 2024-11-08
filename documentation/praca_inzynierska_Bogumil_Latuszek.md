@@ -340,13 +340,11 @@ Przypomnijmy że bryła to zbiór wierzchołków:
 
 Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
 
-```math
-\begin{bmatrix}
+$`\begin{bmatrix}
   x \\
   y \\
   z
-\end{bmatrix}
-```
+\end{bmatrix}`$
 
 Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych.
 
@@ -396,8 +394,7 @@ Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją 
 
 <img src="../ilustracje/mmodelu_equation.png" width=400></img>
 
-```math
-\begin{bmatrix}
+$`\begin{bmatrix}
   0.866 & 0 & -0.5   & 0 \\
   0     & 1 &  0     & 0 \\
   0.5   & 0 &  0.866 & 0 \\
@@ -416,8 +413,7 @@ Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją 
   y=1*y \\
   z=0.5*x + 0.866*z \\
   1
-\end{bmatrix}
-```
+\end{bmatrix}`$
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
