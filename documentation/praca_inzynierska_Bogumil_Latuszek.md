@@ -369,6 +369,15 @@ Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po
 
 <img src="../ilustracje/mmodelu.png" width=400></img>
 
+```math
+\begin{bmatrix}
+  \cos\beta & 0 & -\sin\beta & 0 \\
+  0         & 1 &  0         & 0 \\
+  \sin\beta & 0 &  \cos\beta & 0 \\
+  0         & 0 &  0         & 1
+\end{bmatrix}
+```
+
 (kąt β = 30°)
 Po wstawieniu wartości otrzymamy macierz:
 
