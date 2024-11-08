@@ -400,14 +400,14 @@ $`\begin{bmatrix}
   0.5   & 0 &  0.866 & 0 \\
   0     & 0 &  0     & 1
 \end{bmatrix}
-\times 
+ \times 
 \begin{bmatrix}
   x \\
   y \\
   z \\
   1
 \end{bmatrix}
-=
+ =
 \begin{bmatrix}
   x=0.866*x - 0.5*z \\
   y=1*y \\
