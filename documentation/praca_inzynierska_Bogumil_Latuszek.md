@@ -395,17 +395,26 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 <img src="../ilustracje/kostka_camera_space.png" width=400></img>
 
 5. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
-Wzór na macierz projekcji perspektywicznej:
+Wzór na macierz perspektywy:
 
 <img src="../ilustracje/mpersp.png" width=400></img>
 
 Wyjaśnijmy co oznaczają podane zmienne:
-• aspekt – to stosunek szerokości near clipping plane(bliższej płaszczyźnie ucięcia?) do jej wysokości
-• fov –  (z j.ang: field of view, czyli zasięg wzroku), odnosi się do kąta pomiędzy near clipping plane a środkiem układu współrzędnych (w przestrzeni kamery):
-      <tu wstawić rysunek frustum z zaznaczonym fov>
-• far – odległość między środkiem far clipping plane, a środkiem układu współrzędnych
-• near – odległość między środkiem near clipping plane, a środkiem układu współrzędnych 
-Przyjmijmy że nasza macierz perspektywy zakłada fov równe 60 stopni, aspekt równy 2, near równe 1, a far równe 20. Po wstawieniu wartości do wzoru otrzymamy:
+
+   * aspekt – to stosunek szerokości do wysokości bliższej płaszczyzny przycięcia (ang. near clipping plane)
+   * fov –  (z j.ang: field of view, czyli zasięg wzroku), odnosi się do kąta pomiędzy bliższą płaszczyzną przycięcia a środkiem układu współrzędnych (w przestrzeni kamery):
+      <tu wstawić rysunek frustum z zaznaczonym fov>  
+   * far – odległość od środka układu współrzędnych do środka dalszej płaszczyzny przycięcia (ang. far clipping plane)
+   * near – odległość od środka układu współrzędnych do środka bliższej płaszczyzny przycięcia (ang. near clipping plane)
+   
+Przyjmijmy poniższe wartości:
+
+   * `aspekt = 2` 
+   * `fov = 60`
+   * `far = 20`
+   * `near = 1`
+   
+Po wstawieniu wartości do wzoru otrzymamy:
 
 <img src="../ilustracje/mpersp_values.png" width=400></img>
 
