@@ -400,7 +400,8 @@ Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją 
   y \\
   z \\
   1
-\end{bmatrix} =
+\end{bmatrix}
+=
 \begin{bmatrix}
   x=0.866*x - 0.5*z \\
   y=1*y \\
