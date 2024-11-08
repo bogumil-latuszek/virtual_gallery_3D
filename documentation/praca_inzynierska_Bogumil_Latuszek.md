@@ -428,30 +428,24 @@ Zobaczmy więc jak macierz świata transformuje wierzchołek ustawiony poprzedni
 
 <img src="../ilustracje/mworld_equation.png" width=400></img>
 
-$$\begin{bmatrix}
+```math
+\begin{bmatrix}
   1 & 0 & 0 &  1 \\
   0 & 1 & 0 &  2 \\
   0 & 0 & 1 & -5 \\
   0 & 0 & 0 & 1
-\end{bmatrix}
-
-\times
-
-\begin{bmatrix}
+\end{bmatrix} \times \begin{bmatrix}
   x \\
   y \\
   z \\
   1
-\end{bmatrix}
-
- =
-
-\begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
   x=1*x + 1*1 \\
   y=1*y + 2*1 \\
   z=1*z - 5*1 \\
   1
-\end{bmatrix}$$
+\end{bmatrix}
+```
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
