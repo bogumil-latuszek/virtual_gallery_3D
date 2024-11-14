@@ -324,7 +324,7 @@ Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja
 Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następujących elementów:
 - zbioru punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
 
-<img src="../ilustracje/kostka.png" width=400></img>
+<img src="../ilustracje/scr_def.png" width=400></img>
 
 - współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". Pozycja ta niekoniecznie musi być określona wewnątrz obiektu, czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
 - koloru bryły - gdy bryła ma jednolity kolor; zbioru kolorów każdego wierzchołka, albo współrzędnych na teksturze przypisanych do konkretnych wierzchołków - jeśli została użyta tekstura.
@@ -336,7 +336,7 @@ Otóż w formie macierzy  możemy zapisać przeróżne transformacje takie jak p
 
 Przypomnijmy że bryła to zbiór wierzchołków:
 
-<img src="../ilustracje/kostka.png" width=400></img>
+<img src="../ilustracje/scr_def.png" width=400></img>
 
 Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
 
@@ -367,7 +367,7 @@ Pokażmy jak macierz transformuje bryłę, na podstawie jednego tworzącego ją 
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
-<img src="../ilustracje/kostka_model_matrix.png" width=400></img>
+<img src="../ilustracje/scr_mod.png" width=400></img>
 
 2. Macierz świata - przesunięcie wierzchołka o dx, dy, dz w przestrzeni świata. 
 
@@ -385,7 +385,7 @@ Zobaczmy więc jak macierz świata transformuje wierzchołek ustawiony poprzedni
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
-<img src="../ilustracje/kostka_world_space.png" width=400></img>
+<img src="../ilustracje/scr_wor.png" width=400></img>
 
 3. Macierz kamery – ustawienie brył w scenie w stosunku do pozycji kamery.
 
@@ -404,7 +404,7 @@ Zobaczmy jak otrzymana macierz kamery transformuje wierzchołek ustawiony poprze
 
 Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono ten wierzchołek przed transformacją, a na czerwono  ten sam wierzchołek po transformacji:
 
-<img src="../ilustracje/kostka_camera_space.png" width=400></img>
+<img src="../ilustracje/scr_cam.png" width=400></img>
 
 4. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
 Wzór na macierz perspektywy:
@@ -434,11 +434,43 @@ Zobaczmy więc jak otrzymana macierz kamery transformuje wierzchołek ustawiony 
 
 <img src="../ilustracje/mpersp_equation.png" width=400></img>
 
-Poniższa ilustracja pokazuje tą transformację
+Aby zobrazować opisaną transformację projekcji, cofnijmy się o krok wstecz. Do tej pory wektor którego transformacje śledzimy, był mnożony przez macierz modelu, świata i kamery. Zacznijmy więc od pokazania jak wygląda opisane frustum w przestrzeni kamery:
 
-<tu wstawić ilustrację pokazującą transformację perspektywy>
+<img src="../ilustracje/scr_frus1.png" width=400></img>
+
+(w oddaleniu)
+
+<img src="../ilustracje/scr_frus2.png" width=400></img>
+
+(w przybliżeniu)
+
+Ciemnozielony kwadrat reprezentuje bliższą płaszczyznę ucięcia, a jasnozielony dalszą płaszczyznę ucięcia.
+Teraz pokażmy jak będzie wyglądać bryła po transformacji przez opisaną wyżej macierz projekcji. Aby lepiej zobrazować tę transformację, frustum transformujemy w ten sam sposób co bryłę:
+
+<img src="../ilustracje/scr_pers1.png" width=400></img>
+
+(w oddaleniu)
+
+<img src="../ilustracje/scr_pers2.png" width=400></img>
+
+(w przybliżeniu)
+
+Widzimy że macierz odwraca wartości z, a także deformuję bryłę.
 
 *Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
+
+Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania tego procesu, frustum poddajemy tej samej transformacji co bryłę:
+
+<img src="../ilustracje/scr_divw1.png" width=400></img>
+
+(w oddaleniu)
+
+<img src="../ilustracje/scr_divw2.png" width=400></img>
+
+(w przybliżeniu)
+
+Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach ”x, y, z należą do (-1,1)”.  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy dwa fragmenty znajdują się w tych samych koordynatach x,y, trzecia wartość z pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie
+
 
 Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
