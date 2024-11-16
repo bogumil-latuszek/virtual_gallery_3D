@@ -435,7 +435,7 @@ Po wstawieniu wartości do wzoru otrzymamy:
 
 <img src="../ilustracje/mpersp_values.png" width=400></img>
 
-Zobaczmy więc jak otrzymana macierz kamery transformuje wierzchołek ustawiony poprzednio w przestrzeni świata:
+Zobaczmy więc jak otrzymana macierz perspektywy transformuje wierzchołek ustawiony poprzednio w przestrzeni świata:
 
 <img src="../ilustracje/mpersp_equation.png" width=400></img>
 
@@ -460,9 +460,17 @@ Teraz pokażmy jak będzie wyglądać bryła po transformacji przez opisaną wy�
 
 (w przybliżeniu)
 
-Widzimy że macierz odwraca wartości z, a także deformuję bryłę.
+Widzimy że macierz zamienia wartości z na -z, a także deformuję bryłę.
 
-*Dzielenie przez w - właściwie nie jest to strikte transformacja macierzowa. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" w x/w, y/w, tym bliżej wektor znajduje się punktu 0.0.0.
+5. Dzielenie przez w - ostatnia transformacja wektorów potrzebna dla uzyskania wrażenia perspektywy. 
+
+Nie jest transformacją macierzową, . Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Innymi słowy im dalej się znajduje tym wydaje się mniejszy.
+
+<img src="../ilustracje/nevada_road.jpg" width=400></img>
+
+( https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg?t=st=1731765589~exp=1731769189~hmac=2a47435e4b827fd8321ec7ea4290bc7e864fe646a61cd83f256caf00a4803567&w=1380 )
+
+Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" (x/w, y/w), tym bliżej wektor znajduje się punktu 0.0.0.
 
 Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania tego procesu, frustum poddajemy tej samej transformacji co bryłę:
 
@@ -474,7 +482,7 @@ Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania te
 
 (w przybliżeniu)
 
-Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach ”x, y, z należą do (-1,1)”.  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy dwa fragmenty znajdują się w tych samych koordynatach x,y, trzecia wartość z pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie
+Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy dwa fragmenty znajdują się w tych samych koordynatach x,y, trzecia wartość z pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
 
 
 Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
