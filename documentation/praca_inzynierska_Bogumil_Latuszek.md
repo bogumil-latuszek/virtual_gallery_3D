@@ -486,12 +486,28 @@ Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania te
 
 Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy dwa fragmenty znajdują się w tych samych koordynatach x,y, trzecia wartość z pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
 
+Implementacja obliczeń macierzowych w grafice 3D
 
+Mnożenie macierzy i wektorów jest łatwe do zrównoleglenia. 
+Dlatego używamy do tego procesorów graficznych.
+Programy napisane dla GPU to shadery.
 
 Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
 - fragment shader - obliczenia koloru pikseli na ekranie
 - compute shader - wszelakie obliczenia równoległe, przykładowo kopanie kryptowalut.
+
+Zadaniem Vertex shadera jest pomnożenie macierzy z wektorem. Żeby zmniejszyć ilość wymaganych obliczeń, używa się jednej macierzy dla wszystkich wektorów danej bryły. Macierz ta zawiera w sobie wszystkie potrzebne transformacje.
+Zadaniem Vertex shadera jest obliczenie gdzie finalnie znajdą się wierzchołki brył w scenie, tak by oddać iluzję przestrzeni 3d z perspektywą.
+Wektory powstałe w wyniku działania vertex shadera, są podstawą do obliczenia fragmentów w procesie rasteryzacji.
+
+Rasteryzacja
+
+Fragment shader
+
+
+
+
 
 czym jest fragment shader? - to program który jako argument bierze jeden fragment. Na podstawie danych zawartych w fragmencie oblicza kolor piksela. W OpenGL, wynik obliczeń z jednego fragment shadera może posłużyć jako argument innego fragment shadera, co pozwala łączyć je w łańcuch wykonań. W OpenGL ES nie jest to możliwe. Fragment shader co to jest
 
@@ -503,9 +519,19 @@ Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obie
 
 Pipeline:
 
-1) Przekazanie Informacji dotyczących obiektu GPU. Wymaga to konwersji danych na typ obsługiwany przez driver GPU - buffer. Na tym etapie oblicza się ostateczną macierz transformacji
-2) użycie Vertex shadera do nałożenia ostatecznej macierzy transformacji
-3) użycie Fragment Shadera do obliczenia koloru pikseli na podstawie danych obliczonych w poprzednim etapie. To w tym etapie zachodzi proces rasteryzacji
+1) Przekazanie Informacji dotyczących bryły do GPU. Wymaga to konwersji danych na typ obsługiwany przez driver GPU - buffer. Na tym etapie oblicza się ostateczną macierz transformacji
+2) Vertex shader - wykorzystując ostateczną macierz transformacji transformuje wierzchołki brył do przestrzeni ucięcia
+3) Primitive Assembly - złożenie prymitywów takich jak trójkąty, linie, punkty z wierzchołków w przestrzeni ucięcia
+4) Clipping - usunięcie prymitywów będących całkowicie poza przestrzenią ucięcia, oraz przycięcie prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
+5) Face Culling - Bryły są złożone z trójkątów. Trójkąty mają dwie strony - zwróconą do wewnątrz bryły tylną stronę i zwróconą na zewnątrz przednią stronę. Ponieważ zazwyczaj nie chcemy wyświetlać wnętrza bryły, tylne strony trójkątów są na tym etapie usuwane i nie biorą udziału w dalszych obliczeniach. Jak określić  która strona trójkąta to przód a która to tył? Definiuje to kolejność wierzchołków w trójkącie: przeciwnie do wskazówek zegara oznacza przednią stronę, a zgodnie ze wskazówkami - tylną.
+<wstawić rysunek>
+6) Perspective Division - dzielenie przez w - przekształcenie wierzchołków z przestrzeni ucięcia na przestrzeń znormalizowanych koordynat urządzenia (ang. Normalized Device Coordinates - NDC). Wszystkie współrzędne x, y, z znajdą się w zakresie [-1, 1]
+7) Viewport Transformation - Viewport to obszar na ekranie gdzie będzie wyświetlona scena 3D. Może to być cały ekran ale nie musi tak być. Viewport definiujemy podając jego lewy dolny narożnik, szerokość i wysokość we współrzędnych ekranu. Viewport Transformation przekształca x, y przestrzeni NDC do x, y przestrzeni ekranu zgodnie z definicją Vieport-u. Zazwyczaj Viewport Transformation przekształca również współrzędną "z" przestrzeni NDC na głębię z w zakresie [0, 1]. 
+8) Rasteryzacja - zamienia prymitywy grafiki wektorowej na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Zauważmy, że prymitywy grafiki wektorowej są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.
+9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu.
+10) Depth Testing - jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor definiuje kolor piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
+11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem parametru przeźroczystości
+12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej.
 
 5.2 Obliczenia fizyki sceny 3D
 
