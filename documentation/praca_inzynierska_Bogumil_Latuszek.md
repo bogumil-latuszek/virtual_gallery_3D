@@ -519,8 +519,8 @@ Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obie
 
 Pipeline:
 
-1) Przekazanie Informacji dotyczących bryły do GPU. Wymaga to konwersji danych na typ obsługiwany przez driver GPU - buffer. Na tym etapie oblicza się ostateczną macierz transformacji
-2) Vertex shader - wykorzystując ostateczną macierz transformacji transformuje wierzchołki brył do przestrzeni ucięcia
+1) Przekazanie Informacji dotyczących bryły do GPU. Wymaga to konwersji danych na typ obsługiwany przez driver GPU - buffer. Na tym etapie oblicza się ostateczną macierz transformacji. Programista OpenGL ES ma wpływ na ten etap - definiuje opis bryły przekazywany do GPU.
+2) Vertex shader - wykorzystując ostateczną macierz transformacji transformuje wierzchołki brył do przestrzeni ucięcia. Programista OpenGL ES ma wpływ na ten etap - może programować Vertex Shader w języku GLSL (OpenGL Shading Language) który przypomina język C.
 3) Primitive Assembly - złożenie prymitywów takich jak trójkąty, linie, punkty z wierzchołków w przestrzeni ucięcia
 4) Clipping - usunięcie prymitywów będących całkowicie poza przestrzenią ucięcia, oraz przycięcie prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
 5) Face Culling - Bryły są złożone z trójkątów. Trójkąty mają dwie strony - zwróconą do wewnątrz bryły tylną stronę i zwróconą na zewnątrz przednią stronę. Ponieważ zazwyczaj nie chcemy wyświetlać wnętrza bryły, tylne strony trójkątów są na tym etapie usuwane i nie biorą udziału w dalszych obliczeniach. Jak określić  która strona trójkąta to przód a która to tył? Definiuje to kolejność wierzchołków w trójkącie: przeciwnie do wskazówek zegara oznacza przednią stronę, a zgodnie ze wskazówkami - tylną.
@@ -528,10 +528,12 @@ Pipeline:
 6) Perspective Division - dzielenie przez w - przekształcenie wierzchołków z przestrzeni ucięcia na przestrzeń znormalizowanych koordynat urządzenia (ang. Normalized Device Coordinates - NDC). Wszystkie współrzędne x, y, z znajdą się w zakresie [-1, 1]
 7) Viewport Transformation - Viewport to obszar na ekranie gdzie będzie wyświetlona scena 3D. Może to być cały ekran ale nie musi tak być. Viewport definiujemy podając jego lewy dolny narożnik, szerokość i wysokość we współrzędnych ekranu. Viewport Transformation przekształca x, y przestrzeni NDC do x, y przestrzeni ekranu zgodnie z definicją Vieport-u. Zazwyczaj Viewport Transformation przekształca również współrzędną "z" przestrzeni NDC na głębię z w zakresie [0, 1]. 
 8) Rasteryzacja - zamienia prymitywy grafiki wektorowej na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Zauważmy, że prymitywy grafiki wektorowej są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.
-9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu.
+9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. Programista OpenGL ES ma wpływ na ten etap - może programować Vertex Shader w języku GLSL
 10) Depth Testing - jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor definiuje kolor piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
 11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem parametru przeźroczystości
 12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej.
+
+Jak widzimy w całym tym pipeline mamy wpływ tylko na etapy 1), 2) i 9). Pozostała część to kod OpenGL wykonywany na GPU, zawsze taki sam dla wszystkich obliczeń grafiki 3D.
 
 5.2 Obliczenia fizyki sceny 3D
 
