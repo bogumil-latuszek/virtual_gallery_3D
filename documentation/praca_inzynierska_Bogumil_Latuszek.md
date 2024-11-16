@@ -406,19 +406,24 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 
 <img src="../ilustracje/scr_cam.png" width=400></img>
 
-4. Macierz perspektywy(projekcji?) - normalizacja wierzchołka w przedziale (-1, 1)??. Przepisanie z do w. 
+4. Macierz perspektywy - transformacja wektorów do przestrzeni przycięcia (ang. clip space) 
+
 Wzór na macierz perspektywy:
 
 <img src="../ilustracje/mpersp.png" width=400></img>
 
 Wyjaśnijmy co oznaczają podane zmienne:
 
-   * aspekt – to stosunek szerokości do wysokości bliższej płaszczyzny przycięcia (ang. near clipping plane)
-   * fov –  (z j.ang: field of view, czyli zasięg wzroku), odnosi się do kąta pomiędzy bliższą płaszczyzną przycięcia a środkiem układu współrzędnych (w przestrzeni kamery):
-      <tu wstawić rysunek frustum z zaznaczonym fov>  
+   * aspekt – to stosunek szerokości do wysokości ekranu
+   * fov –  (ang. field of view - czyli zasięg wzroku) odnosi się do kąta pomiędzy bliższą płaszczyzną przycięcia a środkiem układu współrzędnych
    * far – odległość od środka układu współrzędnych do środka dalszej płaszczyzny przycięcia (ang. far clipping plane)
    * near – odległość od środka układu współrzędnych do środka bliższej płaszczyzny przycięcia (ang. near clipping plane)
-   
+
+<img src="../ilustracje/frustum_diagram.png" width=800 ></img>
+(wizualizacja konceptów z macierzy perspektywy)
+
+Przestrzeń wewnątrz powyższego ostrosłupa ściętego (ang. frustum) wyznaczonego pomiędzy płaszczyznami ucięcia to właśnie **przestrzeń przycięcia** (ang. clip space). W grafice komputerowej wykorzystuje się frustum ostrosłupa prostokątnego do obliczenia perspektywy. Warto zauważyć że kształt frustum w pewnym stopniu przypomina pole widzenia człowieka - można sobie wyobrazić, że oko obserwatora znajduje się w środku układu współrzędnych i patrzy przez "okno", czyli mniejszą podstawę frustum.
+
 Przyjmijmy poniższe wartości:
 
    * `aspekt = 2` 
@@ -434,7 +439,7 @@ Zobaczmy więc jak otrzymana macierz kamery transformuje wierzchołek ustawiony 
 
 <img src="../ilustracje/mpersp_equation.png" width=400></img>
 
-Aby zobrazować opisaną transformację projekcji, cofnijmy się o krok wstecz. Do tej pory wektor którego transformacje śledzimy, był mnożony przez macierz modelu, świata i kamery. Zacznijmy więc od pokazania jak wygląda opisane frustum w przestrzeni kamery:
+Aby zobrazować opisaną transformację perspektywy, cofnijmy się o krok wstecz. Do tej pory wektor którego transformacje śledzimy, był mnożony przez macierz modelu, świata i kamery. Zacznijmy więc od pokazania jak wygląda opisane frustum w przestrzeni kamery:
 
 <img src="../ilustracje/scr_frus1.png" width=400></img>
 
@@ -481,15 +486,6 @@ czym jest fragment shader? - to program który jako argument bierze jeden fragme
 
 Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
 
-
-
-frustum - Słowo frustum wywodzi się z łaciny(łac. frustum - kąsek), w języku angielskim przyjęło jednak nieco inne znaczenie, mianowicie frustum odnosi się do fragmentu stożka lub ostrosłupa wyciętego dwoma  płaszczyznami równoległymi do jego podstawy.
-<tu wstawić grafikę pokazującą frustum>
-W grafice komputerowej wykożystuje się frustum ostrosłupa prostokątnego do obliczenia perspektywy.
-<tu wstawić grafike pokazującą frustum perspektywy>
-Warto zauważyć że powyższy kształt w pewnym stopniu przypomina pole widzenia człowieka - jeśli założyć że obserwator znajduje się prostopadle do środka mniejszej podstawy frustum, skierowany wzrokiem w stronę środka większej podstawy.
-Działanie frustum możemy zobrazować na przykładzie plastrów wizji
-ta macierz zawiera transformacje symulujące perspektywę, najprościej mówiąc punkty położone dalej od kamery będą w większym stopniu przyciągane do środka ekranu.
 Ostateczna macierz transformacji przekazywana jest do vector shader-a, który używa jej żeby obliczyć pozycje wszystkich punktów obiektu.
 
 Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
