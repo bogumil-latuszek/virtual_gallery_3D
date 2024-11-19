@@ -528,11 +528,15 @@ Pipeline (dla konkretnej bryły?):
 <wstawić rysunek>
 6) Perspective Division - dzielenie przez w - przekształcenie wierzchołków z przestrzeni ucięcia na przestrzeń znormalizowanych koordynat urządzenia (ang. Normalized Device Coordinates - NDC). Wszystkie współrzędne x, y, z znajdą się w zakresie [-1, 1]
 7) Viewport Transformation - Viewport to obszar na ekranie gdzie będzie wyświetlona scena 3D. Może to być cały ekran ale nie musi tak być. Viewport definiujemy podając jego lewy dolny narożnik, szerokość i wysokość we współrzędnych ekranu. Viewport Transformation przekształca x, y przestrzeni NDC do x, y przestrzeni ekranu zgodnie z definicją Vieport-u. Zazwyczaj Viewport Transformation przekształca również współrzędną "z" przestrzeni NDC na głębię z w zakresie [0, 1]. 
-8) Rasteryzacja - Zamienia prymitywy na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.
-9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. Programista OpenGL ES ma wpływ na ten etap - może programować Vertex Shader w języku GLSL
-10) Depth Testing - jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor definiuje kolor piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
-11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem parametru przeźroczystości
-12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej.
+8) Rasteryzacja - Zamienia prymitywy na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Dane zawarte w wierzchołkach prymitywu, takie jak kolor, czy pozycja w teksturze, są interpolowane. a uzyskane wartości przypisane do powstałych fragmentów.
+
+Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.(czy aby na pewno???)
+
+9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. To on jest odpowiedzialny za zamianę koordynatów tekstury na kolor fragmentu. Kolor fragmentu uzyskuje się przy użyciu wybranego algorytmu(SSAO etc.), który aproksymuje kolor danego punktu na podstawie otaczających go texeli. 
+
+10) Depth Testing - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębii), którą zachowaliśmy w fragmentach specjalnie na potrzeby tego etapu. Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
+11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem przeźroczystości
+12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej???.
 
 5.2 Obliczenia fizyki sceny 3D
 
