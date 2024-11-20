@@ -492,35 +492,16 @@ Mnożenie macierzy i wektorów jest łatwe do zrównoleglenia.
 Dlatego używamy do tego procesorów graficznych.
 Programy napisane dla GPU to shadery.
 
-Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś wszystkie programy uruchamiane na GPU nazywamy shaderami, chociaż powstały shadery które z obliczeniami grafiki komputerowej nie mają nic wspólnego. Wyróżniamy typy shader-ów:
+Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś większość programów uruchamianych na GPU nazywamy shaderami, choć nieżadko ich przeznaczenie znacząco odbiega od tego pierwotnego.  Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
 - fragment shader - obliczenia koloru pikseli na ekranie
 - compute shader - wszelakie obliczenia równoległe, przykładowo kopanie kryptowalut.
-
-Zadaniem Vertex shadera jest pomnożenie macierzy z wektorem. Żeby zmniejszyć ilość wymaganych obliczeń, używa się jednej macierzy dla wszystkich wektorów danej bryły. Macierz ta zawiera w sobie wszystkie potrzebne transformacje.
-Zadaniem Vertex shadera jest obliczenie gdzie finalnie znajdą się wierzchołki brył w scenie, tak by oddać iluzję przestrzeni 3d z perspektywą.
-Wektory powstałe w wyniku działania vertex shadera, są podstawą do obliczenia fragmentów w procesie rasteryzacji.
-
-Rasteryzacja
-
-Fragment shader
+Warto wspomnieć, że główną charakterystyką shaderów jest równoległość obliczeń w nich zawartych. To właśnie z tego powodu shadery mają być w zamyśle uruchamiane na procesorze graficznym, ponieważ architektura GPU pozwala na prowadzenie wielu równoległych obliczeń na raz.
 
 
+Pipeline, czyli kolejne etapy wyświetlania sceny 3D (dla konkretnej bryły?):
 
-
-
-czym jest fragment shader? - to program który jako argument bierze jeden fragment. Na podstawie danych zawartych w fragmencie oblicza kolor piksela. W OpenGL, wynik obliczeń z jednego fragment shadera może posłużyć jako argument innego fragment shadera, co pozwala łączyć je w łańcuch wykonań. W OpenGL ES nie jest to możliwe. Fragment shader co to jest
-
-Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
-
-Ostateczna macierz transformacji przekazywana jest do vector shader-a, który używa jej żeby obliczyć pozycje wszystkich punktów obiektu.
-
-Zazwyczaj wartości macierzy frustum i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
-
-
-Pipeline (dla konkretnej bryły?):
-
-1) Przekazanie argumentów do Vertex Shader-a. Zbioru wierzchołków i ostatecznej macierzy transformacji - macierzy zawierającej wszystkie potrzebne transformacje.
+1) Przekazanie argumentów do Vertex Shader-a. Zbioru wierzchołków i ostatecznej macierzy transformacji - macierzy zawierającej wszystkie potrzebne transformacje. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
 2) Vertex shader - mnoży każdy z przekazanych wierzchołków przez macierz ostatecznej transformacji, transformując je do przestrzeni ucięcia
 3) Primitive Assembly - wierzchołki bryły otrzymane w poprzednim etapie są łączone w zbriory zwane prymitywami. Dla brył używany jest prymityw złożony z trzech wierzchołków - trójkąt. Ale istnieją też inne prymitywy, np. zbiory dwóch wierzchołków - linie, oraz złożone z pojedynczych wierzchołków punkty.
 4) Clipping - usunięcie prymitywów. których wszystkie wierzchołki znajdują się całkowicie poza przestrzenią ucięcia, oraz "przycięcie" prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
@@ -537,6 +518,13 @@ Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spła
 10) Depth Testing - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębii), którą zachowaliśmy w fragmentach specjalnie na potrzeby tego etapu. Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
 11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem przeźroczystości
 12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej???.
+
+
+
+*Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
+
+
+
 
 5.2 Obliczenia fizyki sceny 3D
 
