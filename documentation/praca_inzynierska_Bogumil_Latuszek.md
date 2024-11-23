@@ -523,8 +523,21 @@ Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spła
 
 *Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
 
-
 5.2 Obliczenia fizyki sceny 3D
+
+
+Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. W trakcie rozwoju projektu, na etapie wdrażania tej funkcjonalności, napotkany został problem - Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? Użytkownik powinien wybrać ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, i dopiero wtedy sprawdzić czy znajduje się na ścianie bryły. Biorąc jednak pod uwagę że danemu punktowi (x,y) na ekranie może odpowiadać dowolna ilość punktów w przestrzeni znormalizowanej, różniących się jedynie trzecim koordynatem "z" w obliczeniach weżmiemy pod uwagę wszystkie z nich. W tym celu zamienimy punkt(x,y) na promień o początku w punkcie(x,y,-1) - nazwijmy go **P0** , i wektorze kierunkowym (0,0,2) - nazwijmy go **D**. Tak opisany promień zawiera w sobie wszystkie potencjalne punkty na które mógł wskazać użytkownik.
+Teraz, aby móc zastosować transformacje macierzowe, zamienimy P0 i D na wektory 4-wymiarowe, rozszerzając je o czwarty koordynat w = 1.
+Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy perspektywy. 
+Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy kamery.
+Następnie, aby móc użyć promienia w obliczeniach w przestrzeni 3D świata, musimy z powrotem sprowadzić P0 i D do postaci trój-wymiarowych wektorów. Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. Wystarczy więc że każdy z tych wektorów podzielimy przez jego wartość w.
+Otrzymany promień znajduje się w przestrzeni świata. P0 to punkt z jakiego wychodzi a D to jego wektor kierunkowy.
+
+Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
+
+Aby znaleść punkt przecięcia promienia i płaszczyzny potrzebujemy 4 zmiennych - punktu i wektora tworzących promień, a także współżędnych środka płaszczyzny i wierzchołka normalnego który z niego wychodzi.
+
+**************************************************
 
 Kolizja promienia i płaszczyzny:
 
@@ -565,6 +578,7 @@ Implementacja tej funkcjonalności:
 
 Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W projekcie ta technika została zastosowana do rozpoznawania kolizji.
 korzystając z tego że powierzchnie wszystkich ścian i obrazów znajdujących się w scenie są równoległe do osi x, z i y,
+
 
 
 6. Proces implementacji i dokumentacja techniczna
