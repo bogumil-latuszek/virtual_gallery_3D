@@ -526,7 +526,20 @@ Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spła
 5.2 Obliczenia fizyki sceny 3D
 
 
-Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. W trakcie rozwoju projektu, na etapie wdrażania tej funkcjonalności, napotkany został problem - Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? Użytkownik powinien wybrać ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, i dopiero wtedy sprawdzić czy znajduje się na ścianie bryły. Biorąc jednak pod uwagę że danemu punktowi (x,y) na ekranie może odpowiadać dowolna ilość punktów w przestrzeni znormalizowanej, różniących się jedynie trzecim koordynatem "z" w obliczeniach weżmiemy pod uwagę wszystkie z nich. W tym celu zamienimy punkt(x,y) na promień o początku w punkcie(x,y,-1) - nazwijmy go **P0** , i wektorze kierunkowym (0,0,2) - nazwijmy go **D**. Tak opisany promień zawiera w sobie wszystkie potencjalne punkty na które mógł wskazać użytkownik.
+Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. 
+Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. 
+W trakcie rozwoju projektu, na etapie wdrażania tej funkcjonalności, napotkany został problem - 
+Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
+Użytkownik powinien wybrać ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. 
+Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. 
+Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. 
+Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, 
+należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, 
+i dopiero wtedy sprawdzić czy znajduje się na ścianie bryły. 
+Biorąc jednak pod uwagę że danemu punktowi (x,y) na ekranie może odpowiadać dowolna ilość punktów w przestrzeni znormalizowanej, 
+różniących się jedynie trzecim koordynatem "z" w obliczeniach weżmiemy pod uwagę wszystkie z nich. 
+W tym celu zamienimy punkt(x,y) na promień o początku w punkcie(x,y,-1) - nazwijmy go **P0** , i wektorze kierunkowym (0,0,2) - nazwijmy go **D**. 
+Tak opisany promień zawiera w sobie wszystkie potencjalne punkty na które mógł wskazać użytkownik.
 Teraz, aby móc zastosować transformacje macierzowe, zamienimy P0 i D na wektory 4-wymiarowe, rozszerzając je o czwarty koordynat w = 1.
 Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy perspektywy. 
 Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy kamery.
