@@ -533,7 +533,7 @@ W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go pal
 
 Poniżej znajduje się szczegółowy opis tego procesu:
 
-1. Zdobycie współżędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
+1. Zdobycie współrzędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
 2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
 3. Stworzenie promienia, składającego się z punktu startowego **P0**, oraz wektora kierunkowego **D**. Promień ten przechodzi przez punkt **Pn**, i w gruncie rzeczy reprezentuje wszystkie punkty w przestrzeni NDC które potencjalnie mógł wybrać użytkownik. **P0** i **Pn** są 3-wymiarowymi wektorami o współżędnych x,y tych samych co punkt Pn, i trzecią współżędną z równą -1 dla **P0** i +1 dla **D**.
 4. Kożystając z prawa o współrzędnych jednorodnych, Rozszerzenie wektorów **P0** i **D** o czwarty wymiar w = 1, na potrzebę obliczeń macierzowych.
@@ -542,26 +542,25 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
 
 
+Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
+
+Aby znaleść punkt przecięcia półprostej i płaszczyzny potrzebujemy 4 zmiennych:
+
+- punktu startowego półprostej
+- wektora kierunkowego półprostej
+- punktu na środku płaszczyzny
+- wektora normalnego płaszczyzny który wychodzi z jej punktu środkowego
+
+znając wartości półprostej, przejdziemy teraz do poszukiwań ściany z którą nastąpiła kolizja. Każda "ściana" w scenie 3D to bryła sześcienna, z 6 potencjalnymi ścianami z którymi promień mógł wejść w kolizję. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, należy sprawdzić wystąpienie kolizji pomiędzy promieniem, a 4 ścianami wszystkich "ścian" w scenie
+
+<tu wstawić algorytm wyszukania kolizji promienia i płaszczyzny>
+
+8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
+- 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
+- 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
+- 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja : w tej sytuacji należy znaleść ścianę która jest najbliżej punktu startowego półprostej. Podczas wyświetlania sceny, inne ściany w trajektorii półprostej musiały zostać przez nią zasłonione, więc to ona jest widoczna w punkcie wskazanym przez użytkownika, i to na niej należy zawiesić/zdjąć obraz.
 
 
-
-2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
-3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
-4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
-5. zbudowanie opisu płaszczyzny ściany przechodzącej przez punkt P3 (x3, y3, z3) i mającej wektor normalny V3(DX3, DY3, DZ3)
-6. zbudowanie opisu wycinka powyższej płaszczyzny będącego ścianą
-7. wyliczenie punktu P4 - punktu przecięcia promienia z płaszczyzną (o ile jest przecięcie)
-8. sprawdzenie czy P4 leży wewnątrz wycinka płaszczyzny (czy należy do ściany)
-   * jeśli tak to ścianę i jej punkt przecięcia dokładamy do listy "ściany kolidujące z promieniem"
-9. wyszukujemy parę ściana/punkt która ma najmniejszą odległość między początkiem promienia a punktem przecięcia ściany (między P1 a P4)
-10. tak wybrana para wybiera nam najbliższą ścianę trafioną przez promień - na niej zawiesimy obraz.
-
-
-Zacznijmy od stwierdzenia:
-pozycję bryły można określić 
-
-tu trzeba wspomnieć, że informacje
-użytkownik tak naprawdę nie wybiera
 
 Obliczenia kolizji przeprowadzamy standardowo na obiektach w przestrzeni świata. Z otrzymanego punktu możemy zbudować promień w przestrzeni świata, a następnie użyć go, wraz z listą brył(ścian), do znalezienia najbliższego boku ściany przez którą przechodzi.
 
