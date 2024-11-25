@@ -535,6 +535,16 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 
 1. Zdobycie współżędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
 2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
+3. Stworzenie promienia, składającego się z punktu startowego **P0**, oraz wektora kierunkowego **D**. Promień ten przechodzi przez punkt **Pn**, i w gruncie rzeczy reprezentuje wszystkie punkty w przestrzeni NDC które potencjalnie mógł wybrać użytkownik. **P0** i **Pn** są 3-wymiarowymi wektorami o współżędnych x,y tych samych co punkt Pn, i trzecią współżędną z równą -1 dla **P0** i +1 dla **D**.
+4. Kożystając z prawa o współrzędnych jednorodnych, Rozszerzenie wektorów **P0** i **D** o czwarty wymiar w = 1, na potrzebę obliczeń macierzowych.
+5. Za pomocą odwróconych macierzy perspektywy i kamery, przetransformowanie **P0** i **D** do przestrzeni świata (będziemy używać nazwy "w 3D")
+6. Ponowne wykożystanie prawa o współrzędnych jednorodnych. Zamiana P0 i d na wektory 3-wymiarowe poprzez podzielenie ich przez ich wartości w.
+7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
+
+
+
+
+
 2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
 3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
 4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
