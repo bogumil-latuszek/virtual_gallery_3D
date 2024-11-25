@@ -525,13 +525,24 @@ Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spła
 
 5.2 Obliczenia fizyki sceny 3D
 
-
 Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. 
-Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. 
-W trakcie rozwoju projektu, na etapie wdrażania tej funkcjonalności, napotkany został problem - 
+Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz.
 Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
-Użytkownik powinien wybrać ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. 
+Użytkownik, poprzez dotknięcie ekranu, wybiera dany punkt na ekranie. Następnie program powinien stwierdzić czy wybrany punkt leży na boku którejś ze ścian, i jeśli tak, to do tego boku przypisany zostanie obraz.  ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. 
+
+Zacznijmy od stwierdzenia:
+pozycję bryły można określić 
+
+tu trzeba wspomnieć, że informacje
+użytkownik tak naprawdę nie wybiera
+
+Obliczenia kolizji przeprowadzamy standardowo na obiektach w przestrzeni świata. Z otrzymanego punktu możemy zbudować promień w przestrzeni świata, a następnie użyć go, wraz z listą brył(ścian), do znalezienia najbliższego boku ściany przez którą przechodzi.
+
+
+
 Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. 
+
+
 Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. 
 Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, 
 należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, 
