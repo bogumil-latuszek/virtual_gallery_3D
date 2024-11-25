@@ -528,7 +528,26 @@ Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spła
 Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. 
 Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz.
 Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
-Użytkownik, poprzez dotknięcie ekranu, wybiera dany punkt na ekranie. Następnie program powinien stwierdzić czy wybrany punkt leży na boku którejś ze ścian, i jeśli tak, to do tego boku przypisany zostanie obraz.  ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. 
+
+W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go palcem. Następnie program powinien stwierdzić czy wybrany punkt leży na boku którejś ze ścian, i jeśli tak, to do tego boku przypisany zostanie obraz. 
+
+Poniżej znajduje się szczegółowy opis tego procesu:
+
+1. Zdobycie współżędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
+2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
+
+
+2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
+3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
+4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
+5. zbudowanie opisu płaszczyzny ściany przechodzącej przez punkt P3 (x3, y3, z3) i mającej wektor normalny V3(DX3, DY3, DZ3)
+6. zbudowanie opisu wycinka powyższej płaszczyzny będącego ścianą
+7. wyliczenie punktu P4 - punktu przecięcia promienia z płaszczyzną (o ile jest przecięcie)
+8. sprawdzenie czy P4 leży wewnątrz wycinka płaszczyzny (czy należy do ściany)
+   * jeśli tak to ścianę i jej punkt przecięcia dokładamy do listy "ściany kolidujące z promieniem"
+9. wyszukujemy parę ściana/punkt która ma najmniejszą odległość między początkiem promienia a punktem przecięcia ściany (między P1 a P4)
+10. tak wybrana para wybiera nam najbliższą ścianę trafioną przez promień - na niej zawiesimy obraz.
+
 
 Zacznijmy od stwierdzenia:
 pozycję bryły można określić 
