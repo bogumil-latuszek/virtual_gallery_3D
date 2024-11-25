@@ -535,8 +535,6 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 
 1. Zdobycie współżędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
 2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
-
-
 2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
 3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
 4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
@@ -579,49 +577,6 @@ Otrzymany promień znajduje się w przestrzeni świata. P0 to punkt z jakiego w
 Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
 
 Aby znaleść punkt przecięcia promienia i płaszczyzny potrzebujemy 4 zmiennych - punktu i wektora tworzących promień, a także współżędnych środka płaszczyzny i wierzchołka normalnego który z niego wychodzi.
-
-**************************************************
-
-Kolizja promienia i płaszczyzny:
-
-1 Stworzenie promienia wewnątrz NDC space i przekształcenie go za pomocą odwrotnej macierzy transformacji(NDC=>clip space=> camera space => world space)
-2 Poszukiwanie kolizji. Dla każdej ściany:
-2.1 dla każdego boku ściany, będącego płaszczyzną o znanym punkcie środka P0 i wektorze normalnym N:
-2.2 sprawdzenie czy dot product promienia i wektora normalnego N są mniejsze niż 0 (zwrócone do siebie), jeśli nie odrzucamy ten przypadek.
-2.3 
-
-Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. Użytkownik aplikacji, będąc w widoku 3D, wybiera bok ściany z którym chce wejść w interakcję poprzez **wskazanie ściany**. Następnie, jeśli bok był pusty - to znaczy nie posiadał przypisanego obrazu - przypisany zostanie do niego kolejny obraz z listy dostępnych obrazów. W przeciwnym wypadku, jeśli jakiś obraz był już przypisany do tego boku, zostanie on odpięty. Wizualnie, przypięcie obrazu jest równoznaczne z jego zawieszeniem, a odpięcie ze zdjęciem go. 
-
-W całej tej logice najistotniejsze jest **wskazanie ściany**
-Jak je zrealizować w przestrzeni 3D:
-* poprowadzić prostą z punktu dotknięcia ekranu w kierunku patrzenia na tylną ścianę frustum. 
-* znaleść wszystkie punkty przecięcia prostej ze wszystkimi płaszczyznami ścian.
-* wybrać najbliższy punkt przecięcia który spełnia warunek: (jest w obrębie ściany).
-
-Dlatego potrzebujemy zaimplementować algorytm przecięcia prostej z płaszczyzną.
-Etapy tego algorytmu:
-1. przeniesienie punktu kliknięcia ekranu (Ex, Ey) do przestrzeni NDC (NDCx i NDCy: [-1, 1])
-2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
-3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
-4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
-5. zbudowanie opisu płaszczyzny ściany przechodzącej przez punkt P3 (x3, y3, z3) i mającej wektor normalny V3(DX3, DY3, DZ3)
-6. zbudowanie opisu wycinka powyższej płaszczyzny będącego ścianą
-7. wyliczenie punktu P4 - punktu przecięcia promienia z płaszczyzną (o ile jest przecięcie)
-8. sprawdzenie czy P4 leży wewnątrz wycinka płaszczyzny (czy należy do ściany)
-   * jeśli tak to ścianę i jej punkt przecięcia dokładamy do listy "ściany kolidujące z promieniem"
-9. wyszukujemy parę ściana/punkt która ma najmniejszą odległość między początkiem promienia a punktem przecięcia ściany (między P1 a P4)
-10. tak wybrana para wybiera nam najbliższą ścianę trafioną przez promień - na niej zawiesimy obraz.
-
-Implementacja tej funkcjonalności:
-1) zdobycie koordynatów punktu kliknięcia na ekranie. - klasa GLSurfaceView w bibliotece android.opengl posiada funkcję setOnTouchListener(). Dzięki niej można ustawić jaka funkcja będzie wywoływana po wykryciu kliknięcia na ekranie, ponadto setOnTouchListener() może przekazać do tej funkcji koordynaty x,y punktu w którym wykryto kliknięcie w przestrzeni ekranu. Aby móc wykożystać te koordynaty, jeszcze przed przekazaniem ich do wybranej funkcji, poddawane są normalizacji, czyli zmapowaniu z przestrzeni ekranu na znormalizowaną przestrzeń wartości pomiędzy 0-1. Następnie funkcja handleTouchPress() 
-2) stworzenie promienia pomiędzy dwoma końcami frustum - wewnątrz convertNormalized2DPointToRay() koordynaty x i y otrzymane z poprzedniego punktu zostaną wykorzystane do określenia punktu z jakiego wychodzi promień. Aby znaleść drugi koniec, wykorzystana zostanie odwrócona macierz frustum. Jak już wiemy, macierz frustum "spłaszcza" obiekty w scenie równolegle do kamery, jednocześnie przesuwając je tym bliżej środka im dalej są od kamery, aby zasymulować perspektywę ludzkiego oka. Odwrócona macierz frustum ma więc odwrotne działanie, dla punktu leżącego na ekranie - na mniejszej podstawie frustum, znajduje odpowiedni punkt na drugiej podstawie - drugim końcu frustum. Jeśli stworzymy promień pomiędzy tymi dwoma punktami, możemy użyć go aby wykryć obiekty leżące na jego trajektorii. <tutaj do wklejenia ilustracje>
-3) wykrycie kolizji pomiędzy promieniem a ścianami w scenie
-4) po wybraniu najbliższego boku najbliższej ściany, przypisanie/odpięcie obrazu.
-
-
-Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W projekcie ta technika została zastosowana do rozpoznawania kolizji.
-korzystając z tego że powierzchnie wszystkich ścian i obrazów znajdujących się w scenie są równoległe do osi x, z i y,
-
 
 
 6. Proces implementacji i dokumentacja techniczna
