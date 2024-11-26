@@ -554,7 +554,46 @@ Aby znaleść punkt przecięcia półprostej i płaszczyzny potrzebujemy 4 zmien
 
 znając wartości półprostej, przejdziemy teraz do poszukiwań ściany z którą nastąpiła kolizja. Każda "ściana" w scenie 3D to bryła sześcienna, z 6 potencjalnymi ścianami z którymi promień mógł wejść w kolizję. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, należy sprawdzić wystąpienie kolizji pomiędzy promieniem, a 4 ścianami wszystkich "ścian" w scenie
 
-<tu wstawić algorytm wyszukania kolizji promienia i płaszczyzny>
+algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
+
+
+wartości:
+- punkt startowy półprostej (P0) składający się z (x0, y0, z0)
+- wektor kierunkowy półprostej(D) składający się z (dx, dy, dz)
+- punkt na środku płaszczyzny(Pp) 
+- wektor normalny płaszczyzny który wychodzi z jej punktu środkowego(N) składający się z (A, B, C)
+
+
+1. wzór na półprostą można zapisać jako L(t)=P0​+tD, gdzie t to skalar determinujący punkt na półprostej.
+
+2. wzor na płaszczyznę można zapisać jako Ax+By+Cz+D=0
+
+Przyjmijmy że istnieje punkt na płaszczyźnie będący zarazem punktem na półprostej. Wzór na taki punkt to:
+
+x = x0 ​+ t*dx
+y = y0 ​+ t*dy
+z = z0 ​+ t*dz
+
+
+Podstawiając te wartości do wzoru na płaszczyznę:
+
+A(x0 ​+ t*dx)+B(y0 ​+ t*dy)+C(z0 ​+ t*dz)+D=0
+A*x0 ​+ A*t*dx +B*y0 ​+ B*t*dy + C*z0 ​+ C*t*dz +D=0
+A*x0 + B*y0 + C*z0 + D + t*(A*dx) + t(B*dy) + t(C*dz) = 0
+A*x0 + B*y0 + C*z0 + D + t*(A*dx + B*dy + C*dz) = 0 | -(A*x0+B*y0+C*z0+D)
+t*(A*dx + B*dy + C*dz) = -(A*x0 + B*y0 + C*z0 + D) | :(A*dx + B*dy + C*dz)
+t = -(A*x0 + B*y0 + C*z0 + D)/(A*dx + B*dy + C*dz)
+
+Znając wartość t, możemy znaleść wartości xyz dla punktu, poprzez wstawienie t do wzoru na półprostą
+
+L(t)=P0​+tD
+
+x = x0 ​+ t*dx
+y = y0 ​+ t*dy
+z = z0 ​+ t*dz
+
+znając punkt przecięcia się półprostej z płaszczyzną(nazwijmy go **P**), należy sprawdzić czy znajduje się w obrębie podanej ściany bocznej. Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
+Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 
 8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
 - 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
