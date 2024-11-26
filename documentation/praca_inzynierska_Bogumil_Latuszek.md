@@ -560,22 +560,46 @@ algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
 wartości:
 - punkt startowy półprostej (P0) składający się z (x0, y0, z0)
 - wektor kierunkowy półprostej(D) składający się z (dx, dy, dz)
-- punkt na środku płaszczyzny(Pp) 
+- punkt na środku płaszczyzny(Pp) składający się z (a,b,c)
 - wektor normalny płaszczyzny który wychodzi z jej punktu środkowego(N) składający się z (A, B, C)
 
+Poszukujemy wartości (x,y,z) punktu P leżącego zarówno na płaszczyźnie jak i na półprostej.
 
-1. wzór na półprostą można zapisać jako L(t)=P0​+tD, gdzie t to skalar determinujący punkt na półprostej.
+1. wzór na półprostą można zapisać jako L(t)=P0​+tD, czyli punkt początkowy P0, oraz wektor kierunkowy półprostej D, gdzie t to skalar determinujący punkt na półprostej.
 
-2. wzor na płaszczyznę można zapisać jako Ax+By+Cz+D=0
-
-Przyjmijmy że istnieje punkt na płaszczyźnie będący zarazem punktem na półprostej. Wzór na taki punkt to:
-
+A więc dla punktu P, wartości x,y,z wynoszą:
 x = x0 ​+ t*dx
 y = y0 ​+ t*dy
 z = z0 ​+ t*dz
 
+2. Dot product wektora normalnego płaszczyzny, oraz dowolnego wektoru leżącego na niej, zawsze wynosi 0. W tym przypadku, wiemy że punkty Pp i P, z definicji, leżą na tej płaszczyźnie. Dlatego też wektor (V) pomiędzy tymi punktami również leży na płaszczyźnie. A więc:
 
-Podstawiając te wartości do wzoru na płaszczyznę:
+wzór na płasczyznę: 
+
+N dot V = 0
+
+wzór na wektor pomiędzy Pp a P : 
+
+V = P - Pp
+
+z konkatenacji tych dwóch wzorów, otrzymamy wzór:
+
+N dot (P - Pp) = 0
+
+króry możemy rozwinąć do:
+
+A(x-a)+B(y-b)+C(z-c) = 0
+Ax-Aa+By-Bb+Cz-Cc = 0
+Ax+By+Cz-Aa-Bb-Cc = 0
+Ax+By+Cz-(Aa+Bb+Cc) = 0
+
+na podstawie danych wejściowych znamy wartość stałej -(Aa+Bb+Cc), dla wygody dalszych obliczeń będziemy ją więc zapisywać jako D:
+D = -(Aa+Bb+Cc)
+
+Wzór na płaszczyznę sprowadziliśmy do Ax+By+Cz+D=0
+
+
+Podstawmy teraz wzory na (x,y,z) punktu P, do wzoru na płaszczyznę:
 
 A(x0 ​+ t*dx)+B(y0 ​+ t*dy)+C(z0 ​+ t*dz)+D=0
 A*x0 ​+ A*t*dx +B*y0 ​+ B*t*dy + C*z0 ​+ C*t*dz +D=0
@@ -584,15 +608,13 @@ A*x0 + B*y0 + C*z0 + D + t*(A*dx + B*dy + C*dz) = 0 | -(A*x0+B*y0+C*z0+D)
 t*(A*dx + B*dy + C*dz) = -(A*x0 + B*y0 + C*z0 + D) | :(A*dx + B*dy + C*dz)
 t = -(A*x0 + B*y0 + C*z0 + D)/(A*dx + B*dy + C*dz)
 
-Znając wartość t, możemy znaleść wartości xyz dla punktu, poprzez wstawienie t do wzoru na półprostą
-
-L(t)=P0​+tD
+Znając wartość t, możemy znaleść wartości (x.y,z) punktu P:
 
 x = x0 ​+ t*dx
 y = y0 ​+ t*dy
 z = z0 ​+ t*dz
 
-znając punkt przecięcia się półprostej z płaszczyzną(nazwijmy go **P**), należy sprawdzić czy znajduje się w obrębie podanej ściany bocznej. Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
+Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
 Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 
 8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
