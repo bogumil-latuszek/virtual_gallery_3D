@@ -538,7 +538,8 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 3. Stworzenie promienia, składającego się z punktu startowego **P0**, oraz wektora kierunkowego **D**. Promień ten przechodzi przez punkt **Pn**, i w gruncie rzeczy reprezentuje wszystkie punkty w przestrzeni NDC które potencjalnie mógł wybrać użytkownik. **P0** i **Pn** są 3-wymiarowymi wektorami o współżędnych x,y tych samych co punkt Pn, i trzecią współżędną z równą -1 dla **P0** i +1 dla **D**.
 4. Kożystając z prawa o współrzędnych jednorodnych, Rozszerzenie wektorów **P0** i **D** o czwarty wymiar w = 1, na potrzebę obliczeń macierzowych.
 5. Za pomocą odwróconych macierzy perspektywy i kamery, przetransformowanie **P0** i **D** do przestrzeni świata (będziemy używać nazwy "w 3D")
-6. Ponowne wykożystanie prawa o współrzędnych jednorodnych. Zamiana P0 i d na wektory 3-wymiarowe poprzez podzielenie ich przez ich wartości w.
+6. Ponowne wykożystanie prawa o współrzędnych jednorodnych. Aby móc użyć półprostej w obliczeniach w przestrzeni świata, musimy z powrotem sprowadzić P0 i D do postaci trój-wymiarowych wektorów.  Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. W tym celu wystarczy podzielić P0 i d przez ich wartości **w**, po czym odrzucić wartość **w** zamieniając je z powrotem na trój-wymiarowe wektory.
+
 7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
 
 
@@ -561,31 +562,6 @@ znając wartości półprostej, przejdziemy teraz do poszukiwań ściany z któr
 - 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja : w tej sytuacji należy znaleść ścianę która jest najbliżej punktu startowego półprostej. Podczas wyświetlania sceny, inne ściany w trajektorii półprostej musiały zostać przez nią zasłonione, więc to ona jest widoczna w punkcie wskazanym przez użytkownika, i to na niej należy zawiesić/zdjąć obraz.
 
 
-
-Obliczenia kolizji przeprowadzamy standardowo na obiektach w przestrzeni świata. Z otrzymanego punktu możemy zbudować promień w przestrzeni świata, a następnie użyć go, wraz z listą brył(ścian), do znalezienia najbliższego boku ściany przez którą przechodzi.
-
-
-
-Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. 
-
-
-Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. 
-Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, 
-należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, 
-i dopiero wtedy sprawdzić czy znajduje się na ścianie bryły. 
-Biorąc jednak pod uwagę że danemu punktowi (x,y) na ekranie może odpowiadać dowolna ilość punktów w przestrzeni znormalizowanej, 
-różniących się jedynie trzecim koordynatem "z" w obliczeniach weżmiemy pod uwagę wszystkie z nich. 
-W tym celu zamienimy punkt(x,y) na promień o początku w punkcie(x,y,-1) - nazwijmy go **P0** , i wektorze kierunkowym (0,0,2) - nazwijmy go **D**. 
-Tak opisany promień zawiera w sobie wszystkie potencjalne punkty na które mógł wskazać użytkownik.
-Teraz, aby móc zastosować transformacje macierzowe, zamienimy P0 i D na wektory 4-wymiarowe, rozszerzając je o czwarty koordynat w = 1.
-Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy perspektywy. 
-Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy kamery.
-Następnie, aby móc użyć promienia w obliczeniach w przestrzeni 3D świata, musimy z powrotem sprowadzić P0 i D do postaci trój-wymiarowych wektorów. Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. Wystarczy więc że każdy z tych wektorów podzielimy przez jego wartość w.
-Otrzymany promień znajduje się w przestrzeni świata. P0 to punkt z jakiego wychodzi a D to jego wektor kierunkowy.
-
-Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
-
-Aby znaleść punkt przecięcia promienia i płaszczyzny potrzebujemy 4 zmiennych - punktu i wektora tworzących promień, a także współżędnych środka płaszczyzny i wierzchołka normalnego który z niego wychodzi.
 
 
 6. Proces implementacji i dokumentacja techniczna
