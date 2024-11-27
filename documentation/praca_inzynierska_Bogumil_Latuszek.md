@@ -543,18 +543,9 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
 
 
-Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
+Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. W aplikacji "Wirtualna Galeria" tymi bryłami są prostopadłościany. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, na każdy prostopadłościan mamy 4 ściany do sprawdzenia kolizji z promieniem. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłóż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
 
-Aby znaleść punkt przecięcia półprostej i płaszczyzny potrzebujemy 4 zmiennych:
-
-- punktu startowego półprostej
-- wektora kierunkowego półprostej
-- punktu na środku płaszczyzny
-- wektora normalnego płaszczyzny który wychodzi z jej punktu środkowego
-
-znając wartości półprostej, przejdziemy teraz do poszukiwań ściany z którą nastąpiła kolizja. Każda "ściana" w scenie 3D to bryła sześcienna, z 6 potencjalnymi ścianami z którymi promień mógł wejść w kolizję. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, należy sprawdzić wystąpienie kolizji pomiędzy promieniem, a 4 ścianami wszystkich "ścian" w scenie
-
-algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
+Algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
 
 <img src="../ilustracje/jedna_kolizja.png" width=600></img>
 
@@ -617,7 +608,7 @@ z = z0 ​+ t*dz
 
 Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. 
 
-<img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=600></img>
+<img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=200></img>
 
 Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
 Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
