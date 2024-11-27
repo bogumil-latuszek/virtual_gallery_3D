@@ -556,6 +556,7 @@ znając wartości półprostej, przejdziemy teraz do poszukiwań ściany z któr
 
 algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
 
+<img src="../ilustracje/jedna_kolizja.png" width=600></img>
 
 wartości:
 - punkt startowy półprostej (P0) składający się z (x0, y0, z0)
