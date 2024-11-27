@@ -615,7 +615,11 @@ x = x0 ​+ t*dx
 y = y0 ​+ t*dy
 z = z0 ​+ t*dz
 
-Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
+Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. 
+
+<img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=600></img>
+
+Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
 Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 
 8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
