@@ -534,10 +534,22 @@ W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go pal
 Poniżej znajduje się szczegółowy opis tego procesu:
 
 1. Zdobycie współrzędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
+
+<img src="../ilustracje/kolizja_ekran.png" width=400></img>
+
 2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
+
+<img src="../ilustracje/kolizja_norm_punkt.png" width=400></img>
+
 3. Stworzenie promienia, składającego się z punktu startowego **P0**, oraz wektora kierunkowego **D**. Promień ten przechodzi przez punkt **Pn**, i w gruncie rzeczy reprezentuje wszystkie punkty w przestrzeni NDC które potencjalnie mógł wybrać użytkownik. **P0** i **Pn** są 3-wymiarowymi wektorami o współżędnych x,y tych samych co punkt Pn, i trzecią współżędną z równą -1 dla **P0** i +1 dla **D**.
+
+<img src="../ilustracje/kolizja_norm_promień.png" width=400></img>
+
 4. Kożystając z prawa o współrzędnych jednorodnych, Rozszerzenie wektorów **P0** i **D** o czwarty wymiar w = 1, na potrzebę obliczeń macierzowych.
 5. Za pomocą odwróconych macierzy perspektywy i kamery, przetransformowanie **P0** i **D** do przestrzeni świata (będziemy używać nazwy "w 3D")
+
+<img src="../ilustracje/kolizja_kamera_promień.png" width=400></img>
+
 6. Ponowne wykożystanie prawa o współrzędnych jednorodnych. Aby móc użyć półprostej w obliczeniach w przestrzeni świata, musimy z powrotem sprowadzić P0 i D do postaci trój-wymiarowych wektorów.  Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. W tym celu wystarczy podzielić P0 i d przez ich wartości **w**, po czym odrzucić wartość **w** zamieniając je z powrotem na trój-wymiarowe wektory.
 
 7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
