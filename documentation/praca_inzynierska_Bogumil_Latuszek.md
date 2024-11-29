@@ -274,9 +274,13 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
 
 Bryły 3D w OpenGL ES reprezentowane są poprzez zbiór wierzchołków. Każdy wierzchołek składa się z co najmniej 3 zmiennych: położenia na osi x, y i z. Najczęściej bryły przechowuje się w pamięci w postaci "rozwiniętej", to znaczy wszystkie wartości zmiennych wszystkich wektorów są zapisane w jednym zbiorze danych. Przykładowo obiekt składający się z 3 wektorów - każdy o 5 wartościach, może być opisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie,  każda bryła posiada też unikalną zmienną określającą z ilu wartości składa się jej pojedynczy wierzchołek. Dzięki temu można wydobyć wartości ze zbioru, i "złożyć" z nich pojedyncze wierzchołki. Wierzchołki bryły muszą być jasno określone, na potrzebę wyświetlenia bryły, czy obliczenia kolizji z bryłą.
+
 Użycie wielowątkowego procesora graficznego do zastosowania shaderów
+
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+
 Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
+
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
 
 Rola shaderów
@@ -320,8 +324,6 @@ Zamiast tego w grafice Raymarching, stosuje się odwrócony paradygmat - aby mie
 Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. Scena to zbiór wszystkich brył w przestrzeni 3D, w danym punkcie czasowym działania programu.
 <tu wstawić ilustrację przedstawiającą rzutowanie bryły na near clipping plane>
 Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja bryły wytworzy na płaszczyźnie kamery figurę 2d będącą zbiorem trójkątów. Trójkąty na płaszczyźnie, powstałe w ten sposób, są wykorzystywane do określenia koloru punktów na ekranie. Każdemu punktowi leżącemu wewnątrz danego trójkąta przypisywany jest odpowiedni kolor. W przypadku gdy kolor bryły jest jednolity, określenie koloru trójkąta jest bardzo proste. Jeżeli natomiast kolor jest przypisany do wierzchołka - to kolor punktu wewnątrz trójkąta jest interpolowany na podstawie koloru trzech otaczających go wierzchołków. Możliwe jest też zastosowanie tekstury, wtedy obliczenie koloru punktu wewnątrz trójkąta wymaga innego, bardziej skomplikowanego podejścia.
-
-(a co jeśli trójkąty nakładają się??).
 
 Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następujących elementów:
 - zbioru punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
@@ -531,7 +533,7 @@ Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz?
 
 W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go palcem. Następnie program powinien stwierdzić czy wybrany punkt leży na boku którejś ze ścian, i jeśli tak, to do tego boku przypisany zostanie obraz. 
 
-Poniżej znajduje się szczegółowy opis tego procesu:
+Poniżej znajduje się szczegółowy opis tego procesu:
 
 1. Zdobycie współrzędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
 
@@ -560,7 +562,7 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 7. Mając promień w przestrzeni świata, można obliczyć kolizję z bryłami. 
 
 
-Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. W aplikacji "Wirtualna Galeria" tymi bryłami są prostopadłościany. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, na każdy prostopadłościan mamy 4 ściany do sprawdzenia kolizji z promieniem. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłóż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
+Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. W aplikacji "Wirtualna Galeria" tymi bryłami są prostopadłościany. Biorąc pod uwagę że poprawnym celem do zawieszenia obrazu są tylko ściany boczne, na każdy prostopadłościan mamy 4 ściany do sprawdzenia kolizji z promieniem. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłóż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
 
 Algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
 
@@ -623,15 +625,15 @@ x = x0 ​+ t*dx
 y = y0 ​+ t*dy
 z = z0 ​+ t*dz
 
-Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. 
+Po znalezieniu punktu przecięcia się półprostej z płaszczyzną(P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. 
 
 <img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=200></img>
 
 Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ "ściany" są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
 Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 
-8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
-- 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
+8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
+- 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
 - 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
 - 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja : w tej sytuacji należy znaleść ścianę która jest najbliżej punktu startowego półprostej. Podczas wyświetlania sceny, inne ściany w trajektorii półprostej musiały zostać przez nią zasłonione, więc to ona jest widoczna w punkcie wskazanym przez użytkownika, i to na niej należy zawiesić/zdjąć obraz.
 
