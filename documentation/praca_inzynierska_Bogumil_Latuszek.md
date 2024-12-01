@@ -254,29 +254,33 @@ https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-
 
 4.2.1 Aplikacje natywne na Android
 
-Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposarzonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na kożystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
+Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
 
-4.2.3 Aplikacje Web UI na Android - aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o użądzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Urzytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykożystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont urzytkowników, żeby kożystać z aplikacji użytkownik potrzebuje dostępu do internetu.
+4.2.3 Aplikacje Web UI na Android - aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
 
 
-4.2.3 Aplikacje Hybrydowe na Android - programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala kożystać z większości zalet aplikacji webowych, jednoczesnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie kożystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie kożyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, kożystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
+4.2.3 Aplikacje Hybrydowe na Android - programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
 
-Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API opengl es, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miała by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia opengl es w języku java, wybrałem aplikację natywną.
+Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
 
 4.3 Język programowania i środowisko programistyczne
 
-Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją za pomocą inteligentnych asystentów wchodzących w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
+Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
 
 4.4 Biblioteki i frameworki
 
 4.4.1 Biblioteki
 
-OpenGL ES - definicja obiektów w przestrzeni za pomocą wektorów 
+OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
 
-Obiekty 3D w OpenGL ES reprezentowane są poprzez zbiór wektorów, każdy wektor składa się z co najmniej 3 wartości: położenia na osi x, y i z, przy czym ilość wartości dla każdego wektora w danym obiekcie musi być taka sama. Najczęściej obiekty będą przechowywane w pamięci w postaci "rozwiniętej", to znaczy wartości wszystkich wektorów będą zapisane w jednej liście - przykładowo obiekt składający się z 3 wektorów każdy o 5 wartościach będzie zapisany za pomocą ciągłej listy piętnastu wartości. Jednocześnie każdy obiekt posiada też jedną zmienną określającą z ilu wartości składa się jeden wektor tego obiektu, co potrzebne jest do "złożenia" i wyświetlenia składowych obiektu.
+Bryły 3D w OpenGL ES reprezentowane są poprzez zbiór wierzchołków. Każdy wierzchołek składa się z co najmniej 3 zmiennych: położenia na osi x, y i z. 
+
 Użycie wielowątkowego procesora graficznego do zastosowania shaderów
+
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+
 Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
+
 Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
 
 Rola shaderów
@@ -309,48 +313,59 @@ Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmo
 Kontrola Wersji – Git 
 Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
 
-5 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
+# 5 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
 
-5.1 Wyświetlanie grafiki 3D
+## 5.1 Wyświetlanie grafiki 3D
 
-Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka promieni światła widzialnego. Jednak obliczanie trajektorii promieni świelnych, poza tymi które trafiły by do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogły by równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących ze źródła światła. 
+Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka promieni światła widzialnego. Jednak obliczanie trajektorii promieni świelnych, poza tymi które trafiłyby do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogłyby równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących ze źródła światła. 
 
 Zamiast tego w grafice Raymarching, stosuje się odwrócony paradygmat - aby mieć pewność że obliczenia skupiają się wyłącznie na promieniach światła rejestrowanych przez kamerę, symulowane promienie wychodzą z samej kamery a nie ze źródła światła. W najprostszej wersji tego algorytmu, po osiągnięciu minimalnej odległości do obiektu w przestrzeni 3D, funkcja obliczająca trajektorię promienia potwierdza zderzenie z tą bryłą, a do piksela z którego wyszedł promień przypisywany jest jej kolor. Promienie które nie zarejestrują kolizji z żadnym obiektem, po osiągnięciu maksymalnej długości lub cykli przedłużających promień, zwracają informację o braku kolizji. Wtedy piksel z którego wyszedł taki promień otrzyma domyślny kolor tła. Jest to oczywiście uproszczony opis działania algorytmu Raymarching, jednak nawet w takim uproszczeniu, oczywistym jest że ograniczenie liczby promieni do tych które rejestrowane są na kamerze, a także ograniczenie się do prostoliniowych promieni z pominięciem odbić, pozwala drastycznie przyspieszyć wyświetlenie sceny.
 
 Natomiast w najczęściej stosowanym algorytmie wyświetlania, użytym także w Wirtualnej Galerii - grafice wektorowej - zupełnie odchodzi się od obliczeń promieni. Zamiast tego stosuje się transformacje których celem jest stworzenie projekcji brył w scenie na płaszczyznę widoku kamery. Scena to zbiór wszystkich brył w przestrzeni 3D, w danym punkcie czasowym działania programu.
-<tu wstawić ilustrację przedstawiającą rzutowanie bryły na near clipping plane>
+
+<img src="../ilustracje/scena3d_openGLES2forAndroid.png" width=400></img>
+
+Przykładowa scena 3D (z książki "OpenGL ES 2 for Android" autor Kevin Brothaler)
+
+<img src="../ilustracje/widokKamery_openGLES2forAndroid.png" width=400></img>
+
+Projekcja tej sceny w widoku kamery (z książki "OpenGL ES 2 for Android" autor Kevin Brothaler)
+
 Każdą bryłę 3D można przedstawić jako zestaw trójkątów, więc projekcja bryły wytworzy na płaszczyźnie kamery figurę 2d będącą zbiorem trójkątów. Trójkąty na płaszczyźnie, powstałe w ten sposób, są wykorzystywane do określenia koloru punktów na ekranie. Każdemu punktowi leżącemu wewnątrz danego trójkąta przypisywany jest odpowiedni kolor. W przypadku gdy kolor bryły jest jednolity, określenie koloru trójkąta jest bardzo proste. Jeżeli natomiast kolor jest przypisany do wierzchołka - to kolor punktu wewnątrz trójkąta jest interpolowany na podstawie koloru trzech otaczających go wierzchołków. Możliwe jest też zastosowanie tekstury, wtedy obliczenie koloru punktu wewnątrz trójkąta wymaga innego, bardziej skomplikowanego podejścia.
 
-(a co jeśli trójkąty nakładają się??).
-
 Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następujących elementów:
-- zbioru punktów, czyli wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
+- zbioru wierzchołków wychodzących z punktu 0.0.0 w "przestrzeni lokalnej", definiujących kształt bryły.
 
 <img src="../ilustracje/scr_def.png" width=400></img>
 
-- współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". Pozycja ta niekoniecznie musi być określona wewnątrz obiektu, czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
-- koloru bryły - gdy bryła ma jednolity kolor; zbioru kolorów każdego wierzchołka, albo współrzędnych na teksturze przypisanych do konkretnych wierzchołków - jeśli została użyta tekstura.
+- współrzędnych x, y, z określających gdzie znajduje się centrum bryły w "przestrzeni świata". 
+   - Pozycja ta niekoniecznie musi być określona wewnątrz obiektu. Czasem pozycja bryły ustalana jest dynamicznie kiedy jakaś funkcja jej potrzebuje, np. jeśli ta bryła jest "przyczepiona" do innej bryły;
+- koloru bryły
+   - jedna wartość dla całej bryły - gdy bryła ma jednolity kolor
+   - zbiór kolorów każdego wierzchołka - gdy kolor bryły to gradient kolorów przypisanych do wierzchołków
+   - zbiór współrzędnych na teksturze dla każdego wierzchołka - jeśli została użyta tekstura.
 
-Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
+### Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
 
-Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli Macierzy. Macierze transformują wektory(wierzchołki). Jest to ich główna i najważniejsza rola w matematyce przestrzeni 3D. W danym momencie jedna macierz może transformować jeden wektor, jednak ponieważ najczęściej jedna macierz transformuje wiele wektorów, mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej. Nie wchodząc jednak na razie w takie szczegóły, zacznijmy od odpowiedzenia na pytanie - co sprawia że macierze są tak potrzebne w grafice 3d?
-Otóż w formie macierzy  możemy zapisać przeróżne transformacje takie jak przesunięcie, obrót, skalowanie, czy nałożenie perspektywy. Mało tego! Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz, dzięki czemu nawet zastosowanie wielu transformacji jest równie obliczeniowo złożone jak zastosowanie pojedynczej transformacji. 
+Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli macierzy. Macierze transformują wektory (wierzchołki). Transformacja zachodzi poprzez pomnożenie wektora przez macierz. Jest to główna i najważniejsza rola macierzy w matematyce przestrzeni 3D. Mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej, ponieważ najczęściej ta sama macierz jest użyta do transformacji wielu wektorów. 
+
+Transformacje jakim się przyjrzymy to m.in.: przesunięcie, obrót, skalowanie oraz nałożenie perspektywy. Poprzez pomnożenie dwóch macierzy ze sobą otrzymujemy macierz która łączy w sobie transformacje zawarte w obu z nich. Pozwala nam to na stworzenie jednej macierzy zawierającej wszystkie transformacje potrzebne w procesie wyświetlania danej bryły. Następnie aby zastosować tę transformację wystarczy pomnożyć każdy wierzchołek bryły przez tę macierz. Dzięki temu złożoność obliczeniowa wielu transformacji na jednej bryle jest taka sama jak pojedynczej transformacji. 
 
 Przypomnijmy że bryła to zbiór wierzchołków:
 
 <img src="../ilustracje/scr_def.png" width=400></img>
 
-Widzimy że bryłę tą tworzą wierzchołki wychodzące ze środka układu współrzędnych (punktu 0.0.0 zwanego też origin). Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić jako wektor o 3 wartościach:
+Widzimy że bryłę tą tworzą wierzchołki wychodzące z początku układu współrzędnych (ang. origin) - punktu 0.0.0. Każdy wierzchołek zawiera w sobie co najmniej 3 podstawowe wartości: pozycję x, y i z w przestrzeni 3D. Każdy wierzchołek możemy więc przedstawić w rachunku macierzowym jako wektor:
 
-<tu wstawić wektor x, y, z>
+<img src="../ilustracje/wektor_xyz.png" ></img>
 
-Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych.
+Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych:
 
-<tu dać wektor x, y, z, w>
+<img src="../ilustracje/wektor_xyzw.png" ></img>
 
-Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 (lub w specyficznych przypadkach 0, ale takich przypadków tutaj nie będziemy omawiać)
+Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 lub 0.
 
-Kolejność transformacji jest następująca:
+#### Kolejność transformacji jest następująca:
 
 1. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. 
 
@@ -391,8 +406,16 @@ Poniższa ilustracja pokazuję tę transformację. Na pomarańczowo zaznaczono t
 
 3. Macierz kamery – ustawienie brył w scenie w stosunku do pozycji kamery.
 
-Aby uprościć proces wyświetlania sceny, kamera powinna znajdować się w punkcie 0.0.0 w przestrzeni świata, być skierowana wprost w kierunku osi -z, (w używanym w tym przypadku ułożeniu świata „prawej ręki”), a jej środek leżeć na osi z. Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie samo jak gdyby to kamera się poruszała a nie cały wirtualny świat wokół niej.
-Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować, w takiej kolejności: translacje odwrotną do zamierzonego ruchu kamery => obrót odwrotny do zamierzonego obrotu kamery. Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić nią wokół osi x o 20 stopni. Poniżej pokazujemy równanie (w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
+Aby uprościć proces wyświetlania sceny, kamera powinna:
+- znajdować się w punkcie 0.0.0 w przestrzeni świata, 
+- być skierowana wprost w kierunku osi -z, (TODO: przypis: w używanym w tym przypadku ułożeniu świata „prawej ręki”), 
+- a jej środek leżeć na osi z. 
+
+Dlaczego więc w wielu grach komputerowych kamera porusza się wraz z ruchem gracza? Otóż aby pogodzić potrzebę ruchu kamery, oraz wymogi obliczeniowe, najczęściej stosowanym rozwiązaniem w grafice komputerowej jest użycie odwróconego paradygmatu – zamiast poruszać kamerą (np. obrót o 30 stopni w lewo), wszystkie obiekty w scenie są poruszane w odwrotny sposób (obrót o 30 stopni w prawo wokół kamery). Dla odbiorcy patrzącego przez okno widoku kamery wrażenie ruchu pozostaje takie samo jak gdyby to kamera się poruszała, a nie cały wirtualny świat wokół niej.
+
+Dlatego aby przejść z przestrzeni świata do przestrzeni kamery, na wszystkich obiektach w scenie należy zastosować translacje odwrotną do zamierzonego ruchu kamery, a potem obrót odwrotny do zamierzonego obrotu kamery. 
+
+Powiedzmy że chcemy przesunąć kamerę o dx: -2, dy: 5, dz: -4, a następnie obrócić ją wokół osi x o 20 stopni. Poniżej pokazujemy równanie (w złożeniu macierzy, kolejność operacji jest od prawa do lewa?):
 
 <img src="../ilustracje/mcamera.png" width=400></img>
 
@@ -437,7 +460,7 @@ Po wstawieniu wartości do wzoru otrzymamy:
 
 <img src="../ilustracje/mpersp_values.png" width=400></img>
 
-Zobaczmy więc jak otrzymana macierz perspektywy transformuje wierzchołek ustawiony poprzednio w przestrzeni świata:
+Zobaczmy więc jak otrzymana macierz perspektywy transformuje wierzchołek ustawiony poprzednio w przestrzeni kamery:
 
 <img src="../ilustracje/mpersp_equation.png" width=400></img>
 
@@ -466,7 +489,7 @@ Widzimy że macierz zamienia wartości z na -z, a także deformuję bryłę.
 
 5. Dzielenie przez w - ostatnia transformacja wektorów potrzebna dla uzyskania wrażenia perspektywy. 
 
-Nie jest transformacją macierzową, . Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0; Poprzez dzielenie przez w, im bliżej dany wektor znajdował się w przestrzeni kamery do "far clipping plane", tym bardziej zbliża się do środka przestrzeni znormalizowanej. Innymi słowy im dalej się znajduje tym wydaje się mniejszy.
+Trzeba wspomnieć, że nie jest to transformacja macierzowa ale należy ją zawsze wykonać po transformacji perspektywy. Dzielenie przez w odbywa się ponieważ wedle prawa o współrzędnych jednorodnych, aby móc użyć wektora 4D jako wektora 3D, w musi wynosić 1 lub 0. Poprzez dzielenie przez w, im dalej dany wektor znajdował się od kamery, tym bliżej będzie osi z. Innymi słowy im dalej się znajduje tym wydaje się mniejszy.
 
 <img src="../ilustracje/nevada_road.jpg" width=400></img>
 
@@ -484,114 +507,157 @@ Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania te
 
 (w przybliżeniu)
 
-Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy dwa fragmenty znajdują się w tych samych koordynatach x,y, trzecia wartość z pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
+Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy więcej niż jeden fragment znajduje się w tych samych koordynatach **(x,y)**, trzecia wartość **z** pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
 
-Implementacja obliczeń macierzowych w grafice 3D
+### Implementacja obliczeń macierzowych w grafice 3D
 
 Mnożenie macierzy i wektorów jest łatwe do zrównoleglenia. 
 Dlatego używamy do tego procesorów graficznych.
 Programy napisane dla GPU to shadery.
 
-Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś większość programów uruchamianych na GPU nazywamy shaderami, choć nieżadko ich przeznaczenie znacząco odbiega od tego pierwotnego.  Wyróżniamy typy shader-ów:
+Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś większość programów uruchamianych na GPU nazywamy shaderami, choć nierzadko ich przeznaczenie znacząco odbiega od tego pierwotnego.  Wyróżniamy typy shader-ów:
 - vertex shader - obliczenia geometrii
 - fragment shader - obliczenia koloru pikseli na ekranie
-- compute shader - wszelakie obliczenia równoległe, przykładowo kopanie kryptowalut.
+- compute shader - pozostałe obliczenia, przykładowo kopanie kryptowalut.
+
 Warto wspomnieć, że główną charakterystyką shaderów jest równoległość obliczeń w nich zawartych. To właśnie z tego powodu shadery mają być w zamyśle uruchamiane na procesorze graficznym, ponieważ architektura GPU pozwala na prowadzenie wielu równoległych obliczeń na raz.
 
+#### Pipeline, czyli kolejne etapy wyświetlania sceny 3D:
 
-Pipeline, czyli kolejne etapy wyświetlania sceny 3D (dla konkretnej bryły?):
+1) **Przekazanie argumentów** - do Vertex Shader-a przekazujemy zbiór wierzchołków i ostateczną (sumaryczną) macierzy transformacji. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
+2) **Vertex shader** - mnoży każdy z przekazanych wierzchołków przez macierz ostatecznej transformacji, przekształcając je do przestrzeni ucięcia.
+3) **Primitive Assembly** - wierzchołki bryły otrzymane w poprzednim etapie są łączone w zbiory zwane prymitywami. Dla brył używany jest prymityw złożony z trzech wierzchołków - trójkąt. Ale istnieją też inne prymitywy, np. zbiory dwóch wierzchołków - linie, oraz złożone z pojedynczych wierzchołków punkty.
+4) **Clipping** - usunięcie prymitywów których wszystkie wierzchołki znajdują się całkowicie poza przestrzenią ucięcia, oraz "przycięcie" prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
+5) **Face Culling** - bryły są złożone z trójkątów. Trójkąty mają dwie strony - zwróconą do wewnątrz bryły tylną stronę i zwróconą na zewnątrz przednią stronę. Ponieważ zazwyczaj nie chcemy wyświetlać wnętrza bryły, tylne strony trójkątów są na tym etapie usuwane i nie biorą udziału w dalszych obliczeniach. Jak określić która strona trójkąta to przód, a która to tył? Definiuje to kolejność wierzchołków w trójkącie: przeciwnie do wskazówek zegara oznacza przednią stronę, a zgodnie ze wskazówkami - tylną.
+6) **Perspective Division** - dzielenie przez w - przekształcenie wierzchołków z przestrzeni ucięcia na przestrzeń znormalizowanych koordynat urządzenia (ang. Normalized Device Coordinates - NDC). Wszystkie współrzędne x, y, z znajdą się w zakresie [-1, 1]
+7) **Viewport Transformation** - viewport to obszar na ekranie gdzie będzie wyświetlona scena 3D. Może to być cały ekran ale nie musi tak być. Viewport definiujemy podając jego lewy dolny narożnik, szerokość i wysokość we współrzędnych ekranu. Viewport Transformation przekształca x, y przestrzeni NDC do x, y przestrzeni ekranu zgodnie z definicją Vieport-u. Zazwyczaj Viewport Transformation przekształca również współrzędną "z" przestrzeni NDC na głębię z w zakresie [0, 1]. 
+8) **Rasteryzacja** - Zamienia prymitywy na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Dane zawarte w wierzchołkach prymitywu, takie jak kolor, czy pozycja w teksturze, są interpolowane, a uzyskane wartości przypisane do powstałych fragmentów.
+   - Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.
+9) **Fragment Shader** - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. Jeśli została zastosowana tekstura, to on jest odpowiedzialny za zamianę koordynatów tekstury na kolor fragmentu - oblicza go przy użyciu wybranego algorytmu (np. SSAO), który aproksymuje kolor danego punktu na podstawie otaczających go texeli (TODO: przypis: Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury. Texel odnosi się do punktu na teksturze).
+10) **Depth Testing** - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębii) zawartej we "fragmentach". Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Deph Testing określi których fragmentów użyć do wyliczenia koloru piksela.
+11) **Blending** - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem przeźroczystości
+12) **Zapis do Framebuffer-a** - finalny kolor piksela wpisywany jest do Framebuffer-a. Framebuffer to bufor pamięci, który zawiera dane o obrazie, czyli informacje o każdym pikselu na ekranie.
+13) **wyświetlenie sceny 3D** - karta graficzna wyświetla na ekranie całą zawartość Framebuffer-a jako reprezentację sceny 3D.
 
-1) Przekazanie argumentów do Vertex Shader-a. Zbioru wierzchołków i ostatecznej macierzy transformacji - macierzy zawierającej wszystkie potrzebne transformacje. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
-2) Vertex shader - mnoży każdy z przekazanych wierzchołków przez macierz ostatecznej transformacji, transformując je do przestrzeni ucięcia
-3) Primitive Assembly - wierzchołki bryły otrzymane w poprzednim etapie są łączone w zbriory zwane prymitywami. Dla brył używany jest prymityw złożony z trzech wierzchołków - trójkąt. Ale istnieją też inne prymitywy, np. zbiory dwóch wierzchołków - linie, oraz złożone z pojedynczych wierzchołków punkty.
-4) Clipping - usunięcie prymitywów. których wszystkie wierzchołki znajdują się całkowicie poza przestrzenią ucięcia, oraz "przycięcie" prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
-5) Face Culling - Bryły są złożone z trójkątów. Trójkąty mają dwie strony - zwróconą do wewnątrz bryły tylną stronę i zwróconą na zewnątrz przednią stronę. Ponieważ zazwyczaj nie chcemy wyświetlać wnętrza bryły, tylne strony trójkątów są na tym etapie usuwane i nie biorą udziału w dalszych obliczeniach. Jak określić  która strona trójkąta to przód a która to tył? Definiuje to kolejność wierzchołków w trójkącie: przeciwnie do wskazówek zegara oznacza przednią stronę, a zgodnie ze wskazówkami - tylną.
-<wstawić rysunek>
-6) Perspective Division - dzielenie przez w - przekształcenie wierzchołków z przestrzeni ucięcia na przestrzeń znormalizowanych koordynat urządzenia (ang. Normalized Device Coordinates - NDC). Wszystkie współrzędne x, y, z znajdą się w zakresie [-1, 1]
-7) Viewport Transformation - Viewport to obszar na ekranie gdzie będzie wyświetlona scena 3D. Może to być cały ekran ale nie musi tak być. Viewport definiujemy podając jego lewy dolny narożnik, szerokość i wysokość we współrzędnych ekranu. Viewport Transformation przekształca x, y przestrzeni NDC do x, y przestrzeni ekranu zgodnie z definicją Vieport-u. Zazwyczaj Viewport Transformation przekształca również współrzędną "z" przestrzeni NDC na głębię z w zakresie [0, 1]. 
-8) Rasteryzacja - Zamienia prymitywy na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Dane zawarte w wierzchołkach prymitywu, takie jak kolor, czy pozycja w teksturze, są interpolowane. a uzyskane wartości przypisane do powstałych fragmentów.
+## 5.2 Obliczenia fizyki sceny 3D
 
-Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.(czy aby na pewno???)
+Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów na "ścianach galerii". W scenie 3D bryły reprezentujące "ściany galerii" to **prostopadłościany**. I tak będziemy je nazywać w dalszej części tego rozdziału.  
+Obrazy wieszane są na bocznych ścianach prostopadłościanów. Do jednej ściany może być przypisany maksymalnie jeden obraz.
 
-9) Fragment Shader - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. To on jest odpowiedzialny za zamianę koordynatów tekstury na kolor fragmentu. Kolor fragmentu uzyskuje się przy użyciu wybranego algorytmu(SSAO etc.), który aproksymuje kolor danego punktu na podstawie otaczających go texeli. 
+#### Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
 
-10) Depth Testing - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębii), którą zachowaliśmy w fragmentach specjalnie na potrzeby tego etapu. Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Deph Testing określa w jakiej kolejności fragmenty powinny być nakładane na siebie (od największej głębi do najmniejszej)
-11) Blending - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem przeźroczystości
-12) Zapis do Framebuffer-a - finalny kolor piksela wpisywany jest do Framebuffer-a, który następnie zostanie wysłany do karty graficznej???.
+W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go palcem. Następnie program powinien stwierdzić czy wybrany punkt leży na ścianie bocznej któregoś z prostopadlościanów w scenie 3D. Jeśli tak, to do tej ściany przypisany zostanie obraz. 
 
+Poniżej znajduje się szczegółowy opis tego procesu:
 
+1. Zdobycie współrzędnych wybranego punktu w płaszczyźnie ekranu (nazwijmy go **Pe**)
 
-*Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
+<img src="../ilustracje/kolizja_ekran.png" width=400></img>
 
-5.2 Obliczenia fizyki sceny 3D
+2. Konwersja punktu **Pe** z płaszczyzny ekranu na odpowiadający mu punkt w przestrzeni NDC (nazwijmy go **Pn**)
 
+<img src="../ilustracje/kolizja_NDC_punkt.png" width=400></img>
 
-Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. 
-Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. 
-W trakcie rozwoju projektu, na etapie wdrażania tej funkcjonalności, napotkany został problem - 
-Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
-Użytkownik powinien wybrać ścianę poprzez dotknięcie obszaru jaki jej reprezentacja zajmuje na ekranie. 
-Jednak stwierdzenie czy punkt wybrany przez użytkownika faktycznie znajduje się na powierzchni danej ściany nie jest takie proste. 
-Reprezentacja graficzna bryły ściany na ekranie, to produkt wielu przekształceń macierzowych. 
-Aby upewnić się że punkt wybrany przez użytkownika znajdzie się wewnątrz tego obszaru, 
-należy  przekształcić punkt ze współrzędnych ekranu do przestrzeni świata, 
-i dopiero wtedy sprawdzić czy znajduje się na ścianie bryły. 
-Biorąc jednak pod uwagę że danemu punktowi (x,y) na ekranie może odpowiadać dowolna ilość punktów w przestrzeni znormalizowanej, 
-różniących się jedynie trzecim koordynatem "z" w obliczeniach weżmiemy pod uwagę wszystkie z nich. 
-W tym celu zamienimy punkt(x,y) na promień o początku w punkcie(x,y,-1) - nazwijmy go **P0** , i wektorze kierunkowym (0,0,2) - nazwijmy go **D**. 
-Tak opisany promień zawiera w sobie wszystkie potencjalne punkty na które mógł wskazać użytkownik.
-Teraz, aby móc zastosować transformacje macierzowe, zamienimy P0 i D na wektory 4-wymiarowe, rozszerzając je o czwarty koordynat w = 1.
-Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy perspektywy. 
-Następnie poddamy go transformacji za pomocą macierzy odwrotnej do użytej podczas wyświetlania sceny macierzy kamery.
-Następnie, aby móc użyć promienia w obliczeniach w przestrzeni 3D świata, musimy z powrotem sprowadzić P0 i D do postaci trój-wymiarowych wektorów. Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. Wystarczy więc że każdy z tych wektorów podzielimy przez jego wartość w.
-Otrzymany promień znajduje się w przestrzeni świata. P0 to punkt z jakiego wychodzi a D to jego wektor kierunkowy.
+3. Stworzenie półprostej, składającej się z punktu startowego **P0**, oraz wektora kierunkowego **D**. Półprosta ta przechodzi przez punkt **Pn**, i w gruncie rzeczy reprezentuje wszystkie punkty w przestrzeni NDC które potencjalnie mógł wybrać użytkownik. **P0** i **Pn** są 3-wymiarowymi wektorami o współrzędnych (x,y) tych samych co punkt Pn, i trzecią współrzędną (z) równą -1 dla **P0** i +1 dla **D**.
 
-Bryły znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Wiemy że każdy bok ściany składa się z 4 wierzchołków o znanych koordynatach(xyz). Ponieważ wszystkie boki ścian w projekcie leżą wzdłóż dwuch osi układu współżędnych, możemy określić powierzchnię danego boku jako wycinek pewnej płaszczyzny, którego ramy określone są przez jego wierzchołki. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonego promienia, znajduje się na tej płaszczyżnie?
+<img src="../ilustracje/kolizja_NDC_promień.png" width=400></img>
 
-Aby znaleść punkt przecięcia promienia i płaszczyzny potrzebujemy 4 zmiennych - punktu i wektora tworzących promień, a także współżędnych środka płaszczyzny i wierzchołka normalnego który z niego wychodzi.
+4. Rozszerzenie wektorów **P0** i **D** o czwarty wymiar w = 1, na potrzebę obliczeń macierzowych (korzystając z prawa o współrzędnych jednorodnych).
+5. Przetransformowanie **P0** i **D** z przestrzeni NDC do przestrzeni świata za pomocą odwróconych macierzy perspektywy i kamery:
 
-**************************************************
+<img src="../ilustracje/kolizja_kamera_promień.png" width=400></img>
 
-Kolizja promienia i płaszczyzny:
+<img src="../ilustracje/kolizja_świat_promień.png" width=400></img>
 
-1 Stworzenie promienia wewnątrz NDC space i przekształcenie go za pomocą odwrotnej macierzy transformacji(NDC=>clip space=> camera space => world space)
-2 Poszukiwanie kolizji. Dla każdej ściany:
-2.1 dla każdego boku ściany, będącego płaszczyzną o znanym punkcie środka P0 i wektorze normalnym N:
-2.2 sprawdzenie czy dot product promienia i wektora normalnego N są mniejsze niż 0 (zwrócone do siebie), jeśli nie odrzucamy ten przypadek.
-2.3 
+<img src="../ilustracje/kolizja_świat_promień2.png" width=400></img>
 
-Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów. Obrazy wieszane są na ścianach w scenie 3d, do jednego boku ściany może być przypisany maksymalnie jeden obraz. Użytkownik aplikacji, będąc w widoku 3D, wybiera bok ściany z którym chce wejść w interakcję poprzez **wskazanie ściany**. Następnie, jeśli bok był pusty - to znaczy nie posiadał przypisanego obrazu - przypisany zostanie do niego kolejny obraz z listy dostępnych obrazów. W przeciwnym wypadku, jeśli jakiś obraz był już przypisany do tego boku, zostanie on odpięty. Wizualnie, przypięcie obrazu jest równoznaczne z jego zawieszeniem, a odpięcie ze zdjęciem go. 
+6. Zamiana wektorów **P0** i **D** na trójwymiarowe. Aby móc użyć półprostej w obliczeniach w przestrzeni świata, musimy z powrotem sprowadzić **P0** i **D** do postaci trój-wymiarowych wektorów.  Aby tego dokonać musimy upewnić się że czwarta wartość **w** wynosi 1. W tym celu wystarczy podzielić **P0** i **D** przez ich wartości **w**, po czym odrzucić wartość **w** zamieniając je z powrotem na trójwymiarowe wektory.
 
-W całej tej logice najistotniejsze jest **wskazanie ściany**
-Jak je zrealizować w przestrzeni 3D:
-* poprowadzić prostą z punktu dotknięcia ekranu w kierunku patrzenia na tylną ścianę frustum. 
-* znaleść wszystkie punkty przecięcia prostej ze wszystkimi płaszczyznami ścian.
-* wybrać najbliższy punkt przecięcia który spełnia warunek: (jest w obrębie ściany).
-
-Dlatego potrzebujemy zaimplementować algorytm przecięcia prostej z płaszczyzną.
-Etapy tego algorytmu:
-1. przeniesienie punktu kliknięcia ekranu (Ex, Ey) do przestrzeni NDC (NDCx i NDCy: [-1, 1])
-2. zbudowanie 2 punktów: P1 (NDCx,NDCy) na przedniej ścianie NDC (NDCz=-1) oraz P2 (NDCx,NDCy) na tylnej ścianie NDC (NDCz=1)
-3. przetransformowanie tych punktów w NDC do punktów w przestrzeni świata (będziemy używać nazwy "w 3D")
-4. zbudowanie opisu półprostej - nazwiemy ją promieniem (ang. ray) - w 3D biegnącej z punktu P1 (x1,y1,z1) w kierunku punktu P2 (x2,y2,z2)
-5. zbudowanie opisu płaszczyzny ściany przechodzącej przez punkt P3 (x3, y3, z3) i mającej wektor normalny V3(DX3, DY3, DZ3)
-6. zbudowanie opisu wycinka powyższej płaszczyzny będącego ścianą
-7. wyliczenie punktu P4 - punktu przecięcia promienia z płaszczyzną (o ile jest przecięcie)
-8. sprawdzenie czy P4 leży wewnątrz wycinka płaszczyzny (czy należy do ściany)
-   * jeśli tak to ścianę i jej punkt przecięcia dokładamy do listy "ściany kolidujące z promieniem"
-9. wyszukujemy parę ściana/punkt która ma najmniejszą odległość między początkiem promienia a punktem przecięcia ściany (między P1 a P4)
-10. tak wybrana para wybiera nam najbliższą ścianę trafioną przez promień - na niej zawiesimy obraz.
-
-Implementacja tej funkcjonalności:
-1) zdobycie koordynatów punktu kliknięcia na ekranie. - klasa GLSurfaceView w bibliotece android.opengl posiada funkcję setOnTouchListener(). Dzięki niej można ustawić jaka funkcja będzie wywoływana po wykryciu kliknięcia na ekranie, ponadto setOnTouchListener() może przekazać do tej funkcji koordynaty x,y punktu w którym wykryto kliknięcie w przestrzeni ekranu. Aby móc wykożystać te koordynaty, jeszcze przed przekazaniem ich do wybranej funkcji, poddawane są normalizacji, czyli zmapowaniu z przestrzeni ekranu na znormalizowaną przestrzeń wartości pomiędzy 0-1. Następnie funkcja handleTouchPress() 
-2) stworzenie promienia pomiędzy dwoma końcami frustum - wewnątrz convertNormalized2DPointToRay() koordynaty x i y otrzymane z poprzedniego punktu zostaną wykorzystane do określenia punktu z jakiego wychodzi promień. Aby znaleść drugi koniec, wykorzystana zostanie odwrócona macierz frustum. Jak już wiemy, macierz frustum "spłaszcza" obiekty w scenie równolegle do kamery, jednocześnie przesuwając je tym bliżej środka im dalej są od kamery, aby zasymulować perspektywę ludzkiego oka. Odwrócona macierz frustum ma więc odwrotne działanie, dla punktu leżącego na ekranie - na mniejszej podstawie frustum, znajduje odpowiedni punkt na drugiej podstawie - drugim końcu frustum. Jeśli stworzymy promień pomiędzy tymi dwoma punktami, możemy użyć go aby wykryć obiekty leżące na jego trajektorii. <tutaj do wklejenia ilustracje>
-3) wykrycie kolizji pomiędzy promieniem a ścianami w scenie
-4) po wybraniu najbliższego boku najbliższej ściany, przypisanie/odpięcie obrazu.
+7. Znalezienie wszystkich kolizji półprostej ze ścianami w scenie 3D. 
 
 
-Aby sprawdzić czy promień przecina się z płaszczyzną w przestrzeni 3D  . W projekcie ta technika została zastosowana do rozpoznawania kolizji.
-korzystając z tego że powierzchnie wszystkich ścian i obrazów znajdujących się w scenie są równoległe do osi x, z i y,
+Prostopadłościany znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Na każdy prostopadłościan mamy 4 ściany boczne do sprawdzenia kolizji z półprostą. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłóż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonej półprostej, znajduje się na tej płaszczyżnie?
 
+#### Algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
+
+<img src="../ilustracje/jedna_kolizja.png" width=600></img>
+
+Legenda:
+- P0 - punkt startowy półprostej o koordynatach (x0, y0, z0)
+- D - wektor kierunkowy półprostej o składowych (dx, dy, dz)
+- Pp - punkt na środku płaszczyzny o koordynatach (a, b, c)
+- N - wektor normalny płaszczyzny który wychodzi z jej punktu środkowego o składowych (A, B, C)
+
+Poszukujemy wartości koordynat (x,y,z) punktu P leżącego zarówno na płaszczyźnie jak i na półprostej.
+
+1. wzór na półprostą można zapisać jako L(t)=P0+tD, czyli punkt początkowy P0, oraz wektor kierunkowy półprostej D, gdzie t to skalar determinujący punkt na półprostej.
+
+A więc dla punktu P, wartości x,y,z wynoszą:
+- x = x0 + t*dx
+- y = y0 + t*dy
+- z = z0 + t*dz
+
+2. Iloczyn skalarny (ang. dot product) dwóch wektorów prostopadłych wynosi 0. Wiemy że punkty Pp i P leżą na płaszczyźnie. Dlatego też wektor (V) pomiędzy tymi punktami również leży na płaszczyźnie. Z definicji wektor normalny to wektor prostopadły do płaszczyzny. Zatem wektory V i N są do siebie prostopadłe, a więc wzór na płaszczyznę możemy zapisać jako: 
+
+N dot V = 0
+
+wzór na wektor pomiędzy Pp a P : 
+
+V = P - Pp
+
+z konkatenacji tych dwóch wzorów, otrzymamy wzór:
+
+N dot (P - Pp) = 0
+
+króry możemy rozwinąć do:
+
+A(x-a)+B(y-b)+C(z-c) = 0
+
+Ax-Aa+By-Bb+Cz-Cc = 0
+
+Ax+By+Cz-Aa-Bb-Cc = 0
+
+Ax+By+Cz-(Aa+Bb+Cc) = 0
+
+na podstawie danych wejściowych znamy wartość stałej -(Aa+Bb+Cc), dla wygody dalszych obliczeń będziemy ją więc zapisywać jako D:
+
+D = -(Aa+Bb+Cc)
+
+Wzór na płaszczyznę sprowadziliśmy do Ax+By+Cz+D=0
+
+Podstawmy teraz wzory na (x,y,z) punktu P, do wzoru na płaszczyznę:
+
+A(x0 + t*dx)+B(y0 + t*dy)+C(z0 + t*dz)+D=0
+
+A*x0 + A*t*dx + B*y0 + B*t*dy + C*z0 + C*t*dz + D=0
+
+A*x0 + B*y0 + C*z0 + D + t*(A*dx) + t(B*dy) + t(C*dz) = 0
+
+A*x0 + B*y0 + C*z0 + D + t*(A*dx + B*dy + C*dz) = 0 | -(A*x0+B*y0+C*z0+D)
+
+t*(A*dx + B*dy + C*dz) = -(A*x0 + B*y0 + C*z0 + D) | :(A*dx + B*dy + C*dz)
+
+t = -(A*x0 + B*y0 + C*z0 + D) / (A*dx + B*dy + C*dz)
+
+Znając wartość t, możemy znaleść wartości (x, y, z) punktu P:
+
+x = x0 + t*dx
+
+y = y0 + t*dy
+
+z = z0 + t*dz
+
+Po znalezieniu punktu przecięcia się półprostej z płaszczyzną (P), należy sprawdzić czy znajduje się on w obrębie podanej ściany bocznej. 
+
+<img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=200></img>
+
+Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ wszystkie ściany boczne w scenie 3D (TODO: przypis: w przestrzeni świata) są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
+Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
+
+8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
+- 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
+- 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
+- 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja - półprosta przecina ściany znajdujące się jedna za drugą. W tej sytuacji obraz należy zawiesić na najbliższej ścianie. Jest to ściana której punkt przecięcia jest najbliżej punktu startowego półprostej.
 
 
 6. Proces implementacji i dokumentacja techniczna
