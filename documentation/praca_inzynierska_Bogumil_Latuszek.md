@@ -18,7 +18,7 @@ Praca inżynierska
 napisana pod kierunkiem
 Prof. Jana Werewki
 
-Kraków 2023 r.
+Kraków 2025 r.
 
 Streszczenie
 
@@ -83,7 +83,7 @@ Bibliografia	19
 1. Wstęp
 Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak
 
-1.1 Cele, zakres i streszczenie pracy
+1.1 Cele i zakres pracy
 
 Celem pracy jest zapoznanie czytelnika z aplikacją „Wirtualna Galeria”, jej działaniem, przeznaczeniem, oraz omówienie zagadnień teoretycznych związanych z jej powstaniem i rozwojem.
 W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
@@ -92,7 +92,7 @@ Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokument
 Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
 
 2. Historia rozwoju narzędzi graficznych
-Wirtualna Galeria (WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL i systemu Android, dwóch kluczowych elementów dzięki którym WG może działać. Jednak powstanie tych elementów zawdzięczamy postępowi jaki został dokonany na przestrzeni lat w obrębie Grafiki Komputerowej oraz ruchu Open-Source. Poniżej pragnę przybliżyć historię która doprowadziła do ich powstania
+Wirtualna Galeria (WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL ES i systemu Android, dwóch kluczowych elementów dzięki którym WG może działać.  Poniżej pragnę przybliżyć historię ruchu Open Source oraz Grafiki Komputerowej, które doprowadziły do powstania OpenGL ES i systemu Android. 
 
 <TUTAJ WYKRES KLUCZOWYCH MOMENTÓW NA PRZESTRZENI LAT>
 
