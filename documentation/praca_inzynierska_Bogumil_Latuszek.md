@@ -682,13 +682,11 @@ Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoj
     • Etap 7 „Sterowanie”
     • Etap 8 ostatni „Refaktoring”
 
-
-
-6.4 Dokumentacja techniczna projektu
+# 7 Dokumentacja techniczna projektu
 
 Instrukcja użytkowania
 
-6.4.1  Instalacja aplikacji
+# 7.1  Instalacja aplikacji
 
 Aby zainstalować aplikację należy:
 
@@ -696,7 +694,7 @@ Aby zainstalować aplikację należy:
  2. odszukać go w systemie plików, najprawdopodobniej będzie w katalogu Downloads, potem kliknąć na niego i wybrać opcję „zainstaluj”
  3. wyrazić zgodę na instalację i poczekać aż instalacja zakończy się pomyślnie
 
-6.4.2  uruchomienie aplikacji i opis funkcjonalności 2D
+# 7.2  uruchomienie aplikacji i opis funkcjonalności 2D
 
 Po zainstalowaniu i uruchomieniu aplikacji pokaże nam się poniższy ekran:
 
@@ -711,7 +709,7 @@ Kiedy uznamy, że stworzony układ ścian nam pasuje, możemy go otworzyć w wid
 
 Teraz możemy już przejść do widoku 3D, aby to zrobić klikamy w ikonę uruchomienia widoku 3D:
 
-6.4.3 Opis funkcjonalności 3D
+# 7.3 Opis funkcjonalności 3D
 
 Po uruchomieniu widoku 3D zobaczymy poniższy ekran:
 
@@ -729,20 +727,17 @@ a obraz zniknie:
 
 po kliknięciu jeszcze raz na ścianę zostanie zawieszony kolejny dostępny obraz, możemy w ten sposób wybrać który nam pasuje:
 
-
-Podsumowanie
+# Podsumowanie projektu
 
 Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. Stworzony interface jest minimalistyczny przez co użytkownik może skupić się na swoich celach artystycznych, a nie pokonywać złożonego UI jak w przypadku takich programów 3D jak Blender czy AutoCAD – one mają inne obszary zastosowań. Wirtualna Galeria ma natomiast służyć użytkownikom przez swoją Prostotę i intuicyjność – ma pozwolić im wykorzystać ich kreatywność do tworzenia barwnej, przestrzennej galerii obrazów lub zdjęć.
 
+# Wnioski końcowe
 
+# Bibliografia
 
-
-
-Wnioski końcowe
-
-Bibliografia
     1. "OpenGL ES 3.0 Programming Guide – 2014, Ginsburg D, Purnomo B"
 Źródła internetowe
     1. oficjalna dokumentacja systemu android:  https://developer.android.com/guide
     2. oficjalna dokumentacja android opengl ES:  https://www.opengl.org/Documentation/Specs.html
-Spis rysunków
+
+# Spis rysunków
