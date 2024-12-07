@@ -608,14 +608,17 @@ Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w m
 
 _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 
-
 Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
 
-<TUTAJ WYKRES sekwencji renderowania obiektów>
+<img src="../ilustracje/uml_sequence_render_objects.svg" width=600></img>
+
+_Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
 Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D.
 
-<TUTAJ diagram  przypadków użycia>
+<img src="../ilustracje/uml_use_cases.svg" width=600></img>
+
+_Ilustracja 4: diagram przypadków użycia - opracowanie własne_
 
 ## 5.6 Koncepcja wyglądu UI aplikacji
 
