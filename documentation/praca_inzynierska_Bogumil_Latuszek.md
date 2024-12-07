@@ -62,14 +62,14 @@ Spis Treści
 5.2.1 Wymagania funkcjonalne
 5.2.2 Wymagania pozafunkcjonalne
 5.2.3 Wymagania techniczne
-5.4 Analiza profilu użytkownika
-5.5 Przegląd istniejących rozwiązań
-5.6 Schemat działania aplikacji - Diagramy UML
-5.7 Koncepcja wyglądu UI aplikacji
-5.8 Zadania projektowe 
-5.9 Język programowania i środowisko programistyczne
+5.3 Analiza profilu użytkownika
+5.4 Przegląd istniejących rozwiązań
+5.5 Schemat działania aplikacji - Diagramy UML
+5.6 Koncepcja wyglądu UI aplikacji
+5.7 Zadania projektowe 
+5.8 Język programowania i środowisko programistyczne
   (uzasadnienie wybory Javy)
-5.10 Biblioteka OpenGL ES
+5.9 Biblioteka OpenGL ES
 6. Implementacja
 6.1 Wzorce Architektoniczne
 6.2 Baza Danych
@@ -561,14 +561,16 @@ Programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w
 Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
 
 
-# 3 Cele i założenia projektowe
+# 5. Projekt Rozwiązania
 
 Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
 
+## 5.1  Wizja realizacji projektu
 
-3.2 Wymagania funkcjonalne i pozafunkcjonalne
+## 5.2 Wymagania
 
-3.2.1 Wymagania funkcjonalne:
+### 5.2.1 Wymagania funkcjonalne
+
     • możliwość projektowania układu ścian w widoku 2D
     • możliwość wizualizacji pomieszczenia w widoku 3D
     • możliwość poruszania się w przestrzeni 3D
@@ -578,27 +580,27 @@ Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozaf
     • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
     • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
 
-3.2.2 Wymagania pozafunkcjonalne:
+### 5.2.2 Wymagania pozafunkcjonalne
 
     • Prosty i Intuicyjny interfejs użytkownika
     • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
 
-3.2.3 Wymagania Techniczne
+### 5.2.3 Wymagania Techniczne
+
     • wersje Android API: minSdk 24 targetSdk 33
     • baza danych SQLite
 
-3.3 6.3 Analiza profilu użytkownika
+## 5.3 Analiza profilu użytkownika
     Aplikacja będzie skierowana do:
         • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
         • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
         • osób chcących zaplanować dekorację wnętrz
         • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
 
-3.4 Przegląd istniejących rozwiązań
+## 5.4 Przegląd istniejących rozwiązań
 
 Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
 
-3.5  Wizja realizacji projektu
 
 3.5.1 Schemat działania aplikacji - Diagramy UML
 
