@@ -622,11 +622,15 @@ _Ilustracja 4: diagram przypadków użycia - opracowanie własne_
 
 ## 5.6 Koncepcja wyglądu UI aplikacji
 
-<TUTAJ koncept UI w widoku 2D>
+<img src="../ilustracje/koncept_ui_2d.png" width=600></img>
+
+_Ilustracja 5: koncept UI w widoku 2D – opracowanie własne_
 
 Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
 
-<TUTAJ koncept UI w widoku 3D>
+<img src="../ilustracje/koncept_ui_3d.png" width=600></img>
+
+_Ilustracja 6: koncept UI w widoku 3D – opracowanie własne_
 
 Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
 
