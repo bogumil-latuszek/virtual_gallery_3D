@@ -602,7 +602,7 @@ Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozaf
 Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
 
 
-3.5.1 Schemat działania aplikacji - Diagramy UML
+## 5.5 Schemat działania aplikacji - Diagramy UML
 
 <TUTAJ WYKRES sekwencji przygotowania shader-ów>
 
@@ -614,7 +614,7 @@ Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami a
 
 <TUTAJ diagram  przypadków użycia>
 
-3.5.2 Koncepcja wyglądu UI aplikacji
+## 5.6 Koncepcja wyglądu UI aplikacji
 
 <TUTAJ koncept UI w widoku 2D>
 
@@ -624,7 +624,7 @@ Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widoc
 
 Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
 
-3.5.3 Zadania projektowe
+## 5.7 Zadania projektowe
 
 
 
