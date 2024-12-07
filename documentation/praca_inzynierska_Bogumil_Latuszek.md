@@ -25,11 +25,13 @@ Projekt został zrealizowany jako aplikacja na system Android, napisana w język
 
 Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego posiadacza telefonu z systemem android. Dzięki swojej intuicyjności pozwala w szybki sposób zwizualizować w przestrzeni koncepcje artystyczne i fotograficzne jej użytkowników
 
-Słowa kluczowe: Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacje brył 3D, Fizyka przestrzeni 3D
+## Słowa kluczowe
+
+Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacje brył 3D, Fizyka przestrzeni 3D
 
 # Abstract
 
-# Keywords
+## Keywords
 
 # Spis treści:
 
