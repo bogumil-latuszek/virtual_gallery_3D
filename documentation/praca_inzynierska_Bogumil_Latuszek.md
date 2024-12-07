@@ -108,7 +108,8 @@ Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?
 
 Wirtualna Galeria (WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL ES i systemu Android, dwóch kluczowych elementów dzięki którym WG może działać.  Poniżej pragnę przybliżyć historię ruchu Open Source oraz Grafiki Komputerowej, które doprowadziły do powstania OpenGL ES i systemu Android. 
 
-<img src="../ilustracje/historia_open_src_graphics3d.png" width=400></img>
+<img src="../ilustracje/historia_open_src_graphics3d.png" width=600></img>
+
 _Ilustracja 1: wykres przełomowych wydarzeń w historii grafiki komputerowej i open source – opracowanie własne_
 
 ## 2.1 Open source
