@@ -647,24 +647,6 @@ Użycie wielowątkowego procesora graficznego do zastosowania shaderów
 
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
 
-Rola shaderów
-Shadery to programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
-
-
-Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
-
-
-
-
-macierze
-obracanie i przekształcenia obiektów
-płaszczyzny i przecięcie z prostymi
-wektory normalne?
-Frustum, perspektywa, przekształcenia widoku
-dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
-
-
-
 
 4.5 Narzędzia graficzne
 
