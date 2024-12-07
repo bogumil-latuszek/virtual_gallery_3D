@@ -91,11 +91,15 @@ Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłe
 
 1.1 Cele projektowe
 
-Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykorzystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to sześcioboki które  wydzielają przestrzeń, oraz służą jako miejsca powieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
+Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykorzystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to prostopadłościany które  wydzielają przestrzeń, oraz służą jako miejsca wieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
 
 1.2 Zakres pracy
+Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, dając użytkownikowi możliwość wchodzenia z nią w interakcję, poprzez:
+- projektowanie ułożenia ścian
+- rozmieszczanie obrazów
+- zwiedzanie galerii
 
-
+1.3 Skrótowy opis zawartości rozdziałów
 W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
 Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjrzymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana (Android), językom programowania w których aplikacja będzie napisana (Java, XML), narzędziom użytym w trakcie procesu tworzenia aplikacji (IDE - Android Studio), systemowi kontroli wersji (Git), narzędziu w którym tworzone były pliki graficzne (Krita), a także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
 Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
