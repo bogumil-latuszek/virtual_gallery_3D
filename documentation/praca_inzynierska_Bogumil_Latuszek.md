@@ -86,31 +86,34 @@ Wnioski końcowe
 Bibliografia
 
 
-1. Wstęp
+# 1. Wstęp
 Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak
 
-1.1 Cele projektowe
+## 1.1 Cele projektowe
 
 Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykorzystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to prostopadłościany które  wydzielają przestrzeń, oraz służą jako miejsca wieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
 
-1.2 Zakres pracy
+## 1.2 Zakres pracy
+
 Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, dając użytkownikowi możliwość wchodzenia z nią w interakcję, poprzez:
 - projektowanie ułożenia ścian
 - rozmieszczanie obrazów
 - zwiedzanie galerii
 
-1.3 Skrótowy opis zawartości rozdziałów
+## 1.3 Skrótowy opis zawartości rozdziałów
+
 W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
 Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjrzymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana (Android), językom programowania w których aplikacja będzie napisana (Java, XML), narzędziom użytym w trakcie procesu tworzenia aplikacji (IDE - Android Studio), systemowi kontroli wersji (Git), narzędziu w którym tworzone były pliki graficzne (Krita), a także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
 Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
 Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
 
-2. Historia rozwoju narzędzi graficznych
+# 2. Historia rozwoju narzędzi graficznych
+
 Wirtualna Galeria (WG) to aplikacja umożliwiająca użytkownikowi tworzenie spersonalizowanej galerii sztuki, w której może rozmieszczać ściany, wieszać obrazy etc. Stworzenie WG nie byłoby możliwe bez biblioteki OpenGL ES i systemu Android, dwóch kluczowych elementów dzięki którym WG może działać.  Poniżej pragnę przybliżyć historię ruchu Open Source oraz Grafiki Komputerowej, które doprowadziły do powstania OpenGL ES i systemu Android. 
 
 <TUTAJ WYKRES KLUCZOWYCH MOMENTÓW NA PRZESTRZENI LAT>
 
-2.1 Open source:
+## 2.1 Open source
 
    wikipedia, https://archive.is/20120720042557/http://cm.bell-labs.com/cm/cs/who/dmr/hist.html:
 W 1965 roku MIT we współpracy z kilkoma innymi przedsiębiorstwami (w tym Bell Labs) rozpoczęło pracę nad systemem operacyjnym Multics1. Był on przeznaczony do użytku na specjalnym komputerze -  GE 645. Po pięciu latach trwania projektu Multics wciąż nie był ukończony, co zraziło kierownictwo Bell Labs do inwestowania w systemy operacyjne. Jakiś czas później grupa programistów pracujących w Bell Labs, na czele której stali poprzednio pracujący nad Multicsem Ken Thompson i Dennis Ritchie, próbowała przekonać zarząd do zakupienia nowego komputera do którego zobowiązali się napisać OS. Nie dostali jednak zgody na to przedsięwzięcie. Udało im się natomiast znaleźć w Bell Labs mało używany mini komputer PDP-7, na którym stworzyli system Unix, wzorując się na systemie Multics. Warto wspomnieć że ich system uzyskał nazwę "Unix" dopiero w 1970 r.
@@ -131,7 +134,7 @@ GNU-Linux był naprawdę przełomowy, jest rozwijany do dzisiaj i ma ogromną rz
    https://marketsplash.com/statystyki-androida/  - stąd wykres udziału Androida w rynku OS w 2023r
 Początki Androida sięgają 2003 roku, kiedy to powstał jako przedsięwzięcie Android Inc., amerykańskiej firmy technologicznej, której celem było stworzenie systemu operacyjnego dla aparatów cyfrowych. Jednak do 2004 roku projekt przeszedł znaczącą transformację, przenosząc swój nacisk na rozwój systemu operacyjnego zaprojektowanego specjalnie dla smartfonów. Dostrzegając jego potencjał, Google Inc., amerykański gigant wyszukiwarek internetowych, przejął Android Inc. w 2005 roku. Następnie zespół Android w Google podjął strategiczną decyzję o zbudowaniu swojego projektu na Linux-ie. Pierwsze komercyjne wydanie Androida miało miejsce w 2008 roku. Działająca na nim aplikacja Android Market stała się wiodącym sklepem z aplikacjami na całym świecie zarówno pod względem dostępności aplikacji, jak i liczby pobrań. W 2012 roku Google przeprowadził rebranding, konsolidując swoje aplikacje na Androida pod nazwą Google Play.
 
-2.2 Grafika komputerowa:
+## 2.2 Grafika komputerowa
 
 https://www.cadblog.pl/historia-systemow-cad/
 https://www.scan2cad.com/blog/cad/cad-evolved-since-1982/   - to jest dobrze napisane
@@ -184,149 +187,9 @@ https://en.wikipedia.org/wiki/Silicon_Graphics
 
 W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016). Ja jednak zdecydowałem się użyć w moim projekcie silnika OpenGL ES, ponieważ jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android (w przeciwieństwie do ich głównego konkurenta Apple), a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu.
 
-3 Cele i założenia projektowe
+# 3 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
 
-Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
-
-
-3.2 Wymagania funkcjonalne i pozafunkcjonalne
-
-3.2.1 Wymagania funkcjonalne:
-    • możliwość projektowania układu ścian w widoku 2D
-    • możliwość wizualizacji pomieszczenia w widoku 3D
-    • możliwość poruszania się w przestrzeni 3D
-    • automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
-    • wieszanie obrazów na ścianach
-    • zdejmowanie obrazów ze ścian
-    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
-    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
-
-3.2.2 Wymagania pozafunkcjonalne:
-
-    • Prosty i Intuicyjny interfejs użytkownika
-    • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
-
-3.2.3 Wymagania Techniczne
-    • wersje Android API: minSdk 24 targetSdk 33
-    • baza danych SQLite
-
-3.3 6.3 Analiza profilu użytkownika
-    Aplikacja będzie skierowana do:
-        • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
-        • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
-        • osób chcących zaplanować dekorację wnętrz
-        • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
-
-3.4 Przegląd istniejących rozwiązań
-
-Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
-
-3.5  Wizja realizacji projektu
-
-3.5.1 Schemat działania aplikacji - Diagramy UML
-
-<TUTAJ WYKRES sekwencji przygotowania shader-ów>
-
-Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
-
-<TUTAJ WYKRES sekwencji renderowania obiektów>
-
-Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D.
-
-<TUTAJ diagram  przypadków użycia>
-
-3.5.2 Koncepcja wyglądu UI aplikacji
-
-<TUTAJ koncept UI w widoku 2D>
-
-Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
-
-<TUTAJ koncept UI w widoku 3D>
-
-Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
-
-3.5.3 Zadania projektowe
-
-
-
-4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
-
-Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
-
-
-4.1 Android – najważniejsze cechy systemu
-
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
-
-4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
-
-https://www.bitstudios.com/blog/types-of-mobile-applications/#:~:text=Types%20of%20Mobile%20Applications%3A%20Native%2C%20Hybrid%2C%20Web%2C%20and,UI.%20...%204%204.%20Progressive%20Web%20Apps%20
-https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-for-your-app-df68ce9926fc
-
-4.2.1 Aplikacje natywne na Android
-
-Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
-
-4.2.3 Aplikacje Web UI na Android - aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
-
-
-4.2.3 Aplikacje Hybrydowe na Android - programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
-
-Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
-
-4.3 Język programowania i środowisko programistyczne
-
-Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
-
-4.4 Biblioteki i frameworki
-
-4.4.1 Biblioteki
-
-OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
-
-Bryły 3D w OpenGL ES reprezentowane są poprzez zbiór wierzchołków. Każdy wierzchołek składa się z co najmniej 3 zmiennych: położenia na osi x, y i z. 
-
-Użycie wielowątkowego procesora graficznego do zastosowania shaderów
-
-OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
-
-Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
-
-Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
-
-Rola shaderów
-Shadery to programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
-
-
-Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
-
-
-
-
-macierze
-obracanie i przekształcenia obiektów
-płaszczyzny i przecięcie z prostymi
-wektory normalne?
-Frustum, perspektywa, przekształcenia widoku
-dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
-
-
-
-
-4.5 Narzędzia graficzne
-
-Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
-
-4.6 Testowanie aplikacji
-
-4.7 Zarządzanie projektem informatycznym
-
-Kontrola Wersji – Git 
-Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
-
-# 5 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
-
-## 5.1 Wyświetlanie grafiki 3D
+## 3.1 Wyświetlanie grafiki 3D
 
 Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka promieni światła widzialnego. Jednak obliczanie trajektorii promieni świelnych, poza tymi które trafiłyby do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogłyby równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących ze źródła światła. 
 
@@ -550,7 +413,7 @@ Warto wspomnieć, że główną charakterystyką shaderów jest równoległość
 12) **Zapis do Framebuffer-a** - finalny kolor piksela wpisywany jest do Framebuffer-a. Framebuffer to bufor pamięci, który zawiera dane o obrazie, czyli informacje o każdym pikselu na ekranie.
 13) **wyświetlenie sceny 3D** - karta graficzna wyświetla na ekranie całą zawartość Framebuffer-a jako reprezentację sceny 3D.
 
-## 5.2 Obliczenia fizyki sceny 3D
+## 3.2 Obliczenia fizyki sceny 3D
 
 Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów na "ścianach galerii". W scenie 3D bryły reprezentujące "ściany galerii" to **prostopadłościany**. I tak będziemy je nazywać w dalszej części tego rozdziału.  
 Obrazy wieszane są na bocznych ścianach prostopadłościanów. Do jednej ściany może być przypisany maksymalnie jeden obraz.
@@ -669,6 +532,148 @@ Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 - 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
 - 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
 - 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja - półprosta przecina ściany znajdujące się jedna za drugą. W tej sytuacji obraz należy zawiesić na najbliższej ścianie. Jest to ściana której punkt przecięcia jest najbliżej punktu startowego półprostej.
+
+
+# 3 Cele i założenia projektowe
+
+Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
+
+
+3.2 Wymagania funkcjonalne i pozafunkcjonalne
+
+3.2.1 Wymagania funkcjonalne:
+    • możliwość projektowania układu ścian w widoku 2D
+    • możliwość wizualizacji pomieszczenia w widoku 3D
+    • możliwość poruszania się w przestrzeni 3D
+    • automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
+    • wieszanie obrazów na ścianach
+    • zdejmowanie obrazów ze ścian
+    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
+    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
+
+3.2.2 Wymagania pozafunkcjonalne:
+
+    • Prosty i Intuicyjny interfejs użytkownika
+    • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
+
+3.2.3 Wymagania Techniczne
+    • wersje Android API: minSdk 24 targetSdk 33
+    • baza danych SQLite
+
+3.3 6.3 Analiza profilu użytkownika
+    Aplikacja będzie skierowana do:
+        • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
+        • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
+        • osób chcących zaplanować dekorację wnętrz
+        • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
+
+3.4 Przegląd istniejących rozwiązań
+
+Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
+
+3.5  Wizja realizacji projektu
+
+3.5.1 Schemat działania aplikacji - Diagramy UML
+
+<TUTAJ WYKRES sekwencji przygotowania shader-ów>
+
+Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
+
+<TUTAJ WYKRES sekwencji renderowania obiektów>
+
+Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D.
+
+<TUTAJ diagram  przypadków użycia>
+
+3.5.2 Koncepcja wyglądu UI aplikacji
+
+<TUTAJ koncept UI w widoku 2D>
+
+Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
+
+<TUTAJ koncept UI w widoku 3D>
+
+Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
+
+3.5.3 Zadania projektowe
+
+
+
+4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
+
+Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
+
+
+4.1 Android – najważniejsze cechy systemu
+
+Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
+
+4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
+
+https://www.bitstudios.com/blog/types-of-mobile-applications/#:~:text=Types%20of%20Mobile%20Applications%3A%20Native%2C%20Hybrid%2C%20Web%2C%20and,UI.%20...%204%204.%20Progressive%20Web%20Apps%20
+https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-for-your-app-df68ce9926fc
+
+4.2.1 Aplikacje natywne na Android
+
+Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
+
+4.2.3 Aplikacje Web UI na Android - aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
+
+
+4.2.3 Aplikacje Hybrydowe na Android - programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
+
+Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
+
+4.3 Język programowania i środowisko programistyczne
+
+Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
+
+4.4 Biblioteki i frameworki
+
+4.4.1 Biblioteki
+
+OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
+
+Bryły 3D w OpenGL ES reprezentowane są poprzez zbiór wierzchołków. Każdy wierzchołek składa się z co najmniej 3 zmiennych: położenia na osi x, y i z. 
+
+Użycie wielowątkowego procesora graficznego do zastosowania shaderów
+
+OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+
+Manipulacja obiektami w przestrzeni 3D za pomocą macierzy
+
+Macierze to dwu-wymiarowe tablice wartości numerycznych, opisywane jako m x n gdzie m to ilość wierszy a n ilość kolumn. Mnożenie macierzy - m jednej macierzy musi być równe n w drugiej macierzy, albo innymi słowy: ilość wierszy w jednej mnożonej macierzy musi równać się ilości kolumn w drugiej macierzy. Wektor jest specjalnym rodzajem macierzy, mnożąc macierze razy wektor otrzymujemy wektor. Możemy opisać operacje translacji, skalowania oraz rotacji w postaci macierzy, jest to bardzo przydatne zwłaszcza ze względu na to, że możemy połączyć instrukcje zawarte w kilku macierzach w jedną sumaryczną macierz poprzez mnożenie tych macierzy ze sobą. Taką sumaryczną macierz wystarczy obliczyć tylko raz, po czym można nałożyć ją na wiele wektorów na raz co znacznie zmniejsza ilość potrzebnych do wykonania obliczeń.
+
+Rola shaderów
+Shadery to programy w języku C++ uruchamiane na karcie graficznej, zajmujące się obliczaniem odpowiednio: „vertex shader”- położenia vertex-ów obiektu, a „fragment shader”- koloru pikseli obiektu wyświetlanego na ekranie.
+
+
+Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury (zwany UV?).
+
+
+
+
+macierze
+obracanie i przekształcenia obiektów
+płaszczyzny i przecięcie z prostymi
+wektory normalne?
+Frustum, perspektywa, przekształcenia widoku
+dlaczego używa się 4 wymiar wektora punktu „w” podczas obliczania perspektywy – możliwość przełączania między widokami izometryczny/perspektywa
+
+
+
+
+4.5 Narzędzia graficzne
+
+Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
+
+4.6 Testowanie aplikacji
+
+4.7 Zarządzanie projektem informatycznym
+
+Kontrola Wersji – Git 
+Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
+
 
 
 6. Proces implementacji i dokumentacja techniczna
