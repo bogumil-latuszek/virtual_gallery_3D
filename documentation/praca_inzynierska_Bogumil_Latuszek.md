@@ -639,11 +639,7 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 
 (Opisać podstawowe konstrukcje biblioteki i jak one realizują rodział 3.1)
 
-OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
-
-Bryły 3D w OpenGL ES reprezentowane są poprzez zbiór wierzchołków. Każdy wierzchołek składa się z co najmniej 3 zmiennych: położenia na osi x, y i z. 
-
-Użycie wielowątkowego procesora graficznego do zastosowania shaderów
+Użycie wielowątkowego procesora graficznego
 
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
 
