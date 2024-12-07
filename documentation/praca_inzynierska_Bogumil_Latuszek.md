@@ -533,6 +533,33 @@ Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 - 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
 - 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja - półprosta przecina ściany znajdujące się jedna za drugą. W tej sytuacji obraz należy zawiesić na najbliższej ścianie. Jest to ściana której punkt przecięcia jest najbliżej punktu startowego półprostej.
 
+# 4. System Android
+
+Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych na system Android. 
+
+## 4.1 Android – najważniejsze cechy systemu
+
+Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
+
+## 4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
+
+https://www.bitstudios.com/blog/types-of-mobile-applications/#:~:text=Types%20of%20Mobile%20Applications%3A%20Native%2C%20Hybrid%2C%20Web%2C%20and,UI.%20...%204%204.%20Progressive%20Web%20Apps%20
+https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-for-your-app-df68ce9926fc
+
+### 4.2.1 Aplikacje natywne na Android
+
+Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
+
+### 4.2.3 Aplikacje Web UI na Android
+
+Aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
+
+### 4.2.3 Aplikacje Hybrydowe na Android
+
+Programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
+
+Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
+
 
 # 3 Cele i założenia projektowe
 
@@ -599,30 +626,6 @@ Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika wido
 
 
 
-4. Tworzenie aplikacji mobilnych - analiza zagadnień teoretycznych
-
-Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowania aplikacji mobilnych, jak również zawiera opis i analizę języków, frameworków i innych narzędzi wykorzystanych w projekcie aplikacji „Wirtualna Galeria”, pod względem ich przydatności w kontekście rozwoju projektu. 
-
-
-4.1 Android – najważniejsze cechy systemu
-
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
-
-4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
-
-https://www.bitstudios.com/blog/types-of-mobile-applications/#:~:text=Types%20of%20Mobile%20Applications%3A%20Native%2C%20Hybrid%2C%20Web%2C%20and,UI.%20...%204%204.%20Progressive%20Web%20Apps%20
-https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-for-your-app-df68ce9926fc
-
-4.2.1 Aplikacje natywne na Android
-
-Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
-
-4.2.3 Aplikacje Web UI na Android - aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
-
-
-4.2.3 Aplikacje Hybrydowe na Android - programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
-
-Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
 
 4.3 Język programowania i środowisko programistyczne
 
