@@ -35,47 +35,47 @@ Słowa kluczowe: Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacj
 
 [Streszczenie](#Streszczenie)
 1. [Wstęp](#1-wstęp)
-1.1 [Cele projektowe](#11-cele-projektowe)
-1.2 [Zakres pracy](#12-zakres-pracy)
-1.3 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
+1.1. [Cele projektowe](#11-cele-projektowe)
+1.2. [Zakres pracy](#12-zakres-pracy)
+1.3. [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
 2. [Historia rozwoju narzędzi graficznych](#2-historia-rozwoju-narzędzi-graficznych)
-2.1 [Open source](#21-open-source)
-2.2 [Grafika komputerowa](#22-grafika-komputerowa)
+2.1. [Open source](#21-open-source)
+2.2. [Grafika komputerowa](#22-grafika-komputerowa)
 3. [Wzory matematyczne i rozwiązania programistyczne](#3-wzory-matematyczne-i-rozwiązania-programistyczne)
-3.1 [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
-3.2 [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
+3.1. [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
+3.2. [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
 4. [System Android](#4-system-android)
-4.1 [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
-4.2 [Aplikacje mobilne na Android – typy aplikacji, proces tworzenia](#42-aplikacje-mobilne-na-android--typy-aplikacji-proces-tworzenia)
-4.2.1 [Aplikacje natywne na Android](#421-aplikacje-natywne-na-android)
-4.2.2 [Aplikacje Web UI na Android](#423-aplikacje-web-ui-na-android) 
-4.2.3 [Aplikacje Hybrydowe na Android](#423-aplikacje-hybrydowe-na-android)
+4.1. [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
+4.2. [Aplikacje mobilne na Android – typy aplikacji, proces tworzenia](#42-aplikacje-mobilne-na-android--typy-aplikacji-proces-tworzenia)
+4.2.1. [Aplikacje natywne na Android](#421-aplikacje-natywne-na-android)
+4.2.2. [Aplikacje Web UI na Android](#423-aplikacje-web-ui-na-android) 
+4.2.3. [Aplikacje Hybrydowe na Android](#423-aplikacje-hybrydowe-na-android)
 5. [Projekt Rozwiązania](#5-projekt-rozwiązania) 
-5.1 Wizja realizacji projektu
-5.2 Wymagania
-5.2.1 Wymagania funkcjonalne
-5.2.2 Wymagania pozafunkcjonalne
-5.2.3 Wymagania techniczne
-5.3 Analiza profilu użytkownika
-5.4 Przegląd istniejących rozwiązań
-5.5 Schemat działania aplikacji - Diagramy UML
-5.6 Koncepcja wyglądu UI aplikacji
-5.7 Zadania projektowe 
-5.8 Język programowania i środowisko programistyczne
+5.1. Wizja realizacji projektu
+5.2. Wymagania
+5.2.1. Wymagania funkcjonalne
+5.2.2. Wymagania pozafunkcjonalne
+5.2.3. Wymagania techniczne
+5.3. Analiza profilu użytkownika
+5.4. Przegląd istniejących rozwiązań
+5.5. Schemat działania aplikacji - Diagramy UML
+5.6. Koncepcja wyglądu UI aplikacji
+5.7. Zadania projektowe 
+5.8. Język programowania i środowisko programistyczne
   (uzasadnienie wybory Javy)
-5.9 Biblioteka OpenGL ES
+5.9. Biblioteka OpenGL ES
 6. [Implementacja](#6-implementacja)
-6.1 Wzorce Architektoniczne
-6.2 Baza Danych
-6.3 Opis Klas
-6.4 Narzędzia graficzne
-6.5 Testowanie aplikacji
-6.6 Zarządzanie projektem informatycznym
-6.7 Napotkane problemy
+6.1. Wzorce Architektoniczne
+6.2. Baza Danych
+6.3. Opis Klas
+6.4. Narzędzia graficzne
+6.5. Testowanie aplikacji
+6.6. Zarządzanie projektem informatycznym
+6.7. Napotkane problemy
 7. [Dokumentacja techniczna projektu](#7-dokumentacja-techniczna-projektu)
-7.1 Instalacja aplikacji
-7.2 Uruchomienie aplikacji i opis funkcjonalności 2D
-7.3 Opis funkcjonalności 3D
+7.1. Instalacja aplikacji
+7.2. Uruchomienie aplikacji i opis funkcjonalności 2D
+7.3. Opis funkcjonalności 3D
 [Podsumowanie projektu](#podsumowanie-projektu)
 [Wnioski końcowe](#wnioski-końcowe)
 [Bibliografia](#bibliografia)
