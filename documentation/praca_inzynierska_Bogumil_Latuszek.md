@@ -22,21 +22,19 @@ Kraków 2025 r.
 
 Streszczenie
 
-Kto z nas nie lubi zwiedzać galerii sztuki? Ta praca opisuje aplikację która pozwala użytkownikowi nie tylko zwiedzać, ale też projektować swoją własną prywatną galerię sztuki, a to wszystko na dowolnym telefonie z systemem android (w wersji 7.0 lub wyższej).
-W pierwszym rozdziale przedstawione zostały cele, zakres i streszczenie pracy
-Drugi rozdział został poświęcony na przybliżenie czytelnikowi historii powstania narzędzi/frameworków użytych w projekcie, a także powiązanych tematów
-Trzeci rozdział zawiera opis celów i założeń projektowych, wymagań funkcjonalnych, pozafunkcjonalnych i technicznych, a także analizę profilu potencjalnego użytkownika i przegląd istniejących rozwiązań. Na końcu rozdziału znajduje się wizja realizacji projektu, schemat działania aplikacji, koncepcja wyglądu UI, oraz zadania projektowe.
-Rozdział czwarty został poświęcony na omówienie zagadnień technicznych i teoretycznych.
-Ostatni, piąty rozdział, zawiera opis procesu implementacji, dokumentację techniczną, oraz instrukcję instalacji.
-Na końcu pracy znajdują się wnioski końcowe, oraz bibliografia
+Praca ta analizuje problematykę grafiki komputerowej 3D w ujęciu historycznym i algorytmicznym. Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D.
 
-Słowa kluczowe
-Wirtualna Galeria, Aplikacja mobilna, Android, Java, Open GL
+Problemem jaki rozwiązuje aplikacja jest potrzeba dostarczenia łatwo dostępnego i prostego w obsłudze programu, który umożliałby stworzenie, wyświetlanie, i rozmieszczenie obrazów w przestrzeni 3D. Odbiorcami docelowymi są projektanci galerii sztuki, oraz osoby potrzebujące narzędzia ułatwiającego wykorzystanie techniki pamięciowej - pałacu pamięci * link do opisu pałacu pamięci. 
+
+Projekt został zrealizowany jako aplikacja na system Android, napisana w językach Java i GLSL, z wykorzystaniem biblioteki graficznej OpenGL ES. W projektowaniu został  użyty język UML. Do napisania aplikacji zostały też wykorzystane wzorce projektowe.
+
+Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego posiadacza telefonu z systemem android. Dzięki swojej intuicyjności pozwala w szybki sposób zwizualizować w przestrzeni koncepcje artystyczne i fotograficzne jej użytkowników
+
+Słowa kluczowe: Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacje brył 3D, Fizyka przestrzeni 3D
 
 Abstract
 
 Keywords
-Wirtual Gallery, Mobile Application, Android, Java, Open GL
 
 Spis treści
 Streszczenie	1
