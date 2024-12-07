@@ -644,22 +644,32 @@ Użycie wielowątkowego procesora graficznego
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
 
 
-4.5 Narzędzia graficzne
+
+
+
+
+# 6. Implementacja
+
+## 6.1 Wzorce Architektoniczne
+
+## 6.2 Baza Danych
+
+## 6.3 Opis Klas
+
+## 6.4 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
 
-4.6 Testowanie aplikacji
+## 6.5 Testowanie aplikacji
 
-4.7 Zarządzanie projektem informatycznym
+## 6.6 Zarządzanie projektem informatycznym
 
 Kontrola Wersji – Git 
 Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
 
+## 6.7 Napotkane problemy
 
-
-6. Proces implementacji i dokumentacja techniczna
-
-6.1 Historia rozwoju projektu
+(przerobić poniższą historię implementacji na opis problemów napotkanych podczas implementacji)
 
 Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
     • Etap 0 „Konfiguracja Środowiska” – aby móc rozpocząć pracę w android studio musiałem najpierw wykonać kilka niezbędnych kroków. Po pierwsze musiałem dodać ścierzkę komendy adb do zmiennej środowiskowej PATH. Następnie musiałem stworzyć emulator telefonu na którym będę testował działanie aplikacji, a na koniec stworzyć nowy projekt i wybrać odpowiednią wersję sdk.
@@ -672,9 +682,7 @@ Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoj
     • Etap 7 „Sterowanie”
     • Etap 8 ostatni „Refaktoring”
 
-6.2 Etap 1…….
 
-6.3 Etap 2…..
 
 6.4 Dokumentacja techniczna projektu
 
