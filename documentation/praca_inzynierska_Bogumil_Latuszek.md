@@ -9,18 +9,13 @@ nr albumu 13132
 PROJEKT I IMPLEMENTACJA APLIKACJI MOBILNEJ „WIRTUALNA GALERIA SZTUKI”   KORZYSTAJĄCEJ  Z  BIBLOTEKI  OPENGL ES
 
 
-
-
-
-
-
 Praca inżynierska 
 napisana pod kierunkiem
 Prof. Jana Werewki
 
 Kraków 2025 r.
 
-Streszczenie
+# Streszczenie
 
 Praca ta analizuje problematykę grafiki komputerowej 3D w ujęciu historycznym i algorytmicznym. Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D.
 
@@ -32,31 +27,30 @@ Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego po
 
 Słowa kluczowe: Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacje brył 3D, Fizyka przestrzeni 3D
 
-Abstract
+# Abstract
 
-Keywords
+# Keywords
 
-Spis treści:
+# Spis treści:
 
-Streszczenie
-Spis Treści
-1. Wstęp
-1.1 Cele projektowe
-1.2 Zakres pracy
-1.3 Skrótowy opis zawartości rozdziałów
-2. Historia rozwoju narzędzi graficznych
-2.1 Open source
-2.2 Grafika komputerowa
-3. Wzory matematyczne i rozwiązania programistyczne
-3.1 Wyświetlanie grafiki 3D
-3.2 Obliczenia fizyki sceny 3D
-4. System Android
-4.1 Android – najważniejsze cechy systemu
-4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
-4.2.1 Aplikacje natywne na Android
-4.2.2 Aplikacje Web UI na Android 
-4.2.3 Aplikacje Hybrydowe na Android
-5. Projekt Rozwiązania 
+[Streszczenie](#Streszczenie)
+1. [Wstęp](#1-wstęp)
+1.1 [Cele projektowe](#11-cele-projektowe)
+1.2 [Zakres pracy](#12-zakres-pracy)
+1.3 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
+2. [Historia rozwoju narzędzi graficznych](#2-historia-rozwoju-narzędzi-graficznych)
+2.1 [Open source](#21-open-source)
+2.2 [Grafika komputerowa](#22-grafika-komputerowa)
+3. [Wzory matematyczne i rozwiązania programistyczne](#3-wzory-matematyczne-i-rozwiązania-programistyczne)
+3.1 [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
+3.2 [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
+4. [System Android](#4-system-android)
+4.1 [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
+4.2 [Aplikacje mobilne na Android – typy aplikacji, proces tworzenia](#42-aplikacje-mobilne-na-android--typy-aplikacji-proces-tworzenia)
+4.2.1 [Aplikacje natywne na Android](#421-aplikacje-natywne-na-android)
+4.2.2 [Aplikacje Web UI na Android](#423-aplikacje-web-ui-na-android) 
+4.2.3 [Aplikacje Hybrydowe na Android](#423-aplikacje-hybrydowe-na-android)
+5. [Projekt Rozwiązania](#5-projekt-rozwiązania) 
 5.1 Wizja realizacji projektu
 5.2 Wymagania
 5.2.1 Wymagania funkcjonalne
@@ -70,7 +64,7 @@ Spis Treści
 5.8 Język programowania i środowisko programistyczne
   (uzasadnienie wybory Javy)
 5.9 Biblioteka OpenGL ES
-6. Implementacja
+6. [Implementacja](#6-implementacja)
 6.1 Wzorce Architektoniczne
 6.2 Baza Danych
 6.3 Opis Klas
@@ -78,12 +72,14 @@ Spis Treści
 6.5 Testowanie aplikacji
 6.6 Zarządzanie projektem informatycznym
 6.7 Napotkane problemy
-7. Dokumentacja techniczna projektu
+7. [Dokumentacja techniczna projektu](#7-dokumentacja-techniczna-projektu)
 7.1 Instalacja aplikacji
 7.2 Uruchomienie aplikacji i opis funkcjonalności 2D
 7.3 Opis funkcjonalności 3D
-Wnioski końcowe
-Bibliografia
+[Podsumowanie projektu](#podsumowanie-projektu)
+[Wnioski końcowe](#wnioski-końcowe)
+[Bibliografia](#bibliografia)
+[Spis rysunków](#spis-rysunków)
 
 
 # 1. Wstęp
@@ -187,7 +183,7 @@ https://en.wikipedia.org/wiki/Silicon_Graphics
 
 W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016). Ja jednak zdecydowałem się użyć w moim projekcie silnika OpenGL ES, ponieważ jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android (w przeciwieństwie do ich głównego konkurenta Apple), a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu.
 
-# 3 Wzory matematyczne i rozwiązania programistyczne wykorzystane w projekcie
+# 3 Wzory matematyczne i rozwiązania programistyczne
 
 ## 3.1 Wyświetlanie grafiki 3D
 
