@@ -629,13 +629,15 @@ Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika wido
 
 
 
-4.3 Język programowania i środowisko programistyczne
+## 5.8 Język programowania i środowisko programistyczne
+
+(uzasadnić wybór Javy - OpenGL można pisać w C, C++, Javie ale na Android tylko Java)
 
 Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
 
-4.4 Biblioteki i frameworki
+## 5.9 Biblioteka OpenGL ES
 
-4.4.1 Biblioteki
+(Opisać podstawowe konstrukcje biblioteki i jak one realizują rodział 3.1)
 
 OpenGL ES - definicja brył w przestrzeni za pomocą wierzchołków
 
