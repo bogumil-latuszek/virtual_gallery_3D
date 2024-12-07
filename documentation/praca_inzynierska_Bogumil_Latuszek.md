@@ -35,47 +35,46 @@ Słowa kluczowe: Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacj
 
 [Streszczenie](#Streszczenie)
 1. [Wstęp](#1-wstęp)
-    - 1.1. [Cele projektowe](#11-cele-projektowe)
-    - 1.2. [Zakres pracy](#12-zakres-pracy)
-    - 1.3. [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
+    - 1.1 [Cele projektowe](#11-cele-projektowe)
+    - 1.2 [Zakres pracy](#12-zakres-pracy)
+    - 1.3 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
 2. [Historia rozwoju narzędzi graficznych](#2-historia-rozwoju-narzędzi-graficznych)
-    - 2.1. [Open source](#21-open-source)
-    - 2.2. [Grafika komputerowa](#22-grafika-komputerowa)
+    - 2.1 [Open source](#21-open-source)
+    - 2.2 [Grafika komputerowa](#22-grafika-komputerowa)
 3. [Wzory matematyczne i rozwiązania programistyczne](#3-wzory-matematyczne-i-rozwiązania-programistyczne)
-3.1. [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
-3.2. [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
+    - 3.1 [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
+    - 3.2 [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
 4. [System Android](#4-system-android)
-4.1. [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
-4.2. [Aplikacje mobilne na Android – typy aplikacji, proces tworzenia](#42-aplikacje-mobilne-na-android--typy-aplikacji-proces-tworzenia)
-4.2.1. [Aplikacje natywne na Android](#421-aplikacje-natywne-na-android)
-4.2.2. [Aplikacje Web UI na Android](#423-aplikacje-web-ui-na-android) 
-4.2.3. [Aplikacje Hybrydowe na Android](#423-aplikacje-hybrydowe-na-android)
+    - 4.1 [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
+    - 4.2 [Aplikacje mobilne na Android – typy aplikacji, proces tworzenia](#42-aplikacje-mobilne-na-android--typy-aplikacji-proces-tworzenia)
+    - 4.2.1 Aplikacje natywne na Android
+    - 4.2.2 Aplikacje Web UI na Android 
+    - 4.2.3 Aplikacje Hybrydowe na Android
 5. [Projekt Rozwiązania](#5-projekt-rozwiązania) 
-5.1. Wizja realizacji projektu
-5.2. Wymagania
-5.2.1. Wymagania funkcjonalne
-5.2.2. Wymagania pozafunkcjonalne
-5.2.3. Wymagania techniczne
-5.3. Analiza profilu użytkownika
-5.4. Przegląd istniejących rozwiązań
-5.5. Schemat działania aplikacji - Diagramy UML
-5.6. Koncepcja wyglądu UI aplikacji
-5.7. Zadania projektowe 
-5.8. Język programowania i środowisko programistyczne
-  (uzasadnienie wybory Javy)
-5.9. Biblioteka OpenGL ES
+    - 5.1 [Wizja realizacji projektu](#51-wizja-realizacji-projektu)
+    - 5.2 [Wymagania](#52-wymagania)
+    - 5.2.1 Wymagania funkcjonalne
+    - 5.2.2 Wymagania pozafunkcjonalne
+    - 5.2.3 Wymagania techniczne
+    - 5.3 [Analiza profilu użytkownika](#53-analiza-profilu-użytkownika)
+    - 5.4 [Przegląd istniejących rozwiązań](#54-przegląd-istniejących-rozwiązań)
+    - 5.5 [Schemat działania aplikacji - Diagramy UML](#55-schemat-działania-aplikacji---diagramy-uml)
+    - 5.6 [Koncepcja wyglądu UI aplikacji](#56-koncepcja-wyglądu-ui-aplikacji)
+    - 5.7 [Zadania projektowe](#57-zadania-projektowe) 
+    - 5.8 [Język programowania i środowisko programistyczne](#58-język-programowania-i-środowisko-programistyczne)
+    - 5.9 [Biblioteka OpenGL ES](#59-biblioteka-opengl-es)
 6. [Implementacja](#6-implementacja)
-6.1. Wzorce Architektoniczne
-6.2. Baza Danych
-6.3. Opis Klas
-6.4. Narzędzia graficzne
-6.5. Testowanie aplikacji
-6.6. Zarządzanie projektem informatycznym
-6.7. Napotkane problemy
+    - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
+    - 6.2 [Baza Danych](#62-baza-danych)
+    - 6.3 [Opis Klas](#63-opis-klas)
+    - 6.4 [Narzędzia graficzne](#64-narzędzia-graficzne)
+    - 6.5 [Testowanie aplikacji](#65-testowanie-aplikacji)
+    - 6.6 [Zarządzanie projektem informatycznym](#66-zarządzanie-projektem-informatycznym)
+    - 6.7 [Napotkane problemy](#67-napotkane-problemy)
 7. [Dokumentacja techniczna projektu](#7-dokumentacja-techniczna-projektu)
-7.1. Instalacja aplikacji
-7.2. Uruchomienie aplikacji i opis funkcjonalności 2D
-7.3. Opis funkcjonalności 3D
+    - 7.1 [Instalacja aplikacji](#71-instalacja-aplikacji)
+    - 7.2 [Uruchomienie aplikacji i opis funkcjonalności 2D](#72--uruchomienie-aplikacji-i-opis-funkcjonalności-2d)
+    - 7.3 [Opis funkcjonalności 3D](#73-opis-funkcjonalności-3d)
 [Podsumowanie projektu](#podsumowanie-projektu)
 [Wnioski końcowe](#wnioski-końcowe)
 [Bibliografia](#bibliografia)
@@ -561,37 +560,38 @@ Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, ki
 
 Poniższy rozdział poświęcony został opisowi wymagań funkcjonalnych i pozafunkcjonalnych projektu Wirtualna Galeria, analizie profilu użytkownika do którego jest on skierowany, przypadkom użycia oraz opisowi procesu powstawania aplikacji z uzasadnieniem użycia poszczególnych narzędzi i frameworków.
 
-## 5.1  Wizja realizacji projektu
+## 5.1 Wizja realizacji projektu
 
 ## 5.2 Wymagania
 
 ### 5.2.1 Wymagania funkcjonalne
 
-    • możliwość projektowania układu ścian w widoku 2D
-    • możliwość wizualizacji pomieszczenia w widoku 3D
-    • możliwość poruszania się w przestrzeni 3D
-    • automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
-    • wieszanie obrazów na ścianach
-    • zdejmowanie obrazów ze ścian
-    • aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
-    • aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
+* możliwość projektowania układu ścian w widoku 2D
+* możliwość wizualizacji pomieszczenia w widoku 3D
+* możliwość poruszania się w przestrzeni 3D
+* automatyczne zapisywanie i wczytywanie stanu aplikacji do bazy danych
+* wieszanie obrazów na ścianach
+* zdejmowanie obrazów ze ścian
+* aplikacja potrzebuje pozwolenia na odczytywanie zdjęć użytkownika
+* aplikacja wysyła użytkownikowi prośbę o pozwolenie na odczyt zdjęć z urządzenia. Jeśli użytkownik wyrazi zgodę aplikacja pozwala na wieszanie tych zdjęć na ścianach. Bez tej zgody aplikacja działa w ograniczonym zakresie - użytkownik może jedynie dodawać/usuwać puste ściany
 
 ### 5.2.2 Wymagania pozafunkcjonalne
 
-    • Prosty i Intuicyjny interfejs użytkownika
-    • Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
+* Prosty i Intuicyjny interfejs użytkownika
+* Łatwość użycia – maksymalnie 1 godzina szkolenia w celu samodzielnego wykorzystywania podstawowych funkcji
 
 ### 5.2.3 Wymagania Techniczne
 
-    • wersje Android API: minSdk 24 targetSdk 33
-    • baza danych SQLite
+* wersje Android API: minSdk 24 targetSdk 33
+* baza danych SQLite
 
 ## 5.3 Analiza profilu użytkownika
-    Aplikacja będzie skierowana do:
-        • osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
-        • osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
-        • osób chcących zaplanować dekorację wnętrz
-        • osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
+
+Aplikacja będzie skierowana do:
+* osób szukających nowego sposobu oglądania swoich kolekcji zdjęć, filmów etc.
+* osób chcących wypróbować metodę mnemotechniczną Pokój Pamięci nie wkładając w nią wielkiego wysiłku
+* osób chcących zaplanować dekorację wnętrz
+* osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
 
 ## 5.4 Przegląd istniejących rozwiązań
 
@@ -682,7 +682,7 @@ Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoj
 
 Instrukcja użytkowania
 
-# 7.1  Instalacja aplikacji
+# 7.1 Instalacja aplikacji
 
 Aby zainstalować aplikację należy:
 
