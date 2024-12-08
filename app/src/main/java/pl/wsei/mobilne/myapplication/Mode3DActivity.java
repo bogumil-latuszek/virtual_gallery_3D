@@ -12,11 +12,11 @@ import android.view.View;
 import android.content.Intent;
 import java.util.ArrayList;
 
-import pl.wsei.mobilne.myapplication.space3d.MyGLRenderer;
+import pl.wsei.mobilne.myapplication.space3d.SceneRenderer;
 
 public class Mode3DActivity extends AppCompatActivity {
-    private GLSurfaceView gLView;
-    private MyGLRenderer glRenderer;
+    private GLSurfaceView surfaceView;
+    private SceneRenderer sceneRenderer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +27,11 @@ public class Mode3DActivity extends AppCompatActivity {
         // retrieve walls data
         ArrayList<String> walls = intent.getStringArrayListExtra("walls");
 
-        glRenderer = new MyGLRenderer(getApplicationContext(), walls);
-        gLView = new MyGLSurfaceView(this, glRenderer);
+        sceneRenderer = new SceneRenderer(getApplicationContext(), walls);
+        surfaceView = new Surface3DView(this, sceneRenderer);
 
         //according to the book, we can add touch events here
-        gLView.setOnTouchListener(new View.OnTouchListener() {
+        surfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event != null) {
@@ -48,31 +48,31 @@ public class Mode3DActivity extends AppCompatActivity {
                             -((event.getY() / (float) v.getHeight()) * 2 - 1);
 
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        gLView.queueEvent(new Runnable() {
+                        surfaceView.queueEvent(new Runnable() {
                             @Override
                             public void run() {
                                 //Log.d("event:", "action down");
 
-                                glRenderer.handleTouchPress(
+                                sceneRenderer.handleTouchPress(
                                         normalizedX, normalizedY);
                             }
                         });
                     } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                        gLView.queueEvent(new Runnable() {
+                        surfaceView.queueEvent(new Runnable() {
                             @Override
                             public void run() {
                                 Log.d("event:", "action move");
-                                glRenderer.handleTouchDrag(
+                                sceneRenderer.handleTouchDrag(
                                         normalizedX, normalizedY);
                             }
                         });
                     }
                     else if (event.getAction() == MotionEvent.ACTION_UP) {
-                        gLView.queueEvent(new Runnable() {
+                        surfaceView.queueEvent(new Runnable() {
                             @Override
                             public void run() {
                                 Log.d("event:", "action move");
-                                glRenderer.handleTouchRelease(
+                                sceneRenderer.handleTouchRelease(
                                         normalizedX, normalizedY);
                             }
                         });
@@ -83,6 +83,6 @@ public class Mode3DActivity extends AppCompatActivity {
                 }
             }
         });
-        setContentView(gLView);
+        setContentView(surfaceView);
     }
 }

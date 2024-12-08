@@ -1,10 +1,10 @@
 @startuml Prepare OpenGL
 actor       Android       as Android1 #green
 
-Android1 -> MyGLRenderer: new
-activate MyGLRenderer
+Android1 -> SceneRenderer: new
+activate SceneRenderer
 group Load OpenGL shaders
-MyGLRenderer -> TextResourceReader: readTextFileFromResource(color_vertex_shader)
+SceneRenderer -> TextResourceReader: readTextFileFromResource(color_vertex_shader)
 note over TextResourceReader
 uniform mat4 u_Matrix;
 attribute vec4 a_Position;
@@ -13,8 +13,8 @@ void main()
     gl_Position = u_Matrix * a_Position;
 }
 end note
-TextResourceReader -> MyGLRenderer: vertexShaderCode
-MyGLRenderer -> TextResourceReader: readTextFileFromResource(color_fragment_shader)
+TextResourceReader -> SceneRenderer: vertexShaderCode
+SceneRenderer -> TextResourceReader: readTextFileFromResource(color_fragment_shader)
 note over TextResourceReader #aqua
 uniform vec4 u_Color;
 void main()
@@ -22,14 +22,14 @@ void main()
     gl_FragColor = u_Color;
 }
 end note
-TextResourceReader -> MyGLRenderer: fragmentShaderCode
+TextResourceReader -> SceneRenderer: fragmentShaderCode
 
 end
 
-Android1 -> MyGLRenderer: onSurfaceCreated
+Android1 -> SceneRenderer: onSurfaceCreated
 
 group Compile shaders to be run at GPU
-MyGLRenderer -> ShaderHelper: buildProgram(vertexShaderCode, fragmentShaderCode)
+SceneRenderer -> ShaderHelper: buildProgram(vertexShaderCode, fragmentShaderCode)
 
 group Compile Vertex shader
 ShaderHelper -> GLES20: glCreateShader
@@ -51,18 +51,18 @@ GLES20 -> GPU: programToRun
 GLES20 -> ShaderHelper: programObjectId
 end
 
-ShaderHelper -> MyGLRenderer: programObjectId
+ShaderHelper -> SceneRenderer: programObjectId
 
 end
 
 group Retrieve GPU "address" of shader variables
 
-MyGLRenderer -> GLES20: glGetAttribLocation(programObjectId, a_Position)
-GPU -> MyGLRenderer: aPositionLocation
-MyGLRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Matrix)
-GPU -> MyGLRenderer: uMatrixLocation
+SceneRenderer -> GLES20: glGetAttribLocation(programObjectId, a_Position)
+GPU -> SceneRenderer: aPositionLocation
+SceneRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Matrix)
+GPU -> SceneRenderer: uMatrixLocation
 
-MyGLRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Color)
-GPU -> MyGLRenderer: uColorLocation
+SceneRenderer -> GLES20: glGetUniformLocation(programObjectId, u_Color)
+GPU -> SceneRenderer: uColorLocation
 end
 @enduml

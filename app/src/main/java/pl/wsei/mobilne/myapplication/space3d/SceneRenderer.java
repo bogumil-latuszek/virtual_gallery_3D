@@ -26,11 +26,11 @@ import pl.wsei.mobilne.myapplication.space3d.geometry.PointOnFace;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Ray;
 import pl.wsei.mobilne.myapplication.space3d.geometry.Vector3D;
 
-public class MyGLRenderer implements GLSurfaceView.Renderer {
+public class SceneRenderer implements GLSurfaceView.Renderer {
 
     private SQLiteDatabase database;
 
-    public MyGLRenderer(Context context, ArrayList<String> wallsCoordinates){
+    public SceneRenderer(Context context, ArrayList<String> wallsCoordinates){
         this.appContext = context;
         dbHelper = new DatabaseHelper(context);
         this.database = dbHelper.getReadableDatabase();

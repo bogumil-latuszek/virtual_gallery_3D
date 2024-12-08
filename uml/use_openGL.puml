@@ -1,14 +1,14 @@
 @startuml Prepare OpenGL
 actor       Android       as Android1 #green
-participant MyGLRenderer as MyGLRenderer
+participant SceneRenderer as SceneRenderer
 participant Cuboid as Cuboid
 participant VertexArray as VertexArray
 participant GLES20 as GLES20
 participant GPU as GPU #99FF99
 
-Android1 -> MyGLRenderer: onSurfaceCreated
-activate MyGLRenderer
-MyGLRenderer -> Cuboid: rebuild from DB info of given wall
+Android1 -> SceneRenderer: onSurfaceCreated
+activate SceneRenderer
+SceneRenderer -> Cuboid: rebuild from DB info of given wall
 Cuboid -> VertexArray: take 8 vertices (float x,y,z)
 VertexArray -> VertexArray: allocate byte buffer for vertices
 VertexArray -> VertexArray: store vertices in buffer
@@ -23,13 +23,13 @@ end note
 Cuboid -> Cuboid: allocate byte buffer for vertex indexes
 Cuboid -> Cuboid: store vertex indexes in buffer
 
-Android1 -> MyGLRenderer: onDrawFrame
+Android1 -> SceneRenderer: onDrawFrame
 
 
-MyGLRenderer -> GLES20: glUseProgram(programObjectId)
+SceneRenderer -> GLES20: glUseProgram(programObjectId)
 GLES20 -> GPU: select programToRun
 
-MyGLRenderer -> Cuboid: draw(aPositionLocation,\n          uColorLocation,\n          uMatrixLocation,\n          viewProjectionMatrix)
+SceneRenderer -> Cuboid: draw(aPositionLocation,\n          uColorLocation,\n          uMatrixLocation,\n          viewProjectionMatrix)
 group prepare DataSource for "attribute" variable of shader
 Cuboid -> VertexArray: setVertexAttribPointer(aPositionLocation)
 VertexArray -> GLES20: glVertexAttribPointer(aPositionLocation,\n                                    vertices buffer)
