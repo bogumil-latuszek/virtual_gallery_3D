@@ -610,6 +610,16 @@ Na poniższym wykresie przedstawiony został proces stworzenia "programu" dla Op
 
 _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 
+1. Funkcja readTextFileFromResource()  wczytuje kod shadera z zasobów (katalogu Resources) i konwertuje go na string.
+2. Funkcja CompileVertexShader() ?
+2. Funkcja glCreateProgram() tworzy "program"
+3. Funkcja glAttachShader() dodaje ?
+4. Funkcja glLinkProgram() łączy ?
+
+
+
+
+
 Kod shaderów jest uruchamiany na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym. funkcja compileShader(), po otrzymaniu kodu źródłowego shadera, kompiluje go dla procesora graficznego, po czym zwraca numer ID przydzielony temu shaderowi. Numer ID shadera jest rozpoznawany przez funkcje biblioteki OpenGL ES, i służy do wskazania jakiego shadera chcemy użyć podczas wyświetlania konkretnej bryły. 
 
 Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
