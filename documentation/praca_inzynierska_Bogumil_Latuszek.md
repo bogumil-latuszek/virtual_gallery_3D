@@ -604,31 +604,33 @@ Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w m
 
 ## 5.5 Schemat działania aplikacji - Diagramy UML
 
+Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
+W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
 Na poniższym wykresie przedstawiony został proces stworzenia "programu" dla OpenGL ES w aplikacji "Wirtualna Galeria"
 
 <img src="../ilustracje/uml_sequence_shaders.svg" width=600></img>
 
 _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 
+
 1. Funkcja readTextFileFromResource()  wczytuje kod shadera z zasobów (katalogu Resources) i konwertuje go na string.
-2. Funkcja CompileVertexShader() ?
-2. Funkcja glCreateProgram() tworzy "program"
-3. Funkcja glAttachShader() dodaje ?
-4. Funkcja glLinkProgram() łączy ?
+2. Funkcja CompileVertexShader() tworzy shader z przekazanego kodu źródłowego w formacie string:
+- glCreateShader tworzy obiekt shader (zwracając handler do niego)
+- glShaderSource przekazuje do powstałego obiektu (wskazanego poprzez podanie handlera) kod źródłowy 
+- glCompileShader kompiluje kod źródłowy wewnątrz wskazanego obiektu shader (wskazanego poprzez podanie handlera)
+3. Funkcja glCreateProgram() tworzy "program", czyli obiekt przechowujący informację o tym jakiego vertex shadera i fragment shadera użyć w danym momencie.
+4. Funkcja glAttachShader() dodaje shader do programu.
+5. Funkcja glLinkProgram() weryfikuje poprawność programu:
+- to czy program posiada vertex shader i fragment shader
+- sprawdzana jest zgodność vertex shadera i fragment shadera. Przykładowo, czy output vertex shadera odpowiada inputowi fragment shadera.
+Jeśli uzna że program jest poprawny, od tej pory będzie można go używać w procesie wyświetlania sceny. Aktywacja poprawnie "przyłączonego" programu zachodzi poprzez wywołanie funkcji glUseProgram().
 
-
-
-
-
-Kod shaderów jest uruchamiany na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym. funkcja compileShader(), po otrzymaniu kodu źródłowego shadera, kompiluje go dla procesora graficznego, po czym zwraca numer ID przydzielony temu shaderowi. Numer ID shadera jest rozpoznawany przez funkcje biblioteki OpenGL ES, i służy do wskazania jakiego shadera chcemy użyć podczas wyświetlania konkretnej bryły. 
-
-Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie przygotowania shaderów do użycia.
 
 <img src="../ilustracje/uml_sequence_render_objects.svg" width=600></img>
 
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
-Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D.
+Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D
 
 <img src="../ilustracje/uml_use_cases.svg" width=600></img>
 
