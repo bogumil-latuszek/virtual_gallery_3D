@@ -27,7 +27,7 @@ Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego po
 
 ## Słowa kluczowe
 
-Grafika 3D, Open Source, Android, Java, OpenGL ES, transformacje brył 3D, Fizyka przestrzeni 3D
+Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transformacje brył 3D, Fizyka przestrzeni 3D
 
 # Abstract
 
