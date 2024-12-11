@@ -625,6 +625,12 @@ _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 - sprawdzana jest zgodność vertex shadera i fragment shadera. Przykładowo, czy output vertex shadera odpowiada inputowi fragment shadera.
 Jeśli uzna że program jest poprawny, od tej pory będzie można go używać w procesie wyświetlania sceny. Aktywacja poprawnie "przyłączonego" programu zachodzi poprzez wywołanie funkcji glUseProgram().
 
+Następnie należy wskazać skąd będą przekazywane argumenty do programu. Zmienne wejściowe dla programu są określone w vertex shaderze. Dzielą się na: 
+- attribute - zbiór danych, np. lista kolorów dla wierzchołków bryły. 
+- uniform - jedna wartość dla wszystkich wierzchołków, np. Macierz transformacji
+1. funkcja glGetAttribLocation() zwraca handler do zmienne wejściowej typu attribute w programie.
+2. funkcja glGetUniformLocation() zwraca handler do zmienne wejściowej typu uniform w programie.
+
 
 <img src="../ilustracje/uml_sequence_render_objects.svg" width=600></img>
 
