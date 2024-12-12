@@ -164,7 +164,7 @@ public class SceneRenderer implements GLSurfaceView.Renderer {
         programObjectId = ShaderHelper.buildProgram(vertexShaderCode, fragmentShaderCode);
         textureProgramObjectId = ShaderHelper.buildProgram(textureVertexShaderCode, textureFragmentShaderCode);
 
-        // retrieve "location" of "shaders variables" inside OpenGL // co znaczą te literki_nazwa?
+        // retrieve "location" of "shaders variables" from program // co znaczą te literki_nazwa?
         uColorLocation = GLES20.glGetUniformLocation(programObjectId, U_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programObjectId, A_POSITION);
         uMatrixLocation = GLES20.glGetUniformLocation(programObjectId, U_MATRIX);
