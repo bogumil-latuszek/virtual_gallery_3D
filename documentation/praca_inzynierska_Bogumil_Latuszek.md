@@ -632,11 +632,32 @@ Następnie należy wskazać skąd będą przekazywane argumenty do programu. Zmi
 2. funkcja glGetUniformLocation() zwraca handler do zmienne wejściowej typu uniform w programie.
 
 
+Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastosowaniem stworzonego uprzednio "programu":
+
 <img src="../ilustracje/uml_sequence_render_objects.svg" width=600></img>
 
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
-Powyższy wykres przedstawia interakcje pomiędzy poszczególnymi komponentami aplikacji w sekwencji w procesie wyświetlania obiektów 3D
+1. Podczas wczytywania sceny, w funkcji onSurfaceCreated(), tworzone są obiekty zwane "ścianami". Wewnątrz każdego z nich zawarty jest zbiór wierzchołków, definiujących kształt tej bryły.
+2. Następnie pobierane są handlery do zmiennych "programu".(to już było opisane wcześniej)
+3. Podczas wyświetlania sceny, w funkcji onDrawFrame:
+ustawienie atrybutu:
+
+najpierw ustawiamy pozycję startową buffera, poprzez użycie funkcji setVertexAttribPointer().
+Funkcja glVertexAttribPointer() łączy handler do zmiennej "programu" typu atrybut z podanym bufforem.
+atrybut jest "aktywowany" przez GLES20.glEnableVertexAttribArray(attributeLocation);
+        floatBuffer.position(dataOffset);
+        // tell OpenGL where to find data for our attribute pointed via attributeLocation
+        GLES20.glVertexAttribPointer(attributeLocation, componentCount, GLES20.GL_FLOAT,
+                false, stride, floatBuffer);
+        // we’ve linked our data to the attribute, we need to enable the attribute
+        GLES20.glEnableVertexAttribArray(attributeLocation);
+ustawienie uniformu:
+ GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
+ GLES20.glUniform4f(uColorLocation, edgeColor[0], edgeColor[1], edgeColor[2], 1.0f);
+ 
+Po połączeniu wszystkich zmiennych "programu" z buforami, można w końcu użyć "programu" do wyświetlenia bryły.
+funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysyła ją do framebuffera
 
 <img src="../ilustracje/uml_use_cases.svg" width=600></img>
 
