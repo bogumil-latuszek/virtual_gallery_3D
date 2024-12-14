@@ -643,19 +643,24 @@ _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 3. Podczas wyświetlania sceny, w funkcji onDrawFrame:
 ustawienie atrybutu:
 
-najpierw ustawiamy pozycję startową buffera, poprzez użycie funkcji setVertexAttribPointer().
-Funkcja glVertexAttribPointer() łączy handler do zmiennej "programu" typu atrybut z podanym bufforem.
-atrybut jest "aktywowany" przez GLES20.glEnableVertexAttribArray(attributeLocation);
+najpierw ustawiamy pozycję startową buffera, poprzez użycie funkcji `setVertexAttribPointer()`.
+Funkcja `glVertexAttribPointer()` łączy handler do zmiennej "programu" typu atrybut z podanym bufforem.
+atrybut jest "aktywowany" przez `GLES20.glEnableVertexAttribArray(attributeLocation);`
+
         floatBuffer.position(dataOffset);
         // tell OpenGL where to find data for our attribute pointed via attributeLocation
         GLES20.glVertexAttribPointer(attributeLocation, componentCount, GLES20.GL_FLOAT,
                 false, stride, floatBuffer);
         // we’ve linked our data to the attribute, we need to enable the attribute
         GLES20.glEnableVertexAttribArray(attributeLocation);
+
 ustawienie uniformu:
- GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
- GLES20.glUniform4f(uColorLocation, edgeColor[0], edgeColor[1], edgeColor[2], 1.0f);
- 
+
+```
+   GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
+   GLES20.glUniform4f(uColorLocation, edgeColor[0], edgeColor[1], edgeColor[2], 1.0f);
+```
+
 Po połączeniu wszystkich zmiennych "programu" z buforami, można w końcu użyć "programu" do wyświetlenia bryły.
 funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysyła ją do framebuffera
 
