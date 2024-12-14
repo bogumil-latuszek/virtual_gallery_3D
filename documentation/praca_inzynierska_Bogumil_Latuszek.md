@@ -45,6 +45,9 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 2.2 [Grafika komputerowa](#22-grafika-komputerowa)
 3. [Wzory matematyczne i rozwiązania programistyczne](#3-wzory-matematyczne-i-rozwiązania-programistyczne)
     - 3.1 [Wyświetlanie grafiki 3D](#31-wyświetlanie-grafiki-3d)
+    - 3.1.1 Transformacje obiektów podczas wyświetlania sceny
+    - 3.1.2 Implementacja obliczeń macierzowych w grafice 3D
+    - 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D
     - 3.2 [Obliczenia fizyki sceny 3D](#32-obliczenia-fizyki-sceny-3d)
 4. [System Android](#4-system-android)
     - 4.1 [Android – najważniejsze cechy systemu](#41-android--najważniejsze-cechy-systemu)
@@ -219,7 +222,7 @@ Przyjrzymy się obiektom zawartym w scenie. Każdy z nich składa się z następ
    - zbiór kolorów każdego wierzchołka - gdy kolor bryły to gradient kolorów przypisanych do wierzchołków
    - zbiór współrzędnych na teksturze dla każdego wierzchołka - jeśli została użyta tekstura.
 
-### Jak wyglądają transformacje obiektów podczas wyświetlania sceny?
+### 3.1.1 Transformacje obiektów podczas wyświetlania sceny
 
 Rozmowę o wyświetlaniu grafiki komputerowej należy rozpocząć od wyjaśnienia roli macierzy. Macierze transformują wektory (wierzchołki). Transformacja zachodzi poprzez pomnożenie wektora przez macierz. Jest to główna i najważniejsza rola macierzy w matematyce przestrzeni 3D. Mówimy o operacjach macierzowych w kontekście równoległości obliczeniowej, ponieważ najczęściej ta sama macierz jest użyta do transformacji wielu wektorów. 
 
@@ -383,7 +386,7 @@ Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania te
 
 Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy więcej niż jeden fragment znajduje się w tych samych koordynatach **(x,y)**, trzecia wartość **z** pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
 
-### Implementacja obliczeń macierzowych w grafice 3D
+### 3.1.2 Implementacja obliczeń macierzowych w grafice 3D
 
 Mnożenie macierzy i wektorów jest łatwe do zrównoleglenia. 
 Dlatego używamy do tego procesorów graficznych.
@@ -396,7 +399,7 @@ Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade",
 
 Warto wspomnieć, że główną charakterystyką shaderów jest równoległość obliczeń w nich zawartych. To właśnie z tego powodu shadery mają być w zamyśle uruchamiane na procesorze graficznym, ponieważ architektura GPU pozwala na prowadzenie wielu równoległych obliczeń na raz.
 
-#### Pipeline, czyli kolejne etapy wyświetlania sceny 3D:
+### 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D
 
 1) **Przekazanie argumentów** - do Vertex Shader-a przekazujemy zbiór wierzchołków i ostateczną (sumaryczną) macierzy transformacji. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
 2) **Vertex shader** - mnoży każdy z przekazanych wierzchołków przez macierz ostatecznej transformacji, przekształcając je do przestrzeni ucięcia.
@@ -635,13 +638,16 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 
 ## 5.9 Biblioteka OpenGL ES
 
+OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+Pisanie programów w OpenGL ES wymaga zrozumienia jego specyficznych konceptów. Aplikacja wykorzystująca bibiotekę OpenGL ES działa równocześnie na CPU i GPU. Część aplikacji działająca na CPU musi móc się porozumieć z częścią działającą na GPU. Rolę pośrednika pełni bibioteka OpengGL ES. To ona wysyła program do uruchomienia na GPU, i koordynuje przesyłanie danych. 
+
 Podstawowe koncepty biblioteki:
 
 * Specyficzne przekazywanie danych między CPU i GPU:
    * vertex shader
    * fragment shader
    * koncept "program"
-   * atrybuty i uniformy
+   * atrybuty i uniformy - dane wejściowe shaderów
    * struktura danych opisująca bryłę
    * bufory - Vertex Buffer Object
    * przekazywanie wartości do atrybutów i uniformów
@@ -655,11 +661,76 @@ Podstawowe koncepty biblioteki:
 
 (jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
 
-Użycie wielowątkowego procesora graficznego
+## 5.9.1 Shadery
 
-OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+Shadery ( TODO: wstawić odnośnik do 3.1.2) w OpenGL ES są pisane w języku GLSL (OpenGL Shading Language). Poniżej pokazujemy przykład:
 
-## 5.9.1 Przekazywanie danych między CPU i GPU - Diagramy UML
+Vertex shader:
+
+```
+uniform mat4 u_Matrix;
+
+attribute vec4 a_Position;
+void main()                    
+{
+    gl_Position = u_Matrix * a_Position;
+}
+```
+Fragment shader:
+
+```
+uniform vec4 u_Color;
+void main()
+{
+    gl_FragColor = u_Color;
+}
+```
+OpenGL ES kompiluje shadery i łączy je  (vertex shader i fragment shader) w jeden "program". Przedstawiono to na diagramie sekwencji poniżej.
+
+## 5.9.2 Dane wejściowe Shaderów
+
+Dane wejściowe shaderów dzielą się na:
+Attribute: Dane specyficzne dla każdego wierzchołka (np. pozycja).
+Uniform: Dane wspólne dla wszystkich wierzchołków (np. macierze transformacji, kolor).
+
+
+## 5.9.3 Struktura danych opisująca bryłę
+
+Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wierzchołków definiujących kształt bryły. Nazwijmy ją "Vertex Array". Każdy wierzchołek składa się z trzech zmiennych `(x,y,z)`. OpenGL ES wymaga określenia metadanych opisujących wierzchołki: ilości bajtów na każdą zmienną, kolejności bajtów w pamięci (ang. byte order) oraz z ilu zmiennych składa się wierzchołek. Tak opisany "Vertex Array" tworzy ciągły obszar pamięci, który jako całość przesyłany jest do GPU. Dzięki metadanym GPU potrafi odnaleźć kolejne wierzchołki w przesłanym buforze i użyć wierzchołka jako wartości atrybutu `a_Position` w powyższym shaderze.
+
+Znaczenie wierzchołków zawartych w buforze określane jest dopiero na etapie rysowania. Jeśli np. użyjemy funkcji `glDrawElements(GL_TRIANGLES, ...)` to znaczy, że będziemy iterować po buforze pobierając po 3 wierzchołki. Kolejne 3 wierzchołki opisują pojedynczy trójkąt. Ściana bryły będąca prostokątem wymaga zatem 6 wierzchołków. Jeżeli natomiast użyjemy `glDrawElements(GL_LINES, ...)` to znaczy, że będziemy iterować po buforze pobierając po 2 wierzchołki i rysować na ich podstawie proste odcinki.
+
+OpenGL ES rysuje całość grafiki korzystając z 3 podstawowych prymitywów:
+* punktu - `glDrawElements(GL_POINTS, ...)`
+* linii (odcinka) - `glDrawElements(GL_LINES, ...)`
+* trójkąta - `glDrawElements(GL_TRIANGLES, ...)`
+
+Kolejnym elementem optymalizacji jest "Index Array". Możemy mieć bowiem sytuację gdy te same wierzchołki są użyte do narysowania wielu prymitywów. Np. wierzchołki opisujące prostokąt (2 trójkąty, 6 wierzchołków) mogą też opisać krawędź tego prostokąta (4 odcinki, 8 wierzchołków). Ale możemy też opisać te prymitywy używając tylko 4 wierzchołków oraz indeksów tych wierzchołków:
+
+```
+float[] vertices = {
+    // x     y      z
+    -1.0f, -2.0f,  1.0f,  // Bottom-left
+     1.0f, -2.0f,  1.0f,  // Bottom-right
+     1.0f,  2.0f,  1.0f,  // Top-right
+    -1.0f,  2.0f,  1.0f,  // Top-left
+};
+
+short[] rectFaceIndices = {
+    0, 1, 2,  // Rectangle face, triangle 1
+    2, 3, 0,  // Rectangle face, triangle 2
+};
+
+short[] rectEdgeIndices = {
+    0, 3,  // Left edge, line 1
+    3, 2,  // Top edge, line 2
+    2, 1,  // Right edge, line 3
+    1, 0,  // Bottom edge, line 4
+};
+```
+OpenGL umożliwia rysowanie prymitywów zarówno bezpośrednio na bazie listy wierzchołków jak i na bazie indeksów w uprzednio zdefiniowanym buforze wierzchołków.
+
+## 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
