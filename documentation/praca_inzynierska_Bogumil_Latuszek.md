@@ -746,7 +746,54 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ### 5.9.5 Macierze w OpenGL ES
 
-#### Macierz projekcji
+Zgodnie z opisem matematyki macierzy w rozdziale 3 OpenGL ES operuje na macierzach 4x4. 
+Wartości w tych macierzach są liczbami rzeczywistymi. Macierze definiujemy:
+* w części kodu uruchamianej na CPU (Java) jako tablicę 16 wartości float
+  ```
+  float[] viewMatrix = new float[16];
+  ```
+* w shadarach uruchamianych na GPU (GLSL) jako zmienną typu macierzowego o wymiarze 4
+  ```
+  uniform mat4 u_Matrix;
+  ```
+
+Mnożenie macierzy w kodzie Shaderów jest intuicyjne - jest ono wbudowane w składnię języka:
+```
+uniform mat4 u_Matrix;
+attribute vec4 a_Position;
+gl_Position = u_Matrix * a_Position;
+```
+natomiast na CPU wymaga ono następującego kodu w języku Java:
+```
+import android.opengl.Matrix;
+
+Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
+```
+Każda z powyższych macierzy to `float[16]`. 
+Wejściowe macierze to `viewMatrix` i `projectionMatrix` a wynik ich mnożenia zostanie wstawiony do macierzy `viewProjectionMatrix`.
+
+Biblioteka obliczeń macierzowych dostarcza cały zestaw funkcji transformujących macierze:
+```
+Matrix.setIdentityM(modelMatrix, 0);
+Matrix.translateM(modelMatrix,0, dx, dy, dz);
+Matrix.scaleM(modelMatrix,0,width,height,length);
+Matrix.rotateM(viewMatrix, 0, Y_rotation, 0f, 1f, 0f);
+Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
+```
+#### Macierz View (kamery)
+
+Zazwyczaj wyliczana jest z pozycji i obrotu kamery względem współrzędnych świata.
+Ta pozycja i obrót to również macierze. 
+Ich wartości mogą być albo wyliczone ze zmiennych podanych jawnie (typu `camera_angle = 30.0`)
+albo wyliczone na bazie interakcji z jakimiś elementami interface-u jak np. opisana poniżej metoda `handleTouchDrag()`.
+Mając pozycję kamery i jej obrót opisane macierzami możemy wyliczyć macierz View:
+```
+Matrix.multiplyMM(viewMatrix, 0, cameraRotationMatrix,0, cameraTranslationMatrix,0);
+```
+Macierz ta powinna być przeliczana w każdej klatce renderowanej sceny gdyż jest bardzo zmienna.
+Zakładamy bowiem ciągłe "poruszanie" się w obrębie wyświetlanej sceny 3D realizowane właśnie jako zmiana ustawień kamery. 
+
+#### Macierz Projekcji
 
 Ustawiana jest w takim miejscu kodu w którym mamy dostęp do współrzędnych View. 
 By poprawnie normalizować wspołrzędne macierz projekcji musi bowiem znać proporcje View.
@@ -815,9 +862,8 @@ Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm koliz
 * w reakcji na nie wywołać metodę `handleTouchDrag()` rozszerzonej implementacji Render-a opisane poniżej
 
 Klasa implementująca interface `Renderer` może go rozszerzyć o metodę `handleTouchDrag()`
-* w niej wykorzystać odwróconą macierz viewProjection do detekcji kolizji półprostej wychodzącej z punktu dotknięcia wgłąb sceny 3D z bryłami wyświetlonymi w tej scenie
+* w niej wykorzystać odwróconą macierz Widoku-Projekcji (`invertedViewProjectionMatrix`) do detekcji kolizji półprostej wychodzącej z punktu dotknięcia wgłąb sceny 3D z bryłami wyświetlonymi w tej scenie
 * można też wykorzystać punkt dotknięcia do sterowania wirtualną kamerą (zbliżenia, oddalenia, obroty) realizowanego jako modyfikacja macierzy View
-
 
 ### 5.9.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
