@@ -636,10 +636,24 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 ## 5.9 Biblioteka OpenGL ES
 
 Podstawowe koncepty biblioteki:
-* Specyficzne przekazywanie danych między CPU i GPU - koncept "program"; shader-y
-* ...
 
-(Opisać podstawowe konstrukcje biblioteki i jak one realizują rodział 3.1)
+* Specyficzne przekazywanie danych między CPU i GPU:
+   * vertex shader
+   * fragment shader
+   * koncept "program"
+   * atrybuty i uniformy
+   * struktura danych opisująca bryłę
+   * bufory - Vertex Buffer Object
+   * przekazywanie wartości do atrybutów i uniformów
+* tekstury i mapowanie UV
+* dostępne prymitywy - punkt, linia, trójkąt
+* macierze w OpenGL ES
+* ustawianie Viewport-u
+* implementacja interface-u GLSurfaceView.Renderer - view rysowane dynamicznie
+* realizacja "Face Culling"
+* realizacja "Deph testing"
+
+(jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
 
 Użycie wielowątkowego procesora graficznego
 
@@ -651,7 +665,7 @@ Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej fun
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
 Na poniższym wykresie przedstawiony został proces stworzenia "programu" dla OpenGL ES w aplikacji "Wirtualna Galeria"
 
-<img src="../ilustracje/uml_sequence_shaders.svg" width=600></img>
+<img src="../ilustracje/uml_sequence_shaders.svg" ></img>
 
 _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 
@@ -677,7 +691,7 @@ Następnie należy wskazać skąd będą przekazywane argumenty do programu. Zmi
 
 Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastosowaniem stworzonego uprzednio "programu":
 
-<img src="../ilustracje/uml_sequence_render_objects.svg" width=600></img>
+<img src="../ilustracje/uml_sequence_render_objects.svg"></img>
 
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
