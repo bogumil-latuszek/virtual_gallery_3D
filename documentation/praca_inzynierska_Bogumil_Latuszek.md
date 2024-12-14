@@ -71,6 +71,7 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 5.9.1 Shadery
     - 5.9.2 Dane wejściowe Shaderów
     - 5.9.3 Struktura danych opisująca bryłę
+    - 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
     - 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
 6. [Implementacja](#6-implementacja)
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
@@ -653,7 +654,7 @@ Podstawowe koncepty biblioteki:
    * atrybuty i uniformy - dane wejściowe shaderów
    * struktura danych opisująca bryłę
    * bufory - Vertex Buffer Object, Index Buffer Object
-   * przekazywanie wartości do atrybutów i uniformów
+   * przekazywanie wartości do atrybutów i uniformów Shadera
 * tekstury i mapowanie UV
 * dostępne prymitywy - punkt, linia, trójkąt
 * macierze w OpenGL ES
@@ -732,6 +733,13 @@ short[] rectEdgeIndices = {
 };
 ```
 OpenGL umożliwia rysowanie prymitywów zarówno bezpośrednio na bazie listy wierzchołków jak i na bazie indeksów w uprzednio zdefiniowanym buforze wierzchołków.
+
+## 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
+
+Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programista OpenGL musi jeszcze wskazać który bufor ma zostać użyty jako źródło danych dla konkretnego atrybutu Shader-a. Sekwencja tego powiązania jest następująca:
+1. pobranie uchwytu (ang. handle) do atrybutu: `a_PositionLocation = glGetAttribLocation(programObjectId, a_Position)`
+2. powiązanie bufora z atrybutem: `glVertexAttribPointer(a_PositionLocation, vertices)`
+3. aktywacja atrybutu: `glEnableVertexAttribArray(aPositionLocation)`
 
 ## 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
 
