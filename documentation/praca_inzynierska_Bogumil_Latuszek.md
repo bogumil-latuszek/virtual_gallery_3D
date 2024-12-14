@@ -68,7 +68,10 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 5.7 [Zadania projektowe](#57-zadania-projektowe) 
     - 5.8 [Język programowania i środowisko programistyczne](#58-język-programowania-i-środowisko-programistyczne)
     - 5.9 [Biblioteka OpenGL ES](#59-biblioteka-opengl-es)
-    - 5.9.1 Przekazywanie danych między CPU i GPU - Diagramy UML
+    - 5.9.1 Shadery
+    - 5.9.2 Dane wejściowe Shaderów
+    - 5.9.3 Struktura danych opisująca bryłę
+    - 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
 6. [Implementacja](#6-implementacja)
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
     - 6.2 [Baza Danych](#62-baza-danych)
@@ -649,7 +652,7 @@ Podstawowe koncepty biblioteki:
    * koncept "program"
    * atrybuty i uniformy - dane wejściowe shaderów
    * struktura danych opisująca bryłę
-   * bufory - Vertex Buffer Object
+   * bufory - Vertex Buffer Object, Index Buffer Object
    * przekazywanie wartości do atrybutów i uniformów
 * tekstury i mapowanie UV
 * dostępne prymitywy - punkt, linia, trójkąt
