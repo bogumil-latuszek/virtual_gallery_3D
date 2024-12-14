@@ -72,7 +72,11 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 5.9.2 Dane wejściowe Shaderów
     - 5.9.3 Struktura danych opisująca bryłę
     - 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
-    - 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
+    - 5.9.5 macierze w OpenGL ES
+    - 5.9.6 ustawianie Viewport-u
+    - 5.9.7 realizacja "Face Culling" i "Deph testing"
+    - 5.9.8 Implementacja interface-u GLSurfaceView.Renderer
+    - 5.9.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 6. [Implementacja](#6-implementacja)
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
     - 6.2 [Baza Danych](#62-baza-danych)
@@ -659,9 +663,8 @@ Podstawowe koncepty biblioteki:
 * dostępne prymitywy - punkt, linia, trójkąt
 * macierze w OpenGL ES
 * ustawianie Viewport-u
-* implementacja interface-u GLSurfaceView.Renderer - view rysowane dynamicznie
-* realizacja "Face Culling"
-* realizacja "Deph testing"
+* realizacja "Face Culling" i "Deph testing"
+* implementacja interface-u GLSurfaceView.Renderer
 
 (jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
 
@@ -741,7 +744,55 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 2. powiązanie bufora z atrybutem: `glVertexAttribPointer(a_PositionLocation, vertices)`
 3. aktywacja atrybutu: `glEnableVertexAttribArray(aPositionLocation)`
 
-## 5.9.10 Przekazywanie danych między CPU i GPU - Diagramy UML
+## 5.9.5 macierze w OpenGL ES
+
+## 5.9.6 ustawianie Viewport-u
+
+## 5.9.7 realizacja "Face Culling" i "Deph testing"
+
+## 5.9.8 Implementacja interface-u GLSurfaceView.Renderer
+
+`android.opengl.GLSurfaceView` jest implementacją Androidowego View przez OpenGL ES.
+Jest to View dynamiczne - jego zawartość jest rysowana z pomocą klasy implementującej interface `Renderer`. 
+Aplikacja musi zdefiniować tą klasę i wywołać metody biblioteki OpenGL ES opisane w poprzednich rozdziałach zgodnie z następującymi wytycznymi:
+* zadania konstruktora klasy:
+   * załadowanie kodu shaderów 
+   * zdefiniowanie zmiennych przechowujących:
+      * uchwyty do atrybutów i uniformów Shaderów
+      * macierze view, projekcji, odwróconą macierz viewProjection
+* zadania metody `onSurfaceCreated()` (wywoływana gdy aktywuje się View):
+   * inicjowanie wszystkich macierzy
+   * zdefiniowanie opisu brył (vertexy i indeksy)
+   * aktywowanie "Face Culling" i "Deph Test"
+   * kompilacja kodu Shaderów i zbudowanie "programu"
+   * pobranie uchwytów do atrybutów i uniformów użytych w Shader-ach
+   * załadowanie tekstur
+   * ustawienie stałych kolorów (dla brył nie zmianiających koloru w czasie)
+* zadania metody `onSurfaceChanged()` (wywoływana gdy zmieniają się wymiary View):
+   * określenie Viewport-u
+   * policzenie proporcji szerokość/wysokość View i wyliczenie macierzy projekcji
+* zadania metody `onDrawFrame()` (wywoływana co każdą klatkę odrysowywania View):
+   * czyszczenie sceny - rysowanie tła
+   * modyfikacja macierzy view
+   * modyfikacja odwróconej macierzy viewProjection (dla detekcji kolizji)
+   * aktywacja "programu" który ma być użyty dla renderowania sceny
+   * wyliczenie finalnej macierzy transformacji (mnożenie macierzy modelu, view, projekcji)
+   * przesłanie macierzy translacji do GPU jako wartości uniforma `u_Matrix` z Vertex Shader-a
+   * wywołanie metod rysujących prymitywy
+
+Powyższy interface nie zapewnia jednak interakcji z użytkownikiem - nie reaguje na zdarzenia dotknięcia ekranu urządzenia z Androidem. Musi on być zatem rozszerzony i spięty z Androidowym systemem detekcji zdarzeń.
+
+Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm kolizji opisany w rozdziale 3.2 należy:
+* w klasie `Activity` Androida zainstalować `View.OnTouchListener` z przeciążoną metodą `onTouch()`
+* w tej metodzie przechwycić zdarzenie `MotionEvent.ACTION_DOWN`
+* w reakcji na nie wywołać metodę `handleTouchDrag()` rozszerzonej implementacji Render-a opisane poniżej
+
+Klasa implementująca interface `Renderer` może go rozszerzyć o metodę `handleTouchDrag()`
+* w niej wykorzystać odwróconą macierz viewProjection do detekcji kolizji półprostej wychodzącej z punktu dotknięcia wgłąb sceny 3D z bryłami wyświetlonymi w tej scenie
+* można też wykorzystać punkt dotknięcia do sterowania wirtualną kamerą (zbliżenia, oddalenia, obroty) realizowanego jako modyfikacja macierzy View
+
+
+## 5.9.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
