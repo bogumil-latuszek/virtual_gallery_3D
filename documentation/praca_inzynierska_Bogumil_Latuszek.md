@@ -59,12 +59,13 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 5.2.2 Wymagania pozafunkcjonalne
     - 5.2.3 Wymagania techniczne
     - 5.3 [Analiza profilu użytkownika](#53-analiza-profilu-użytkownika)
-    - 5.4 [Przegląd istniejących rozwiązań](#54-przegląd-istniejących-rozwiązań)
-    - 5.5 [Schemat działania aplikacji - Diagramy UML](#55-schemat-działania-aplikacji---diagramy-uml)
+    - 5.4 [Diagram przypadków użycia](#54-diagram-przypadków-użycia)
+    - 5.5 [Przegląd istniejących rozwiązań](#55-przegląd-istniejących-rozwiązań)
     - 5.6 [Koncepcja wyglądu UI aplikacji](#56-koncepcja-wyglądu-ui-aplikacji)
     - 5.7 [Zadania projektowe](#57-zadania-projektowe) 
     - 5.8 [Język programowania i środowisko programistyczne](#58-język-programowania-i-środowisko-programistyczne)
     - 5.9 [Biblioteka OpenGL ES](#59-biblioteka-opengl-es)
+    - 5.9.1 Przekazywanie danych między CPU i GPU - Diagramy UML
 6. [Implementacja](#6-implementacja)
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
     - 6.2 [Baza Danych](#62-baza-danych)
@@ -597,12 +598,54 @@ Aplikacja będzie skierowana do:
 * osób chcących zaplanować dekorację wnętrz
 * osób pragnących zademonstrować znajomym swoje zdjęcia w ciekawej formie
 
-## 5.4 Przegląd istniejących rozwiązań
+## 5.4 Diagram przypadków użycia
+
+<img src="../ilustracje/uml_use_cases.svg" width=600></img>
+
+_Ilustracja 4: diagram przypadków użycia - opracowanie własne_
+
+## 5.5 Przegląd istniejących rozwiązań
 
 Co do aplikacji dostępnych na system Android, jest bardzo prawdopodobne że w momencie pisania tej pracy nie istnieje druga aplikacja podobna do Wirtualnej Galerii. W Sklepie Play znajdują się przykładowo aplikacje nazwane „Mind Palace”1, czy „Trening Pałacu Pamięci”2, ale żadna z nich nie oferuje funkcjonalności 3D. Istnieje też wiele aplikacji ze słowami „3D” i „Gallery” w nazwie, np. „Galeria zdjęć 3D i HD”3 czy „Pro 3D Magic Gallery”4. Jednak we wszystkich znalezionych przypadkach są to galerie 2D, a funkcjonalność 3D ogranicza się do obracania przeglądanych zdjęć podczas przeglądania galerii. Funkcjonalność taka jak projektowanie układu ścian, czy wieszanie obrazów na ścianach wydaje się być na ten moment unikalna dla Wirtualnej Galerii. Jest to obiecująca informacja pokazująca potencjalną niszę rynkową.
 
+## 5.6 Koncepcja wyglądu UI aplikacji
 
-## 5.5 Schemat działania aplikacji - Diagramy UML
+<img src="../ilustracje/koncept_ui_2d.png" width=600></img>
+
+_Ilustracja 5: koncept UI w widoku 2D – opracowanie własne_
+
+Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
+
+<img src="../ilustracje/koncept_ui_3d.png" width=600></img>
+
+_Ilustracja 6: koncept UI w widoku 3D – opracowanie własne_
+
+Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
+
+## 5.7 Zadania projektowe
+
+
+
+
+## 5.8 Język programowania i środowisko programistyczne
+
+(uzasadnić wybór Javy - OpenGL można pisać w C, C++, Javie ale na Android tylko Java)
+
+Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
+
+## 5.9 Biblioteka OpenGL ES
+
+Podstawowe koncepty biblioteki:
+* Specyficzne przekazywanie danych między CPU i GPU - koncept "program"; shader-y
+* ...
+
+(Opisać podstawowe konstrukcje biblioteki i jak one realizują rodział 3.1)
+
+Użycie wielowątkowego procesora graficznego
+
+OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
+
+## 5.9.1 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
@@ -663,45 +706,6 @@ ustawienie uniformu:
 
 Po połączeniu wszystkich zmiennych "programu" z buforami, można w końcu użyć "programu" do wyświetlenia bryły.
 funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysyła ją do framebuffera
-
-<img src="../ilustracje/uml_use_cases.svg" width=600></img>
-
-_Ilustracja 4: diagram przypadków użycia - opracowanie własne_
-
-## 5.6 Koncepcja wyglądu UI aplikacji
-
-<img src="../ilustracje/koncept_ui_2d.png" width=600></img>
-
-_Ilustracja 5: koncept UI w widoku 2D – opracowanie własne_
-
-Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu aplikacji. Użytkownik może zapełniać kolorem komórki kratownicy. Komórki wypełnione kolorem symbolizują ściany Wirtualnej Galerii, i będą odpowiadać rozmieszczeniem ścianom w widoku 3D. Poniżej kratownicy widzimy pasek narzędzi, użytkownik wybiera poszczególne narzędzia poprzez wybranie ich ikon. Ikona trójkąta „Play” uruchamia widok 3D, a ikona strzałki skierowanej w dół zapisuje układ kratownicy, (aby aplikacja mogła wygenerować układ ścian w widoku 3D odpowiadający układowi komórek kratownicy należy go zapisać).
-
-<img src="../ilustracje/koncept_ui_3d.png" width=600></img>
-
-_Ilustracja 6: koncept UI w widoku 3D – opracowanie własne_
-
-Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
-
-## 5.7 Zadania projektowe
-
-
-
-
-## 5.8 Język programowania i środowisko programistyczne
-
-(uzasadnić wybór Javy - OpenGL można pisać w C, C++, Javie ale na Android tylko Java)
-
-Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
-
-## 5.9 Biblioteka OpenGL ES
-
-(Opisać podstawowe konstrukcje biblioteki i jak one realizują rodział 3.1)
-
-Użycie wielowątkowego procesora graficznego
-
-OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
-
-
 
 
 
