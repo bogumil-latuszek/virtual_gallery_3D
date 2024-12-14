@@ -668,7 +668,7 @@ Podstawowe koncepty biblioteki:
 
 (jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
 
-## 5.9.1 Shadery
+### 5.9.1 Shadery
 
 Shadery ( TODO: wstawić odnośnik do 3.1.2) w OpenGL ES są pisane w języku GLSL (OpenGL Shading Language). Poniżej pokazujemy przykład:
 
@@ -694,14 +694,14 @@ void main()
 ```
 OpenGL ES kompiluje shadery i łączy je  (vertex shader i fragment shader) w jeden "program". Przedstawiono to na diagramie sekwencji poniżej.
 
-## 5.9.2 Dane wejściowe Shaderów
+### 5.9.2 Dane wejściowe Shaderów
 
 Dane wejściowe shaderów dzielą się na:
 Attribute: Dane specyficzne dla każdego wierzchołka (np. pozycja).
 Uniform: Dane wspólne dla wszystkich wierzchołków (np. macierze transformacji, kolor).
 
 
-## 5.9.3 Struktura danych opisująca bryłę
+### 5.9.3 Struktura danych opisująca bryłę
 
 Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wierzchołków definiujących kształt bryły. Nazwijmy ją "Vertex Array". Każdy wierzchołek składa się z trzech zmiennych `(x,y,z)`. OpenGL ES wymaga określenia metadanych opisujących wierzchołki: ilości bajtów na każdą zmienną, kolejności bajtów w pamięci (ang. byte order) oraz z ilu zmiennych składa się wierzchołek. Tak opisany "Vertex Array" tworzy ciągły obszar pamięci, który jako całość przesyłany jest do GPU. Dzięki metadanym GPU potrafi odnaleźć kolejne wierzchołki w przesłanym buforze i użyć wierzchołka jako wartości atrybutu `a_Position` w powyższym shaderze.
 
@@ -737,14 +737,14 @@ short[] rectEdgeIndices = {
 ```
 OpenGL umożliwia rysowanie prymitywów zarówno bezpośrednio na bazie listy wierzchołków jak i na bazie indeksów w uprzednio zdefiniowanym buforze wierzchołków.
 
-## 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
+### 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
 
 Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programista OpenGL musi jeszcze wskazać który bufor ma zostać użyty jako źródło danych dla konkretnego atrybutu Shader-a. Sekwencja tego powiązania jest następująca:
 1. pobranie uchwytu (ang. handle) do atrybutu: `a_PositionLocation = glGetAttribLocation(programObjectId, a_Position)`
 2. powiązanie bufora z atrybutem: `glVertexAttribPointer(a_PositionLocation, vertices)`
 3. aktywacja atrybutu: `glEnableVertexAttribArray(aPositionLocation)`
 
-## 5.9.5 Macierze w OpenGL ES
+### 5.9.5 Macierze w OpenGL ES
 
 #### Macierz projekcji
 
@@ -756,7 +756,7 @@ Macierz ta jest wyliczana przez funkcję wbudowana biblioteki:
         Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
 ```
 
-## 5.9.6 Ustawianie Viewport-u
+### 5.9.6 Ustawianie Viewport-u
 
 Jest ono realizowane poprzez wywołanie funkcji:
 ```
@@ -765,7 +765,7 @@ Jest ono realizowane poprzez wywołanie funkcji:
 Ten kod należy wywołać w takim miejscu gdzie dostępne są aktualne wartości szerokości i wysokości View.
 
 
-## 5.9.7 Realizacja "Face Culling" i "Deph testing"
+### 5.9.7 Realizacja "Face Culling" i "Deph testing"
 
 W bibliotece OpenGL ES sprowadza się ona do prostego skonfigurowania przełącznika.
 Defaultowo, "Face Culling" i "Deph testing" są wyłączone, a załączamy je poprzez wywolanie funkcji:
@@ -777,7 +777,7 @@ GLES20.glEnable(GLES20.GL_CULL_FACE);
 GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 ```
 
-## 5.9.8 Implementacja interface-u GLSurfaceView.Renderer
+### 5.9.8 Implementacja interface-u GLSurfaceView.Renderer
 
 `android.opengl.GLSurfaceView` jest implementacją Androidowego View przez OpenGL ES.
 Jest to View dynamiczne - jego zawartość jest rysowana z pomocą klasy implementującej interface `Renderer`. 
@@ -819,7 +819,7 @@ Klasa implementująca interface `Renderer` może go rozszerzyć o metodę `handl
 * można też wykorzystać punkt dotknięcia do sterowania wirtualną kamerą (zbliżenia, oddalenia, obroty) realizowanego jako modyfikacja macierzy View
 
 
-## 5.9.9 Przekazywanie danych między CPU i GPU - Diagramy UML
+### 5.9.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
