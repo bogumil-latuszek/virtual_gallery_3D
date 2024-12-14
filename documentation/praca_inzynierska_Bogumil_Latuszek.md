@@ -744,7 +744,17 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 2. powiązanie bufora z atrybutem: `glVertexAttribPointer(a_PositionLocation, vertices)`
 3. aktywacja atrybutu: `glEnableVertexAttribArray(aPositionLocation)`
 
-## 5.9.5 macierze w OpenGL ES
+## 5.9.5 Macierze w OpenGL ES
+
+#### Macierz projekcji
+
+Ustawiana jest w takim miejscu kodu w którym mamy dostęp do współrzędnych View. 
+By poprawnie normalizować wspołrzędne macierz projekcji musi bowiem znać proporcje View.
+Macierz ta jest wyliczana przez funkcję wbudowana biblioteki:
+```
+        float ratio = (float) width / height;
+        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
+```
 
 ## 5.9.6 Ustawianie Viewport-u
 
@@ -754,11 +764,6 @@ Jest ono realizowane poprzez wywołanie funkcji:
 ```
 Ten kod należy wywołać w takim miejscu gdzie dostępne są aktualne wartości szerokości i wysokości View.
 
-Dodatkowo, by poprawnie normalizować wspołrzędne macierz projekcji musi znać proporcje View.
-```
-        float ratio = (float) width / height;
-        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
-```
 
 ## 5.9.7 Realizacja "Face Culling" i "Deph testing"
 
