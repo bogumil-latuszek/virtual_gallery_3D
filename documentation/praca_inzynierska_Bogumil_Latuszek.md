@@ -746,7 +746,19 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ## 5.9.5 macierze w OpenGL ES
 
-## 5.9.6 ustawianie Viewport-u
+## 5.9.6 Ustawianie Viewport-u
+
+Jest ono realizowane poprzez wywołanie funkcji:
+```
+        GLES20.glViewport(0,0,width,height);
+```
+Ten kod należy wywołać w takim miejscu gdzie dostępne są aktualne wartości szerokości i wysokości View.
+
+Dodatkowo, by poprawnie normalizować wspołrzędne macierz projekcji musi znać proporcje View.
+```
+        float ratio = (float) width / height;
+        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
+```
 
 ## 5.9.7 Realizacja "Face Culling" i "Deph testing"
 
