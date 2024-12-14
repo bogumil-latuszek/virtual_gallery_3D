@@ -748,7 +748,17 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ## 5.9.6 ustawianie Viewport-u
 
-## 5.9.7 realizacja "Face Culling" i "Deph testing"
+## 5.9.7 Realizacja "Face Culling" i "Deph testing"
+
+W bibliotece OpenGL ES sprowadza się ona do prostego skonfigurowania przełącznika.
+Defaultowo, "Face Culling" i "Deph testing" są wyłączone, a załączamy je poprzez wywolanie funkcji:
+
+```
+import android.opengl.GLES20;
+
+GLES20.glEnable(GLES20.GL_CULL_FACE);
+GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+```
 
 ## 5.9.8 Implementacja interface-u GLSurfaceView.Renderer
 
