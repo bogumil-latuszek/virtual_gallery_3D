@@ -939,8 +939,11 @@ Najistotniejsze klasy aplikacji i ich znaczenie:
 * `Filemanager` - dostęp do plików zdjęć z zewnętrzej karty pamięci
 * `Surface3DView` - osadzenie render-a który będzie rysował po View, wybranie wersji 2.0 dla OpenGL ES (defaultowo wybierana jest wersja 1.0 która nie umożliwia stosowania Shaderów)
 * `SceneRenderer` - główna część aplikacji rysująca obiekty 3D. Implementuje interface `android.opengl.GLSurfaceView.Renderer` opisany w rodziale 5.9.8. Dodatkowo metoda `handleTouchDrag()` realizuje mechanizm wskazania ściany do zawieszenia/zdjęcia obrazu opisany w rozdziale 3.2 (detekcja kolizji ściany z "półprostą wskazania" ściany).
-* `Cuboid` - realizacja wyświetlania prostopadlościanu
-* `Wall` - klasa pochodna od `Cuboid`. Odpowiada za wyświetlenie obrazów powieszonych na ścianach bocznych. Zapisuje w bazie danych który obraz został powieszony na której ścianie. Dokłada na bocznych ścianach prostopadlościanu obiekty klasy `Face` biorące udział w detekcji kolizji z "półprostą wskazania" ściany. Na potrzeby algorytmu kolizji odnajduje wszystkie `Face` które zostały trafione przez "półprostą wskazania" ściany.
+* `FloorGrid` - rysowanie grida "podłogi" sceny 3D <img src="../ilustracje/floor_grid.png" width=200></img> dającego możliwość orientacji w przestrzeni.
+* `Cuboid` - realizacja wyświetlania prostopadlościanu <img src="../ilustracje/cuboid.png" width=100></img>
+* `Wall` - klasa pochodna od `Cuboid`. Odpowiada za wieszanie, zdejmowanie i wyświetlenie obrazów powieszonych na ścianach bocznych. <img src="../ilustracje/wall_with pictures.png" width=100></img> Zapisuje w bazie danych który obraz został powieszony na której ścianie. Dokłada na bocznych ścianach prostopadlościanu obiekty klasy `Face` biorące udział w detekcji kolizji z "półprostą wskazania" ściany. Na potrzeby algorytmu kolizji odnajduje wszystkie `Face` które zostały trafione przez "półprostą wskazania" ściany.
+* `MovementCtrl` - Rysowanie kontrolki <img src="../ilustracje/movement_ctrl.png" width=50></img> umożliwiającej przemieszczenia w przestrzeni 3D. Detekcja który obszar kontrolki został wskazany (przesunięcie w lewo/prawo, w tył/przód) i - na jego podstawie - wyliczenie wektora przesunięcia kamery. Wektor ten jest wykorzystywany wewnątrz `SceneRenderer` do modyfikacji macierzy View (kamery) o skladową translacji.
+* `RotationCtrl` - Rysowanie kontrolki <img src="../ilustracje/rotation_ctrl.png" width=50></img> umożliwiającej obroty w przestrzeni 3D. Detekcja który obszar kontrolki został wskazany (obrót w lewo/prawo, w górę/dół, środek: reset obrotu) i - na jego podstawie -  modyfikacja macierzy View (kamery) o składową obrotu.
 
 ## 6.4 Narzędzia graficzne
 
