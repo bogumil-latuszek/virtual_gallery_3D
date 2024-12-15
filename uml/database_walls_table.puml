@@ -1,6 +1,6 @@
 @startuml
 entity WALLS {
-    + _id : INTEGER [PK, AUTOINCREMENT]  // Primary Key with Auto Increment
+    + _id : INTEGER [PK, AUTOINCREMENT]  // Primary Key
     --
     x_coordinate : REAL [NOT NULL]
     z_coordinate : REAL [NOT NULL]

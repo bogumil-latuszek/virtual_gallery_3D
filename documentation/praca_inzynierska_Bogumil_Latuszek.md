@@ -922,6 +922,9 @@ Aplikacja "Wirtualna Galeria" nie ma dużych wymogów bazodanowych. Potrzebuje j
 * na której ścianie w scenie 3D został zawieszony obraz i jaki to obraz
    * w 3D pojedyncza ściana galerii to prostopadłościan, a zatem może ona pomieścić maksymalnie 4 obrazy na swoich ścianach bocznych. 
 
+Zostały te wymagania zrealizowane w postaci pojedynchej tablicy `WALLS` o następującej strukturze:
+<img src="../ilustracje/database_walls_table.svg" width=400></img>
+
 ## 6.3 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
