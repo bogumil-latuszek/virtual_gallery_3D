@@ -707,11 +707,6 @@ Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wie
 
 Prymitywy(TODO: wstawić odnośnik do 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D) dostępne w OpenGL ES to: punkty, linie i trójkąty. O tym jakie prymitywy powstaną ze zbioru wierzchołków decyduje pierwsza przekazana zmienna do `glDrawElements()`. Przykładowo, `glDrawElements(GL_LINES, ...)` wskazuje, że wierzchołki są łączone w pary, tworząc prymityw - linię.
 
-OpenGL ES rysuje całość grafiki korzystając z 3 podstawowych prymitywów:
-* punktu - `glDrawElements(GL_POINTS, ...)`
-* linii (odcinka) - `glDrawElements(GL_LINES, ...)`
-* trójkąta - `glDrawElements(GL_TRIANGLES, ...)`
-
 Kolejnym elementem optymalizacji jest "Index Array". Możemy mieć bowiem sytuację gdy te same wierzchołki są użyte do narysowania wielu prymitywów. Np. wierzchołki opisujące prostokąt (2 trójkąty, 6 wierzchołków) mogą też opisać krawędź tego prostokąta (4 odcinki, 8 wierzchołków). Ale możemy też opisać te prymitywy używając tylko 4 wierzchołków oraz indeksów tych wierzchołków:
 
 ```
