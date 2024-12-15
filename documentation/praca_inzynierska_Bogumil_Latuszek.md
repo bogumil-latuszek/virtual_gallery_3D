@@ -938,6 +938,10 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 ## 6.3 Opis Klas
 
+Najistotniejsze klasy aplikacji i ich znaczenie:
+* `MainActivity` - ustawianie view 2D, podpięcie Bazy Danych, aktywacja Layoutu Grid, ustawianie i usuwanie ścian 2D w gridzie jako reakcja na dotknięcie ekranu, zapis wybranych ścian 2D do bazy danych, aktywacja przejścia aplikacji do trybu 3D
+* `Mode3DActivity` - tworzenie obiektów `Surface3DView`, `SceneRenderer`, ustawianie View 3D, przechwytywanie zdarzenia dotknięcia ekranu i przekierowywanie go do renderer-a.
+
 ## 6.4 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
