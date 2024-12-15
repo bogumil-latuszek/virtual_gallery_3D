@@ -728,13 +728,12 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ### 5.9.5 Macierze w OpenGL ES
 
-Zgodnie z opisem matematyki macierzy w rozdziale 3 OpenGL ES operuje na macierzach 4x4. 
-Wartości w tych macierzach są liczbami rzeczywistymi. Macierze definiujemy:
+Zgodnie z opisem matematyki macierzy w rozdziale 3 OpenGL ES operuje na macierzach 4x4. Macierze definiujemy:
 * w części kodu uruchamianej na CPU (Java) jako tablicę 16 wartości float
   ```
   float[] viewMatrix = new float[16];
   ```
-* w shadarach uruchamianych na GPU (GLSL) jako zmienną typu macierzowego o wymiarze 4
+* w shadarach uruchamianych na GPU (GLSL) jako zmienną typu macierzowego o wymiarze 4(co to znaczy typu macierzowego?)
   ```
   uniform mat4 u_Matrix;
   ```
@@ -745,16 +744,15 @@ uniform mat4 u_Matrix;
 attribute vec4 a_Position;
 gl_Position = u_Matrix * a_Position;
 ```
-natomiast na CPU wymaga ono następującego kodu w języku Java:
+natomiast na CPU wymaga użycia specjalnej biblioteki języka Java:
 ```
 import android.opengl.Matrix;
 
 Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 ```
-Każda z powyższych macierzy to `float[16]`. 
-Wejściowe macierze to `viewMatrix` i `projectionMatrix` a wynik ich mnożenia zostanie wstawiony do macierzy `viewProjectionMatrix`.
+Parametrami powyższej funkcji są macierze `viewMatrix` i `projectionMatrix`, a wynik ich mnożenia zostanie wstawiony do macierzy `viewProjectionMatrix`.
 
-Biblioteka obliczeń macierzowych dostarcza cały zestaw funkcji transformujących macierze:
+Biblioteka "Matrix" dostarcza również wielu innych przydatnych funkcji transformujących macierze:
 ```
 Matrix.setIdentityM(modelMatrix, 0);
 Matrix.translateM(modelMatrix,0, dx, dy, dz);
