@@ -705,7 +705,7 @@ Uniform: Dane wspólne dla wszystkich wierzchołków (np. macierze transformacji
 
 Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wierzchołków definiujących kształt bryły. Nazwijmy ją "Vertex Array". Każdy wierzchołek składa się z trzech zmiennych `(x,y,z)`. OpenGL ES wymaga określenia metadanych opisujących wierzchołki: ilości bajtów na każdą zmienną, kolejności bajtów w pamięci (ang. byte order) oraz z ilu zmiennych składa się wierzchołek. Tak opisany "Vertex Array" tworzy ciągły obszar pamięci, który jako całość przesyłany jest do GPU. Dzięki metadanym GPU potrafi odnaleźć kolejne wierzchołki w przesłanym buforze i użyć wierzchołka jako wartości atrybutu `a_Position` w powyższym shaderze.
 
-Znaczenie wierzchołków zawartych w buforze określane jest dopiero na etapie rysowania. Jeśli np. użyjemy funkcji `glDrawElements(GL_TRIANGLES, ...)` to znaczy, że będziemy iterować po buforze pobierając po 3 wierzchołki. Kolejne 3 wierzchołki opisują pojedynczy trójkąt. Ściana bryły będąca prostokątem wymaga zatem 6 wierzchołków. Jeżeli natomiast użyjemy `glDrawElements(GL_LINES, ...)` to znaczy, że będziemy iterować po buforze pobierając po 2 wierzchołki i rysować na ich podstawie proste odcinki.
+Prymitywy(TODO: wstawić odnośnik do 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D) dostępne w OpenGL ES to: punkty, linie i trójkąty. O tym jakie prymitywy powstaną ze zbioru wierzchołków decyduje pierwsza przekazana zmienna do `glDrawElements()`. Przykładowo, `glDrawElements(GL_LINES, ...)` wskazuje, że wierzchołki są łączone w pary, tworząc prymityw - linię.
 
 OpenGL ES rysuje całość grafiki korzystając z 3 podstawowych prymitywów:
 * punktu - `glDrawElements(GL_POINTS, ...)`
