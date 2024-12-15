@@ -707,30 +707,17 @@ Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wie
 
 Prymitywy(TODO: wstawić odnośnik do 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D) dostępne w OpenGL ES to: punkty, linie i trójkąty. O tym jakie prymitywy powstaną ze zbioru wierzchołków decyduje pierwsza przekazana zmienna do `glDrawElements()`. Przykładowo, `glDrawElements(GL_LINES, ...)` wskazuje, że wierzchołki są łączone w pary, tworząc prymityw - linię.
 
-Kolejnym elementem optymalizacji jest "Index Array". Możemy mieć bowiem sytuację gdy te same wierzchołki są użyte do narysowania wielu prymitywów. Np. wierzchołki opisujące prostokąt (2 trójkąty, 6 wierzchołków) mogą też opisać krawędź tego prostokąta (4 odcinki, 8 wierzchołków). Ale możemy też opisać te prymitywy używając tylko 4 wierzchołków oraz indeksów tych wierzchołków:
+Zazwyczaj, w bryłach składających się z więcej niż trzech wierzchołków, prymitywy współdzielą ze sobą część wierzchołków.
 
-```
-float[] vertices = {
-    // x     y      z
-    -1.0f, -2.0f,  1.0f,  // Bottom-left
-     1.0f, -2.0f,  1.0f,  // Bottom-right
-     1.0f,  2.0f,  1.0f,  // Top-right
-    -1.0f,  2.0f,  1.0f,  // Top-left
-};
+<TODO: wstawić obraz pokazujący bryłę - siatkę wierzchołków, oraz jej rozdzielone prymitywy, z zaznaczonymi wierzchołkami które współdzielą>
 
-short[] rectFaceIndices = {
-    0, 1, 2,  // Rectangle face, triangle 1
-    2, 3, 0,  // Rectangle face, triangle 2
-};
+W takich przypadkach, można przekazać w "VertexArray" całą sekwencję wierzchołków:
 
-short[] rectEdgeIndices = {
-    0, 3,  // Left edge, line 1
-    3, 2,  // Top edge, line 2
-    2, 1,  // Right edge, line 3
-    1, 0,  // Bottom edge, line 4
-};
-```
-OpenGL umożliwia rysowanie prymitywów zarówno bezpośrednio na bazie listy wierzchołków jak i na bazie indeksów w uprzednio zdefiniowanym buforze wierzchołków.
+<TODO: wstawić przykład ciągu wartości opisującego całą bryłę>
+
+Lub, wysłać osobno zbiór unikalnych wierzchołków w "VertexArray", oraz instrukcję (sekwencję) rysowania wierzchołków w "IndexArray".
+
+<TODO: wstawić przykład ciągu uikalnych wierzchołków, oraz sekwencji rysowania>
 
 ### 5.9.4 Przekazywanie wartości do atrybutów i uniformów Shadera
 
