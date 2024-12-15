@@ -915,6 +915,13 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 ## 6.2 Baza Danych
 
+W projekcie została wykorzystana baza danych wbudowana w system Android, czyli SQLite. Jest ona lekka, szybka i nie wymaga konfiguracji serwera. To gwarantuje, że końcowy użytkownik nie będzie miał problemów z persystencją danych aplikacji.
+
+Aplikacja "Wirtualna Galeria" nie ma dużych wymogów bazodanowych. Potrzebuje jedynie następujących funkcjonalności:
+* możliwości przechowania informacji w którym miejscu przestrzeni 2D (gridu) użytkownik postawił ścianę galerii
+* na której ścianie w scenie 3D został zawieszony obraz i jaki to obraz
+   * w 3D pojedyncza ściana galerii to prostopadłościan, a zatem może ona pomieścić maksymalnie 4 obrazy na swoich ścianach bocznych. 
+
 ## 6.3 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita

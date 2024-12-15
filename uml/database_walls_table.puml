@@ -1,0 +1,12 @@
+@startuml
+entity WALLS {
+    + _id : INTEGER [PK, AUTOINCREMENT]  // Primary Key with Auto Increment
+    --
+    x_coordinate : REAL [NOT NULL]
+    z_coordinate : REAL [NOT NULL]
+    front_painting : STRING
+    back_painting : STRING
+    left_painting : STRING
+    right_painting : STRING
+}
+@enduml
