@@ -939,8 +939,13 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 ## 6.3 Opis Klas
 
 Najistotniejsze klasy aplikacji i ich znaczenie:
-* `MainActivity` - ustawianie view 2D, podpięcie Bazy Danych, aktywacja Layoutu Grid, ustawianie i usuwanie ścian 2D w gridzie jako reakcja na dotknięcie ekranu, zapis wybranych ścian 2D do bazy danych, aktywacja przejścia aplikacji do trybu 3D
+* `MainActivity` - ustawianie view 2D, podpięcie Bazy Danych, aktywacja Layoutu Grid, ustawianie i usuwanie ścian 2D w gridzie jako reakcja na dotknięcie ekranu, zapis wybranych ścian 2D do bazy danych, obsługa zgody użytkownika na dostęp do zdjęć z zewnętrznej karty pamięci, aktywacja przejścia aplikacji do trybu 3D
 * `Mode3DActivity` - tworzenie obiektów `Surface3DView`, `SceneRenderer`, ustawianie View 3D, przechwytywanie zdarzenia dotknięcia ekranu i przekierowywanie go do renderer-a.
+* `Filemanager` - dostęp do plików zdjęć z zewnętrzej karty pamięci
+* `Surface3DView` - osadzenie render-a który będzie rysował po View, wybranie wersji 2.0 dla OpenGL ES (defaultowo wybierana jest wersja 1.0 która nie umożliwia stosowania Shaderów)
+* `SceneRenderer` - główna część aplikacji rysująca obiekty 3D. Implementuje interface `android.opengl.GLSurfaceView.Renderer` opisany w rodziale 5.9.8. Dodatkowo metoda `handleTouchDrag()` realizuje mechanizm wskazania ściany do zawieszenia/zdjęcia obrazu opisany w rozdziale 3.2 (detekcja kolizji ściany z "półprostą wskazania" ściany).
+* `Cuboid` - realizacja wyświetlania prostopadlościanu
+* `Wall` - klasa pochodna od `Cuboid`. Odpowiada za wyświetlenie obrazów powieszonych na ścianach bocznych. Zapisuje w bazie danych który obraz został powieszony na której ścianie. Dokłada na bocznych ścianach prostopadlościanu obiekty klasy `Face` biorące udział w detekcji kolizji z "półprostą wskazania" ściany. Na potrzeby algorytmu kolizji odnajduje wszystkie `Face` które zostały trafione przez "półprostą wskazania" ściany.
 
 ## 6.4 Narzędzia graficzne
 
