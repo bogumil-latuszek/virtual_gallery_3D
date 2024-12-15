@@ -925,6 +925,12 @@ Aplikacja "Wirtualna Galeria" nie ma dużych wymogów bazodanowych. Potrzebuje j
 Zostały te wymagania zrealizowane w postaci pojedynchej tablicy `WALLS` o następującej strukturze:
 <img src="../ilustracje/database_walls_table.svg" width=400></img>
 
+Aplikacja startując ładuje informacje o istniejących ścianach galerii i na tej podstawie ustawia startowe pozycje ścian w widoku 2D.
+Użytkownik może zmienić te ustawienia - usunąć ścianę lub dodać nową.
+Nowy układ ścian zostaje zapisany do Bazy Danych w momencie naciśnięcia przycisku SAVE <img src="../ilustracje/przycisk_save.png" width=19></img>.
+
+Po przejściu do widoku 3D baza danych jest ponownie odczytywana i na jej podstawie tworzone są prostopadłościany ścian wystawowych galerii. Następnie nazwy obrazów z bazy danych oraz ich lokalizacja służą do odtworzenia tekstur i rozmieszczenia ich na ścianach bocznych powstałych prostopadłościanów.
+
 ## 6.3 Narzędzia graficzne
 
 Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
