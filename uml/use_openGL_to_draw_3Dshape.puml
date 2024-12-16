@@ -1,0 +1,56 @@
+@startuml Prepare OpenGL
+actor       Android       as Android1 #green
+participant SceneRenderer as SceneRenderer
+participant 3Dshape as 3Dshape
+participant GLES20 as GLES20
+participant GPU as GPU #99FF99
+
+Android1 -> SceneRenderer: onSurfaceCreated
+activate SceneRenderer
+SceneRenderer -> 3Dshape: create shape definition
+3Dshape -> 3Dshape: define vertices of shape (VertexArray)
+3Dshape -> 3Dshape: put them into verticesBuffer
+
+3Dshape -> 3Dshape: list vertices indexes of trangles (IndexArray) \n  composing faces of 3Dshape
+3Dshape -> 3Dshape: put them into vertexIndexesBuffer
+
+Android1 -> SceneRenderer: onDrawFrame
+
+SceneRenderer -> GLES20: glUseProgram(programObjectId)
+note right GLES20
+programObject consists of both fragment shader
+ and vertex shader
+end note
+GLES20 -> GPU: select programToRun
+
+
+SceneRenderer -> 3Dshape: draw(aPositionLocation,\n          uColorLocation,\n          uMatrixLocation,\n          viewProjectionMatrix)
+group prepare DataSource for "attribute" variable of shader
+3Dshape -> GLES20: glVertexAttribPointer(aPositionLocation, verticesBuffer)
+note over GLES20
+link verticesBuffer
+as data source for aPositionLocation
+attribute inside GPU shader
+end note
+3Dshape -> GLES20: glEnableVertexAttribArray(aPositionLocation)
+GLES20 -> GPU: pass vertices buffer for aPositionLocation
+end
+
+group set "uniform" Matrix variable of shader
+3Dshape -> 3Dshape: multiply world viewProjectionMatrix\nwith 3Dshape internal model Matrix
+3Dshape -> GLES20: glUniformMatrix4fv(uMatrixLocation, modelViewProjectionMatrix)
+GLES20 -> GPU: set current Matrix for 3D shapes calculation
+end
+
+
+group set "uniform" Color variable of shader
+3Dshape -> GLES20: glUniform4f(uColorLocation, faceColor)
+GLES20 -> GPU: set current "active" color
+end
+
+group draw
+3Dshape -> GLES20: glDrawElements(GL_TRIANGLES, vertexIndexesBuffer)
+GLES20 -> GPU: pass indexes of vertices to build triangles from
+GLES20 -> GPU: draw triangles of 3Dshape faces
+end
+@enduml
