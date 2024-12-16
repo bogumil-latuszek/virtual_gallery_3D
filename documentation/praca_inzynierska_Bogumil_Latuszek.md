@@ -769,13 +769,34 @@ Wszystkie obiekty w scenie "Wirtualnej Galerii" są statyczne, i nie ma potrzeby
 
 Macierz świata, czyli macierz translacji, tworzona jest na podstawie pozycji (x,y,z) danej bryły w przestrzeni świata. Wartość ta jest przechowywana wewnątrz każdego obiektu posiadającego reprezentację scenie 3D (bryły):
 ```
+float[] worldMatrix = new float[16];
+Matrix.setIdentityM(worldMatrix, 0);
+Matrix.translateM(worldMatrix, 0, this.X_position, 0, this.Z_position);
+```
+Macierz kamery można stworzyć na podstawie własności kamery takich jak jej pozycja i obrót względem współrzędnych świata.
+W "Wirtualnej Galerii" najpierw wyliczana jest macierz obrotu, następnie macierz przesunięcia, a na koniec po wymnożeniu ich ze sobą, powstaje macierz kamery (viewMatrix):
+```
+private float[] viewRotationMatrix;
+viewRotationMatrix = new float[16];
+Matrix.setIdentityM(viewRotationMatrix, 0);
+rotationCtrl.rotateCamera(rotationCtrlPressedLocation, viewRotationMatrix, rotationSpeed);
 
-```
-Macierz kamery wyliczana jest na podstawie własności kamery takich jak jej pozycja i obrót względem współrzędnych świata.
-```
+private float[] viewTranslationMatrix;
+viewTranslationMatrix = new float[16];
+Matrix.setIdentityM(viewTranslationMatrix, 0);
+Matrix.translateM(viewTranslationMatrix,0, this.cameraMovementVector.x, this.cameraMovementVector.y, this.cameraMovementVector.z);
 
+private final float[] viewMatrix = new float[16];
+Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix,0, viewTranslationMatrix,0);
 ```
-Macierz projekcji
+*Użyta powyżej funkcja rotationCtrl.rotateCamera() to przykład funkcji która dynamicznie przypisuje wartość obrotu kamery. Funkcja ta rozpoznaje interakcję użytkownika z elementem interfejsu kontrolującym obrót kamerą, i na jej podstawie wylicza odpowiednią wartość obrotu
+
+Macierz projekcji tworzona jest na podstawie danych takich jak:
+- powierzchnia na ekranie na której wyświetlana będzie scena (Viewport)
+
+
+
+
 ```
         float ratio = (float) width / height;
         Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
