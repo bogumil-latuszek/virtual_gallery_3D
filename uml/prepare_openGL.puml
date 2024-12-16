@@ -4,8 +4,8 @@ actor       Android       as Android1 #green
 Android1 -> SceneRenderer: new
 activate SceneRenderer
 group Load OpenGL shaders
-SceneRenderer -> TextResourceReader: readTextFileFromResource(color_vertex_shader)
-note over TextResourceReader
+SceneRenderer -> FileSystem: readTextFileContent(color_vertex_shader)
+note over FileSystem
 uniform mat4 u_Matrix;
 attribute vec4 a_Position;
 void main()
@@ -13,49 +13,49 @@ void main()
     gl_Position = u_Matrix * a_Position;
 }
 end note
-TextResourceReader -> SceneRenderer: vertexShaderCode
-SceneRenderer -> TextResourceReader: readTextFileFromResource(color_fragment_shader)
-note over TextResourceReader #aqua
+FileSystem -> SceneRenderer: vertexShaderCode
+SceneRenderer -> FileSystem: readTextFileContent(color_fragment_shader)
+note over FileSystem #aqua
 uniform vec4 u_Color;
 void main()
 {
     gl_FragColor = u_Color;
 }
 end note
-TextResourceReader -> SceneRenderer: fragmentShaderCode
+FileSystem -> SceneRenderer: fragmentShaderCode
 
 end
 
 Android1 -> SceneRenderer: onSurfaceCreated
 
-group Compile shaders to be run at GPU
-SceneRenderer -> ShaderHelper: buildProgram(vertexShaderCode, fragmentShaderCode)
+group Compile shaders & link them into "Program" to be run at GPU
+SceneRenderer -> ShadersProgramBuilder: buildProgram(vertexShaderCode, fragmentShaderCode)
 
 group Compile Vertex shader
-ShaderHelper -> GLES20: glCreateShader
-ShaderHelper -> GLES20: glShaderSource
-ShaderHelper -> GLES20: glCompileShader
-GLES20 -> ShaderHelper: vertexShaderId
+ShadersProgramBuilder -> GLES20: glCreateShader
+ShadersProgramBuilder -> GLES20: glShaderSource
+ShadersProgramBuilder -> GLES20: glCompileShader
+GLES20 -> ShadersProgramBuilder: vertexShaderId
 end
 group Compile Fragment shader
-GLES20 -> ShaderHelper: fragmentShaderId
+GLES20 -> ShadersProgramBuilder: fragmentShaderId
 end
 
 group Link OpenGL Program
-ShaderHelper -> GLES20: glCreateProgram
-ShaderHelper -> GLES20: glAttachShader(vertexShaderId)
-ShaderHelper -> GLES20: glAttachShader(fragmentShaderId)
-ShaderHelper -> GLES20: glLinkProgram
+ShadersProgramBuilder -> GLES20: glCreateProgram
+ShadersProgramBuilder -> GLES20: glAttachShader(vertexShaderId)
+ShadersProgramBuilder -> GLES20: glAttachShader(fragmentShaderId)
+ShadersProgramBuilder -> GLES20: glLinkProgram
 participant GPU as GPU #99FF99
 GLES20 -> GPU: programToRun
-GLES20 -> ShaderHelper: programObjectId
+GLES20 -> ShadersProgramBuilder: programObjectId
 end
 
-ShaderHelper -> SceneRenderer: programObjectId
+ShadersProgramBuilder -> SceneRenderer: programObjectId
 
 end
 
-group Retrieve GPU "address" of shader variables
+group Retrieve "handles" of shader variables residing at GPU
 
 SceneRenderer -> GLES20: glGetAttribLocation(programObjectId, a_Position)
 GPU -> SceneRenderer: aPositionLocation
