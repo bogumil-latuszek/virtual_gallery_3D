@@ -727,8 +727,8 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ### 5.9.5 Macierze w OpenGL ES
 
-Zgodnie z opisem matematyki macierzy w rozdziale 3 OpenGL ES operuje na macierzach 4x4. Macierze definiujemy:
-* w części kodu uruchamianej na CPU (Java) jako tablicę 16 wartości float
+Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. Zawsze należy rozpocząć od stworzenia macierzy:
+* w części kodu uruchamianej na CPU (Java) jako tablicy 16 wartości float
   ```
   float[] viewMatrix = new float[16];
   ```
@@ -749,7 +749,7 @@ import android.opengl.Matrix;
 
 Matrix.multiplyMM(viewProjectionMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
 ```
-Parametrami powyższej funkcji są macierze `viewMatrix` i `projectionMatrix`, a wynik ich mnożenia zostanie wstawiony do macierzy `viewProjectionMatrix`.
+Powyższa funkcja mnoży macierze `viewMatrix` i `projectionMatrix`, a wynik zapisuje do zmiennej `viewProjectionMatrix`.
 
 Biblioteka "Matrix" dostarcza również wielu innych przydatnych funkcji transformujących macierze:
 ```
@@ -759,6 +759,13 @@ Matrix.scaleM(modelMatrix,0,width,height,length);
 Matrix.rotateM(viewMatrix, 0, Y_rotation, 0f, 1f, 0f);
 Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
 ```
+
+#### Macierze Model, World, View, Perspective:
+
+
+
+
+
 #### Macierz View (kamery)
 
 Zazwyczaj wyliczana jest z pozycji i obrotu kamery względem współrzędnych świata.
