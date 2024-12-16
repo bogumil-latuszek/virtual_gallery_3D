@@ -727,7 +727,9 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ### 5.9.5 Macierze w OpenGL ES
 
-Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. Zawsze należy rozpocząć od stworzenia macierzy:
+Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. 
+
+Tworzenie macierzy:
 * w części kodu uruchamianej na CPU (Java) jako tablicy 16 wartości float
   ```
   float[] viewMatrix = new float[16];
@@ -737,7 +739,7 @@ Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teori
   uniform mat4 u_Matrix;
   ```
 
-Mnożenie macierzy w kodzie Shaderów jest intuicyjne - jest ono wbudowane w składnię języka:
+Mnożenie macierzy w kodzie Shaderów jest bardzo proste - jest ono wbudowane w składnię języka:
 ```
 uniform mat4 u_Matrix;
 attribute vec4 a_Position;
@@ -762,10 +764,22 @@ Matrix.invertM(invertedViewProjectionMatrix, 0, viewProjectionMatrix, 0);
 
 #### Macierze Model, World, View, Perspective:
 
+O macierzy modelu nie będziemy wspominać, ponieważ nie została użyta w Projekcie.
+Wszystkie obiekty w scenie "Wirtualnej Galerii" są statyczne, i nie ma potrzeby ich obracać.
 
+Macierz świata, czyli macierz translacji, tworzona jest na podstawie pozycji (x,y,z) danej bryły w przestrzeni świata. Wartość ta jest przechowywana wewnątrz każdego obiektu posiadającego reprezentację scenie 3D (bryły):
+```
 
+```
+Macierz kamery wyliczana jest na podstawie własności kamery takich jak jej pozycja i obrót względem współrzędnych świata.
+```
 
-
+```
+Macierz projekcji
+```
+        float ratio = (float) width / height;
+        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
+```
 #### Macierz View (kamery)
 
 Zazwyczaj wyliczana jest z pozycji i obrotu kamery względem współrzędnych świata.
