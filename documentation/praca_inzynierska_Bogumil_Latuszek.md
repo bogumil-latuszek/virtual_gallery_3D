@@ -780,16 +780,16 @@ private float[] viewRotationMatrix;
 viewRotationMatrix = new float[16];
 Matrix.setIdentityM(viewRotationMatrix, 0);
 rotationCtrl.rotateCamera(rotationCtrlPressedLocation, viewRotationMatrix, rotationSpeed);
+Matrix.setRotateM(viewRotationMatrix, 0, angle, x, y, z);
 
 private float[] viewTranslationMatrix;
 viewTranslationMatrix = new float[16];
 Matrix.setIdentityM(viewTranslationMatrix, 0);
-Matrix.translateM(viewTranslationMatrix,0, this.cameraMovementVector.x, this.cameraMovementVector.y, this.cameraMovementVector.z);
+Matrix.translateM(viewTranslationMatrix,0, dx, dy, dz);
 
 private final float[] viewMatrix = new float[16];
-Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix,0, viewTranslationMatrix,0);
+Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix, 0, viewTranslationMatrix, 0);
 ```
-*Użyta powyżej funkcja rotationCtrl.rotateCamera() to przykład funkcji która dynamicznie przypisuje wartość obrotu kamery. Funkcja ta rozpoznaje interakcję użytkownika z elementem interfejsu kontrolującym obrót kamerą, i na jej podstawie wylicza odpowiednią wartość obrotu
 
 Macierz projekcji tworzona jest na podstawie danych takich jak:
 - powierzchnia na ekranie na której wyświetlana będzie scena (Viewport)
