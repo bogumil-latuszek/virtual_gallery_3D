@@ -794,12 +794,11 @@ Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix,0, viewTranslationMatrix,0);
 Macierz projekcji tworzona jest na podstawie danych takich jak:
 - powierzchnia na ekranie na której wyświetlana będzie scena (Viewport)
 
-
-
-
 ```
-        float ratio = (float) width / height;
-        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
+private final float[] projectionMatrix = new float[16];
+float ratio = (float) width / height;
+Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
+
 ```
 #### Macierz View (kamery)
 
