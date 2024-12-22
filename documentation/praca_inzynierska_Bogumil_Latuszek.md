@@ -95,7 +95,25 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 
 
 # 1. Wstęp
-Od długiego czasu ciekawiło mnie jak działa grafika komputerowa. Postanowiłem wybrać ten temat pracy aby przy okazji pisania jej znaleźć odpowiedzi na nurtujące mnie pytania. Jak
+
+Jaki jest problem pracy?
+
+jaki jest szerszy kontekst pracy?
+Dlaczego temat pracy jest ważny?
+jakie wyzwania wiążą się z tematem pracy?
+
+Jaki cel chcemy osiągnąć pisząc tę pracę?
+- analiza X ...
+- stworzenie Y ... 
+- odpowiedzieć na pytanie Z ...
+
+co NIE jest zawarte w pracy?
+
+Pokrótce wymień jakie metody, techniki, frameworki będą użyte
+
+Wykaż swój wkład - uzasadnij w jaki sposób ta praca jest przydatna/przełomowa
+
+Opisz rozdziały
 
 ## 1.1 Cele projektowe
 
