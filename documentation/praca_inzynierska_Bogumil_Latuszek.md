@@ -804,12 +804,10 @@ Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
 ```
 ### 5.9.6 Ustawianie Viewport-u
 
-Jest ono realizowane poprzez wywołanie funkcji:
+Jak było mówione w poprzednich rozdziałach, Viewport to inaczej część ekranu na której wyświetlana jest scena. W OpenGL ES definiujemy ją przez podanie dwóch punktów na ekranie. Pierwszy traktowany jest jako lewy górny róg prostokąta, a drugi jako prawy dolny. Viewport to przestrzeń na ekranie zawarta w tak opisanym prostokącie. Poniżej pokazano wywołanie funkcji tworzącej Viewport:
 ```
         GLES20.glViewport(0,0,width,height);
 ```
-Ten kod należy wywołać w takim miejscu gdzie dostępne są aktualne wartości szerokości i wysokości View.
-
 
 ### 5.9.7 Realizacja "Face Culling" i "Deph testing"
 
