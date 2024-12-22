@@ -792,37 +792,16 @@ Matrix.multiplyMM(viewMatrix, 0, viewRotationMatrix, 0, viewTranslationMatrix, 0
 ```
 
 Macierz projekcji tworzona jest na podstawie danych takich jak:
-- powierzchnia na ekranie na której wyświetlana będzie scena (Viewport)
-
+- stosunek szerokości do wysokości powierzchni na ekranie na której wyświetlana będzie scena (Viewport)
+- pozycji na osi z bliższej płaszczyzny ucięcia
+- pozycji na osi z dalszej płaszczyzny ucięcia
+Aby stworzyć macierz projekcji, należy użyć funkcji Matrix.frustumM:
 ```
 private final float[] projectionMatrix = new float[16];
 float ratio = (float) width / height;
 Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
 
 ```
-#### Macierz View (kamery)
-
-Zazwyczaj wyliczana jest z pozycji i obrotu kamery względem współrzędnych świata.
-Ta pozycja i obrót to również macierze. 
-Ich wartości mogą być albo wyliczone ze zmiennych podanych jawnie (typu `camera_angle = 30.0`)
-albo wyliczone na bazie interakcji z jakimiś elementami interface-u jak np. opisana poniżej metoda `handleTouchDrag()`.
-Mając pozycję kamery i jej obrót opisane macierzami możemy wyliczyć macierz View:
-```
-Matrix.multiplyMM(viewMatrix, 0, cameraRotationMatrix,0, cameraTranslationMatrix,0);
-```
-Macierz ta powinna być przeliczana w każdej klatce renderowanej sceny gdyż jest bardzo zmienna.
-Zakładamy bowiem ciągłe "poruszanie" się w obrębie wyświetlanej sceny 3D realizowane właśnie jako zmiana ustawień kamery. 
-
-#### Macierz Projekcji
-
-Ustawiana jest w takim miejscu kodu w którym mamy dostęp do współrzędnych View. 
-By poprawnie normalizować wspołrzędne macierz projekcji musi bowiem znać proporcje View.
-Macierz ta jest wyliczana przez funkcję wbudowana biblioteki:
-```
-        float ratio = (float) width / height;
-        Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
-```
-
 ### 5.9.6 Ustawianie Viewport-u
 
 Jest ono realizowane poprzez wywołanie funkcji:
