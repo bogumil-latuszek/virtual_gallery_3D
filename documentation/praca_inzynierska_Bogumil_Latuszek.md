@@ -811,9 +811,7 @@ Jak było mówione w poprzednich rozdziałach, Viewport to inaczej część ekra
 
 ### 5.9.7 Realizacja "Face Culling" i "Deph testing"
 
-W bibliotece OpenGL ES sprowadza się ona do prostego skonfigurowania przełącznika.
-Defaultowo, "Face Culling" i "Deph testing" są wyłączone, a załączamy je poprzez wywolanie funkcji:
-
+W bibliotece OpenGL ES "Face Culling" i "Deph testing" są domyślnie nieużywane. Aby ich użyć należy wywołać funkcję:
 ```
 import android.opengl.GLES20;
 
