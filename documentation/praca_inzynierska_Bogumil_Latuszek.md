@@ -99,21 +99,30 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 Jaki jest problem pracy?
 
 W Pracy zajmiemy się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
-Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie wdrożenia implementacji.
+Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie wdrożenia implementacji projektu.
 Jeszcze lepsze zrozumienie da nam sama analiza wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Spróbujemy wyprowadzić kluczowe wzory, wyjaśnić znaczenie ważniejszych procesów, rozbić złożone procesy na łatwe do zrozumienia etapy. Dzięki temu gdy zmierzymy się z wyborem konkretnych bibliotek, czy frameworków, będziemy mogli ocenić ich przydatność w bardziej obiektywny sposób.
 
-Praca ta analizuje problematykę grafiki komputerowej 3D w ujęciu historycznym i algorytmicznym. Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D.
-
-
-
 jaki jest szerszy kontekst pracy?
+
+W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie, postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia.
+
 Dlaczego temat pracy jest ważny?
+
+
+
 jakie wyzwania wiążą się z tematem pracy?
+
+
 
 Jaki cel chcemy osiągnąć pisząc tę pracę?
 - analiza X ...
 - stworzenie Y ... 
 - odpowiedzieć na pytanie Z ...
+
+
+
+
+"Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D. "
 
 co NIE jest zawarte w pracy?
 
