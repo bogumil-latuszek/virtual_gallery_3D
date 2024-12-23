@@ -98,6 +98,14 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 
 Jaki jest problem pracy?
 
+W Pracy zajmiemy się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
+Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie wdrożenia implementacji.
+Jeszcze lepsze zrozumienie da nam sama analiza wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Spróbujemy wyprowadzić kluczowe wzory, wyjaśnić znaczenie ważniejszych procesów, rozbić złożone procesy na łatwe do zrozumienia etapy. Dzięki temu gdy zmierzymy się z wyborem konkretnych bibliotek, czy frameworków, będziemy mogli ocenić ich przydatność w bardziej obiektywny sposób.
+
+Praca ta analizuje problematykę grafiki komputerowej 3D w ujęciu historycznym i algorytmicznym. Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D.
+
+
+
 jaki jest szerszy kontekst pracy?
 Dlaczego temat pracy jest ważny?
 jakie wyzwania wiążą się z tematem pracy?
