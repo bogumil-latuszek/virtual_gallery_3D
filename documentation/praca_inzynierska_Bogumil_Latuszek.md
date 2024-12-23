@@ -107,29 +107,17 @@ jaki jest szerszy kontekst pracy?
 W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie, postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia.
 
 Dlaczego temat pracy jest ważny?
-
-
-
 jakie wyzwania wiążą się z tematem pracy?
-
-
-
 Jaki cel chcemy osiągnąć pisząc tę pracę?
 - analiza X ...
 - stworzenie Y ... 
 - odpowiedzieć na pytanie Z ...
 
-
-
-
 "Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D. "
 
 co NIE jest zawarte w pracy?
-
 Pokrótce wymień jakie metody, techniki, frameworki będą użyte
-
 Wykaż swój wkład - uzasadnij w jaki sposób ta praca jest przydatna/przełomowa
-
 Opisz rozdziały
 
 ## 1.1 Cele projektowe
@@ -145,10 +133,13 @@ Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, da
 
 ## 1.3 Skrótowy opis zawartości rozdziałów
 
-W rozdziale 3 „Cele projektowe” zaczniemy od omówienia celu do jakiego zdąża projekt. Opowiemy też o postawionych wymaganiach funkcjonalnych, poza-funkcjonalnych i technicznych. Przyjrzymy się także profilowi docelowego użytkownika korzystającego z aplikacji. Po sprecyzowaniu opisu  „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Następnie, przejdziemy do opisu konkretnych kroków jakie muszą być wykonane aby urzeczywistnić powstanie aplikacji. Pokażemy schemat działania aplikacji, koncepcję wyglądu aplikacji, rozbijemy stworzenie aplikacji na jak najmniejsze zadania, co usprawni nam planowanie przyszłych działań,  i śledzenie postępu.
-Rozdział 4 skupia się głównie na zagadnieniach teoretycznych. Przyjrzymy się systemowi operacyjnemu na którym aplikacja będzie uruchamiana (Android), językom programowania w których aplikacja będzie napisana (Java, XML), narzędziom użytym w trakcie procesu tworzenia aplikacji (IDE - Android Studio), systemowi kontroli wersji (Git), narzędziu w którym tworzone były pliki graficzne (Krita), a także bibliotekom których funkcjonalność została użyta w kodzie aplikacji. Opowiemy też o testach i zarządzaniu projektem.
-Rozdział 5 pokazuje etapy pracy nad projektem, zawarta jest w nim też dokumentacja techniczna.
-Na końcu pracy znajdują się wnioski końcowe MOŻE ZROBMY Z TEGO 6 ROZDZIAŁ?  i bibliografia
+Rozdział 2 "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
+Rozdział 3 "Wzory matematyczne i rozwiązania programistyczne" zawiera w sobie ogólny zarys działania grafiki komputerowej, wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Przyjżymy się zagadnieniom takim jak: mnożenie macierzy i wektorów, kolejność operacji podczas wyświetlania sceny, czy algorytmy obliczania kolizji
+Rozdział 4 "System Android" skupia się na charakterystyce systemu Android. Wymienione są typy aplikacji dostępnych na Android, wraz z wadami i zaletami każdego z nich.
+Rozdział 5 "Projekt Rozwiązania" ma pokazać proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, czyli wizji realizacji projektu oraz wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu UI, opisane zostają wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazujemy schematy wybranych działań aplikacji.
+Rozdział 6 "Implementacja" to report pokazujący jak wymagania dotyczące projektu udało się zrealizować w procesie tworzenia i wdrażania aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
+Rozdział 7 "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji
+Na końcu pracy znajduje się podsumowanie projektu, opis wniosków wyciągniętych z doświadczeń zebranych podczas jego rozwoju, a także bibliografia i spis rysunków
 
 # 2. Historia rozwoju narzędzi graficznych
 
