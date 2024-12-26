@@ -987,7 +987,7 @@ Po przejściu do widoku 3D baza danych jest ponownie odczytywana i na jej podsta
 
 ## 6.3 Narzędzia graficzne
 
-Do wykonania obiektów graficznych takich jak min. logo aplikacji użyłem darmowej aplikacji open-source Krita
+Do wykonania obiektów graficznych takich jak min. logo aplikacji użyty został darmowy program open-source Krita
 
 ## 6.4 Testowanie aplikacji
 
