@@ -954,6 +954,19 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 ## 6.1 Wzorce Architektoniczne
 
+Głównym wzorcem architekturalnym zastosowanym w projekcie jest Model-View-Presenter (MVP). Model, czyli DbmWall przechowuje kluczowe dane dotyczące ścian i obrazów. Prezenter - mainActivity zbiera te dane i przekazuje odpowiednio sformatowane do View - activity_main.xml. activity_main.xml opisuje interfejs użytkownika, zajmuje się wyświetleniem przekazanych danych, a także rejestruje zdażenia takie jak dotknięcie ekranu i przekazuje je odpowiednim handlerom w prezenterze.
+```
+setContentView(R.layout.activity_main);
+```
+
+Aplikacja posiada także osobny set prezenter-view do wyświetlania danych w 3D. W skład prezentera wchodzą MainActivity3D, oraz sceneRenderer. Zaś view jest dynamicznie generowane, do czego służy klasa Surface3DView:
+
+```
+sceneRenderer = new SceneRenderer(context, walls);
+surfaceView = new Surface3DView(context, sceneRenderer);
+setContentView(surfaceView);
+```
+
 ## 6.2 Baza Danych
 
 W projekcie została wykorzystana baza danych wbudowana w system Android, czyli SQLite. Jest ona lekka, szybka i nie wymaga konfiguracji serwera. To gwarantuje, że końcowy użytkownik nie będzie miał problemów z persystencją danych aplikacji.
