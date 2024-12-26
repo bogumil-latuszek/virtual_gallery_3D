@@ -975,21 +975,29 @@ setContentView(surfaceView);
 
 ## 6.2 Baza Danych
 
-W projekcie została wykorzystana baza danych wbudowana w system Android, czyli SQLite. Jest ona lekka, szybka i nie wymaga konfiguracji serwera. To gwarantuje, że końcowy użytkownik nie będzie miał problemów z persystencją danych aplikacji.
+W projekcie została wykorzystana baza danych wbudowana w system Android, czyli SQLite. Jest to baza działająca lokalnie, nie wymagająca żadnej dodatkowej konfiguracji.
 
 Aplikacja "Wirtualna Galeria" nie ma dużych wymogów bazodanowych. Potrzebuje jedynie następujących funkcjonalności:
-* możliwości przechowania informacji w którym miejscu przestrzeni 2D (gridu) użytkownik postawił ścianę galerii
+* możliwości przechowania informacji w którym miejscu przestrzeni użytkownik postawił "ścianę galerii"
+   * istotne są jedynie współrzędne X i Z, ponieważ Y jest stałe dla wszystkich ścian (ściany leżą na podłodze i mają taką samą wysokość)
 * na której ścianie w scenie 3D został zawieszony obraz i jaki to obraz
-   * w 3D pojedyncza ściana galerii to prostopadłościan, a zatem może ona pomieścić maksymalnie 4 obrazy na swoich ścianach bocznych. 
+   * w 3D pojedyncza "ściana galerii" to prostopadłościan
+   * __ściana__ to jedna z 4 ścian bocznych prostopadłościanu
+   * przyjęto również, że na pojedynczej ścianie bocznej tego prostopadłościanu można powiesić 1 obraz. 
 
-Zostały te wymagania zrealizowane w postaci pojedynchej tablicy `WALLS` o następującej strukturze:
+Zostały te wymagania zrealizowane w postaci pojedynczej tablicy `WALLS` o następującej strukturze:
 <img src="../ilustracje/database_walls_table.svg" width=400></img>
+* `x_coordinate` i `z_coordinate` to współrzędne prostopadłościanu na podłodze galerii
+* `front_painting` to nazwa pliku dla obrazu zawieszonego na przedniej __ścianie__ danego prostopadłościanu (string pusty gdy nie ma obrazu)
+* `back_painting` to analogicznie - nazwa pliku dla obrazu na tylnej __ścianie__
+* `left_painting` - nazwa pliku dla obrazu na lewej __ścianie__
+* `right_painting` - nazwa pliku dla obrazu na prawej __ścianie__
 
-Aplikacja startując ładuje informacje o istniejących ścianach galerii i na tej podstawie ustawia startowe pozycje ścian w widoku 2D.
-Użytkownik może zmienić te ustawienia - usunąć ścianę lub dodać nową.
-Nowy układ ścian zostaje zapisany do Bazy Danych w momencie naciśnięcia przycisku SAVE <img src="../ilustracje/przycisk_save.png" width=19></img>.
+Aplikacja startując ładuje z bazy danych informacje o rozmieszczeniu istniejących ścian galerii i na tej podstawie prezentuje początkowy układ galerii w widoku 2D.
+Użytkownik może zmienić ten uklad - usunąć ścianę galerii lub dodać nową.
+Nowy układ zostaje zapisany do Bazy Danych w momencie naciśnięcia przycisku SAVE <img src="../ilustracje/przycisk_save.png" width=19></img>.
 
-Po przejściu do widoku 3D baza danych jest ponownie odczytywana i na jej podstawie tworzone są prostopadłościany ścian wystawowych galerii. Następnie nazwy obrazów z bazy danych oraz ich lokalizacja służą do odtworzenia tekstur i rozmieszczenia ich na ścianach bocznych powstałych prostopadłościanów.
+Po przejściu do widoku 3D baza danych jest ponownie odczytywana i na jej podstawie tworzone są prostopadłościany ścian galerii. Następnie nazwy plików obrazów z bazy danych oraz ich lokalizacja (przód/tył/lewo/prawo) służą do odtworzenia tekstur i rozmieszczenia ich na ścianach bocznych powstałych prostopadłościanów.
 
 ## 6.3 Narzędzia graficzne
 
