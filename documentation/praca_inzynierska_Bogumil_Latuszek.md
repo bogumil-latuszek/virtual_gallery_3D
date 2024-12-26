@@ -956,7 +956,7 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 Głównym wzorcem architekturalnym zastosowanym w projekcie jest Model-View-Presenter (MVP). Zaletami użycia tego wzorca są min.:
 - rozdzielenie warstwy odpowiedzialnej za wewnętrzną logikę aplikacji, od źródła danych i sposobu ich wyświetlenia
-- Poprzez podmianę modelu mozna w łatwy sposób uruchomić aplikację na danych testowych, co ułatwia testowalność aplikacji
+- w łatwy sposób można dodać nowy View i zintegrować go z resztą aplikacji
 
 Zastosowanie MVP w Projekcie:
 
