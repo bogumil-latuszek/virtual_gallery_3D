@@ -954,7 +954,13 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 ## 6.1 Wzorce Architektoniczne
 
-Głównym wzorcem architekturalnym zastosowanym w projekcie jest Model-View-Presenter (MVP). Model, czyli DbmWall przechowuje kluczowe dane dotyczące ścian i obrazów. Prezenter - mainActivity zbiera te dane i przekazuje odpowiednio sformatowane do View - activity_main.xml. activity_main.xml opisuje interfejs użytkownika, zajmuje się wyświetleniem przekazanych danych, a także rejestruje zdażenia takie jak dotknięcie ekranu i przekazuje je odpowiednim handlerom w prezenterze.
+Głównym wzorcem architekturalnym zastosowanym w projekcie jest Model-View-Presenter (MVP). Zaletami użycia tego wzorca są min.:
+- rozdzielenie warstwy odpowiedzialnej za wewnętrzną logikę aplikacji, od źródła danych i sposobu ich wyświetlenia
+- Poprzez podmianę modelu mozna w łatwy sposób uruchomić aplikację na danych testowych, co ułatwia testowalność aplikacji
+
+Zastosowanie MVP w Projekcie:
+
+Model, czyli DbmWall przechowuje kluczowe dane dotyczące ścian i obrazów. Prezenter - mainActivity zbiera te dane i przekazuje odpowiednio sformatowane do View - activity_main.xml. activity_main.xml opisuje interfejs użytkownika, zajmuje się wyświetleniem przekazanych danych, a także rejestruje zdażenia takie jak dotknięcie ekranu i przekazuje je odpowiednim handlerom w prezenterze.
 ```
 setContentView(R.layout.activity_main);
 ```
