@@ -106,12 +106,9 @@ W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w s
 
 Dlaczego temat pracy jest ważny?
 jakie wyzwania wiążą się z tematem pracy?
-Jaki cel chcemy osiągnąć pisząc tę pracę?
-- analiza X ...
+
 - stworzenie Y ... 
 - odpowiedzieć na pytanie Z ...
-
-"Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D. "
 
 co NIE jest zawarte w pracy?
 Pokrótce wymień jakie metody, techniki, frameworki będą użyte
