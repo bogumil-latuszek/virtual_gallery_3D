@@ -136,7 +136,7 @@ Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, da
 
 **Rozdział 5** "Projekt Rozwiązania" pokazuje proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównana jest z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokazana jest konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu UI, opisany jest wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazane są sekwencje wywołania funkcji istotnych dla zrozumienia działania części aplikacji wykorzystującej OpenGL ES.
 
-**Rozdział 6** "Implementacja" pokazuje jak wymagania projektowe udało się zrealizować w procesie tworzenia i wdrażania aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
+**Rozdział 6** "Implementacja" pokazuje jak wymagania projektowe udało się zrealizować w procesie tworzenia aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
 
 **Rozdział 7** "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji
 
