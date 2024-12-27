@@ -1005,10 +1005,10 @@ Do wykonania obiektów graficznych takich jak min. logo aplikacji użyty został
 
 ## 6.4 Testowanie aplikacji, napotkane problemy
 
-W związku z wyjątkową charakterystyką aplikacji, wykożystane zostały wyłącznie testy manualne
+W związku z tym że główną częścią aplikacji jest funkcjonalność 3D, wykożystane zostały wyłącznie testy manualne
 Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), a jego realizację weryfikowano poprzez testy manualne. 
 Przykładowo, w jednym z pierwszych etapów rozwoju, celem było wyświetlenie najprostrzego możliwego kształtu na ekranie (zgodnie z: odnośnik do kursu opengl es). Po zweryfikowaniu że na ekranie wyświetla się zielony trójkąt, etap został uznany za zakończony
-Innym razem, celem było wyświetlenie co najmniej dwuch brył na raz. Podczas weryfikacji stwierdzona została nieprawidłowość charakteryzująca się przenikaniem brył przez siebie. Błąd ten został rozwiązany poprzez użycie:
+Innym razem, celem było wyświetlenie co najmniej dwuch brył na raz. Podczas weryfikacji stwierdzona została nieprawidłowość charakteryzująca się przenikaniem brył przez siebie. Błąd ten został rozwiązany poprzez użycie poniższej funkcji, która uruchamia testy głębokości:
 
 ```
 GLES20.glEnable(GLES20.GL_DEPTH_TEST);
