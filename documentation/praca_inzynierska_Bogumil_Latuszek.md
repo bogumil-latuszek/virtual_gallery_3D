@@ -64,18 +64,17 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 5.3 [Diagram przypadków użycia](#53-diagram-przypadków-użycia)
     - 5.4 [Przegląd istniejących rozwiązań](#54-przegląd-istniejących-rozwiązań)
     - 5.5 [Koncepcja wyglądu UI aplikacji](#55-koncepcja-wyglądu-ui-aplikacji)
-    - 5.6 [Zadania projektowe](#56-zadania-projektowe) 
-    - 5.7 [Język programowania i środowisko programistyczne](#57-język-programowania-i-środowisko-programistyczne)
-    - 5.8 [Biblioteka OpenGL ES](#58-biblioteka-opengl-es)
-    - 5.8.1 Shadery
-    - 5.8.2 Dane wejściowe Shaderów
-    - 5.8.3 Struktura danych opisująca bryłę
-    - 5.8.4 Przekazywanie wartości do atrybutów i uniformów Shadera
-    - 5.8.5 macierze w OpenGL ES
-    - 5.8.6 ustawianie Viewport-u
-    - 5.8.7 realizacja "Face Culling" i "Deph testing"
-    - 5.8.8 Implementacja interface-u GLSurfaceView.Renderer
-    - 5.8.9 Przekazywanie danych między CPU i GPU - Diagramy UML
+    - 5.6 [Język programowania i środowisko programistyczne](#56-język-programowania-i-środowisko-programistyczne)
+    - 5.7 [Biblioteka OpenGL ES](#57-biblioteka-opengl-es)
+    - 5.7.1 Shadery
+    - 5.7.2 Dane wejściowe Shaderów
+    - 5.7.3 Struktura danych opisująca bryłę
+    - 5.7.4 Przekazywanie wartości do atrybutów i uniformów Shadera
+    - 5.7.5 macierze w OpenGL ES
+    - 5.7.6 ustawianie Viewport-u
+    - 5.7.7 realizacja "Face Culling" i "Deph testing"
+    - 5.7.8 Implementacja interface-u GLSurfaceView.Renderer
+    - 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 6. [Implementacja](#6-implementacja)
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
     - 6.2 [Baza Danych](#62-baza-danych)
@@ -655,18 +654,13 @@ _Ilustracja 6: koncept UI w widoku 3D – opracowanie własne_
 
 Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
 
-## 5.6 Zadania projektowe
-
-
-
-
-## 5.7 Język programowania i środowisko programistyczne
+## 5.6 Język programowania i środowisko programistyczne
 
 (uzasadnić wybór Javy - OpenGL można pisać w C, C++, Javie ale na Android tylko Java)
 
 Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzyskujemy m.in. dostęp do dziedziczenia klas co znacznie zwiększa tempo rozwoju kodu i pozwala uniknąć duplikacji fragmentów kodu. Użycie klas i interface-ów pozwala na rozległą specyfikację typów danych ponad podstawowe (prymitywne) takie jak int czy string. Jest to język ściśle typowiony, to znaczy wartości danego typu mogą zostać przypisane tylko do zmiennych o tym samym typie, lub przekazane do funkcji które akceptują argumenty tego samego typu. Ponadto określenie typu zmiennej/parametru jest jawne i następuje zanim do zmiennej/parametru zostanie przypisana jakakolwiek wartość. Ścisłe typowienie umożliwia wykrywanie błędów już na etapie pisania kodu, jeszcze przed kompilacją. Jest to możliwe dzięki „inteligentnym asystentom” wchodzącym w skład popularnych IDE (zintegrowanych środowisk developerskich) takich jak np. Visual Studio czy w naszym przypadku Android Studio.
 
-## 5.8 Biblioteka OpenGL ES
+## 5.7 Biblioteka OpenGL ES
 
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
 Pisanie programów w OpenGL ES wymaga zrozumienia jego specyficznych konceptów. Aplikacja wykorzystująca bibiotekę OpenGL ES działa równocześnie na CPU i GPU. Część aplikacji działająca na CPU musi móc się porozumieć z częścią działającą na GPU. Rolę pośrednika pełni bibioteka OpengGL ES. To ona wysyła program do uruchomienia na GPU, i koordynuje przesyłanie danych. 
@@ -690,7 +684,7 @@ Podstawowe koncepty biblioteki:
 
 (jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
 
-### 5.8.1 Shadery
+### 5.7.1 Shadery
 
 Shadery ( TODO: wstawić odnośnik do 3.1.2) w OpenGL ES są pisane w języku GLSL (OpenGL Shading Language). Poniżej pokazujemy przykład:
 
@@ -716,14 +710,14 @@ void main()
 ```
 OpenGL ES kompiluje shadery i łączy je  (vertex shader i fragment shader) w jeden "program". Przedstawiono to na diagramie sekwencji poniżej.
 
-### 5.8.2 Dane wejściowe Shaderów
+### 5.7.2 Dane wejściowe Shaderów
 
 Dane wejściowe shaderów dzielą się na:
 Attribute: Dane specyficzne dla każdego wierzchołka (np. pozycja).
 Uniform: Dane wspólne dla wszystkich wierzchołków (np. macierze transformacji, kolor).
 
 
-### 5.8.3 Struktura danych opisująca bryłę
+### 5.7.3 Struktura danych opisująca bryłę
 
 Jednym z najważniejszych atrybutów przekazywanych do "programu" jest lista wierzchołków definiujących kształt bryły. Nazwijmy ją "Vertex Array". Każdy wierzchołek składa się z trzech zmiennych `(x,y,z)`. OpenGL ES wymaga określenia metadanych opisujących wierzchołki: ilości bajtów na każdą zmienną, kolejności bajtów w pamięci (ang. byte order) oraz z ilu zmiennych składa się wierzchołek. Tak opisany "Vertex Array" tworzy ciągły obszar pamięci, który jako całość przesyłany jest do GPU. Dzięki metadanym GPU potrafi odnaleźć kolejne wierzchołki w przesłanym buforze i użyć wierzchołka jako wartości atrybutu `a_Position` w powyższym shaderze.
 
@@ -741,14 +735,14 @@ Lub, wysłać osobno zbiór unikalnych wierzchołków w "VertexArray", oraz inst
 
 <TODO: wstawić przykład ciągu uikalnych wierzchołków, oraz sekwencji rysowania>
 
-### 5.8.4 Przekazywanie wartości do atrybutów i uniformów Shadera
+### 5.7.4 Przekazywanie wartości do atrybutów i uniformów Shadera
 
 Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programista OpenGL musi jeszcze wskazać który bufor ma zostać użyty jako źródło danych dla konkretnego atrybutu Shader-a. Sekwencja tego powiązania jest następująca:
 1. pobranie uchwytu (ang. handle) do atrybutu: `a_PositionLocation = glGetAttribLocation(programObjectId, a_Position)`
 2. powiązanie bufora z atrybutem: `glVertexAttribPointer(a_PositionLocation, vertices)`
 3. aktywacja atrybutu: `glEnableVertexAttribArray(aPositionLocation)`
 
-### 5.8.5 Macierze w OpenGL ES
+### 5.7.5 Macierze w OpenGL ES
 
 Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. 
 
@@ -824,14 +818,14 @@ float ratio = (float) width / height;
 Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 20);
 
 ```
-### 5.8.6 Ustawianie Viewport-u
+### 5.7.6 Ustawianie Viewport-u
 
 Jak było mówione w poprzednich rozdziałach, Viewport to inaczej część ekranu na której wyświetlana jest scena. W OpenGL ES definiujemy ją przez podanie dwóch punktów na ekranie. Pierwszy traktowany jest jako lewy górny róg prostokąta, a drugi jako prawy dolny. Viewport to przestrzeń na ekranie zawarta w tak opisanym prostokącie. Poniżej pokazano wywołanie funkcji tworzącej Viewport:
 ```
         GLES20.glViewport(0,0,width,height);
 ```
 
-### 5.8.7 Realizacja "Face Culling" i "Deph testing"
+### 5.7.7 Realizacja "Face Culling" i "Deph testing"
 
 W bibliotece OpenGL ES "Face Culling" i "Deph testing" są domyślnie nieużywane. Aby ich użyć należy wywołać funkcję:
 ```
@@ -841,7 +835,7 @@ GLES20.glEnable(GLES20.GL_CULL_FACE);
 GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 ```
 
-### 5.8.8 Implementacja interface-u GLSurfaceView.Renderer
+### 5.7.8 Implementacja interface-u GLSurfaceView.Renderer
 
 `android.opengl.GLSurfaceView` jest implementacją Androidowego View przez OpenGL ES.
 Jest to View dynamiczne - jego zawartość jest rysowana z pomocą klasy implementującej interface `Renderer`. 
@@ -882,7 +876,7 @@ Klasa implementująca interface `Renderer` może go rozszerzyć o metodę `handl
 * w niej wykorzystać odwróconą macierz Widoku-Projekcji (`invertedViewProjectionMatrix`) do detekcji kolizji półprostej wychodzącej z punktu dotknięcia wgłąb sceny 3D z bryłami wyświetlonymi w tej scenie
 * można też wykorzystać punkt dotknięcia do sterowania wirtualną kamerą (zbliżenia, oddalenia, obroty) realizowanego jako modyfikacja macierzy View
 
-### 5.8.9 Przekazywanie danych między CPU i GPU - Diagramy UML
+### 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
 W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
