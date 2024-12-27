@@ -131,12 +131,18 @@ Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, da
 
 ## 1.3 Skrótowy opis zawartości rozdziałów
 
-Rozdział 2 "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
-Rozdział 3 "Wzory matematyczne i rozwiązania programistyczne" zawiera w sobie ogólny zarys działania grafiki komputerowej, wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Przyjżymy się zagadnieniom takim jak: mnożenie macierzy i wektorów, kolejność operacji podczas wyświetlania sceny, czy algorytmy obliczania kolizji
-Rozdział 4 "System Android" skupia się na charakterystyce systemu Android. Wymienione są typy aplikacji dostępnych na Android, wraz z wadami i zaletami każdego z nich.
-Rozdział 5 "Projekt Rozwiązania" ma pokazać proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, czyli wizji realizacji projektu oraz wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu UI, opisane zostają wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazujemy sekwencję wywołania funkcji istotną dla zrozumienia działania części aplikacji wykorzystującej OpenGL ES.
-Rozdział 6 "Implementacja" to report pokazujący jak wymagania dotyczące projektu udało się zrealizować w procesie tworzenia i wdrażania aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
-Rozdział 7 "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji
+**Rozdział 2** "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
+
+**Rozdział 3** "Wzory matematyczne i rozwiązania programistyczne" zawiera w sobie ogólny zarys działania grafiki komputerowej, wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Przyjżymy się zagadnieniom takim jak: mnożenie macierzy i wektorów, kolejność operacji podczas wyświetlania sceny, czy algorytmy obliczania kolizji
+
+**Rozdział 4** "System Android" skupia się na charakterystyce systemu Android. Wymienione są typy aplikacji dostępnych na Android, wraz z wadami i zaletami każdego z nich.
+
+**Rozdział 5** "Projekt Rozwiązania" ma pokazać proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, czyli wizji realizacji projektu oraz wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównamy ją z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokażemy konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu UI, opisane zostają wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazujemy sekwencję wywołania funkcji istotną dla zrozumienia działania części aplikacji wykorzystującej OpenGL ES.
+
+**Rozdział 6** "Implementacja" to report pokazujący jak wymagania dotyczące projektu udało się zrealizować w procesie tworzenia i wdrażania aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
+
+**Rozdział 7** "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji
+
 Na końcu pracy znajduje się podsumowanie projektu, opis wniosków wyciągniętych z doświadczeń zebranych podczas jego rozwoju, a także bibliografia i spis rysunków
 
 # 2. Historia rozwoju narzędzi graficznych
