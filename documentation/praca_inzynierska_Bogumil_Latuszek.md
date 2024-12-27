@@ -1005,6 +1005,9 @@ Do wykonania obiektów graficznych takich jak min. logo aplikacji użyty został
 
 ## 6.4 Testowanie aplikacji
 
+W związku z wyjątkową charakterystyką aplikacji, wykożystane zostały wyłącznie testy manualne
+
+
 ## 6.5 Zarządzanie projektem informatycznym
 
 Kontrola Wersji – Git 
