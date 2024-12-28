@@ -113,7 +113,7 @@ Aplikacja "Wirtualna Galeria" służy do budowania symulacji galerii sztuki, daj
 Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtualna Galeria", w oparciu o system Android, język Java, bibliotekę OpenGL ES, oraz bazę danych SQLite. W pracy zawarta jest również analiza zagadnień teoretycznych dotyczących użytych narzędzi, oraz szeroko rozumianej dziedziny grafiki 3D, z naciskiem na wzory matematyczne i rozwiązania techniczne. W celu skontekstualizowania poruszanych zagadnień, zawarty został również rozdział poświęcony historii powstania i rozwoju grafiki 3D.
 ( TODO: Dopytać się promotora o to co ma być zawarte w tym podrozdziale)
 
-## 1.2 Skrótowy opis zawartości rozdziałów
+## 1.3 Skrótowy opis zawartości rozdziałów
 
 **Rozdział 2** "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
 
