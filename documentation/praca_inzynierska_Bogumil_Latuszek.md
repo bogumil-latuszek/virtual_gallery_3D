@@ -37,9 +37,8 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 
 [Streszczenie](#Streszczenie)
 1. [Wstęp](#1-wstęp)
-    - 1.1 [Cele projektowe](#11-cele-projektowe)
-    - 1.2 [Zakres pracy](#12-zakres-pracy)
-    - 1.3 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
+    - 1.1 [Zakres pracy](#11-zakres-pracy)
+    - 1.2 [Skrótowy opis zawartości rozdziałów](#12-skrótowy-opis-zawartości-rozdziałów)
 2. [Historia rozwoju narzędzi graficznych](#2-historia-rozwoju-narzędzi-graficznych)
     - 2.1 [Open source](#21-open-source)
     - 2.2 [Grafika komputerowa](#22-grafika-komputerowa)
@@ -94,39 +93,21 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 
 # 1. Wstęp
 
-Jaki jest problem pracy?
-
-W Pracy zajmiemy się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
+Praca ta zajmuje się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
 Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie implementacji projektu.
 Jeszcze lepsze zrozumienie da nam sama analiza wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Spróbujemy wyprowadzić kluczowe wzory, wyjaśnić znaczenie ważniejszych procesów, rozbić złożone procesy na łatwe do zrozumienia etapy. Dzięki temu gdy zmierzymy się z wyborem konkretnych bibliotek, czy frameworków, będziemy mogli ocenić ich przydatność w bardziej obiektywny sposób.
 
-jaki jest szerszy kontekst pracy?
+W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia. 
+Do stworzenia Projektu "Wirtualna Galeria" wybrany został system Android, w minimalnej wersji sdk 24, a docelowej 33.
 
-W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie, postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia. W tym Projekcie został wybrany system Android, w wersjach wspierających bibliotekę OpenGL ES 2.0
-
-Dlaczego temat pracy jest ważny?
-jakie wyzwania wiążą się z tematem pracy?
-
-- stworzenie Y ... 
-- odpowiedzieć na pytanie Z ...
-
-co NIE jest zawarte w pracy?
-Pokrótce wymień jakie metody, techniki, frameworki będą użyte
-Wykaż swój wkład - uzasadnij w jaki sposób ta praca jest przydatna/przełomowa
-Opisz rozdziały
-
-## 1.1 Cele projektowe
-
-Celem projektu jest opracowanie i implementacja aplikacji mobilnej umożliwiającej użytkownikowi przeglądanie multimediów w nowatorski sposób. Aplikacja ta wykorzystuje bibliotekę OpenGL ES do stworzenia przestrzeni 3D w której będzie można umiejscowić obiekty takie jak „ściany” i „obrazy”. „Ściany” to prostopadłościany które  wydzielają przestrzeń, oraz służą jako miejsca wieszenia „obrazów” czyli płaskich czworokątów wyświetlających pliki multimedialne. Użytkownik będzie mógł rozmieszczać te obiekty w dowolny sposób, zgodnie z swoim upodobaniem, tworząc swoją własną „Wirtualną Galerię”,  która może też posłużyć jako „Pokój Pamięci”, czyli medium potrzebne do technik mnemotechnicznych.
-
-## 1.2 Zakres pracy
+## 1.1 Zakres pracy
 
 Aplikacja "Wirtualna Galeria" służy do zbudowania symulacji galerii sztuki, dając użytkownikowi możliwość wchodzenia z nią w interakcję, poprzez:
 - projektowanie ułożenia ścian
 - rozmieszczanie obrazów
 - zwiedzanie galerii
 
-## 1.3 Skrótowy opis zawartości rozdziałów
+## 1.2 Skrótowy opis zawartości rozdziałów
 
 **Rozdział 2** "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
 
