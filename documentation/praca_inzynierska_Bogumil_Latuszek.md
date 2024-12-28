@@ -439,7 +439,7 @@ Warto wspomnieć, że główną charakterystyką shaderów jest równoległość
 
 ## 3.2 Obliczenia fizyki sceny 3D
 
-Jednym z przyjętych wymagań funkcjonalnych jest możliwość wieszania/zdejmowania obrazów na "ścianach galerii". W scenie 3D bryły reprezentujące "ściany galerii" to **prostopadłościany**. I tak będziemy je nazywać w dalszej części tego rozdziału.  
+Jednym z przyjętych wymagań funkcjonalnych( TODO: to dlaczego wymagania są zdefiniowane dopiero w kolejnych rozdziałach? ) jest możliwość wieszania/zdejmowania obrazów na "ścianach galerii". W scenie 3D bryły reprezentujące "ściany galerii" to **prostopadłościany**. I tak będziemy je nazywać w dalszej części tego rozdziału.  
 Obrazy wieszane są na bocznych ścianach prostopadłościanów. Do jednej ściany może być przypisany maksymalnie jeden obraz.
 
 #### Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
@@ -1068,9 +1068,7 @@ Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. 
 
 # Wnioski końcowe
 
-
-
-
+Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania.
 
 # Bibliografia
 
