@@ -38,8 +38,8 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 [Streszczenie](#Streszczenie)
 1. [Wstęp](#1-wstęp)
     - 1.1 [Cele projektowe](#11-cele-projektowe)
-    - 1.1 [Zakres pracy](#12-zakres-pracy)
-    - 1.2 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
+    - 1.2 [Zakres pracy](#12-zakres-pracy)
+    - 1.3 [Skrótowy opis zawartości rozdziałów](#13-skrótowy-opis-zawartości-rozdziałów)
 2. [Historia rozwoju narzędzi graficznych](#2-historia-rozwoju-narzędzi-graficznych)
     - 2.1 [Open source](#21-open-source)
     - 2.2 [Grafika komputerowa](#22-grafika-komputerowa)
@@ -111,14 +111,7 @@ Aplikacja "Wirtualna Galeria" służy do budowania symulacji galerii sztuki, daj
 ## 1.2 Zakres Pracy
 
 Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtualna Galeria", w oparciu o system Android, język Java, bibliotekę OpenGL ES, oraz bazę danych SQLite. W pracy zawarta jest również analiza zagadnień teoretycznych dotyczących użytych narzędzi, oraz szeroko rozumianej dziedziny grafiki 3D, z naciskiem na wzory matematyczne i rozwiązania techniczne. W celu skontekstualizowania poruszanych zagadnień, zawarty został również rozdział poświęcony historii powstania i rozwoju grafiki 3D.
-
 ( TODO: Dopytać się promotora o to co ma być zawarte w tym podrozdziale)
-- Analiza grafiki komputerowej w ujęciu historycznym
-- Opis podstaw matematycznych grafiki 3D ze szczególnym uwzględnieniem rachunku macierzowego
-* Wybór technologii implementacji grafiki 3D
-    (dlaczego OpenGL a nie Vulkan, dlaczego ES, dlaczego ES 2.0 a nie 1.0)
-* Opracowanie prototypu aplikacji wykorzystującej grafikę 3D na systemie Android
-
 
 ## 1.2 Skrótowy opis zawartości rozdziałów
 
