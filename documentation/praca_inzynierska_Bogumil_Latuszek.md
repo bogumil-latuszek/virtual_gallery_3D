@@ -1068,7 +1068,17 @@ Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. 
 
 # Wnioski końcowe
 
-Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania.
+
+Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania. Poza tym praca dostarcza dogłębnej wiedzy o matematyce leżącej u podstaw grafiki 3D. 
+(TODO: dopytać się promotora o to co tu dopisać)
+
+# Możliwości dalszego rozwoju
+
+Choć przyjęte wymagania zostały spełnione, mimo to brakuje pewnych funkcjonalności których można byłoby się spodziewać gdyby aplikacja miała być wdrażana komercjalnie. Zaczynając od wyglądu aplikacji, aktualnie użytkownik nie ma możliwości koloru ścian ani podłogi/tła. Taką funkcjonalność mogłoby zapewnić specjalne okno menu. Poza tym kolor ścian w przestrzeni 3D jest zbyt monotonny, na ten moment nie ma żadnej symulacji światła. Użycie którejś z technik symulacji światła pozwoliło by na zwiększenie realizmu sceny 3D. 
+Jeśli chodzi o kluczową funkcjonalność aplikacji, brak kolizji z elementami otoczenia (ścianami) podczas ruchu kamery jest na pewno potencjalnie sporym przeoczeniem. Również mogłaby się przydać możliwość przybliżenia kamery (zooming) do któregoś z zawieszonych obrazów, aby lepiej mu się przyjżeć, na ten moment ciężko jest wystarczająco blisko podejść do ściany z zawieszonym obrazem bez wchodzenia w ścianę. Jeszcze, jeśli chodzi o wieszanie obrazów, warto było by dodać menu kontekstowe wyświetlane podczas gdy użytkownik chce zawiesić obraz. Takie menu dawało by dostęp do systemu plików, pozwalając użytkownikowi na wybranie konkretnego obrazu do zawieszenia. W aktualnej wersji obraz wybierany jest losowo spośród dostępnych w katalogu zdjęć. Można było by też rozszerzyć funkcjonalność aplikacji o możliwość wieszania plików wideo takich jak .gif czy .mp4, oraz dodać możliwość ich odtwarzania gdy użytkownik wejdzie z nimi w interakcję.
+Korzystne mogło by się okazać również zbudowanie narzędzi w celu lepszego testowania aplikacji. Przykładowo, dodanie licznika fps pozwoliło by na lepsze śledzenie wydajności. 
+
+
 
 # Bibliografia
 
