@@ -86,8 +86,11 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 7.1 [Instalacja aplikacji](#71-instalacja-aplikacji)
     - 7.2 [Uruchomienie aplikacji i opis funkcjonalności 2D](#72--uruchomienie-aplikacji-i-opis-funkcjonalności-2d)
     - 7.3 [Opis funkcjonalności 3D](#73-opis-funkcjonalności-3d)
+    
 [Wnioski końcowe](#wnioski-końcowe)
+
 [Bibliografia](#bibliografia)
+
 [Spis rysunków](#spis-rysunków)
 
 
@@ -1076,6 +1079,7 @@ Grafika komputerowa to bardzo obszerny dział informatyki. W przyjętych ramach 
 - dodanie funkcjonalności zbliżenia kamery na obraz
 - poszerzenie dostępnych typów obrazów o pliki wideo i możliwość ich odtwarzania
 - umożliwienie wyboru konkretnego zdjęcia lub pliku wideo z dowolnego folderu jako obrazu do zawieszenia
+
 Poza wymienionymi funkcjonalnościami, aby upewnić się że aplikację można wydać komercyjnie, należałoby przeprowadzić testy wydajnościowe, obciążeniowe i testy zużycia pamięci.
 
 # Bibliografia
