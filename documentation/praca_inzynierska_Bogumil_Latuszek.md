@@ -86,7 +86,6 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 7.1 [Instalacja aplikacji](#71-instalacja-aplikacji)
     - 7.2 [Uruchomienie aplikacji i opis funkcjonalności 2D](#72--uruchomienie-aplikacji-i-opis-funkcjonalności-2d)
     - 7.3 [Opis funkcjonalności 3D](#73-opis-funkcjonalności-3d)
-[Podsumowanie projektu](#podsumowanie-projektu)
 [Wnioski końcowe](#wnioski-końcowe)
 [Bibliografia](#bibliografia)
 [Spis rysunków](#spis-rysunków)
@@ -125,9 +124,9 @@ Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtual
 
 **Rozdział 6** "Implementacja" pokazuje jak wymagania projektowe udało się zrealizować w procesie tworzenia aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
 
-**Rozdział 7** "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji
+**Rozdział 7** "Dokumentacja techniczna projektu" zawiera instrukcję instalacji i obsługi aplikacji.
 
-Na końcu pracy znajduje się podsumowanie projektu, opis wniosków wyciągniętych z doświadczeń zebranych podczas jego rozwoju, a także bibliografia i spis rysunków
+Na końcu pracy znajdują się wnioski wyciągnięte z doświadczeń zebranych podczas rozwoju aplikacji, a także bibliografia i spis rysunków.
 
 # 2. Historia rozwoju narzędzi graficznych
 
@@ -1062,42 +1061,22 @@ a obraz zniknie:
 
 po kliknięciu jeszcze raz na ścianę zostanie zawieszony kolejny dostępny obraz, możemy w ten sposób wybrać który nam pasuje:
 
-# Podsumowanie projektu
-
-Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. Stworzony interface jest minimalistyczny przez co użytkownik może skupić się na swoich celach artystycznych, a nie pokonywać złożonego UI jak w przypadku takich programów 3D jak Blender czy AutoCAD – one mają inne obszary zastosowań. Wirtualna Galeria ma natomiast służyć użytkownikom przez swoją Prostotę i intuicyjność – ma pozwolić im wykorzystać ich kreatywność do tworzenia barwnej, przestrzennej galerii obrazów lub zdjęć.
-
 # Wnioski końcowe
 
-Recap:
-cel:
-Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. 
+Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Cel ten został w pełni zrealizowany, stworzona aplikacja dostarcza użytkownikowi możliwość projektowanie układu ścian, rozmieszczania obrazów i zwiedzania galerii. 
 
-Co się udało:
-W przyjętych ramach czasowych udało się zrealizować postawione wymagania.
+Interfejs użytkownika jest minimalistyczny przez co może się on skupić na swoich celach artystycznych, i nie musi tracić czasu na opanowanie złożonego UI jak w przypadku takich programów 3D jak Blender czy AutoCAD – one mają inne obszary zastosowań. Wirtualna Galeria ma natomiast służyć użytkownikom przez swoją prostotę i intuicyjność – ma pozwolić im wykorzystać swoją kreatywność do tworzenia barwnej, przestrzennej galerii obrazów lub zdjęć.
 
-Czego nie zdążyłem zrobić:
+Praca rozpoczyna się od opisu historii grafiki komputerowej i pokazuje jakie biblioteki graficzne 3D są obecnie najbardziej popularne (OpenGL, DirectX, Vulcan). Do stworzenia projektu wybrana została biblioteka OpenGL w wersji ES 2.0 na Android. Kluczowe mechanizmy działania tej biblioteki opisano w rozdziale 5.7. W rozdziale 3 ukazane są dogłębnie podstawy matematyczne grafiki 3D niezależne od użytej biblioteki graficznej.
 
-Grafika komputerowa to bardzo obszerny dział informatyki. W rozdziale trzecim pokazane zostało podstawowe użycie shaderów, jako programów zajmujących się obliczeniami macierzowymi, oraz znalezieniem koloru pikseli na ekranie. I tak właśnie zostały użyte w tej aplikacji, w bardzo podstawowy sposób. 
-
-Aby skończyć projekt w wyznaczonym terminie musiałem powstrzymać się przed dodaniem dodatkowej funkcjonalności która poszerzyła by zakres interakcji użytkownika w scenie 3D. Musiałem też zdecydować się na najprostszą implementację grafiki komputerowej. Poza tym nie miałem czasu aby dokładnie przetestować możliwości aplikacji takie jak wydajność, czy maksymalne zużycie pamięci?
-
-możliwości rozwoju aplikacji:
-
-Obliczenia w Shaderach można poszerzyć o obliczenia światła w scenie.
-
-
-
-
-Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania.
-(TODO: dopytać się promotora o to co tu dopisać)
-
-# Możliwości dalszego rozwoju
-
-Choć przyjęte wymagania zostały spełnione, mimo to brakuje pewnych funkcjonalności których można byłoby się spodziewać gdyby aplikacja miała być wdrażana komercjalnie. Zaczynając od wyglądu aplikacji, aktualnie użytkownik nie ma możliwości koloru ścian ani podłogi/tła. Taką funkcjonalność mogłoby zapewnić specjalne okno menu. Poza tym kolor ścian w przestrzeni 3D jest zbyt monotonny, na ten moment nie ma żadnej symulacji światła. Użycie którejś z technik symulacji światła pozwoliło by na zwiększenie realizmu sceny 3D. 
-Jeśli chodzi o kluczową funkcjonalność aplikacji, brak kolizji z elementami otoczenia (ścianami) podczas ruchu kamery jest na pewno potencjalnie sporym przeoczeniem. Również mogłaby się przydać możliwość przybliżenia kamery (zooming) do któregoś z zawieszonych obrazów, aby lepiej mu się przyjżeć, na ten moment ciężko jest wystarczająco blisko podejść do ściany z zawieszonym obrazem bez wchodzenia w ścianę. Jeszcze, jeśli chodzi o wieszanie obrazów, warto było by dodać menu kontekstowe wyświetlane podczas gdy użytkownik chce zawiesić obraz. Takie menu dawało by dostęp do systemu plików, pozwalając użytkownikowi na wybranie konkretnego obrazu do zawieszenia. W aktualnej wersji obraz wybierany jest losowo spośród dostępnych w katalogu zdjęć. Można było by też rozszerzyć funkcjonalność aplikacji o możliwość wieszania plików wideo takich jak .gif czy .mp4, oraz dodać możliwość ich odtwarzania gdy użytkownik wejdzie z nimi w interakcję.
-Korzystne mogło by się okazać również zbudowanie narzędzi w celu lepszego testowania aplikacji. Przykładowo, dodanie licznika fps pozwoliło by na lepsze śledzenie wydajności. 
-
-
+Grafika komputerowa to bardzo obszerny dział informatyki. W przyjętych ramach czasowych nie udało się wdrożyć dodatkowej funkcjonalności która pozwoliła by wydać "Wirtualną Galerię" jako pełnoprawny produkt komercyjny. Potencjalne pomysły na dalszy rozwój projektu:
+- umożliwienie personalizacji aplikacji poprzez wybór koloru ścian/tła/podłogi w ustawieniach
+- zwiększenie realizmu sceny 3D poprzez dodanie oświetlenia
+- wykrywanie kolizji pomiędzy kamerą a elementami otoczenia 
+- dodanie funkcjonalności zbliżenia kamery na obraz
+- poszerzenie dostępnych typów obrazów o pliki wideo i możliwość ich odtwarzania
+- umożliwienie wyboru konkretnego zdjęcia lub pliku wideo z dowolnego folderu jako obrazu do zawieszenia
+Poza wymienionymi funkcjonalnościami, aby upewnić się że aplikację można wydać komercyjnie, należałoby przeprowadzić testy wydajnościowe, obciążeniowe i testy zużycia pamięci.
 
 # Bibliografia
 
