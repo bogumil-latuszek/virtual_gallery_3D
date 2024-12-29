@@ -1068,8 +1068,27 @@ Wymieniona wyżej funkcjonalność pozwala zrealizować założenia projektowe. 
 
 # Wnioski końcowe
 
+Recap:
+cel:
+Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. 
 
-Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania. Poza tym praca dostarcza dogłębnej wiedzy o matematyce leżącej u podstaw grafiki 3D. 
+Co się udało:
+W przyjętych ramach czasowych udało się zrealizować postawione wymagania.
+
+Czego nie zdążyłem zrobić:
+
+Grafika komputerowa to bardzo obszerny dział informatyki. W rozdziale trzecim pokazane zostało podstawowe użycie shaderów, jako programów zajmujących się obliczeniami macierzowymi, oraz znalezieniem koloru pikseli na ekranie. I tak właśnie zostały użyte w tej aplikacji, w bardzo podstawowy sposób. 
+
+Aby skończyć projekt w wyznaczonym terminie musiałem powstrzymać się przed dodaniem dodatkowej funkcjonalności która poszerzyła by zakres interakcji użytkownika w scenie 3D. Musiałem też zdecydować się na najprostszą implementację grafiki komputerowej. Poza tym nie miałem czasu aby dokładnie przetestować możliwości aplikacji takie jak wydajność, czy maksymalne zużycie pamięci?
+
+możliwości rozwoju aplikacji:
+
+Obliczenia w Shaderach można poszerzyć o obliczenia światła w scenie.
+
+
+
+
+Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją galerii sztuki. Poprzednie rozdziały dobitnie pokazują iż cel ten został osiągnięty. Oferowana przez "Wirtualną Galerię" funkcjonalność spełnia wszystkie przyjęte wymagania.
 (TODO: dopytać się promotora o to co tu dopisać)
 
 # Możliwości dalszego rozwoju
