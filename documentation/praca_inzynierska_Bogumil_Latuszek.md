@@ -829,6 +829,81 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
 ### 5.7.8 Implementacja interface-u GLSurfaceView.Renderer
 
+1. GLSurfaceView działa jak view w Android
+2. View w Android są typowo pisane w języku XML
+3. GLSurfaceView.Renderer jest podklasą GLSurfaceView, aby pozwolić rendererowi na rysowanie na surface, należy wywołać funkcję GLSurfaceView: setRenderer(renderer);
+4. Ponieważ Mode3DActivity ustawia GLSurfaceView jako swój view: 
+setContentView(surfaceView);
+view to zajmuje cały ekran.
+*instancja Mode3DActivity to context którego potrzebuje konstruktor GLSurfaceView
+
+Jakie wedle tych faktów nasuwają się pytania?:
+1. dlaczego GLSurfaceView może działać jak view skoro nie jest napisany w XML?
+2. Czy funkcje onSurfaceCreated() onSurfaceChanged() i onDrawFrame() są zdefiniowane w GLSurfaceView.Renderer? Co o nich wiemy? Czy są to jedyne funkcje jakie trzeba overridować w klasie dziedziczącej z GLSurfaceView.Renderer? 
+
+
+In Android, the LayoutInflater class is responsible for creating views from XML layout files. It parses the XML layout file and constructs the corresponding view hierarchy in memory, making the views usable in your application. The output is a View object. The Android system uses LayoutInflater internally whenever you call methods like setContentView() in an activity or onCreateView() in a fragment. But, instead of using:
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Set the content view using an XML layout
+    setContentView(R.layout.activity_main);
+}
+```
+you can create the view first, and then pass it to setContentView:
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Inflate the layout manually
+    LayoutInflater inflater = LayoutInflater.from(this);
+    View myView = inflater.inflate(R.layout.my_custom_view, null);
+
+    // Set the inflated view as the content view
+    setContentView(myView);
+}
+```
+or, you can just create a View object, or it's derivative, and pass it to setContentView:
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Create a LinearLayout
+    LinearLayout layout = new LinearLayout(this);
+    layout.setOrientation(LinearLayout.VERTICAL);
+
+    // Create a TextView
+    TextView textView = new TextView(this);
+    textView.setText("Hello from TextView!");
+
+    // Inflate an XML view
+    LayoutInflater inflater = LayoutInflater.from(this);
+    View buttonView = inflater.inflate(R.layout.my_button_layout, layout, false);
+
+    // Add views to the layout
+    layout.addView(textView);
+    layout.addView(buttonView);
+
+    // Set the layout as the content view
+    setContentView(layout);
+}
+```
+Considerations When Setting a View:
+
+    Root Layout:
+        When using XML layouts, the root element in your XML file becomes the root view of the activity's view hierarchy.
+
+    Dynamic UIs:
+        Use programmatic views if your UI needs to change dynamically at runtime.
+
+    Compatibility:
+        Ensure the view object matches the desired layout and is properly initialized before calling setContentView().
+
+
 `android.opengl.GLSurfaceView` jest implementacją Androidowego View przez OpenGL ES.
 Jest to View dynamiczne - jego zawartość jest rysowana z pomocą klasy implementującej interface `Renderer`. 
 Aplikacja musi zdefiniować tą klasę i wywołać metody biblioteki OpenGL ES opisane w poprzednich rozdziałach zgodnie z następującymi wytycznymi:
@@ -867,6 +942,31 @@ Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm koliz
 Klasa implementująca interface `Renderer` może go rozszerzyć o metodę `handleTouchDrag()`
 * w niej wykorzystać odwróconą macierz Widoku-Projekcji (`invertedViewProjectionMatrix`) do detekcji kolizji półprostej wychodzącej z punktu dotknięcia wgłąb sceny 3D z bryłami wyświetlonymi w tej scenie
 * można też wykorzystać punkt dotknięcia do sterowania wirtualną kamerą (zbliżenia, oddalenia, obroty) realizowanego jako modyfikacja macierzy View
+
+
+`android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. W poniższym fragmencie kodu pokazany jest przykładowy proces ustawienia GLSurfaceView jako widoku aktywności:
+
+```
+#using android.opengl
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    glSurfaceView = new GLSurfaceView(this)
+    glRenderer = new GLSurfaceView.Renderer
+    
+    glSurfaceView.setRenderer(glRenderer)
+    setContentView(glSurfaceView);
+}
+
+```
+
+Co do samej klasy `Renderer`, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
+1. `onSurfaceCreated()`
+2. `onSurfaceChanged()`
+3. `onDrawFrame` - służy do ustawienia ***pętli rysującej***
+
 
 ### 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
