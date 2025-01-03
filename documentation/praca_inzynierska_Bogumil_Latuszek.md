@@ -830,9 +830,10 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 ### 5.7.8 Realizacja "Widoku" systemu Android w OpenGL ES
 
 `android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
-1. `onSurfaceCreated()`
-2. `onSurfaceChanged()`
-3. `onDrawFrame` - służy do ustawienia ***pętli rysującej***
+1. `onSurfaceCreated()` - uruchamiana raz po stworzeniu widoku
+2. `onSurfaceChanged()` - uruchamiana za każdym razem kiedy wymiary widoku ulegną zmianie (np. po obróceniu telefonu)
+3. `onDrawFrame` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
+(src: https://developer.android.com/develop/ui/views/graphics/opengl/about-opengl)
 
 Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm kolizji opisany w rozdziale 3.2 należy:
 * w klasie `Activity` Androida zainstalować `View.OnTouchListener` z przeciążoną metodą `onTouch()`
