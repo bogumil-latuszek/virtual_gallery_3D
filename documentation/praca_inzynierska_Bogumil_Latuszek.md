@@ -97,10 +97,10 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 # 1. Wstęp
 
 Praca ta zajmuje się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
-Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie implementacji projektu.
+Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie implementacji projektu.
 Jeszcze lepsze zrozumienie da nam sama analiza wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Spróbujemy wyprowadzić kluczowe wzory, wyjaśnić znaczenie ważniejszych procesów, rozbić złożone procesy na łatwe do zrozumienia etapy. Dzięki temu gdy zmierzymy się z wyborem konkretnych bibliotek, czy frameworków, będziemy mogli ocenić ich przydatność w bardziej obiektywny sposób.
 
-W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia. 
+W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia. 
 Do stworzenia Projektu "Wirtualna Galeria" wybrany został system Android, w minimalnej wersji sdk 24, a docelowej 33.
 
 ## 1.1 Cele projektowe
@@ -829,16 +829,16 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
 ### 5.7.8 Realizacja "Widoku" systemu Android w OpenGL ES
 
-`android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer`, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
+`android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
 1. `onSurfaceCreated()` - uruchamiana raz po stworzeniu widoku
 2. `onSurfaceChanged()` - uruchamiana za każdym razem kiedy wymiary widoku ulegną zmianie (np. po obróceniu telefonu)
-3. `onDrawFrame()` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
+3. `onDrawFrame` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
 (src: https://developer.android.com/develop/ui/views/graphics/opengl/about-opengl)
 
-Tak stworzona implementacja Renderer-a może narysować na View całą statyczną scenę 3D. 
-Realizuje to wykorzystując w swoim kodzie wszystkie konstrukcje OpenGL ES, takie jak shadery, bufory, macierze, prymitywy, tekstury, mapowanie UV, face culling, depth testing, viewport, oraz wszystkie inne koncepty opisane w poprzednich podrozdziałach. 
-Natomiast dla realizacji interakcji z użytkownikiem, takich jak wskazywanie obiektów, ich przesuwanie, usuwanie czy też poruszanie się w scenie 3D, programista może wykorzystać zdarzenia dotknięcia ekranu dostępne w Androidowym Activity. 
-Zdarzenia te winny być dostarczone do Renderer-a, który przeliczy je na obiekty przestrzeni 3D i zmodyfikuje scenę przed kolejnym zawołaniem `onDrawFrame()` tworząc w ten sposób iluzję ruchu w przestrzeni.
+Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm kolizji opisany w rozdziale 3.2 należy:
+* w klasie `Activity` Androida zainstalować `View.OnTouchListener` z przeciążoną metodą `onTouch()`
+* w tej metodzie przechwycić zdarzenie `MotionEvent.ACTION_DOWN`
+* w reakcji na nie wywołać metodę `handleTouchDrag()` rozszerzonej implementacji Render-a opisane poniżej
 
 ### 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
@@ -851,11 +851,11 @@ Na poniższym wykresie przedstawiony został proces stworzenia "programu" dla Op
 _Ilustracja 2: wykres sekwencji przygotowania shader-ów - opracowanie własne_
 
 
-1. Funkcja readTextFileFromResource()  wczytuje kod shadera z zasobów (katalogu Resources) i konwertuje go na string.
-2. Funkcja CompileVertexShader() tworzy shader z przekazanego kodu źródłowego w formacie string:
-- glCreateShader tworzy obiekt shader (zwracając handler do niego)
-- glShaderSource przekazuje do powstałego obiektu (wskazanego poprzez podanie handlera) kod źródłowy 
-- glCompileShader kompiluje kod źródłowy wewnątrz wskazanego obiektu shader (wskazanego poprzez podanie handlera)
+1. Funkcja readTextFileFromContent()  wczytuje kod shadera z zasobów (katalogu Resources).
+2. Funkcja CompileVertexShader() tworzy shader z przekazanego kodu źródłowego:
+- glCreateShader() tworzy obiekt shader (zwracając handler do niego)
+- glShaderSource() przekazuje do powstałego obiektu (wskazanego poprzez podanie handlera) kod źródłowy 
+- glCompileShader() kompiluje kod źródłowy wewnątrz wskazanego obiektu shader (wskazanego poprzez podanie handlera)
 3. Funkcja glCreateProgram() tworzy "program", czyli obiekt przechowujący informację o tym jakiego vertex shadera i fragment shadera użyć w danym momencie.
 4. Funkcja glAttachShader() dodaje shader do programu.
 5. Funkcja glLinkProgram() weryfikuje poprawność programu:
@@ -866,8 +866,8 @@ Jeśli uzna że program jest poprawny, od tej pory będzie można go używać w 
 Następnie należy wskazać skąd będą przekazywane argumenty do programu. Zmienne wejściowe dla programu są określone w vertex shaderze. Dzielą się na: 
 - attribute - zbiór danych, np. lista kolorów dla wierzchołków bryły. 
 - uniform - jedna wartość dla wszystkich wierzchołków, np. Macierz transformacji
-1. funkcja glGetAttribLocation() zwraca handler do zmienne wejściowej typu attribute w programie.
-2. funkcja glGetUniformLocation() zwraca handler do zmienne wejściowej typu uniform w programie.
+1. funkcja glGetAttribLocation() zwraca handler do zmiennej wejściowej typu attribute w programie.
+2. funkcja glGetUniformLocation() zwraca handler do zmiennej wejściowej typu uniform w programie.
 
 
 Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastosowaniem stworzonego uprzednio "programu":
@@ -876,7 +876,7 @@ Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastos
 
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
-1. Podczas wczytywania sceny, w funkcji onSurfaceCreated(), tworzone są obiekty zwane "ścianami". Wewnątrz każdego z nich zawarty jest zbiór wierzchołków, definiujących kształt tej bryły.
+1. Podczas wczytywania sceny, w funkcji onSurfaceCreated(), tworzone są obiekty zwane "ścianami". Wewnątrz każdego z nich zawarty jest zbiór wierzchołków, definiujących kształt tej bryły (VertexArray).
 2. Następnie pobierane są handlery do zmiennych "programu".(to już było opisane wcześniej)
 3. Podczas wyświetlania sceny, w funkcji onDrawFrame:
 ustawienie atrybutu:
@@ -1042,9 +1042,9 @@ Celem pracy było zaprojektowanie i implementacja aplikacji będącej symulacją
 
 Interfejs użytkownika jest minimalistyczny przez co może się on skupić na swoich celach artystycznych, i nie musi tracić czasu na opanowanie złożonego UI jak w przypadku takich programów 3D jak Blender czy AutoCAD – one mają inne obszary zastosowań. Wirtualna Galeria ma natomiast służyć użytkownikom przez swoją prostotę i intuicyjność – ma pozwolić im wykorzystać swoją kreatywność do tworzenia barwnej, przestrzennej galerii obrazów lub zdjęć.
 
-Praca rozpoczyna się od opisu historii grafiki komputerowej i pokazuje jakie biblioteki graficzne 3D są obecnie najbardziej popularne (OpenGL, DirectX, Vulcan). Do stworzenia projektu wybrana została biblioteka OpenGL w wersji ES 2.0 na Android. Kluczowe mechanizmy działania tej biblioteki opisano w rozdziale 5.7. W rozdziale 3 ukazane są dogłębnie podstawy matematyczne grafiki 3D niezależne od użytej biblioteki graficznej.
+Praca rozpoczyna się od opisu historii grafiki komputerowej i pokazuje jakie biblioteki graficzne 3D są obecnie najbardziej popularne (OpenGL, DirectX, Vulcan). Do stworzenia projektu wybrana została biblioteka OpenGL w wersji ES 2.0 na Android. Kluczowe mechanizmy działania tej biblioteki opisano w rozdziale 5.7. W rozdziale 3 ukazane są dogłębnie podstawy matematyczne grafiki 3D niezależne od użytej biblioteki graficznej.
 
-Grafika komputerowa to bardzo obszerny dział informatyki. W przyjętych ramach czasowych nie udało się wdrożyć dodatkowej funkcjonalności która pozwoliła by wydać "Wirtualną Galerię" jako pełnoprawny produkt komercyjny. Potencjalne pomysły na dalszy rozwój projektu:
+Grafika komputerowa to bardzo obszerny dział informatyki. W przyjętych ramach czasowych nie udało się wdrożyć dodatkowej funkcjonalności która pozwoliła by wydać "Wirtualną Galerię" jako pełnoprawny produkt komercyjny. Potencjalne pomysły na dalszy rozwój projektu:
 - umożliwienie personalizacji aplikacji poprzez wybór koloru ścian/tła/podłogi w ustawieniach
 - zwiększenie realizmu sceny 3D poprzez dodanie oświetlenia
 - wykrywanie kolizji pomiędzy kamerą a elementami otoczenia 
