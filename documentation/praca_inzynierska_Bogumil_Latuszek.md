@@ -1,5 +1,3 @@
-
-
 # WYŻSZA SZKOŁA EKONOMII I INFORMATYKI W KRAKOWIE
 
 
@@ -19,7 +17,7 @@ Kraków 2025 r.
 
 Praca ta analizuje problematykę grafiki komputerowej 3D w ujęciu historycznym i algorytmicznym. Celem pracy jest zaprojektowanie i implementacja aplikacji mobilnej oferującej funkcjonalność tworzenia wirtualnej galerii sztuki, w oparciu o technologie grafiki 3D.
 
-Problemem jaki rozwiązuje aplikacja jest potrzeba dostarczenia łatwo dostępnego i prostego w obsłudze programu, który umożliałby stworzenie, wyświetlanie, i rozmieszczenie obrazów w przestrzeni 3D. Odbiorcami docelowymi są projektanci galerii sztuki, oraz osoby potrzebujące narzędzia ułatwiającego wykorzystanie techniki pamięciowej - pałacu pamięci * link do opisu pałacu pamięci. 
+Problemem jaki rozwiązuje aplikacja jest potrzeba dostarczenia łatwo dostępnego i prostego w obsłudze programu, który umożliwiałby stworzenie, wyświetlanie, i rozmieszczenie obrazów w przestrzeni 3D. Odbiorcami docelowymi są projektanci galerii sztuki, oraz osoby potrzebujące narzędzia ułatwiającego wykorzystanie techniki pamięciowej - pałacu pamięci * link do opisu pałacu pamięci. 
 
 Projekt został zrealizowany jako aplikacja na system Android, napisana w językach Java i GLSL, z wykorzystaniem biblioteki graficznej OpenGL ES. W projektowaniu został  użyty język UML. Do napisania aplikacji zostały też wykorzystane wzorce projektowe.
 
@@ -36,6 +34,7 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 # Spis treści:
 
 [Streszczenie](#Streszczenie)
+
 1. [Wstęp](#1-wstęp)
     - 1.1 [Cele projektowe](#11-cele-projektowe)
     - 1.2 [Zakres pracy](#12-zakres-pracy)
@@ -87,6 +86,7 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 7.2 [Uruchomienie aplikacji i opis funkcjonalności 2D](#72--uruchomienie-aplikacji-i-opis-funkcjonalności-2d)
     - 7.3 [Opis funkcjonalności 3D](#73-opis-funkcjonalności-3d)
     
+
 [Wnioski końcowe](#wnioski-końcowe)
 
 [Bibliografia](#bibliografia)
@@ -97,7 +97,7 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 # 1. Wstęp
 
 Praca ta zajmuje się analizą problematyki grafiki komputerowej, skupiając się głównie na grafice 3D.
-Ważne jest, aby przyjżeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie implementacji projektu.
+Ważne jest, aby przyjrzeć się dogłębnie historii rozwoju grafiki komputerowej. Pomoże to w lepszym rozpoznaniu dostępnych opcji jakie można użyć w projekcie, a zarazem pozwoli na głębsze zrozumienie procesów i technologii z jakimi przyjdzie się nam zmierzyć na etapie implementacji projektu.
 Jeszcze lepsze zrozumienie da nam sama analiza wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Spróbujemy wyprowadzić kluczowe wzory, wyjaśnić znaczenie ważniejszych procesów, rozbić złożone procesy na łatwe do zrozumienia etapy. Dzięki temu gdy zmierzymy się z wyborem konkretnych bibliotek, czy frameworków, będziemy mogli ocenić ich przydatność w bardziej obiektywny sposób.
 
 W dzisiejszym świecie rynek aplikacji mobilnych jest jednym z największych w sferze produkcji oprogramowania. Jednak gwałtowny rozwój możliwości obliczeniowych i  pamięciowych użądzeń mobilnych w stosunkowo krótkim czasie postawił przed twórcami oprogramowania nie lada wyzwanie. Aby zrealizować swój pomysł, muszą już na pierwszych etapach planowania wybrać na jakim systemie operacyjnym będzie działać ich aplikacja, a także które wersje wybranego systemu będą wspierane. Mogłoby się wydawać, że najlepszym wyjściem zawsze będzie wybranie wszystkich systemów operacyjnych we wszystkich możliwych wersjach. Choć rozwiązanie to pozwoliło by uzyskać maksymalną ilość potencjalnych użytkowników, zazwyczaj nie jest to realistyczne podejście. Rozwój aplikacji na więcej niż jednej platformie wiąże się z gamą dodatkowych problemów, wynikających z samego faktu iż te systemy się między sobą różnią. Chcąc wdrożyć tę samą funkcjonalność, należy obrać inne podejście na każdej platformie. W dodatku często starsze wersje tych samych systemów nie posiadają jakiejś kluczowej funkcjonalności którą aplikacja chciałaby wykożystać, np wspierają bibliotekę OpenGL ES tylko do wersji 1.0. Dlatego developer aplikacji mobilnych powinien zdawać sobie sprawę, że podczas planowania często będzie musiał iść na kompromis pomiędzy dostępnością aplikacji, a kosztami i złożonością procesu jej stworzenia. 
@@ -112,18 +112,18 @@ Aplikacja "Wirtualna Galeria" służy do budowania symulacji galerii sztuki, daj
 
 ## 1.2 Zakres Pracy
 
-Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtualna Galeria", w oparciu o system Android, język Java, bibliotekę OpenGL ES, oraz bazę danych SQLite. W pracy zawarta jest również analiza zagadnień teoretycznych dotyczących użytych narzędzi, oraz szeroko rozumianej dziedziny grafiki 3D, z naciskiem na wzory matematyczne i rozwiązania techniczne. W celu skontekstualizowania poruszanych zagadnień, zawarty został również rozdział poświęcony historii powstania i rozwoju grafiki 3D.
+Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtualna Galeria", w oparciu o system Android, język Java, bibliotekę OpenGL ES, oraz bazę danych SQLite. W pracy zawarta jest również analiza zagadnień teoretycznych dotyczących użytych narzędzi, oraz szeroko rozumianej dziedziny grafiki 3D, z naciskiem na wzory matematyczne i rozwiązania techniczne. W celu ukontekstualizowania poruszanych zagadnień, zawarty został również rozdział poświęcony historii powstania i rozwoju grafiki 3D.
 ( TODO: Dopytać się promotora o to co ma być zawarte w tym podrozdziale)
 
 ## 1.3 Skrótowy opis zawartości rozdziałów
 
 **Rozdział 2** "Historia rozwoju narzędzi graficznych" opowiada o historii powstania programów umożliwiających tworzenie i wyświetlanie grafiki 3D. Rozdział ten porusza również temat ruchu OpenSource który doprowadził do powstania bibliotek takich jak np. OpenGL ES, czy systemów operacyjnych, w tym min. systemu Android.
 
-**Rozdział 3** "Wzory matematyczne i rozwiązania programistyczne" zawiera w sobie ogólny zarys działania grafiki komputerowej, wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Przyjżymy się zagadnieniom takim jak: mnożenie macierzy i wektorów, kolejność operacji podczas wyświetlania sceny, czy algorytmy obliczania kolizji
+**Rozdział 3** "Wzory matematyczne i rozwiązania programistyczne" zawiera w sobie ogólny zarys działania grafiki komputerowej, wzorów matematycznych i rozwiązań programistycznych związanych z tematyką projektu. Przyjrzymy się zagadnieniom takim jak: mnożenie macierzy i wektorów, kolejność operacji podczas wyświetlania sceny, czy algorytmy obliczania kolizji
 
 **Rozdział 4** "System Android" skupia się na charakterystyce systemu Android. Wymienione są typy aplikacji dostępnych na Android, wraz z wadami i zaletami każdego z nich.
 
-**Rozdział 5** "Projekt Rozwiązania" pokazuje proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównana jest z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokazana jest konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu UI, opisany jest wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazane są sekwencje wywołania funkcji istotnych dla zrozumienia działania części aplikacji wykorzystującej OpenGL ES.
+**Rozdział 5** "Projekt Rozwiązania" pokazuje proces planowania jaki odbył się w trakcie rozwoju projektu. Wychodząc od podstawowych założeń, wymagań, poprzez analizę profilu docelowego użytkownika, krystalizuje się opis aplikacji jaka ma powstać w kolejnych etapach. Po sprecyzowaniu opisu „Wirtualnej Galerii” porównana jest z istniejącymi już na rynku podobnymi rozwiązaniami i na podstawie tej analizy pokazana jest konkurencyjność aplikacji na obecnym rynku. Później w tym rozdziale pokazany jest już koncept wyglądu interfejsu użytkownika, opisany jest wybrany język i biblioteki użyte w projekcie. Na wykresach UML pokazane są sekwencje wywołania funkcji istotnych dla zrozumienia działania części aplikacji wykorzystującej OpenGL ES.
 
 **Rozdział 6** "Implementacja" pokazuje jak wymagania projektowe udało się zrealizować w procesie tworzenia aplikacji. Opisane są tu także zastosowane narzędzia i rozwiązania których użycie nie zostało przewidziane w procesie projektowania.
 
@@ -183,7 +183,7 @@ https://www.youtube.com/watch?v=m8Rbl7JG4Ng
 
 W 1963 Edward E. Zajac stworzył animację "Simulation of a two-giro gravity attitude control system". Prawdopodobnie było to pierwsze użycie tekstur w grafice komputerowej.
 
-Opracowanie tworzenia modeli wireframe zbudowanych z punktów i linii otworzyło drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak vertexy, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować realistyczne obrazy 3D.
+Opracowanie tworzenia modeli wireframe zbudowanych z punktów i linii otworzyło drogę modelowaniu przestrzeni 3D. Niedługo potem dzięki odkryciom takim jak wierzchołki, tekstury, czy post processing, programistom udało się na podstawie modeli wireframe wygenerować realistyczne obrazy 3D.
 
 Stąd wyrosły podstawy animacji komputerowej, gier wideo, czy druku 3D. Jedną z "gałęzi" które wyrosły z "drzewa grafiki komputerowej" są właśnie silniki graficzne. Te programy o wszechstronnym zastosowaniu kumulują w sobie większość innowacji grafiki komputerowej. Jednym z nich jest Open GL, silnik graficzny którego wpływ na grafikę komputerową odczuwany jest do dziś. W dalszej części pracy przedstawimy historię jego powstania
 
@@ -199,11 +199,11 @@ Lata 80-te i 90-te to okres w którym na rynku narzędzi do tworzenia grafiki ko
 Odbiorcami ich produktów były studia filmowe, pracownie architektoniczne,
 wojsko, instytucje rządowe i akademickie.
 W latach 1995-2002 ich produkty cieszyły się wyjątkowo dużą popularnością, o czym świadczy fakt że wszystkie filmy nominowane w tym okresie do Academy Award za efekty wizualne były filmami stworzonymi na komputerach SGI.
-Jednak z biegiem czasu, inni producenci urządzeń do tworzenia grafiki komputerowej (Sun, HP, IBM), stali się realną konkurencją dla SGI. Aby utrzymać silną pozycję na rynku, zarząd SGI podjął drastyczną decyzję. Otóż postanowili oni udostępnić do open source (nieco zmodyfikowane)  API swojego silnika graficznego IrisGL pod nową nazwą OpenGL1. SGI zaczął prace nad tym projektem w 1991r i wypuścił OpenGL w wersjii 1.0 w 1992r.
-W 1992 SGI utworzyła wraz z innymi firmami konsorcjum OpenGL Architecture Review Boar aby dbać i promować standard OpenGL. W 2006 obowiązki te przejęło inne konsorcjum zwane Khronos Group.
+Jednak z biegiem czasu, inni producenci urządzeń do tworzenia grafiki komputerowej (Sun, HP, IBM), stali się realną konkurencją dla SGI. Aby utrzymać silną pozycję na rynku, zarząd SGI podjął drastyczną decyzję. Otóż postanowili oni udostępnić do open source (nieco zmodyfikowane)  API swojego silnika graficznego IrisGL pod nową nazwą OpenGL1. SGI zaczął prace nad tym projektem w 1991r i wypuścił OpenGL w wersji 1.0 w 1992r.
+W 1992 SGI utworzyła wraz z innymi firmami konsorcjum OpenGL Architecture Review Board aby dbać i promować standard OpenGL. W 2006 obowiązki te przejęło inne konsorcjum zwane Khronos Group.
 Widząc wzrastającą popularność OpenGL grupa Khronos postanowiła wydać także wersję wyspecjalizowaną na urządzenia embedded, w tym telefony mobilne.
 
-Tak powstał wydany w 2003 roku OpenGL ES (https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html - jescze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
+Tak powstał wydany w 2003 roku OpenGL ES (https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html - jeszcze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
  - oficjalne wydanie )
 
 https://en.wikipedia.org/wiki/OpenGL
@@ -217,7 +217,7 @@ W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają 
 
 ## 3.1 Wyświetlanie grafiki 3D
 
-Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka promieni światła widzialnego. Jednak obliczanie trajektorii promieni świelnych, poza tymi które trafiłyby do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogłyby równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących ze źródła światła. 
+Grafika komputerowa znacząco różni się od świata rzeczywistego. Celem programistów tworzących programy symulujące przestrzeń 3D jest zasymulowanie rzeczywistych fenomenów otaczającego nas świata w jak najbardziej przekonujący sposób, jednak symulacja świata wirtualnego zgodnie z zasadami świata rzeczywistego pozostaje wciąż w obrębie fikcji. Dlatego też programiści zajmujący się grafiką 3D wynaleźli całą gamę algorytmów, które mają w uproszczony sposób zasymulować zjawiska fizyczne. Przykładowo, wiemy że ludzkie oko rejestruje widziany przez nas obraz poprzez pochłanianie odbitych w stronę oka promieni światła widzialnego. Jednak obliczanie trajektorii promieni świetlnych, poza tymi które trafiłyby do kamery było by z punktu widzenia wydajności algorytmu wielką stratą zasobów komputera - w końcu takie promienie nie wpływają w żaden sposób na uzyskany przez kamerę obraz. Mamy tu paradoks drzewa przewracającego się w lesie - jeśli nie ma w lesie nikogo kto mógłby usłyszeć upadek drzewa, czy możemy powiedzieć że upadło z hukiem? Z perspektywy programisty grafiki 3D, dźwięk upadającego drzewa w lesie, czy odchodząc od metafory, promienie świetlne nie rejestrowane przez kamerę, mogłyby równie dobrze nie istnieć. Liczy się tylko to co rejestruje kamera, to co zostanie wyświetlone na ekranie. Dlatego też, aby zminimalizować ilość obliczeń, w dwóch najpopularniejszych podejściach do wyświetlania przestrzeni 3D, nie używa się symulacji promieni świetlnych wychodzących ze źródła światła. 
 
 Zamiast tego w grafice Raymarching, stosuje się odwrócony paradygmat - aby mieć pewność że obliczenia skupiają się wyłącznie na promieniach światła rejestrowanych przez kamerę, symulowane promienie wychodzą z samej kamery a nie ze źródła światła. W najprostszej wersji tego algorytmu, po osiągnięciu minimalnej odległości do obiektu w przestrzeni 3D, funkcja obliczająca trajektorię promienia potwierdza zderzenie z tą bryłą, a do piksela z którego wyszedł promień przypisywany jest jej kolor. Promienie które nie zarejestrują kolizji z żadnym obiektem, po osiągnięciu maksymalnej długości lub cykli przedłużających promień, zwracają informację o braku kolizji. Wtedy piksel z którego wyszedł taki promień otrzyma domyślny kolor tła. Jest to oczywiście uproszczony opis działania algorytmu Raymarching, jednak nawet w takim uproszczeniu, oczywistym jest że ograniczenie liczby promieni do tych które rejestrowane są na kamerze, a także ograniczenie się do prostoliniowych promieni z pominięciem odbić, pozwala drastycznie przyspieszyć wyświetlenie sceny.
 
@@ -259,15 +259,15 @@ Widzimy że bryłę tą tworzą wierzchołki wychodzące z początku układu wsp
 
 <img src="../ilustracje/wektor_xyz.png" ></img>
 
-Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach cztero wymiarowych:
+Przyjrzyjmy się mnożeniu macierzy, które składają się na ostateczną macierz transformacji wykorzystaną w procesie wyświetlania sceny. Ponieważ każda z nich reprezentuje jakąś transformację, pokażemy jak wyglądałyby z osobna gdyby nałożyć je na dany obiekt w sekwencji. Aby mieć dostęp do wszystkich potrzebnych transformacji macierzowych użyjemy macierzy 4x4, co oznacza że będziemy mogli zastosować te transformacje jedynie na wektorach czterowymiarowych:
 
 <img src="../ilustracje/wektor_xyzw.png" ></img>
 
-Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory cztero wymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 lub 0.
+Na szczęście dzięki prawu o współrzędnych jednorodnych, możemy śmiało konwertować wektory czterowymiarowe na trójwymiarowe i odwrotnie, o ile czwarty komponent wektora (tutaj nazwany "w"), jest równy 1 lub 0.
 
 #### Kolejność transformacji jest następująca:
 
-1. Macierz modelu - rotacja wierzchołka wzdłóż osi x,y,z w przestrzeni modelu. 
+1. Macierz modelu - rotacja wierzchołka wzdłuż osi x,y,z w przestrzeni modelu. 
 
 Przyjmijmy że chcemy obrócić bryłę o 30 stopni po osi y. Wzór na obrót po osi y:
 
@@ -355,7 +355,7 @@ Przyjmijmy poniższe wartości:
    * `fov = 60`
    * `far = 20`
    * `near = 1`
-   
+
 Po wstawieniu wartości do wzoru otrzymamy:
 
 <img src="../ilustracje/mpersp_values.png" width=400></img>
@@ -415,7 +415,7 @@ Mnożenie macierzy i wektorów jest łatwe do zrównoleglenia.
 Dlatego używamy do tego procesorów graficznych.
 Programy napisane dla GPU to shadery.
 
-Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś większość programów uruchamianych na GPU nazywamy shaderami, choć nierzadko ich przeznaczenie znacząco odbiega od tego pierwotnego.  Wyróżniamy typy shader-ów:
+Czym są shadery? Ich nazwa wywodzi się w języku angielskim od słowa "Shade", czyli cień lub odcień. Jest to naleciałość historyczna, ponieważ pierwsze shadery zajmowały się głównie obliczaniem koloru pikseli na ekranie. Dziś większość programów uruchamianych na GPU nazywamy shaderami, choć nierzadko ich przeznaczenie znacząco odbiega od tego pierwotnego.  Wyróżniamy typy shaderów:
 - vertex shader - obliczenia geometrii
 - fragment shader - obliczenia koloru pikseli na ekranie
 - compute shader - pozostałe obliczenia, przykładowo kopanie kryptowalut.
@@ -424,7 +424,7 @@ Warto wspomnieć, że główną charakterystyką shaderów jest równoległość
 
 ### 3.1.3  Pipeline, czyli kolejne etapy wyświetlania sceny 3D
 
-1) **Przekazanie argumentów** - do Vertex Shader-a przekazujemy zbiór wierzchołków i ostateczną (sumaryczną) macierzy transformacji. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
+1) **Przekazanie argumentów** - do Vertex Shadera przekazujemy zbiór wierzchołków i ostateczną (sumaryczną) macierzy transformacji. Zazwyczaj wartości macierzy perspektywy i kamery są takie same dla wszystkich obiektów w scenie, w danej klatce animacji. Dlatego aby zmniejszyć ilość potrzebnych obliczeń, można wymnożyć je ze sobą na początku procesu wyświetlania sceny, a potem użyć wyniku mnożenia w kalkulacji ostatecznej macierzy transformacji dla poszczególnych obiektów w scenie.
 2) **Vertex shader** - mnoży każdy z przekazanych wierzchołków przez macierz ostatecznej transformacji, przekształcając je do przestrzeni ucięcia.
 3) **Primitive Assembly** - wierzchołki bryły otrzymane w poprzednim etapie są łączone w zbiory zwane prymitywami. Dla brył używany jest prymityw złożony z trzech wierzchołków - trójkąt. Ale istnieją też inne prymitywy, np. zbiory dwóch wierzchołków - linie, oraz złożone z pojedynczych wierzchołków punkty.
 4) **Clipping** - usunięcie prymitywów których wszystkie wierzchołki znajdują się całkowicie poza przestrzenią ucięcia, oraz "przycięcie" prymitywów częściowo wystających poza przestrzeń ucięcia, tak aby znalazły się całkowicie wewnątrz niej.
@@ -434,7 +434,7 @@ Warto wspomnieć, że główną charakterystyką shaderów jest równoległość
 8) **Rasteryzacja** - Zamienia prymitywy na "fragmenty" które zostaną użyte do wyliczenia pikseli ekranu. Dane zawarte w wierzchołkach prymitywu, takie jak kolor, czy pozycja w teksturze, są interpolowane, a uzyskane wartości przypisane do powstałych fragmentów.
    - Zauważmy, że prymitywy są już rozciągnięte do przestrzeni viewport i spłaszczone do głębi [0, 1]. Fragmenty z różnych brył, albo z różnych ścian tej samej bryły mogą znajdować się "pod" tym samym pikselem ekranu ale mieć różną głębię.
 9) **Fragment Shader** - jest programem który ma za zadanie obliczyć kolor dla każdego fragmentu. Jeśli została zastosowana tekstura, to on jest odpowiedzialny za zamianę koordynatów tekstury na kolor fragmentu - oblicza go przy użyciu wybranego algorytmu (np. SSAO), który aproksymuje kolor danego punktu na podstawie otaczających go texeli (TODO: przypis: Tekstury to obrazy służące do nadania bryłom bardziej złożonych barw. Teksturowanie, to przypisanie tekstury do bryły sześciennej. Każdy wierzchołek trójkąta posiada odpowiadający punkt na płaszczyźnie tekstury. Texel odnosi się do punktu na teksturze).
-10) **Depth Testing** - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębii) zawartej we "fragmentach". Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Deph Testing określi których fragmentów użyć do wyliczenia koloru piksela.
+10) **Depth Testing** - na tym etapie rozwiązywany jest problem nakładających się fragmentów. W przypadku kiedy więcej niż jeden fragment posiada koordynaty x,y odpowiadające danemu pikselowi, stajemy przed dylematem - który z nich powinien decydować o kolorze piksela? Nie można się tutaj kierować kolejnością wyliczenia fragmentów, gdyż oblicza się je asynchronicznie. Rozwiązaniem jest użycie wartości z (głębi) zawartej we "fragmentach". Jeśli bryły nie posiadają przeźroczystości to wybierany jest fragment posiadający najmniejszą głębię (na "wierzchu") - jego kolor staje się kolorem piksela. Jeśli używamy przeźroczystości to Depth Testing określi których fragmentów użyć do wyliczenia koloru piksela.
 11) **Blending** - nakłada kolor fragmentu bliższego na kolor fragmentu znajdującego się "głębiej" z uwzględnieniem przeźroczystości
 12) **Zapis do Framebuffer-a** - finalny kolor piksela wpisywany jest do Framebuffer-a. Framebuffer to bufor pamięci, który zawiera dane o obrazie, czyli informacje o każdym pikselu na ekranie.
 13) **wyświetlenie sceny 3D** - karta graficzna wyświetla na ekranie całą zawartość Framebuffer-a jako reprezentację sceny 3D.
@@ -446,7 +446,7 @@ Obrazy wieszane są na bocznych ścianach prostopadłościanów. Do jednej ścia
 
 #### Jak umożliwić użytkownikowi wybranie ściany na której chce zawiesić obraz? 
 
-W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go palcem. Następnie program powinien stwierdzić czy wybrany punkt leży na ścianie bocznej któregoś z prostopadlościanów w scenie 3D. Jeśli tak, to do tej ściany przypisany zostanie obraz. 
+W skrócie, użytkownik wybiera dany punkt na ekranie poprzez dotknięcie go palcem. Następnie program powinien stwierdzić czy wybrany punkt leży na ścianie bocznej któregoś z prostopadłościanów w scenie 3D. Jeśli tak, to do tej ściany przypisany zostanie obraz. 
 
 Poniżej znajduje się szczegółowy opis tego procesu:
 
@@ -476,7 +476,7 @@ Poniżej znajduje się szczegółowy opis tego procesu:
 7. Znalezienie wszystkich kolizji półprostej ze ścianami w scenie 3D. 
 
 
-Prostopadłościany znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Na każdy prostopadłościan mamy 4 ściany boczne do sprawdzenia kolizji z półprostą. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłóż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyżnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonej półprostej, znajduje się na tej płaszczyżnie?
+Prostopadłościany znajdujące się w przestrzeni świata są określone przez zbiór wierzchołków. Na każdy prostopadłościan mamy 4 ściany boczne do sprawdzenia kolizji z półprostą. Wiemy że każda ściana składa się z 4 wierzchołków o znanych koordynatach (xyz). Ponieważ wszystkie ściany w projekcie leżą wzdłuż dwóch osi układu współrzędnych, możemy określić powierzchnię danej ściany jako wycinek pewnej płaszczyzny, którego ramy określone są przez wierzchołki ściany. Zanim jednak przejdziemy do tego jak określić czy dany punkt na płaszczyźnie znajduje się w tym wycinku, musimy odpowiedzieć na pytanie - czy któryś z punktów należących do wyznaczonej półprostej, znajduje się na tej płaszczyźnie?
 
 #### Algorytm znalezienia punktu przecięcia półprostej i płaszczyzny:
 
@@ -509,7 +509,7 @@ z konkatenacji tych dwóch wzorów, otrzymamy wzór:
 
 N dot (P - Pp) = 0
 
-króry możemy rozwinąć do:
+który możemy rozwinąć do:
 
 A(x-a)+B(y-b)+C(z-c) = 0
 
@@ -539,7 +539,7 @@ t*(A*dx + B*dy + C*dz) = -(A*x0 + B*y0 + C*z0 + D) | :(A*dx + B*dy + C*dz)
 
 t = -(A*x0 + B*y0 + C*z0 + D) / (A*dx + B*dy + C*dz)
 
-Znając wartość t, możemy znaleść wartości (x, y, z) punktu P:
+Znając wartość t, możemy znaleźć wartości (x, y, z) punktu P:
 
 x = x0 + t*dx
 
@@ -551,10 +551,10 @@ Po znalezieniu punktu przecięcia się półprostej z płaszczyzną (P), należy
 
 <img src="../ilustracje/kolizja_punkt_w_zakresie.png" width=200></img>
 
-Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ wszystkie ściany boczne w scenie 3D (TODO: przypis: w przestrzeni świata) są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleść minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
+Wszystkie wierzchołki tej ściany, oraz punkt P, znajdują się na tej samej płaszczyźnie. Ponieważ wszystkie ściany boczne w scenie 3D (TODO: przypis: w przestrzeni świata) są ułożone równolegle/prostopadle do osi świata, jedna ze zmiennych (x,y,z) będzie taka sama dla wszystkich punktów leżących na tej płaszczyźnie. Należy więc znaleźć minimalną i maksymalną wartość dwu pozostałych zmiennych, dla wierzchołków ściany, a następnie sprawdzić czy wartości (x,y,z) punktu P znajdują się w wyznaczonym przedziale.
 Jeśli tak, uznajemy że wykryto kolizję, jeśli nie - brak kolizji.
 
-8. Po spawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
+8. Po sprawdzeniu kolizji dla wszystkich ścian w scenie, mamy do czynienia z jedną z trzech opcji, zależnie od tego z iloma ścianami wykryto kolizję:
 - 0 : brak kolizji. Wskazany przez użytkownika obszar nie nadaje się do zawieszenia/zdjęcia obrazu.
 - 1: stwierdzono kolizję z jedną ścianą - należy zawiesić na niej obraz, lub jeśli jest już jakiś zawieszony, zdjąć go.
 - 2+: znaleziono więcej niż jedną ścianę z którą nastąpiła kolizja - półprosta przecina ściany znajdujące się jedna za drugą. W tej sytuacji obraz należy zawiesić na najbliższej ścianie. Jest to ściana której punkt przecięcia jest najbliżej punktu startowego półprostej.
@@ -565,7 +565,7 @@ Niniejszy rozdział przedstawia najważniejsze zagadnienia dotyczące projektowa
 
 ## 4.1 Android – najważniejsze cechy systemu
 
-Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwa w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
+Co do samego systemu android, to jest on w stanie uruchomić aplikacje napisane w języku Kotlin,Java, lub C++. Zdecydowałem się użyć w projekcie języka Java, gdyż jestem z nim najlepiej zaznajomiony. Aby chronić dane systemowe i częściowo zabezpieczyć system przed szkodliwym oprogramowaniem, każdy proces w systemie Android jest odpalany na osobnej wirtualnej maszynie Javy co izoluje go od innych aplikacji. Co więcej Android stosuje zasadę najmniejszych przywilejów - standardowo każda aplikacja dostaje dostęp tylko do zasobów niezbędnych do jej działania. Rozdziela też aktywności i widoki – czyni to poprzez rozdzielenie w strukturze projektu klas aktywności obsługujących logikę aplikacji i prezentację aplikacji. Opis wyglądu aplikacji definiowany jest w plikach xml. Ta separacja umożliwia w prosty sposób zastosowanie MVC - wzorca architektonicznego postulującego rozdzielenie dostępu do danych aplikacji, logiki aplikacji, i części wyświetlającej interfejs użytkownika. Taka architektura wspiera tworzenie kodu, który jest łatwiejszy do utrzymania.
 
 ## 4.2 Aplikacje mobilne na Android – typy aplikacji, proces tworzenia
 
@@ -574,17 +574,17 @@ https://medium.com/@ashleycooper22/web-ui-vs-native-ui-choosing-the-best-option-
 
 ### 4.2.1 Aplikacje natywne na Android
 
-Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od urzytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
+Aplikacje natywne - aplikacje natywne mogą być tworzone na dwa sposoby: pisane w języku java lub kotlin które posiadają dostęp do pełnej funkcjonalności Android, lub w innych językach z użyciem ndk(native development kit), albo innym języku wyposażonym w warstwę translacji do obsługi Android API. Posiadają(tu przypis: o ile otrzymają go od użytkownika) pełny dostęp do API systemu Android, co pozwala im na korzystanie z sterowników hardware umożliwiających zapis i odczytywanie danych na urządzeniu, używanie mikrofonu, głośników czy kamery. Pozwala to twórcą oprogramowania na optymalizacje aplikacji natywnych pod względem wydajności i rozmiaru. Do wad aplikacji natywnych należy zaliczyć ścisłe powiązanie z systemem Android, a co za tym idzie brak przenaszalności, uzależnienie od pośrednika - sklepu play, a także brak pełnej kontroli nad aktualizacją aplikacji - użytkownik może wyłączyć aktualizacje.
 
 ### 4.2.3 Aplikacje Web UI na Android
 
-Aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleść inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
+Aplikacje webowe to po prostu strony internetowe posiadające pewną dozę interaktywności. W kontekście typów aplikacji dostępnych na Android przez aplikacje webowe mamy na myśli interaktywne strony internetowe zaprojektowane z myślą o urządzeniach mobilnych. Tworzone są za pomocą technologii webowych takich jak html, css i js. Użytkownik może korzystać z aplikacji webowej jedynie przez przeglądarkę, nie można ich zainstalować w pamięci telefonu. Z tego powodu nie da się też ich sprzedać w sklepie play, i należy znaleźć inny sposób dystrybucji/reklamy. Sama aplikacja ma dostęp jedynie do funkcjonalności udostępnianej przez przeglądarkę, co oznacza że w porównaniu z innymi typami aplikacji aplikacje webowe są najbardziej ograniczone w możliwości wykorzystania zasobów i funkcjonalności systemu Android. Przez to aplikacje webowe mają zazwyczaj gorszą wydajność od aplikacji natywnych. Zaletami Aplikacji Webowych są min. przenaszalność, łatwość utrzymania(aktualizacje na serwerze, obsługa Android API zapewniona przez dostawcę przeglądarki), a także najniższy możliwy rozmiar(nie trzeba ich instalować na urządzeniu klienta). Wiążą się z tym jednak pewne wady, tzn. dostawca aplikacji musi utrzymywać bazę z danymi kont użytkowników, żeby korzystać z aplikacji użytkownik potrzebuje dostępu do internetu.
 
 ### 4.2.3 Aplikacje Hybrydowe na Android
 
 Programy napisane w języku webowym, uruchamiane wewnątrz aplikacji napisanej w języku natywnym, nazywanej potocznie "wrapper"-em. Taka struktura pozwala korzystać z większości zalet aplikacji webowych, jednocześnie mitygując wady takie jak niemożność wystawienia ich na sklepie play, czy brak możliwości dodania ikony aplikacji na ekranie startowym. Mogło by się wydawać iż aplikacje hybrydowe łączące w sobie korzystne cechy aplikacji webowych i natywnych są najlepszym rozwiązaniem w każdym przypadku, jednak podejście to nie jest bez wad. Należy się zastanowić, gdy zależy nam przede wszystkim na dostępności naszej aplikacji na wielu systemach, czy tworzenie i utrzymywanie wrappera nie jest zbędnym wysiłkiem przynoszącym niewielkie korzyści, w takiej sytuacji prawdopodobnie lepiej jest wybrać aplikację webową. Z drugiej strony jeśli zależy nam na optymalnym wykorzystaniu zasobów urządzenia, np. dla aplikacji działającej w większości lub całkowicie na systemie klienta, korzystającej w niewielkim stopniu z internetu, aplikacje natywne wydają się lepszym rozwiązaniem.
 
-Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykożystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
+Wybierając typ aplikacji najlepiej pasujący do wymagań Wirtualnej Galerii, kierowałem się ustalonymi założeniami projektowymi. Aby móc zrealizować funkcjonalność 3D aplikacja potrzebuje pełnego dostępu do API systemu android, w tym API OpenGL ES, co dyskwalifikuje aplikacje webowe. Wirtualna Galeria wykorzystuje głównie zasoby lokalne, dlatego aplikacja hybrydowa nie miałaby by w tym przypadku przewagi nad aplikacją natywną, więc ze względu na potencjalnie lepszą wydajność, a także dostępność materiałów szkoleniowych dotyczących użycia OpenGL ES w języku Java, wybrałem aplikację natywną.
 
 
 # 5. Projekt Rozwiązania
@@ -644,7 +644,7 @@ Powyższa ilustracja przedstawia pierwotny koncept interfejsu użytkownika widoc
 
 _Ilustracja 6: koncept UI w widoku 3D – opracowanie własne_
 
-Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszo-osobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
+Powyższa ilustracja przedstawia  pierwotny koncept interfejsu użytkownika widocznego po uruchomieniu za pomocą przycisku „Play”. Jak widać jest on w pełni trójwymiarowy. W widoku 3D znajdują się trójwymiarowe obiekty takie jak podłoga, ściany, i obrazy. Na Ilustracji widzimy białą ścianę stworzoną w poprzednim widoku 2D, na której użytkownik zawiesił wybrany przez siebie obraz. Perspektywa kamery to tak zwana perspektywa pierwszoosobowa, symulująca obraz widziany z oczu niewidzialnego obserwatora. Po prawej stronie ilustracji widzimy kontroler sterujący obrotem kamery, a po lewej kontroler sterujący jej ruchem.  Wybór takiego układu kontrolerów jest zainspirowany podobnym układem w wielu popularnych grach mobilnych i konsolowych, np. Minecraft Mobile. Pozwala to na szybsze oswojenie się użytkownika ze sterowaniem.
 
 ## 5.6 Język programowania i środowisko programistyczne
 
@@ -655,7 +655,7 @@ Java - jest to język obiektowy. Dzięki zastosowaniu języka obiektowego uzysku
 ## 5.7 Biblioteka OpenGL ES
 
 OpenGL jest zaprojektowany do użycia go razem z GPU, który standardowo obsługuje wiele wątków równocześnie - umożliwia to wykonywanie operacji takich jak obliczenie pozycji wielu wektorów o wiele szybciej niż obliczanie ich wewnątrz CPU. 
-Pisanie programów w OpenGL ES wymaga zrozumienia jego specyficznych konceptów. Aplikacja wykorzystująca bibiotekę OpenGL ES działa równocześnie na CPU i GPU. Część aplikacji działająca na CPU musi móc się porozumieć z częścią działającą na GPU. Rolę pośrednika pełni bibioteka OpengGL ES. To ona wysyła program do uruchomienia na GPU, i koordynuje przesyłanie danych. 
+Pisanie programów w OpenGL ES wymaga zrozumienia jego specyficznych konceptów. Aplikacja wykorzystująca bibliotekę OpenGL ES działa równocześnie na CPU i GPU. Część aplikacji działająca na CPU musi móc się porozumieć z częścią działającą na GPU. Rolę pośrednika pełni bibioteka OpengGL ES. To ona wysyła program do uruchomienia na GPU, i koordynuje przesyłanie danych. 
 
 Podstawowe koncepty biblioteki:
 
@@ -674,7 +674,7 @@ Podstawowe koncepty biblioteki:
 * realizacja "Face Culling" i "Deph testing"
 * implementacja interface-u GLSurfaceView.Renderer
 
-(jak te koncepty realizują rodział 3.1 - dać w odnośnikach)
+(jak te koncepty realizują rozdział 3.1 - dać w odnośnikach)
 
 ### 5.7.1 Shadery
 
@@ -736,14 +736,14 @@ Oprócz zdefiniowania bufora wierzchołków (lub bufora ich indeksów) programis
 
 ### 5.7.5 Macierze w OpenGL ES
 
-Sposób wykożystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. 
+Sposób wykorzystania macierzy w OpenGL ES do obliczeń 3D, nie odbiega od teorii przedstawionej w rozdziale 3. Większość obliczeń jest przeprowadzanych  na macierzach 4x4. 
 
 Tworzenie macierzy:
 * w części kodu uruchamianej na CPU (Java) jako tablicy 16 wartości float
   ```
   float[] viewMatrix = new float[16];
   ```
-* w shadarach uruchamianych na GPU (GLSL) jako zmienną typu macierzowego o wymiarze 4(co to znaczy typu macierzowego?)
+* w shaderach uruchamianych na GPU (GLSL) jako zmienną typu macierzowego o wymiarze 4(co to znaczy typu macierzowego?)
   ```
   uniform mat4 u_Matrix;
   ```
@@ -784,6 +784,7 @@ Matrix.translateM(worldMatrix, 0, this.X_position, 0, this.Z_position);
 ```
 Macierz kamery można stworzyć na podstawie własności kamery takich jak jej pozycja i obrót względem współrzędnych świata.
 W "Wirtualnej Galerii" najpierw wyliczana jest macierz obrotu, następnie macierz przesunięcia, a na koniec po wymnożeniu ich ze sobą, powstaje macierz kamery (viewMatrix):
+
 ```
 private float[] viewRotationMatrix;
 viewRotationMatrix = new float[16];
@@ -817,9 +818,9 @@ Jak było mówione w poprzednich rozdziałach, Viewport to inaczej część ekra
         GLES20.glViewport(0,0,width,height);
 ```
 
-### 5.7.7 Realizacja "Face Culling" i "Deph testing"
+### 5.7.7 Realizacja "Face Culling" i "Depth testing"
 
-W bibliotece OpenGL ES "Face Culling" i "Deph testing" są domyślnie nieużywane. Aby ich użyć należy wywołać funkcję:
+W bibliotece OpenGL ES "Face Culling" i "Depth testing" są domyślnie nieużywane. Aby ich użyć należy wywołać funkcję:
 ```
 import android.opengl.GLES20;
 
@@ -830,6 +831,7 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 ### 5.7.8 Realizacja "Widoku" systemu Android w OpenGL ES
 
 `android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer`, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
+
 1. `onSurfaceCreated()` - uruchamiana raz po stworzeniu widoku
 2. `onSurfaceChanged()` - uruchamiana za każdym razem kiedy wymiary widoku ulegną zmianie (np. po obróceniu telefonu)
 3. `onDrawFrame()` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
@@ -843,7 +845,7 @@ Zdarzenia te winny być dostarczone do Renderer-a, który przeliczy je na obiekt
 ### 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
 Shadery są uruchamiane na procesorze graficznym. Biblioteka Opengl ES i jej funkcje pośredniczą w wymianie informacji między aplikacją uruchomioną na procesorze, z shaderami uruchomionymi na procesorze graficznym.
-W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykożystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąść ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
+W danym momencie może być aktywny tylko jeden vertex shader i jeden fragment shader. Aby uniknąć niezgodności pomiędzy nimi, vertex shadery i fragment shadery łączone są w pary zwane jako "program". Do wyświetlenia danej bryły, wykorzystane zostaną shadery z ostatniego aktywowanego programu. Należy wziąć ten fakt pod uwagę w procesie wyświetlania brył, aby mieć pewność że dla każdej z nich zostanie użyty odpowiedni program.
 Na poniższym wykresie przedstawiony został proces stworzenia "programu" dla OpenGL ES w aplikacji "Wirtualna Galeria"
 
 <img src="../ilustracje/uml_sequence_shaders.svg" ></img>
@@ -877,7 +879,7 @@ Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastos
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
 1. Podczas wczytywania sceny w funkcji onSurfaceCreated() tworzone są bryły. Wewnątrz każdej z nich zawarty jest zbiór wierzchołków definiujących jej kształt (VertexArray).
-2. Podczas wyświetlania bryły, w funkcji onDrawFrame() ustawiany jest program jaki zostanie wykożystany
+2. Podczas wyświetlania bryły, w funkcji onDrawFrame() ustawiany jest program jaki zostanie wykorzystany
 3. następnie do handler-ów atrybutów i uniformów pobranych z shadera przypisywane są wartości:
 
 ***przypisanie wartości atrybutu:***
@@ -909,13 +911,13 @@ funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysył
 
 ## 6.1 Wzorce Architektoniczne
 
-Głównym wzorcem architekturalnym zastosowanym w projekcie jest Model-View-Presenter (MVP). Zaletami użycia tego wzorca są min.:
+Głównym wzorcem architektonicznym zastosowanym w projekcie jest Model-View-Presenter (MVP). Zaletami użycia tego wzorca są min.:
 - rozdzielenie warstwy odpowiedzialnej za wewnętrzną logikę aplikacji, od źródła danych i sposobu ich wyświetlenia
 - w łatwy sposób można dodać nowy View i zintegrować go z resztą aplikacji
 
 Zastosowanie MVP w Projekcie:
 
-Model, czyli DbmWall przechowuje kluczowe dane dotyczące ścian i obrazów. Prezenter - mainActivity zbiera te dane i przekazuje odpowiednio sformatowane do View - activity_main.xml. activity_main.xml opisuje interfejs użytkownika, zajmuje się wyświetleniem przekazanych danych, a także rejestruje zdażenia takie jak dotknięcie ekranu i przekazuje je odpowiednim handlerom w prezenterze.
+Model, czyli DbmWall przechowuje kluczowe dane dotyczące ścian i obrazów. Prezenter - mainActivity zbiera te dane i przekazuje odpowiednio sformatowane do View - activity_main.xml. activity_main.xml opisuje interfejs użytkownika, zajmuje się wyświetleniem przekazanych danych, a także rejestruje zdarzenia takie jak dotknięcie ekranu i przekazuje je odpowiednim handlerom w prezenterze.
 ```
 setContentView(R.layout.activity_main);
 ```
@@ -942,6 +944,7 @@ Aplikacja "Wirtualna Galeria" nie ma dużych wymogów bazodanowych. Potrzebuje j
 
 Zostały te wymagania zrealizowane w postaci pojedynczej tablicy `WALLS` o następującej strukturze:
 <img src="../ilustracje/database_walls_table.svg" width=400></img>
+
 * `x_coordinate` i `z_coordinate` to współrzędne prostopadłościanu na podłodze galerii
 * `front_painting` to nazwa pliku dla obrazu zawieszonego na przedniej __ścianie__ danego prostopadłościanu (string pusty gdy nie ma obrazu)
 * `back_painting` to analogicznie - nazwa pliku dla obrazu na tylnej __ścianie__
@@ -960,9 +963,9 @@ Do wykonania obiektów graficznych takich jak min. logo aplikacji użyty został
 
 ## 6.4 Testowanie aplikacji, napotkane problemy
 
-W związku z tym że główną częścią aplikacji jest funkcjonalność 3D, wykożystane zostały wyłącznie testy manualne
+W związku z tym że główną częścią aplikacji jest funkcjonalność 3D, wykorzystane zostały wyłącznie testy manualne
 Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), a jego realizację weryfikowano poprzez testy manualne. 
-Przykładowo, w jednym z pierwszych etapów rozwoju, celem było wyświetlenie najprostrzego możliwego kształtu na ekranie (zgodnie z: odnośnik do kursu opengl es). Po zweryfikowaniu że na ekranie wyświetla się zielony trójkąt, etap został uznany za zakończony
+Przykładowo, w jednym z pierwszych etapów rozwoju, celem było wyświetlenie najprostszego możliwego kształtu na ekranie (zgodnie z: odnośnik do kursu opengl es). Po zweryfikowaniu że na ekranie wyświetla się zielony trójkąt, etap został uznany za zakończony
 Innym razem, celem było wyświetlenie co najmniej dwuch brył na raz. Podczas weryfikacji stwierdzona została nieprawidłowość charakteryzująca się przenikaniem brył przez siebie. Błąd ten został rozwiązany poprzez użycie poniższej funkcji, która uruchamia testy głębokości:
 
 ```
@@ -980,7 +983,7 @@ Innym narzędziem które zostało wykorzystane w projekcie jest git który jest 
 
 (przerobić poniższą historię implementacji na opis problemów napotkanych podczas implementacji)
 
-Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3d), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
+Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3D), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
     • Etap 0 „Konfiguracja Środowiska” – aby móc rozpocząć pracę w android studio musiałem najpierw wykonać kilka niezbędnych kroków. Po pierwsze musiałem dodać ścierzkę komendy adb do zmiennej środowiskowej PATH. Następnie musiałem stworzyć emulator telefonu na którym będę testował działanie aplikacji, a na koniec stworzyć nowy projekt i wybrać odpowiednią wersję sdk.
     • Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
     • Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „SceneRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „SceneRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem że aplikacja uruchamia się i wyświetla się czarny ekran
