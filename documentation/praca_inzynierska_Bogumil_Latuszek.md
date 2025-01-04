@@ -204,8 +204,7 @@ Jednak z biegiem czasu, inni producenci urządzeń do tworzenia grafiki komputer
 W 1992 SGI utworzyła wraz z innymi firmami konsorcjum OpenGL Architecture Review Board aby dbać i promować standard OpenGL. W 2006 obowiązki te przejęło inne konsorcjum zwane Khronos Group.
 Widząc wzrastającą popularność OpenGL grupa Khronos postanowiła wydać także wersję wyspecjalizowaną na urządzenia embedded, w tym telefony mobilne.
 
-Tak powstał wydany w 2003 roku OpenGL ES (https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html - jeszcze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html
- - oficjalne wydanie )
+Tak powstał wydany w 2003 roku OpenGL ES (https://web.archive.org/web/20021204100541/http://www.khronos.org/embeddedapi/index.html - jeszcze nie ma oficjalnego wydania, https://web.archive.org/web/20040215013559/http://www.khronos.org/opengles/index.html - oficjalne wydanie)
 
 https://en.wikipedia.org/wiki/OpenGL
 https://en.wikipedia.org/wiki/IRIS_GL
@@ -394,7 +393,7 @@ Trzeba wspomnieć, że nie jest to transformacja macierzowa ale należy ją zaws
 
 <img src="../ilustracje/nevada_road.jpg" width=400></img>
 
-(https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg?t=st=1731765589~exp=1731769189~hmac=2a47435e4b827fd8321ec7ea4290bc7e864fe646a61cd83f256caf00a4803567&w=1380 )
+(https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg?t=st=1731765589~exp=1731769189~hmac=2a47435e4b827fd8321ec7ea4290bc7e864fe646a61cd83f256caf00a4803567&w=1380)
 
 Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" (x/w, y/w), tym bliżej wektor znajduje się punktu 0.0.0.
 
@@ -408,7 +407,7 @@ Poniższa ilustracja przedstawia dzielenie przez w. Dla lepszego zobrazowania te
 
 (w przybliżeniu)
 
-Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1] ).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy więcej niż jeden fragment znajduje się w tych samych koordynatach **(x,y)**, trzecia wartość **z** pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
+Jak widać, poprzez podzielenie koordynatów x, y, z przez w, bryła kurczy się. Ostatecznie wszystkie bryły wewnątrz frustum znajdą się w kostce o wymiarach 2x2x2 (x, y, z należą do [-1 .. 1]).  Aby uzyskać obraz, bryła zostanie następnie poddana rasteryzacji, gdzie jest traktowana jak gdyby leżała na płasko na bliższej płaszczyźnie ucięcia. Jej wartość z zostanie użyta jedynie w teście głębokości, czyli w sytuacji gdy więcej niż jeden fragment znajduje się w tych samych koordynatach **(x,y)**, trzecia wartość **z** pomoże określić który z nich leży „z przodu”, i to jego kolor zostanie przypisany do odpowiednich pikseli na ekranie.
 
 ### 3.1.2 Implementacja obliczeń macierzowych w grafice 3D
 
