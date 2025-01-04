@@ -884,13 +884,13 @@ _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
 ***przypisanie wartości atrybutu:***
 
-Wartości z buffora są przekazywane do atrybutu poprzez iterację po zbiorze. Jako że wewnątrz buffora znajduje się zbiór wartości, należy wskazać która pozycja w zbiorze jest "startowa", należy ją ustawić poprzez użycie funkcji `setVertexAttribPointer()` (nie przedstawiono jej na diagramie)
-Funkcja `glVertexAttribPointer()` łączy handler do atrybutu z podanym bufforem, w którym znajdują się przeznaczone dla niego wartości. Aby sfinalizować tę operację, atrybut jest "aktywowany" przez: `GLES20.glEnableVertexAttribArray(attributeLocation);`
+Wartości z buffora są przekazywane do atrybutu poprzez iterację po zbiorze.
+Funkcja `glVertexAttribPointer()` łączy handler do atrybutu z podanym bufforem, w którym znajdują się przeznaczone dla niego wartości. Aby sfinalizować tę operację, atrybut jest "aktywowany" przez `glEnableVertexAttribArray()`:
 
         floatBuffer.position(dataOffset);
         // tell OpenGL where to find data for our attribute pointed via attributeLocation
         GLES20.glVertexAttribPointer(attributeLocation, componentCount, GLES20.GL_FLOAT,
-                false, stride, floatBuffer);
+                                     false, stride, floatBuffer);
         // we’ve linked our data to the attribute, we need to enable the attribute
         GLES20.glEnableVertexAttribArray(attributeLocation);
 
@@ -902,7 +902,7 @@ Funkcja `glVertexAttribPointer()` łączy handler do atrybutu z podanym bufforem
 ```
 
 Po połączeniu wszystkich zmiennych "programu" z buforami, można w końcu użyć "programu" do wyświetlenia bryły.
-funkcja GLES20.glDrawElements() tworzy reprezentację bryły na ekranie i wysyła ją do framebuffera
+Funkcja `glDrawElements()` tworzy reprezentację bryły na ekranie i wysyła ją do framebuffera.
 
 
 
