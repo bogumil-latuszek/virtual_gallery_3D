@@ -113,7 +113,8 @@ Aplikacja "Wirtualna Galeria" służy do budowania symulacji galerii sztuki, daj
 ## 1.2 Zakres Pracy
 
 Praca skupia się na zaprojektowaniu i implementacji aplikacji mobilnej "Wirtualna Galeria", w oparciu o system Android, język Java, bibliotekę OpenGL ES, oraz bazę danych SQLite. W pracy zawarta jest również analiza zagadnień teoretycznych dotyczących użytych narzędzi, oraz szeroko rozumianej dziedziny grafiki 3D, z naciskiem na wzory matematyczne i rozwiązania techniczne. W celu ukontekstualizowania poruszanych zagadnień, zawarty został również rozdział poświęcony historii powstania i rozwoju grafiki 3D.
-( TODO: Dopytać się promotora o to co ma być zawarte w tym podrozdziale)
+
+_(TODO: Dopytać się promotora o to co ma być zawarte w tym podrozdziale)_
 
 ## 1.3 Skrótowy opis zawartości rozdziałów
 
@@ -393,7 +394,7 @@ Trzeba wspomnieć, że nie jest to transformacja macierzowa ale należy ją zaws
 
 <img src="../ilustracje/nevada_road.jpg" width=400></img>
 
-( https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg?t=st=1731765589~exp=1731769189~hmac=2a47435e4b827fd8321ec7ea4290bc7e864fe646a61cd83f256caf00a4803567&w=1380 )
+(https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg?t=st=1731765589~exp=1731769189~hmac=2a47435e4b827fd8321ec7ea4290bc7e864fe646a61cd83f256caf00a4803567&w=1380 )
 
 Dzieje się tak, gdyż środek przestrzeni znormalizowanej znajduje się w punkcie 0.0.0, więc im większy jest mianownik "w" (x/w, y/w), tym bliżej wektor znajduje się punktu 0.0.0.
 
@@ -678,7 +679,7 @@ Podstawowe koncepty biblioteki:
 
 ### 5.7.1 Shadery
 
-Shadery ( TODO: wstawić odnośnik do 3.1.2) w OpenGL ES są pisane w języku GLSL (OpenGL Shading Language). Poniżej pokazujemy przykład:
+Shadery (TODO: wstawić odnośnik do 3.1.2) w OpenGL ES są pisane w języku GLSL (OpenGL Shading Language). Poniżej pokazujemy przykład:
 
 Vertex shader:
 
