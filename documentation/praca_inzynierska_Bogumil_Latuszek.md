@@ -1059,9 +1059,11 @@ Poza wymienionymi funkcjonalnościami, aby upewnić się że aplikację można w
 
 # Bibliografia
 
-    1. "OpenGL ES 3.0 Programming Guide – 2014, Ginsburg D, Purnomo B"
+1. "OpenGL ES 2 for Android. A Quick-Start Guide" – Kevin Brothaler, 2013
+
 Źródła internetowe
-    1. oficjalna dokumentacja systemu android:  https://developer.android.com/guide
-    2. oficjalna dokumentacja android opengl ES:  https://www.opengl.org/Documentation/Specs.html
+
+1. oficjalna dokumentacja systemu android:  https://developer.android.com/guide
+2. oficjalna dokumentacja android opengl ES:  https://www.opengl.org/Documentation/Specs.html
 
 # Spis rysunków
