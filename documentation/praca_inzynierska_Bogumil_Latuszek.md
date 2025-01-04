@@ -876,14 +876,14 @@ Na poniższym diagramie pokazana została sekwencja wyświetlania brył z zastos
 
 _Ilustracja 3: wykres sekwencji renderowania obiektów - opracowanie własne_
 
-1. Podczas wczytywania sceny, w funkcji onSurfaceCreated(), tworzone są obiekty zwane "ścianami". Wewnątrz każdego z nich zawarty jest zbiór wierzchołków, definiujących kształt tej bryły (VertexArray).
-2. Następnie pobierane są handlery do zmiennych "programu".(to już było opisane wcześniej)
-3. Podczas wyświetlania sceny, w funkcji onDrawFrame:
-ustawienie atrybutu:
+1. Podczas wczytywania sceny w funkcji onSurfaceCreated() tworzone są bryły. Wewnątrz każdej z nich zawarty jest zbiór wierzchołków definiujących jej kształt (VertexArray).
+2. Podczas wyświetlania bryły, w funkcji onDrawFrame() ustawiany jest program jaki zostanie wykożystany
+3. następnie do handler-ów atrybutów i uniformów pobranych z shadera przypisywane są wartości:
 
-najpierw ustawiamy pozycję startową buffera, poprzez użycie funkcji `setVertexAttribPointer()`.
-Funkcja `glVertexAttribPointer()` łączy handler do zmiennej "programu" typu atrybut z podanym bufforem.
-atrybut jest "aktywowany" przez `GLES20.glEnableVertexAttribArray(attributeLocation);`
+***przypisanie wartości atrybutu:***
+
+Wartości z buffora są przekazywane do atrybutu poprzez iterację po zbiorze. Jako że wewnątrz buffora znajduje się zbiór wartości, należy wskazać która pozycja w zbiorze jest "startowa", należy ją ustawić poprzez użycie funkcji `setVertexAttribPointer()` (nie przedstawiono jej na diagramie)
+Funkcja `glVertexAttribPointer()` łączy handler do atrybutu z podanym bufforem, w którym znajdują się przeznaczone dla niego wartości. Aby sfinalizować tę operację, atrybut jest "aktywowany" przez: `GLES20.glEnableVertexAttribArray(attributeLocation);`
 
         floatBuffer.position(dataOffset);
         // tell OpenGL where to find data for our attribute pointed via attributeLocation
@@ -892,7 +892,7 @@ atrybut jest "aktywowany" przez `GLES20.glEnableVertexAttribArray(attributeLocat
         // we’ve linked our data to the attribute, we need to enable the attribute
         GLES20.glEnableVertexAttribArray(attributeLocation);
 
-ustawienie uniformu:
+***przypisanie wartości uniformu:***
 
 ```
    GLES20.glUniformMatrix4fv(uMatrixLocation, 1, false, modelViewProjectionMatrix, 0);
