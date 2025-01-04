@@ -829,16 +829,16 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
 ### 5.7.8 Realizacja "Widoku" systemu Android w OpenGL ES
 
-`android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
+`android.opengl.GLSurfaceView` jest klasą pochodną od klasy View, dostarczaną przez bibliotekę OpenGL ES. Podobnie jak inne klasy pochodne od View, może zostać "przypisana" do aktywności, stając się jej reprezentacją graficzną. `GLSurfaceView` wyróżnia się jednak tym, iż aby mogła zostać użyta potrzebuje klasy `android.opengl.GLSurfaceView.Renderer` która posiada zdolność rysowania na `GLSurfaceView`. Co do samej klasy `Renderer`, to warto wspomnieć iż programista chcący jej użyć w projekcie, musi w swojej klasie pochodnej nadpisać (ang. override) trzy istotne metody: 
 1. `onSurfaceCreated()` - uruchamiana raz po stworzeniu widoku
 2. `onSurfaceChanged()` - uruchamiana za każdym razem kiedy wymiary widoku ulegną zmianie (np. po obróceniu telefonu)
-3. `onDrawFrame` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
+3. `onDrawFrame()` - uruchamiana za każdym razem kiedy widok musi zostać na nowo narysowany na ekranie.
 (src: https://developer.android.com/develop/ui/views/graphics/opengl/about-opengl)
 
-Aby móc reagować na zdarzenia dotknięcia ekranu i zrealizować algorytm kolizji opisany w rozdziale 3.2 należy:
-* w klasie `Activity` Androida zainstalować `View.OnTouchListener` z przeciążoną metodą `onTouch()`
-* w tej metodzie przechwycić zdarzenie `MotionEvent.ACTION_DOWN`
-* w reakcji na nie wywołać metodę `handleTouchDrag()` rozszerzonej implementacji Render-a opisane poniżej
+Tak stworzona implementacja Renderer-a może narysować na View całą statyczną scenę 3D. 
+Realizuje to wykorzystując w swoim kodzie wszystkie konstrukcje OpenGL ES, takie jak shadery, bufory, macierze, prymitywy, tekstury, mapowanie UV, face culling, depth testing, viewport, oraz wszystkie inne koncepty opisane w poprzednich podrozdziałach. 
+Natomiast dla realizacji interakcji z użytkownikiem, takich jak wskazywanie obiektów, ich przesuwanie, usuwanie czy też poruszanie się w scenie 3D, programista może wykorzystać zdarzenia dotknięcia ekranu dostępne w Androidowym Activity. 
+Zdarzenia te winny być dostarczone do Renderer-a, który przeliczy je na obiekty przestrzeni 3D i zmodyfikuje scenę przed kolejnym zawołaniem `onDrawFrame()` tworząc w ten sposób iluzję ruchu w przestrzeni.
 
 ### 5.7.9 Przekazywanie danych między CPU i GPU - Diagramy UML
 
