@@ -213,7 +213,7 @@ https://en.wikipedia.org/wiki/Silicon_Graphics
 
 W 2017 KG ogłosił że nie będzie wydawać nowych wersji OpenGL, bo skupiają się na jego następcy "Vulkan" (wydanym w 2016). Ja jednak zdecydowałem się użyć w moim projekcie silnika OpenGL ES, ponieważ jest w powszechnej opinii łatwiejszy w użyciu dla nowicjusza nie mającego do tej pory styczności z programowaniem w oparciu o silniki graficzne. Poza tym OpenGL ES jest wciąż wspierany przez Android (w przeciwieństwie do ich głównego konkurenta Apple), a jego funkcjonalność wydała mi się wystarczająca do zrealizowania założeń wstępnych mojego projektu.
 
-# 3 Wzory matematyczne i rozwiązania programistyczne
+# 3. Wzory matematyczne i rozwiązania programistyczne
 
 ## 3.1 Wyświetlanie grafiki 3D
 
@@ -994,7 +994,7 @@ Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoj
     • Etap 7 „Sterowanie”
     • Etap 8 ostatni „Refaktoring”
 
-# 7 Dokumentacja techniczna projektu
+# 7. Dokumentacja techniczna projektu
 
 Instrukcja użytkowania
 
