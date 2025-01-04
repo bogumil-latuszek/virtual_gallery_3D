@@ -78,9 +78,8 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
     - 6.1 [Wzorce Architektoniczne](#61-wzorce-architektoniczne)
     - 6.2 [Baza Danych](#62-baza-danych)
     - 6.3 [Narzędzia graficzne](#63-narzędzia-graficzne)
-    - 6.4 [Testowanie aplikacji](#64-testowanie-aplikacji)
+    - 6.4 [Testowanie aplikacji, napotkane problemy](#64-testowanie-aplikacji-napotkane-problemy)
     - 6.5 [Zarządzanie projektem informatycznym](#65-zarządzanie-projektem-informatycznym)
-    - 6.6 [Napotkane problemy](#66-napotkane-problemy)
 7. [Dokumentacja techniczna projektu](#7-dokumentacja-techniczna-projektu)
     - 7.1 [Instalacja aplikacji](#71-instalacja-aplikacji)
     - 7.2 [Uruchomienie aplikacji i opis funkcjonalności 2D](#72--uruchomienie-aplikacji-i-opis-funkcjonalności-2d)
@@ -982,21 +981,6 @@ GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
 Kontrola Wersji – Git 
 Innym narzędziem które zostało wykorzystane w projekcie jest git który jest jednym z najpopularniejszych systemów kontroli wersji. Istotnym elementem procesu tworzenia oprogramowania jest kontrola wersji rozwijanego kodu źródłowego, a główną zaletą użycia systemu kontroli wersji jest łatwość rewizji wprowadzanych zmian i przyspieszenie wykrywania błędów. Wraz z wprowadzaniem zmian wytwarzana jest historia rozwoju w której zawarte są informacje o zmianach dacie i autorze zmiany. W sytuacji wykrycia błędu w działaniu wyprodukowanej aplikacji, historia wersji tej aplikacji pozwala na szybkie zdiagnozowanie przyczyny błędu i naprawę.
-
-## 6.6 Napotkane problemy
-
-(przerobić poniższą historię implementacji na opis problemów napotkanych podczas implementacji)
-
-Rozwój projektu był prowadzony w sposób iteracyjny. Poszczególny etap rozwoju miał precyzyjnie wyznaczony cel (np. wyświetlenie konkretnej bryły 3D), który starałem się osiągnąć wprowadzając jak najmniej zmian do kodu. Zakończenie etapu weryfikowane było przez testy manualne. Podejście to pozwoliło mi na szybkie znajdywanie rozwiązań napotkanych problemów. A problemów było wiele ponieważ nie miałem do tej pory styczności z tą technologią. Inkrementalny rozwój kodu pozwolił na dokładniejsze śledzenie tępa postępu pracy.
-    • Etap 0 „Konfiguracja Środowiska” – aby móc rozpocząć pracę w android studio musiałem najpierw wykonać kilka niezbędnych kroków. Po pierwsze musiałem dodać ścierzkę komendy adb do zmiennej środowiskowej PATH. Następnie musiałem stworzyć emulator telefonu na którym będę testował działanie aplikacji, a na koniec stworzyć nowy projekt i wybrać odpowiednią wersję sdk.
-    • Etap 1 „Widok 2D” – w tym etapie moim celem było stworzenie interaktywnego widoku i aktywności. Rozpocząłem od stworzenia projektu w Android Studio. Następnie zmodyfikowałem wygenerowany layout wedle koncepcji wygląd
-    • Etap 2 „Czarny Ekran” – Zacząłem od stworzenia nowej aktywności przeznaczonej do wyświetlania przestrzeni 3D. Po uruchomieniu aktywności, aktywność tworzy klasę „MyGLSurfaceView”i przypisuje ją jako swój widok. W konstruktorze klasy „MyGLSurfaceView” tworzony jest „SceneRenderer” i przypisywany do niej za pomocą metody „setRenderer”. To właśnie w klasie „SceneRenderer” mieści się główna logika wyświetlania obiektów 3D. Trzy główne metody tej klasy to „onSurfaceCreated”, „onSurfaceChanged”, oraz „onDrawFrame”. Na początek, aby wypróbować działanie programu, ustawiłem kolor tła na czarny w „onSurfaceCreated” i sprawdziłem że aplikacja uruchamia się i wyświetla się czarny ekran
-    • Etap 3 „Zielony Trójkąt” – celem tego etapu było wyświetlenie jakiejkolwiek bryły w przygotowaniu do wyświetlania bardziej zaawansowanych obiektów składających się na scenę Wirtualnej Galerii. Aby szybko wypróbować działanie programu, wybrałem najprostszą figurę geometryczną do wyświetlenia – trójkąt. W tym celu musiałem stworzyć klasę Triangle, posiadającą listę punktów z których będzie składał się trójkąt (vertex-ów), a następnie napisać „vertex shader”i „fragment shader” Aby można było ich użyć, w metodzie „onSurfaceCreated”, podczas inicjowania klas użytych w aktywności, shadery są przekazywane jako wartości String do metod biblioteki GLES20, gdzie są tworzone, kompilowane, i łączone w „program”. Taki „program” jest następnie wysyłany zapisywany, aby mógł zostać użyty podczas wyświetlania obiektu poprzez „GLES20.glUseProgram”. Po skonfigurowaniu używanego programu, koloru, oraz odnośnika do listy werteksów, figura jest rysowana przez „GLES20.glDrawArrays”. Po uruchomieniu aplikacji na tym etapie wyświetla się statyczny zielony trójkąt
-    • Etap 4 „Obrót” –(b6e1da8a) ten etap służył zrozumieniu obrotu figur w przestrzeni 3d. W „SceneRenderer” dodałem zmienną przechowującą macierz rotacji *(w kolejnych etapach przemianowaną na „modelMatrix” i przeniesioną do klasy obiektu do którego się odnosi). Przy każdym wywołaniu funkcji rysującej obiekty, najpierw, na podstawie punktu czasowego w animacji (reszta z dzielenia czasu systemowego przez czas potrzebny na wykonanie pełnej animacji) podstawie czasu systemowego oraz kąta rotacji obliczana jest na nowo macierz rotacji, a następnie na jej podstawie macierz mvp (model, view, projection). W tym przypadku macierz rotacji to macierz „model”, ponieważ odnosi się tylko do modelu – trójkąta (tylko on będzie obracany). Pozostałe macierze „view” i „projection” pozostają bez zmian w trakcie działania programu. Macierz mvp obliczana jest przez pomnożenie tych trzech macierzy, a następnie zostaje przekazana do funkcji „Draw()” w klasie „Triangle”. Stamtąd wysyłana jest do vertex shadera, który na jej podstawie oblicza aktualną pozycję każdego vertexa figury. Po uruchomieniu aplikacji na tym etapie wyświetla się obracający się zielony trójkąt
-    • Etap 5 „Sześcian” - w tym etapie testowałem wyświetlanie jednej z najprostszych figur przestrzennych – sześcianu.
-    • Etap 6 „Obrót kamery”
-    • Etap 7 „Sterowanie”
-    • Etap 8 ostatni „Refaktoring”
 
 # 7. Dokumentacja techniczna projektu
 
