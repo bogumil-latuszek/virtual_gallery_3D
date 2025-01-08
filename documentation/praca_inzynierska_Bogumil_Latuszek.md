@@ -21,7 +21,7 @@ Problemem jaki rozwiązuje aplikacja jest potrzeba dostarczenia łatwo dostępne
 
 Projekt został zrealizowany jako aplikacja na system Android, napisana w językach Java i GLSL, z wykorzystaniem biblioteki graficznej OpenGL ES. W projektowaniu został użyty język UML. Do napisania aplikacji zostały też wykorzystane wzorce projektowe.
 
-Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego posiadacza telefonu z systemem android. Dzięki swojej intuicyjności pozwala w szybki sposób zwizualizować w przestrzeni koncepcje artystyczne i fotograficzne jej użytkowników
+Aplikacja "Wirtualna Galeria" jest narzędziem łatwo dostępnym dla każdego posiadacza telefonu z systemem android. Dzięki swojej intuicyjności pozwala w szybki sposób zwizualizować w przestrzeni 3D koncepcje artystyczne i fotograficzne jej użytkowników
 
 ## Słowa kluczowe
 
@@ -29,7 +29,17 @@ Aplikacja mobilna, Grafika 3D, Open Source, Android, Java, OpenGL ES, Transforma
 
 # Abstract
 
+This Engineer's Thesis aims to analise the problem of 3D computer graphics in terms of it's history and the algorithms being used. The goal is to design and inplement a mobile app, which offers sufficient functionality for the sake of creating a virtual art gallery, based on 3D graphics technology.
+
+The problem that the app solves, is the need for an accessible and easy to use program, which would allow for creation, viewing, and placement of images in 3D space. The target users are designers of art galleries, and people who desire for a tool which would make it easier to use a memory technique called memory palace * link do opisu pałacu pamięci
+
+The Project was brought to life as an app for Android operating system, written in Java and GLSL, using graphics library OpenGL ES. During the diesinging process, UML language has been used. In writing of the application code, there have been used certain design patterns.
+
+"Wirtual Gallery" application is an easily accessible tool for every owner of an android phone. Thanks to it's intuitive design, it allows for quick visualisation of it's users artistic and fotographic ideas in 3D space.
+
 ## Keywords
+
+Mobile app, 3D graphics, OpenSource, Android, Java, OpenGL ES, 3D shape transformation, physics of 3D space
 
 # Spis treści:
 
