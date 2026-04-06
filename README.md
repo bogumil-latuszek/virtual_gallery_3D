@@ -1,5 +1,8 @@
 # Application "Virtual Gallery"
 ## Overview
+
+<img src="ilustracje/virtual_gallery.gif" alt="Under Construction" width="1000">
+
 This application is meant for android users with sdk version from 24 up, with targetSdk(optimal case) 33 
 
 It can be used to create a virtual gallery consisting of walls and paintings attached to them. The user designs the layout of walls in "view 2D", 
