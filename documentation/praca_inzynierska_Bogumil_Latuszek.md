@@ -1345,53 +1345,103 @@ https://developer.android.com/develop/ui/views/graphics/opengl/about-opengl (z d
 # Spis rysunków
 
 Ilustracja 1: Wykres przełomowych wydarzeń w historii grafiki komputerowej i open source – opracowanie własne
+
 Ilustracja 2: Przykładowa scena 3D (z książki: Brothaler K., OpenGL ES 2 for Android, Pragmatic Bookshelf, b.m., 2013, s.101)
+
 Ilustracja 3: Projekcja tej sceny w widoku kamery (z książki: Brothaler K., OpenGL ES 2 for Android, Pragmatic Bookshelf, b.m., 2013, s.102)
+
 Ilustracja 4: Bryła – sześcian (opracowanie własne)
+
 Ilustracja 5: Bryła - sześcian (opracowanie własne)
+
 Ilustracja 6: Bryła - sześcian - obracany przez macierz modelu (opracowanie własne)
+
 Ilustracja 7: Bryła - sześcian - przesunięty przez macierz świata (opracowanie własne)
+
 Ilustracja 8: Bryła - sześcian - transformowany przez macierz kamery (opracowanie własne)
+
 Ilustracja 9: Wizualizacja konceptów związanych z macierzą perspektywy (opracowanie własne)
+
 Ilustracja 10: Bryła - sześcian - na tle wizualizacji frustum (w oddaleniu) (opracowanie własne)
+
 Ilustracja 11: Bryła - sześcian - na tle wizualizacji frustum (w przybliżeniu) (opracowanie własne)
+
 Ilustracja 12: Bryła - sześcian - po transformacji przez macierz perspektywy (w oddaleniu) (opracowanie własne)
+
 Ilustracja 13: Bryła - sześcian - po transformacji przez macierz perspektywy (w przybliżeniu) (opracowanie własne)
+
 Ilustracja 14: Droga w Nevadzie pokazująca wrażenie perspektywy (https://img.freepik.com/free-photo/valley-fire-nevada-highway-before-entering-into-park-valley_181624-14194.jpg)
+
 Ilustracja 15: Bryła - sześcian - po podziale jednorodnym(w przybliżeniu) (opracowanie własne)
+
 Ilustracja 16: Bryła - sześcian - po podziale jednorodnym(w przybliżeniu) (opracowanie własne)
+
 Ilustracja 17: Przestrzeń ekranu (opracowanie własne)
+
 Ilustracja 18: Przestrzeń znormalizowana (opracowanie własne)
+
 Ilustracja 19: Punkty na tylnej i przedniej ścianie przestrzeni znormalizowanej (opracowanie własne)
+
 Ilustracja 20: Półprosta w przestrzeni kamery (opracowanie własne)
+
 Ilustracja 21: Półprosta w przestrzeni kamery i świata (opracowanie własne)
+
 Ilustracja 22: Półprosta w przestrzeni świata (opracowanie własne)
+
 Ilustracja 23: Przecięcie półprostej i płaszczyzny (opracowanie własne)
+
 Ilustracja 24: Pozycja punktu na płaszczyźnie w stosunku do obrębu ściany (opracowanie własne)
+
 Ilustracja 25: Diagram przypadków użycia (opracowanie własne)
+
 Ilustracja 26: Koncept UI w widoku 2D (opracowanie własne)
+
 Ilustracja 27: Koncept UI w widoku 3D (opracowanie własne)
+
 Ilustracja 28: Wierzchołki sześcianu i powstałe z nich prymitywy (opracowanie własne)
+
 Ilustracja 29: Wykres sekwencji przygotowania shaderów (opracowanie własne)
+
 Ilustracja 30: Wykres sekwencji wyświetlania obiektów (opracowanie własne)
+
 Ilustracja 31: Prośba o udzielenie zgody
+
 69Ilustracja 32: Widok 2D
+
 Ilustracja 33: Nawigacja w widoku 2D
+
 Ilustracja 34: Dodanie ściany
+
 Ilustracja 35: Zapis danych
+
 Ilustracja 36: Uruchomienie widoku 3D
+
 Ilustracja 37: Widok 3D
+
 Ilustracja 38: Obrót kamery w górę
+
 Ilustracja 39: Obrót kamery w dół
+
 Ilustracja 40: Obrót kamery w lewo
+
 Ilustracja 41: Obrót kamery w prawo
+
 Ilustracja 42: Reset obrotu kamery
+
 Ilustracja 43: Poruszanie kamery w prawo
+
 Ilustracja 44: Poruszanie kamery w lewo
+
 Ilustracja 45: Poruszanie kamery w tył
+
 Ilustracja 46: Poruszanie kamery w przód
+
 Ilustracja 47: Interakcja ze ścianą - zawieszenie obrazu
+
 Ilustracja 48: Obraz #1 zawieszony na ścianie
+
 Ilustracja 49: Interakcja ze ścianą - zdjęcie obrazu
+
 Ilustracja 50: Ściana bez obrazu
+
 Ilustracja 51: Zawieszenie obrazu #2
