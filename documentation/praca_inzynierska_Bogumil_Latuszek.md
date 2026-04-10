@@ -1201,26 +1201,38 @@ Aby zainstalować aplikację należy pobrać plik .apk z https://github.com/bogu
 
 Po zainstalowaniu i uruchomieniu aplikacji pokaże nam się poniższy ekran:
 
+<img src="../ilustracje/31.png" width=400></img>
+
 _Ilustracja 31: Prośba o udzielenie zgody_
 
 Jeśli jest to pierwsze uruchomienie, wyświetli się pop-up z prośbą o udzielenie uprawnienia do odczytu zdjęć z urządzenia. Należy wyrazić zgodę, aby aplikacja miała pełną funkcjonalność. W przypadku odmówienia przyzwolenia użytkownik może tylko tworzyć/usuwać puste ściany. W przypadku jeśli pop-up się nie pojawia, można też przydzielić uprawnienia manualnie. W tym celu należy wejść w ustawienia > aplikacje, wybrać ikonę aplikacji z podanej listy, wejść w przyzwolenia i tam udzielić zgodę na odczyt zdjęć. Po zamknięciu pop-upa ukaże się właściwy ekran aplikacji – widok 2D
 
+<img src="../ilustracje/32.png" width=400></img>
+
 _Ilustracja 32: Widok 2D_
 
 pierwsze co rzuca się w oczy w widoku 2D to kratownica zabierająca większość ekranu. Przeciągając palcem po ekranie możemy ją przesuwać w górę/dół prawo/lewo. Na poniższym zdjęciu kierunek przesuwania palcem jest zobrazowany czarną strzałką, a kierunek przesuwania kratownicy czerwoną:
+
+<img src="../ilustracje/33.png" width=400></img>
 
 _Ilustracja 33: Nawigacja w widoku 2D_
 
 Okno zawierające kratownicę służy przede wszystkim do projektowania układu ścian, a ściany służą do wieszania obrazów. Opowiemy o nich więcej przy opisie widoku 3D, na razie na potrzebę demonstracji stworzymy tylko jedną ścianę. Aby tego dokonać wystarczy kliknąć w dowolną komórkę na kratownicy. Pojawi się w niej ikona pokazująca, że w tym miejscu znajduje się ściana.
 Jeśli umieściliśmy ścianę w złym miejscu, lub po prostu zmienimy zdanie co do układu, wystarczy jeszcze raz kliknąć w zajętą komórkę, a ikona zniknie:
 
+<img src="../ilustracje/34.png" width=400></img>
+
 _Ilustracja 34: Dodanie ściany_
 
 Kiedy uznamy, że stworzony układ ścian nam pasuje, możemy go otworzyć w widoku 3D. Jednak aby widok 3D mógł odczytać i wyświetlić tak stworzony układ ścian, należy go wcześniej zapisać. Zapisu dokonujemy poprzez kliknięcie w ikonę zapisu na pasku narzędzi
 
+<img src="../ilustracje/35.png" width=400></img>
+
 _Ilustracja 35: Zapis danych_
 
 Teraz możemy już przejść do widoku 3D, aby to zrobić klikamy w ikonę uruchomienia widoku 3D:
+
+<img src="../ilustracje/36.png" width=400></img>
 
 _Ilustracja 36: Uruchomienie widoku 3D_
 
@@ -1230,47 +1242,77 @@ Otworzy się nowy ekran.
 
 Po uruchomieniu widoku 3D zobaczymy poniższy ekran:
 
+<img src="../ilustracje/37.png" width=400></img>
+
 _Ilustracja 37: Widok 3D_
 
 Jak widać jesteśmy teraz wewnątrz reprezentacji 3D układu ścian który stworzyliśmy w poprzednim rozdziale, nazwijmy ją „pokojem”. Po prawej widzimy stworzoną przez nas jedyną ścianę. Na dole ekranu widzimy kontrolki służące do poruszania się po pokoju. Przyjrzyjmy się najpierw kontrolce w lewym dolnym kącie ekranu, jest to kontrolka rotacji służąca do obracania się. Przytrzymanie jednej ze strzałek wskazujących w 4 kierunkach powoduje obrót w tym kierunku, kliknięcie w okrąg na środku kontrolki spowoduje zresetowanie obrotu, poniżej zobrazowane jest jej użycie, niebieskie punktowe światło reprezentuje dotyk palca.
 
+<img src="../ilustracje/38.png" width=400></img>
+
 _Ilustracja 38: Obrót kamery w górę_
+
+<img src="../ilustracje/39.png" width=400></img>
 
 _Ilustracja 39: Obrót kamery w dół_
 
+<img src="../ilustracje/40.png" width=400></img>
+
 _Ilustracja 40: Obrót kamery w lewo_
 
+<img src="../ilustracje/41.png" width=400></img>
+
 _Ilustracja 41: Obrót kamery w prawo_
+
+<img src="../ilustracje/42.png" width=400></img>
 
 _Ilustracja 42: Reset obrotu kamery_
 
 Kontrolka w prawym dolnym ekranie służy do poruszania się, poniżej pokazane jest jej użycie:
 
+<img src="../ilustracje/43.png" width=400></img>
+
 _Ilustracja 43: Poruszanie kamery w prawo_
+
+<img src="../ilustracje/44.png" width=400></img>
 
 _Ilustracja 44: Poruszanie kamery w lewo_
 
+<img src="../ilustracje/45.png" width=400></img>
+
 _Ilustracja 45: Poruszanie kamery w tył_
+
+<img src="../ilustracje/46.png" width=400></img>
 
 _Ilustracja 46: Poruszanie kamery w przód_
 
 Przejdźmy teraz do omówienia wieszania obrazów. Dostępne obrazy są ładowane z pamięci telefonu podczas uruchamiania aplikacji. Ładują się z katalogu DCIM/Camera. Aby zawiesić któryś z nich na jednej ze ścian należy jej dotknąć
 
+<img src="../ilustracje/47.png" width=400></img>
+
 _Ilustracja 47: Interakcja ze ścianą - zawieszenie obrazu_
 
 Pojawi się na niej jeden z dostępnych obrazów:
+
+<img src="../ilustracje/48.png" width=400></img>
 
 _Ilustracja 48: Obraz #1 zawieszony na ścianie_
 
 Aby usunąć dany obraz należy jeszcze raz dotknąć ściany na której jest powieszony,
 
+<img src="../ilustracje/49.png" width=400></img>
+
 _Ilustracja 49: Interakcja ze ścianą - zdjęcie obrazu_
 
 a obraz zniknie:
 
+<img src="../ilustracje/50.png" width=400></img>
+
 _Ilustracja 50: Ściana bez obrazu_
 
 po kliknięciu jeszcze raz na ścianę zostanie zawieszony kolejny dostępny obraz, możemy w ten sposób wybrać który nam pasuje:
+
+<img src="../ilustracje/51.png" width=400></img>
 
 _Ilustracja 51: Zawieszenie obrazu #2_
 
