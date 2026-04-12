@@ -11,14 +11,14 @@ There, user can freely move around, and hang pictures on walls. Pictures to hang
 
 
 ## How to install:
-1. download .apk file from [releases of this repository](https://github.com/bogumil-latuszek/android_OpenGL_learning/releases)
+1. download .apk file from [releases of this repository](https://github.com/bogumil-latuszek/virtual_gallery_3D/releases)
 2. find it in file system of user device (it should be in Downloads), then click on it and choose "install"
 3. agree to installation and wait until installation finishes
 
 
 ## About this Project
 
-This Project serves as a fundation for my Bachelor's Thesis in Computer Science, which I decided to publish in this very repository, it can be found inside the Documentation folder. In my Thesis I touch upon topics such as the history and evolution of computer graphics, and explain math behind 3D rendering pipeline. My Thesis was originaly submitted in polish, and at this time I can only share a copy of the original untranslated text. One section in my Thesis that is most relevant for understanding the inns-and-outs of this project can be found in chapter 7 "Dokumentacja techniczna projektu" ("Technical Documentation of the Project"), containing an illustrated guide for using this very program.
+This Project serves as a fundation for my Bachelor's Thesis in Computer Science, which I decided to publish in this very repository, it can be found [here](https://github.com/bogumil-latuszek/virtual_gallery_3D/tree/main/documentation/praca_inzynierska_Bogumil_Latuszek.md). In my Thesis I touch upon topics such as the history and evolution of computer graphics, and explain math behind 3D rendering pipeline. My Thesis was originaly submitted in polish, and at this time I can only share a copy of the original untranslated text. One section in my Thesis that is most relevant for understanding the inns-and-outs of this project can be found in chapter 7 "Dokumentacja techniczna projektu" ("Technical Documentation of the Project"), containing an illustrated guide for using this very program.
 
 ## Common problems:
 
