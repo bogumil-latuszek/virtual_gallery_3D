@@ -1195,7 +1195,7 @@ są informacje o zmianach, dacie i autorze zmiany. W sytuacji wykrycia błędu w
 
 # 7.1 Instalacja aplikacji
 
-Aby zainstalować aplikację należy pobrać plik .apk z https://github.com/bogumil-latuszek/android_OpenGL_learning/releases/tag/v1.0. Następnie należy odszukać go w systemie plików (najprawdopodobniej będzie w katalogu Downloads), a potem kliknąć na niego i wybrać opcję „zainstaluj”. System poprosi o zgodę na instalację - należy jej udzielić i poczekać aż instalacja zakończy się pomyślnie.
+Aby zainstalować aplikację należy pobrać plik .apk z https://github.com/bogumil-latuszek/virtual_gallery_3D/releases/tag/v1.0. Następnie należy odszukać go w systemie plików (najprawdopodobniej będzie w katalogu Downloads), a potem kliknąć na niego i wybrać opcję „zainstaluj”. System poprosi o zgodę na instalację - należy jej udzielić i poczekać aż instalacja zakończy się pomyślnie.
 
 # 7.2 uruchomienie aplikacji i opis funkcjonalności 2D
 
